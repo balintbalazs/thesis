@@ -1,0 +1,837 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.7.6)  23 JUL 2017 14:04
+entering extended mode
+**./diplomaterv.tex
+(diplomaterv.tex
+LaTeX2e <2017-04-15>
+Babel <3.10> and hyphenation patterns for 75 language(s) loaded.
+(diploma_style.cls
+Document Class: diploma_style 
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\report.cls"
+Document Class: report 2014/09/29 v1.4h Standard LaTeX document class
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\size11.clo"
+File: size11.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@chapter=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\inputenc.sty"
+Package: inputenc 2015/03/17 v1.2c Input encoding file
+\inpenc@prehook=\toks14
+\inpenc@posthook=\toks15
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\ucs\utf8x.def"
+File: utf8x.def 2004/10/17 UCS: Input encoding UTF-8
+))
+("C:\Program Files\MiKTeX 2.9\tex\latex\ucs\ucs.sty"
+Package: ucs 2013/05/11 v2.2 UCS: Unicode input support
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\ucs\uni-global.def"
+File: uni-global.def 2013/05/13 UCS: Unicode global data
+)
+\uc@secondtry=\count88
+\uc@combtoks=\toks16
+\uc@combtoksb=\toks17
+\uc@temptokena=\toks18
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\preprint\fullpage.sty"
+Package: fullpage 1999/02/23 1.1 (PWD)
+\FP@margin=\skip43
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsmath.sty"
+Package: amsmath 2016/11/05 v2.16a AMS math features
+\@mathmargin=\skip44
+
+For additional information on amsmath, use the `?' option.
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amstext.sty"
+Package: amstext 2000/06/29 v2.01 AMS text
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsgen.sty"
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks19
+\ex@=\dimen103
+))
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsbsy.sty"
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen104
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsopn.sty"
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count89
+LaTeX Info: Redefining \frac on input line 213.
+\uproot@=\count90
+\leftroot@=\count91
+LaTeX Info: Redefining \overline on input line 375.
+\classnum@=\count92
+\DOTSCASE@=\count93
+LaTeX Info: Redefining \ldots on input line 472.
+LaTeX Info: Redefining \dots on input line 475.
+LaTeX Info: Redefining \cdots on input line 596.
+\Mathstrutbox@=\box26
+\strutbox@=\box27
+\big@size=\dimen105
+LaTeX Font Info:    Redeclaring font encoding OML on input line 712.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
+\macc@depth=\count94
+\c@MaxMatrixCols=\count95
+\dotsspace@=\muskip10
+\c@parentequation=\count96
+\dspbrk@lvl=\count97
+\tag@help=\toks20
+\row@=\count98
+\column@=\count99
+\maxfields@=\count100
+\andhelp@=\toks21
+\eqnshift@=\dimen106
+\alignsep@=\dimen107
+\tagshift@=\dimen108
+\tagwidth@=\dimen109
+\totwidth@=\dimen110
+\lineht@=\dimen111
+\@envbody=\toks22
+\multlinegap=\skip45
+\multlinetaggap=\skip46
+\mathdisplay@stack=\toks23
+LaTeX Info: Redefining \[ on input line 2817.
+LaTeX Info: Redefining \] on input line 2818.
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\amsfonts.sty"
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\amssymb.sty"
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\makeidx.sty"
+Package: makeidx 2014/09/29 v1.0m Standard LaTeX package
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
+Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks24
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
+Package: graphics 2017/04/14 v1.1b Standard LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\trig.sty"
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics-cfg\graphics.cfg"
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 99.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics-def\pdftex.def"
+File: pdftex.def 2017/01/12 v0.06k Graphics/color for pdfTeX
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty"
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty"
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count101
+))
+\Gin@req@height=\dimen112
+\Gin@req@width=\dimen113
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\caption\caption.sty"
+Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\caption\caption3.sty"
+Package: caption3 2016/05/22 v1.7-166 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 67.
+\captionmargin=\dimen114
+\captionmargin@=\dimen115
+\captionwidth=\dimen116
+\caption@tempdima=\dimen117
+\caption@indent=\dimen118
+\caption@parindent=\dimen119
+\caption@hangindent=\dimen120
+)
+\c@ContinuedFloat=\count102
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\caption\subcaption.sty"
+Package: subcaption 2016/05/22 v1.1-161 Sub-captions (AR)
+\c@subfigure=\count103
+\c@subtable=\count104
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\tools\verbatim.sty"
+Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks25
+\verbatim@line=\toks26
+\verbatim@in@stream=\read1
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\hyperref.sty"
+Package: hyperref 2017/03/14 v6.85a Hypertext links for LaTeX
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\hobsub-hyperref.sty"
+Package: hobsub-hyperref 2016/05/16 v1.14 Bundle oberdiek, subset hyperref (HO)
+
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\hobsub-generic.sty"
+Package: hobsub-generic 2016/05/16 v1.14 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2016/05/16 v1.14 Construct package bundles (HO)
+Package hobsub Info: Skipping package `infwarerr' (already loaded).
+Package hobsub Info: Skipping package `ltxcmds' (already loaded).
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+Package: intcalc 2016/05/16 v1.2 Expandable calculations with integers (HO)
+Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+Package: pdftexcmds 2017/03/19 v0.25 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+Package: pdfescape 2016/05/16 v1.14 Implements pdfTeX's escape features (HO)
+Package: bigintcalc 2016/05/16 v1.4 Expandable calculations on big integers (HO
+)
+Package: bitset 2016/05/16 v1.2 Handle bit-vector datatype (HO)
+Package: uniquecounter 2016/05/16 v1.3 Provide unlimited unique counter (HO)
+)
+Package hobsub Info: Skipping package `hobsub' (already loaded).
+Package: letltxmacro 2016/05/16 v1.5 Let assignment for LaTeX macros (HO)
+Package: hopatch 2016/05/16 v1.3 Wrapper for package hooks (HO)
+Package: xcolor-patch 2016/05/16 xcolor patch
+Package: atveryend 2016/05/16 v1.9 Hooks at the very end of document (HO)
+Package atveryend Info: \enddocument detected (standard20110627).
+Package: atbegshi 2016/06/09 v1.18 At begin shipout hook (HO)
+Package: refcount 2016/05/16 v3.5 Data extraction from label references (HO)
+Package: hycolor 2016/05/16 v1.8 Color options for hyperref/bookmark (HO)
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.sty"
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\auxhook.sty"
+Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\kvoptions.sty"
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+)
+\@linkdim=\dimen121
+\Hy@linkcounter=\count105
+\Hy@pagecounter=\count106
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\pd1enc.def"
+File: pd1enc.def 2017/03/14 v6.85a Hyperref: PDFDocEncoding definition (HO)
+)
+\Hy@SavedSpaceFactor=\count107
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\hyperref.cfg"
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+Package hyperref Info: Option `plainpages' set `false' on input line 4374.
+Package hyperref Info: Option `pdfpagelabels' set `true' on input line 4374.
+Package hyperref Info: Option `bookmarks' set `true' on input line 4374.
+Package hyperref Info: Option `bookmarksopen' set `true' on input line 4374.
+Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 4374
+.
+Package hyperref Info: Option `breaklinks' set `true' on input line 4374.
+Package hyperref Info: Option `linktocpage' set `true' on input line 4374.
+Package hyperref Info: Option `colorlinks' set `true' on input line 4374.
+Package hyperref Info: Option `hyperindex' set `true' on input line 4374.
+Package hyperref Info: Option `hyperfigures' set `true' on input line 4374.
+Package hyperref Info: Hyper figures ON on input line 4496.
+Package hyperref Info: Link nesting OFF on input line 4503.
+Package hyperref Info: Hyper index ON on input line 4506.
+Package hyperref Info: Plain pages OFF on input line 4513.
+Package hyperref Info: Backreferencing ON on input line 4516.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4751.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\backref.sty"
+Package: backref 2016/05/21 v1.39 Bibliographical back referencing
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\rerunfilecheck.sty"
+Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+82.
+))
+\c@Hy@tempcnt=\count108
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\url\url.sty"
+\Urlmuskip=\muskip11
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 5104.
+\XeTeXLinkMargin=\dimen122
+\Fld@menulength=\count109
+\Field@Width=\dimen123
+\Fld@charsize=\dimen124
+Package hyperref Info: Hyper figures ON on input line 6356.
+Package hyperref Info: Link nesting OFF on input line 6363.
+Package hyperref Info: Hyper index ON on input line 6366.
+Package hyperref Info: backreferencing ON on input line 6371.
+Package hyperref Info: Link coloring ON on input line 6376.
+Package hyperref Info: Link coloring with OCG OFF on input line 6383.
+Package hyperref Info: PDF/A mode OFF on input line 6388.
+LaTeX Info: Redefining \ref on input line 6428.
+LaTeX Info: Redefining \pageref on input line 6432.
+\Hy@abspage=\count110
+\c@Item=\count111
+\c@Hfootnote=\count112
+)
+
+Package hyperref Message: Driver: hpdftex.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\hpdftex.def"
+File: hpdftex.def 2017/03/14 v6.85a Hyperref driver for pdfTeX
+\Fld@listcount=\count113
+\c@bookmark@seq@number=\count114
+\Hy@SectionHShift=\skip47
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\setspace\setspace.sty"
+Package: setspace 2011/12/19 v6.7a set line spacing
+))
+(diplomaterv.aux)
+\openout1 = `diplomaterv.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\ucs\ucsencs.def"
+File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
+)
+("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count115
+\scratchdimen=\dimen125
+\scratchbox=\box28
+\nofMPsegments=\count116
+\nofMParguments=\count117
+\everyMPshowfont=\toks27
+\MPscratchCnt=\count118
+\MPscratchDim=\dimen126
+\MPnumerator=\count119
+\makeMPintoPDFobject=\count120
+\everyMPtoPDFconversion=\toks28
+) ("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\epstopdf-base.sty"
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\grfext.sty"
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+)
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+38.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 456.
+)
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: hyperref package is loaded.
+Package caption Info: End \AtBeginDocument code.
+\AtBeginShipoutBox=\box29
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\color.sty"
+Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics-cfg\color.cfg"
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: pdftex.def on input line 147.
+)
+Package hyperref Info: Link coloring ON on input line 15.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
+Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
+Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
+)
+\c@section@level=\count121
+)
+LaTeX Info: Redefining \ref on input line 15.
+LaTeX Info: Redefining \pageref on input line 15.
+LaTeX Info: Redefining \nameref on input line 15.
+
+(diplomaterv.out) (diplomaterv.out)
+\@outlinefile=\write3
+\openout3 = `diplomaterv.out'.
+
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\ucs\uni-0.def"
+File: uni-0.def 2013/05/13 UCS: Unicode data U+0000..U+00FF
+)
+<figures/0_front/ITK_logo.pdf, id=76, 54.2025pt x 113.42375pt>
+File: figures/0_front/ITK_logo.pdf Graphic file (type pdf)
+
+<use figures/0_front/ITK_logo.pdf>
+Package pdftex.def Info: figures/0_front/ITK_logo.pdf used on input line 17.
+(pdftex.def)             Requested size: 56.9055pt x 119.08632pt.
+
+<figures/0_front/EMBL_logo.pdf, id=79, 361.35pt x 155.58125pt>
+File: figures/0_front/EMBL_logo.pdf Graphic file (type pdf)
+
+<use figures/0_front/EMBL_logo.pdf>
+Package pdftex.def Info: figures/0_front/EMBL_logo.pdf used on input line 17.
+(pdftex.def)             Requested size: 142.26378pt x 61.25331pt.
+ [1
+
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map} <./figures/0_front/ITK_log
+o.pdf> <./figures/0_front/EMBL_logo.pdf
+
+pdfTeX warning: pdflatex (file ./figures/0_front/EMBL_logo.pdf): PDF inclusion:
+ multiple pdfs with page group included in a single page
+>] [2] ("C:\Program Files\MiKTeX 2.9\tex\latex\ucs\uni-1.def"
+File: uni-1.def 2013/05/13 UCS: Unicode data U+0100..U+01FF
+) [3] [4] [5]
+[6
+
+] (diplomaterv.toc
+LaTeX Font Info:    Try loading font information for U+msa on input line 2.
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 2.
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+))
+\tf@toc=\write4
+\openout4 = `diplomaterv.toc'.
+
+ [1] [2
+
+]
+Chapter 1.
+[3] [4]
+<figures/1_introduction/wide-field.pdf, id=165, 645.41125pt x 720.6925pt>
+File: figures/1_introduction/wide-field.pdf Graphic file (type pdf)
+
+<use figures/1_introduction/wide-field.pdf>
+Package pdftex.def Info: figures/1_introduction/wide-field.pdf used on input li
+ne 103.
+(pdftex.def)             Requested size: 258.15993pt x 288.2719pt.
+ [5 <./figures/1_introduction/wide-field.pdf>]
+<figures/1_introduction/resolution.pdf, id=204, 433.62pt x 433.62pt>
+File: figures/1_introduction/resolution.pdf Graphic file (type pdf)
+
+<use figures/1_introduction/resolution.pdf>
+Package pdftex.def Info: figures/1_introduction/resolution.pdf used on input li
+ne 128.
+(pdftex.def)             Requested size: 254.71167pt x 254.7154pt.
+ [6 <./figures/1_introduction/resolution.pdf>]
+<figures/1_introduction/confocal.pdf, id=220, 704.6325pt x 851.18pt>
+File: figures/1_introduction/confocal.pdf Graphic file (type pdf)
+
+<use figures/1_introduction/confocal.pdf>
+Package pdftex.def Info: figures/1_introduction/confocal.pdf used on input line
+ 147.
+(pdftex.def)             Requested size: 208.01476pt x 251.27774pt.
+
+<figures/1_introduction/conf-theta.pdf, id=221, 712.6625pt x 719.68875pt>
+File: figures/1_introduction/conf-theta.pdf Graphic file (type pdf)
+
+<use figures/1_introduction/conf-theta.pdf>
+Package pdftex.def Info: figures/1_introduction/conf-theta.pdf used on input li
+ne 153.
+(pdftex.def)             Requested size: 208.01476pt x 210.0661pt.
+
+Underfull \vbox (badness 5862) has occurred while \output is active []
+
+ [7 <./figures/1_introduction/confocal.pdf> <./figures/1_introduction/conf-thet
+a.pdf
+
+pdfTeX warning: pdflatex (file ./figures/1_introduction/conf-theta.pdf): PDF in
+clusion: multiple pdfs with page group included in a single page
+>] [8]
+Chapter 2.
+
+LaTeX Warning: Citation `zanacchi_live-cell_2011' on page 9 undefined on input 
+line 185.
+
+[9
+
+] <figures/2_spim/light-sheet.png, id=351, 206.4513pt x 218.4963pt>
+File: figures/2_spim/light-sheet.png Graphic file (type png)
+
+<use figures/2_spim/light-sheet.png>
+Package pdftex.def Info: figures/2_spim/light-sheet.png used on input line 201.
+
+(pdftex.def)             Requested size: 339.6134pt x 359.44978pt.
+ [10 <./figures/2_spim/light-sheet.png>]
+[11] <figures/2_spim/FOV.pdf, id=382, 914.41624pt x 747.79375pt>
+File: figures/2_spim/FOV.pdf Graphic file (type pdf)
+
+<use figures/2_spim/FOV.pdf>
+Package pdftex.def Info: figures/2_spim/FOV.pdf used on input line 285.
+(pdftex.def)             Requested size: 297.1593pt x 243.00726pt.
+
+<figures/2_spim/width.pdf, id=383, 433.62pt x 433.62pt>
+File: figures/2_spim/width.pdf Graphic file (type pdf)
+
+<use figures/2_spim/width.pdf>
+Package pdftex.def Info: figures/2_spim/width.pdf used on input line 291.
+(pdftex.def)             Requested size: 208.01476pt x 208.01613pt.
+
+<figures/2_spim/height.pdf, id=384, 433.62pt x 433.62pt>
+File: figures/2_spim/height.pdf Graphic file (type pdf)
+
+<use figures/2_spim/height.pdf>
+Package pdftex.def Info: figures/2_spim/height.pdf used on input line 297.
+(pdftex.def)             Requested size: 208.01476pt x 208.01613pt.
+ [12]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [13 <./figures/2_spim/FOV.pdf> <./figures/2_spim/width.pdf> <./figures/2_spim/
+height.pdf>] <figures/2_spim/dslm.png, id=428, 1429.34pt x 1119.18124pt>
+File: figures/2_spim/dslm.png Graphic file (type png)
+
+<use figures/2_spim/dslm.png>
+Package pdftex.def Info: figures/2_spim/dslm.png used on input line 313.
+(pdftex.def)             Requested size: 339.6134pt x 265.91077pt.
+
+<figures/2_spim/Image01.jpg, id=431, 1042.1334pt x 604.1772pt>
+File: figures/2_spim/Image01.jpg Graphic file (type jpg)
+
+<use figures/2_spim/Image01.jpg>
+Package pdftex.def Info: figures/2_spim/Image01.jpg used on input line 325.
+(pdftex.def)             Requested size: 208.01476pt x 120.5936pt.
+
+<figures/2_spim/Image04.jpg, id=432, 776.1798pt x 521.7894pt>
+File: figures/2_spim/Image04.jpg Graphic file (type jpg)
+
+<use figures/2_spim/Image04.jpg>
+Package pdftex.def Info: figures/2_spim/Image04.jpg used on input line 331.
+(pdftex.def)             Requested size: 208.01476pt x 139.83405pt.
+ [14 <./figures/2_spim/dslm.png>]
+<figures/2_spim/setup1free.pdf, id=441, 722.7pt x 433.62pt>
+File: figures/2_spim/setup1free.pdf Graphic file (type pdf)
+
+<use figures/2_spim/setup1free.pdf>
+Package pdftex.def Info: figures/2_spim/setup1free.pdf used on input line 346.
+(pdftex.def)             Requested size: 424.51515pt x 254.70877pt.
+ [15 <./figures/2_spim/Image01.jpg> <./figures/2_spim/Image04.jpg>]
+<figures/2_spim/affine.pdf, id=451, 562.1pt x 341.275pt>
+File: figures/2_spim/affine.pdf Graphic file (type pdf)
+
+<use figures/2_spim/affine.pdf>
+Package pdftex.def Info: figures/2_spim/affine.pdf used on input line 365.
+(pdftex.def)             Requested size: 339.6134pt x 206.1934pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [16 <./figures/2_spim/setup1free.pdf>] [17 <./figures/2_spim/affine.pdf>] [18
+
+]
+Chapter 3.
+[19] <figures/3_program/program.pdf, id=507, 839.135pt x 400.49625pt>
+File: figures/3_program/program.pdf Graphic file (type pdf)
+
+<use figures/3_program/program.pdf>
+Package pdftex.def Info: figures/3_program/program.pdf used on input line 411.
+(pdftex.def)             Requested size: 339.6134pt x 162.08398pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [20 <./figures/3_program/program.pdf>]
+<figures/3_program/automator2.png, id=531, 653.44125pt x 486.31688pt>
+File: figures/3_program/automator2.png Graphic file (type png)
+
+<use figures/3_program/automator2.png>
+Package pdftex.def Info: figures/3_program/automator2.png used on input line 42
+9.
+(pdftex.def)             Requested size: 326.71982pt x 243.15784pt.
+ [21] [22 <./figures/3_program/automator2.png>] [23] <figures/3_program/section
+s.pdf, id=553, 361.35pt x 361.35pt>
+File: figures/3_program/sections.pdf Graphic file (type pdf)
+
+<use figures/3_program/sections.pdf>
+Package pdftex.def Info: figures/3_program/sections.pdf used on input line 483.
+
+(pdftex.def)             Requested size: 166.41243pt x 166.41048pt.
+ [24 <./figures/3_program/sections.pdf>]
+<figures/3_program/fpga.png, id=567, 356.0803pt x 256.70906pt>
+File: figures/3_program/fpga.png Graphic file (type png)
+
+<use figures/3_program/fpga.png>
+Package pdftex.def Info: figures/3_program/fpga.png used on input line 515.
+(pdftex.def)             Requested size: 178.03972pt x 128.3542pt.
+
+Underfull \vbox (badness 1533) has occurred while \output is active []
+
+ [25]
+[26 <./figures/3_program/fpga.png>]
+<figures/3_program/camera.png, id=587, 289.08pt x 228.855pt>
+File: figures/3_program/camera.png Graphic file (type png)
+
+<use figures/3_program/camera.png>
+Package pdftex.def Info: figures/3_program/camera.png used on input line 535.
+(pdftex.def)             Requested size: 144.53964pt x 114.42722pt.
+ [27 <./figures/3_program/camera.png>]
+<figures/3_program/laser.png, id=595, 429.10312pt x 444.15938pt>
+File: figures/3_program/laser.png Graphic file (type png)
+
+<use figures/3_program/laser.png>
+Package pdftex.def Info: figures/3_program/laser.png used on input line 557.
+(pdftex.def)             Requested size: 214.55103pt x 222.07913pt.
+ [28 <./figures/3_program/laser.png>]
+<figures/3_program/triggers.pdf, id=606, 433.62pt x 433.62pt>
+File: figures/3_program/triggers.pdf Graphic file (type pdf)
+
+<use figures/3_program/triggers.pdf>
+Package pdftex.def Info: figures/3_program/triggers.pdf used on input line 628.
+
+(pdftex.def)             Requested size: 297.1593pt x 297.17348pt.
+ [29] [30 <./figures/3_program/triggers.pdf>] <figures/3_program/galvo.png, id=
+632, 305.64188pt x 221.32687pt>
+File: figures/3_program/galvo.png Graphic file (type png)
+
+<use figures/3_program/galvo.png>
+Package pdftex.def Info: figures/3_program/galvo.png used on input line 637.
+(pdftex.def)             Requested size: 152.82056pt x 110.66315pt.
+
+<figures/3_program/stage.png, id=634, 469.00218pt x 331.2375pt>
+File: figures/3_program/stage.png Graphic file (type png)
+
+<use figures/3_program/stage.png>
+Package pdftex.def Info: figures/3_program/stage.png used on input line 651.
+(pdftex.def)             Requested size: 234.50052pt x 165.61833pt.
+ [31 <./figures/3_program/galvo.png>] [32 <./figures/3_program/stage.png>]
+<figures/3_program/fw.png, id=651, 238.64156pt x 188.20313pt>
+File: figures/3_program/fw.png Graphic file (type png)
+
+<use figures/3_program/fw.png>
+Package pdftex.def Info: figures/3_program/fw.png used on input line 688.
+(pdftex.def)             Requested size: 119.32048pt x 94.10132pt.
+
+<figures/3_program/shutter.png, id=653, 283.81032pt x 190.46156pt>
+File: figures/3_program/shutter.png Graphic file (type png)
+
+<use figures/3_program/shutter.png>
+Package pdftex.def Info: figures/3_program/shutter.png used on input line 704.
+(pdftex.def)             Requested size: 141.9048pt x 95.23053pt.
+ [33 <./figures/3_program/fw.png>] [34 <./figures/3_program/shutter.png>]
+Chapter 4.
+<figures/4_results/photo2.pdf, id=668, 722.7pt x 542.025pt>
+File: figures/4_results/photo2.pdf Graphic file (type pdf)
+
+<use figures/4_results/photo2.pdf>
+Package pdftex.def Info: figures/4_results/photo2.pdf used on input line 725.
+(pdftex.def)             Requested size: 424.51515pt x 318.38597pt.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 730.
+
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <8> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 730.
+
+Overfull \hbox (0.37283pt too wide) in paragraph at lines 734--735
+[]\OT1/cmr/m/n/10.95 Light-sheet is gen-er-ated by scan-ning with the fo-cused 
+laser-beam us-ing a galvanometer-
+ []
+
+[35
+
+] [36 <./figures/4_results/photo2.pdf>]
+<figures/4_results/phallusia_montage2.jpg, id=712, 1192.455pt x 907.39pt>
+File: figures/4_results/phallusia_montage2.jpg Graphic file (type jpg)
+
+<use figures/4_results/phallusia_montage2.jpg>
+Package pdftex.def Info: figures/4_results/phallusia_montage2.jpg used on input
+ line 752.
+(pdftex.def)             Requested size: 339.6134pt x 258.42885pt.
+
+<figures/4_results/phallusia_montage_time2.jpg, id=714, 1192.455pt x 907.39pt>
+File: figures/4_results/phallusia_montage_time2.jpg Graphic file (type jpg)
+
+<use figures/4_results/phallusia_montage_time2.jpg>
+Package pdftex.def Info: figures/4_results/phallusia_montage_time2.jpg used on 
+input line 763.
+(pdftex.def)             Requested size: 339.6134pt x 258.42885pt.
+ [37] [38 <./figures/4_results/phallusia_montage2.jpg> <./figures/4_results/pha
+llusia_montage_time2.jpg>]
+<figures/4_results/ds_avg.jpg, id=733, 2533.465pt x 1228.59pt>
+File: figures/4_results/ds_avg.jpg Graphic file (type jpg)
+
+<use figures/4_results/ds_avg.jpg>
+Package pdftex.def Info: figures/4_results/ds_avg.jpg used on input line 779.
+(pdftex.def)             Requested size: 208.01476pt x 100.85751pt.
+
+<figures/4_results/ds_max.jpg, id=734, 2533.465pt x 1228.59pt>
+File: figures/4_results/ds_max.jpg Graphic file (type jpg)
+
+<use figures/4_results/ds_max.jpg>
+Package pdftex.def Info: figures/4_results/ds_max.jpg used on input line 785.
+(pdftex.def)             Requested size: 208.01476pt x 100.85751pt.
+ [39 <./figures/4_results/ds_avg.jpg> <./figures/4_results/ds_max.jpg>] [40]
+Overfull \hbox (0.8537pt too wide) in paragraph at lines 815--816
+[]\OT1/cmr/m/n/10.95 I thank Ste-fan Gunther for pro-vid-ing the \OT1/cmr/m/it
+/10.95 Drosophila m. \OT1/cmr/m/n/10.95 em-bryos, and []
+ []
+
+[41
+
+] [42
+
+] (diplomaterv.bbl (diplomaterv.brf)
+\tf@brf=\write5
+\openout5 = `diplomaterv.brf'.
+
+
+** WARNING: IEEEtran.bst: No hyphenation pattern has been
+** loaded for the language `en'. Using the pattern for
+** the default language instead.
+** WARNING: IEEEtran.bst: No hyphenation pattern has been
+** loaded for the language `en'. Using the pattern for
+** the default language instead.
+** WARNING: IEEEtran.bst: No hyphenation pattern has been
+** loaded for the language `en'. Using the pattern for
+** the default language instead.
+** WARNING: IEEEtran.bst: No hyphenation pattern has been
+** loaded for the language `en'. Using the pattern for
+** the default language instead.
+** WARNING: IEEEtran.bst: No hyphenation pattern has been
+** loaded for the language `en'. Using the pattern for
+** the default language instead.
+** WARNING: IEEEtran.bst: No hyphenation pattern has been
+** loaded for the language `en'. Using the pattern for
+** the default language instead.
+("C:\Program Files\MiKTeX 2.9\tex\latex\ucs\uni-32.def"
+File: uni-32.def 2013/05/13 UCS: Unicode data U+2000..U+20FF
+)
+** WARNING: IEEEtran.bst: No hyphenation pattern has been
+** loaded for the language `en'. Using the pattern for
+** the default language instead.
+** WARNING: IEEEtran.bst: No hyphenation pattern has been
+** loaded for the language `en'. Using the pattern for
+** the default language instead.
+** WARNING: IEEEtran.bst: No hyphenation pattern has been
+** loaded for the language `en'. Using the pattern for
+** the default language instead.
+** WARNING: IEEEtran.bst: No hyphenation pattern has been
+** loaded for the language `en'. Using the pattern for
+** the default language instead.
+** WARNING: IEEEtran.bst: No hyphenation pattern has been
+** loaded for the language `en'. Using the pattern for
+** the default language instead.
+** WARNING: IEEEtran.bst: No hyphenation pattern has been
+** loaded for the language `en'. Using the pattern for
+** the default language instead.
+** WARNING: IEEEtran.bst: No hyphenation pattern has been
+** loaded for the language `en'. Using the pattern for
+** the default language instead.
+** WARNING: IEEEtran.bst: No hyphenation pattern has been
+** loaded for the language `en'. Using the pattern for
+** the default language instead.
+[43
+
+]
+** WARNING: IEEEtran.bst: No hyphenation pattern has been
+** loaded for the language `en'. Using the pattern for
+** the default language instead.
+** WARNING: IEEEtran.bst: No hyphenation pattern has been
+** loaded for the language `en'. Using the pattern for
+** the default language instead.
+** WARNING: IEEEtran.bst: No hyphenation pattern has been
+** loaded for the language `en'. Using the pattern for
+** the default language instead.
+** WARNING: IEEEtran.bst: No hyphenation pattern has been
+** loaded for the language `en'. Using the pattern for
+** the default language instead.
+** WARNING: IEEEtran.bst: No hyphenation pattern has been
+** loaded for the language `en'. Using the pattern for
+** the default language instead.
+** WARNING: IEEEtran.bst: No hyphenation pattern has been
+** loaded for the language `en'. Using the pattern for
+** the default language instead.
+** WARNING: IEEEtran.bst: No hyphenation pattern has been
+** loaded for the language `en'. Using the pattern for
+** the default language instead.
+** WARNING: IEEEtran.bst: No hyphenation pattern has been
+** loaded for the language `en'. Using the pattern for
+** the default language instead.
+** WARNING: IEEEtran.bst: No hyphenation pattern has been
+** loaded for the language `en'. Using the pattern for
+** the default language instead.
+** WARNING: IEEEtran.bst: No hyphenation pattern has been
+** loaded for the language `en'. Using the pattern for
+** the default language instead.
+)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 829.
+ [44]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 829.
+ (diplomaterv.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 829.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 829.
+Package rerunfilecheck Info: File `diplomaterv.out' has not changed.
+(rerunfilecheck)             Checksum: 4960BF4AFDBEAB0535D7D7195834F94E;1158.
+Package rerunfilecheck Info: File `diplomaterv.brf' has not changed.
+(rerunfilecheck)             Checksum: BE06A8DE29C0DFD9E77C7349961522AA;1503.
+
+
+LaTeX Warning: There were undefined references.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 829.
+ ) 
+Here is how much of TeX's memory you used:
+ 9533 strings out of 493323
+ 140531 string characters out of 3139064
+ 241160 words of memory out of 3000000
+ 12748 multiletter control sequences out of 15000+200000
+ 16455 words of font info for 60 fonts, out of 3000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 43i,12n,40p,1179b,619s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
+ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Fi
+les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Program Files/MiKTe
+X 2.9/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Program Files/MiKTeX 2.9/
+fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
+pe1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publ
+ic/amsfonts/cm/cmmi6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
+ts/cm/cmmi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr
+10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C
+:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program 
+Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files/MiKT
+eX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fon
+ts/type1/public/amsfonts/cm/cmr9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/p
+ublic/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/am
+sfonts/cm/cmsy6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
+/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.p
+fb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Pr
+ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Program Fil
+es/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on diplomaterv.pdf (50 pages, 3168327 bytes).
+PDF statistics:
+ 918 PDF objects out of 1000 (max. 8388607)
+ 159 named destinations out of 1000 (max. 500000)
+ 300 words of extra memory for PDF output out of 10000 (max. 10000000)
+
