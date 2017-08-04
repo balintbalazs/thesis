@@ -23,10 +23,10 @@
                  linktocpage,
                  pagebackref,
                  colorlinks = true,  % was true
-                 linkcolor = blue,
-                 urlcolor  = blue,
-                 citecolor = red,
-                 anchorcolor = green,
+                 linkcolor = black,	% blue
+                 urlcolor  = black,	% blue
+                 citecolor = black,	%red
+                 anchorcolor = black,	% green
                  hyperindex = true,
                  hyperfigures]{hyperref} 
 

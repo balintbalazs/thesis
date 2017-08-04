@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.7.6)  29 JUL 2017 16:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.7.6)  3 AUG 2017 14:01
 entering extended mode
 **./thesis_BB.tex
 (thesis_BB.tex
@@ -457,7 +457,7 @@ File: figures/1_introduction/wide-field.pdf Graphic file (type pdf)
 
 <use figures/1_introduction/wide-field.pdf>
 Package pdftex.def Info: figures/1_introduction/wide-field.pdf used on input li
-ne 86.
+ne 87.
 (pdftex.def)             Requested size: 258.15993pt x 288.2719pt.
  [6] [7 <./figures/1_introduction/wide-field.pdf>]
 <figures/1_introduction/resolution.pdf, id=220, 433.62pt x 433.62pt>
@@ -465,7 +465,7 @@ File: figures/1_introduction/resolution.pdf Graphic file (type pdf)
 
 <use figures/1_introduction/resolution.pdf>
 Package pdftex.def Info: figures/1_introduction/resolution.pdf used on input li
-ne 111.
+ne 112.
 (pdftex.def)             Requested size: 254.71167pt x 254.7154pt.
  [8 <./figures/1_introduction/resolution.pdf>]
 <figures/1_introduction/confocal.pdf, id=236, 704.6325pt x 851.18pt>
@@ -473,7 +473,7 @@ File: figures/1_introduction/confocal.pdf Graphic file (type pdf)
 
 <use figures/1_introduction/confocal.pdf>
 Package pdftex.def Info: figures/1_introduction/confocal.pdf used on input line
- 130.
+ 131.
 (pdftex.def)             Requested size: 208.01476pt x 251.27774pt.
 
 <figures/1_introduction/conf-theta.pdf, id=237, 712.6625pt x 719.68875pt>
@@ -481,7 +481,7 @@ File: figures/1_introduction/conf-theta.pdf Graphic file (type pdf)
 
 <use figures/1_introduction/conf-theta.pdf>
 Package pdftex.def Info: figures/1_introduction/conf-theta.pdf used on input li
-ne 136.
+ne 137.
 (pdftex.def)             Requested size: 208.01476pt x 210.0661pt.
  [9 <./figures/1_introduction/confocal.pdf> <./figures/1_introduction/conf-thet
 a.pdf
@@ -492,7 +492,7 @@ clusion: multiple pdfs with page group included in a single page
 Chapter 3.
 
 LaTeX Warning: Citation `zanacchi_live-cell_2011' on page 11 undefined on input
- line 168.
+ line 169.
 
 [11
 
@@ -500,7 +500,7 @@ LaTeX Warning: Citation `zanacchi_live-cell_2011' on page 11 undefined on input
 File: figures/2_spim/light-sheet.png Graphic file (type png)
 
 <use figures/2_spim/light-sheet.png>
-Package pdftex.def Info: figures/2_spim/light-sheet.png used on input line 184.
+Package pdftex.def Info: figures/2_spim/light-sheet.png used on input line 185.
 
 (pdftex.def)             Requested size: 339.6134pt x 359.44978pt.
  [12 <./figures/2_spim/light-sheet.png>]
@@ -508,21 +508,21 @@ Package pdftex.def Info: figures/2_spim/light-sheet.png used on input line 184.
 File: figures/2_spim/FOV.pdf Graphic file (type pdf)
 
 <use figures/2_spim/FOV.pdf>
-Package pdftex.def Info: figures/2_spim/FOV.pdf used on input line 268.
+Package pdftex.def Info: figures/2_spim/FOV.pdf used on input line 269.
 (pdftex.def)             Requested size: 297.1593pt x 243.00726pt.
 
 <figures/2_spim/width.pdf, id=397, 433.62pt x 433.62pt>
 File: figures/2_spim/width.pdf Graphic file (type pdf)
 
 <use figures/2_spim/width.pdf>
-Package pdftex.def Info: figures/2_spim/width.pdf used on input line 274.
+Package pdftex.def Info: figures/2_spim/width.pdf used on input line 275.
 (pdftex.def)             Requested size: 208.01476pt x 208.01613pt.
 
 <figures/2_spim/height.pdf, id=398, 433.62pt x 433.62pt>
 File: figures/2_spim/height.pdf Graphic file (type pdf)
 
 <use figures/2_spim/height.pdf>
-Package pdftex.def Info: figures/2_spim/height.pdf used on input line 280.
+Package pdftex.def Info: figures/2_spim/height.pdf used on input line 281.
 (pdftex.def)             Requested size: 208.01476pt x 208.01613pt.
  [14]
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -534,7 +534,7 @@ File: figures/2_spim/light-sheet-en_galvo.pdf Graphic file (type pdf)
 
 <use figures/2_spim/light-sheet-en_galvo.pdf>
 Package pdftex.def Info: figures/2_spim/light-sheet-en_galvo.pdf used on input 
-line 296.
+line 297.
 (pdftex.def)             Requested size: 339.6134pt x 362.75092pt.
  [16] [17 <./figures/2_spim/light-sheet-en_galvo.pdf>] [18
 
@@ -546,7 +546,7 @@ File: figures/3_compression/intro/huffman.png Graphic file (type png)
 
 <use figures/3_compression/intro/huffman.png>
 Package pdftex.def Info: figures/3_compression/intro/huffman.png used on input 
-line 406.
+line 407.
 (pdftex.def)             Requested size: 254.71167pt x 132.84001pt.
 
 Underfull \vbox (badness 5331) has occurred while \output is active []
@@ -562,7 +562,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 File: figures/3_compression/intro/arithmetic.png Graphic file (type png)
 <use figures/3_compression/intro/arithmetic.png>
 Package pdftex.def Info: figures/3_compression/intro/arithmetic.png used on inp
-ut line 480.
+ut line 481.
 (pdftex.def)             Requested size: 254.71167pt x 158.26915pt.
  [23]
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -573,7 +573,7 @@ File: figures/3_compression/intro/DCT_bases.png Graphic file (type png)
 
 <use figures/3_compression/intro/DCT_bases.png>
 Package pdftex.def Info: figures/3_compression/intro/DCT_bases.png used on inpu
-t line 514.
+t line 515.
 (pdftex.def)             Requested size: 169.80347pt x 170.05823pt.
  [25 <./figures/3_compression/intro/DCT_bases.png>] [26]
 <figures/3_compression/intro/wavelet.png, id=695, 727.21687pt x 441.14813pt>
@@ -581,7 +581,7 @@ File: figures/3_compression/intro/wavelet.png Graphic file (type png)
 
 <use figures/3_compression/intro/wavelet.png>
 Package pdftex.def Info: figures/3_compression/intro/wavelet.png used on input 
-line 565.
+line 566.
 (pdftex.def)             Requested size: 254.71167pt x 154.51186pt.
  [27 <./figures/3_compression/intro/wavelet.png>] [28]
 Chapter 5.
@@ -592,7 +592,7 @@ Chapter 5.
 ] ("C:\Program Files\MiKTeX 2.9\tex\latex\ucs\uni-1.def"
 File: uni-1.def 2013/05/13 UCS: Unicode data U+0100..U+01FF
 )
-Overfull \hbox (0.8537pt too wide) in paragraph at lines 594--595
+Overfull \hbox (0.8537pt too wide) in paragraph at lines 595--596
 []\OT1/cmr/m/n/10.95 I thank Ste-fan Gunther for pro-vid-ing the \OT1/cmr/m/it
 /10.95 Drosophila m. \OT1/cmr/m/n/10.95 em-bryos, and []
  []
@@ -680,12 +680,12 @@ Overfull \hbox (0.8537pt too wide) in paragraph at lines 594--595
 ** loaded for the language `en'. Using the pattern for
 ** the default language instead.
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 608.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 609.
  [34]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 608.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 609.
  (thesis_BB.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 608.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 608.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 609.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 609.
 Package rerunfilecheck Info: File `thesis_BB.out' has not changed.
 (rerunfilecheck)             Checksum: 887655816449D96FEAD20B6A1AB3285F;1216.
 Package rerunfilecheck Info: File `thesis_BB.brf' has not changed.
@@ -694,12 +694,12 @@ Package rerunfilecheck Info: File `thesis_BB.brf' has not changed.
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 608.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 609.
  ) 
 Here is how much of TeX's memory you used:
  9461 strings out of 493323
  138807 string characters out of 3139064
- 225189 words of memory out of 3000000
+ 225197 words of memory out of 3000000
  12701 multiletter control sequences out of 15000+200000
  14815 words of font info for 55 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -721,7 +721,7 @@ blic/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsf
 onts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
 cmti9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm
 10.pfb>
-Output written on thesis_BB.pdf (38 pages, 1098027 bytes).
+Output written on thesis_BB.pdf (38 pages, 1097621 bytes).
 PDF statistics:
  886 PDF objects out of 1000 (max. 8388607)
  157 named destinations out of 1000 (max. 500000)
