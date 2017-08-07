@@ -31,6 +31,7 @@
                  hyperfigures]{hyperref} 
 
 \usepackage{setspace}
+\usepackage{media9}
 \onehalfspacing
 
 

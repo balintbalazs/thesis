@@ -287,18 +287,19 @@ Light-sheet height is determined by the profile of the beam along the vertical a
 \end{figure}
 
 \subsubsection{Using focused beam scanning}
-Since using cylindrical lenses it's not possible to generate a homogeneous light-sheet, moreover at higher magnification the Rayleigh range would be too small, we also consider using focused beam scanning to generate the light-sheet (digital scanned light-sheet microscopy, DSLM). To generate a scanning beam, a galvanometer controlled mirror is used to alter the beam path. This can quickly turn around its axis which will result in an angular sweep with the laser beam. To change the angular movement to translation, a scan lens is used to generate an intermediate scanning plane. This plane is then imaged to the specimen by the tube lens and the illumination objective, resulting in a scanned focused beam.
-
-This method to generate the light-sheet has several advantages compared to a static light-sheet. The height of this sheet is not determined by the cylindrical lens, but it can be dynamically modified. Also, the intensity is uniform through the whole height of the light-sheet.
-
-
-\begin{figure}[hb]
+\begin{figure}[hbt]
 	\centering
 	\includegraphics[width=0.8\textwidth]{figures/2_spim/light-sheet-en_galvo}
 	\caption{\textbf{DSLM illumination.} DSLM illuminates a specimen by a circularly-symmetric beam that is scanned over the field of view. This creates a virtual light-sheet, which illuminates a section of a specimen just like the SPIM. Light-sheet in DSLM is uniform over the whole field of view and its height can be dynamically altered by changing the beam scan range.
 }
 	\label{fig:dslm}
 \end{figure}
+Since using cylindrical lenses it's not possible to generate a homogeneous light-sheet, moreover at higher magnification the Rayleigh range would be too small, we also consider using focused beam scanning to generate the light-sheet (digital scanned light-sheet microscopy, DSLM). To generate a scanning beam, a galvanometer controlled mirror is used to alter the beam path. This can quickly turn around its axis which will result in an angular sweep with the laser beam. To change the angular movement to translation, a scan lens is used to generate an intermediate scanning plane. This plane is then imaged to the specimen by the tube lens and the illumination objective, resulting in a scanned focused beam.
+
+This method to generate the light-sheet has several advantages compared to a static light-sheet. The height of this sheet is not determined by the cylindrical lens, but it can be dynamically modified. Also, the intensity is uniform through the whole height of the light-sheet.
+
+
+
 
 \section{Multi-view fusion techniques}
 	\subsection{Why multi view}
@@ -314,7 +315,72 @@ This method to generate the light-sheet has several advantages compared to a sta
 		
 \section{Dual Mouse-SPIM}
 	\subsection{Previous Mouse-SPIM}
+	\subsection{3D figure test}
 	
+\begin{figure}[htb]
+\centering
+	\includemedia[
+width=0.8\linewidth,height=0.6\linewidth,
+%add3Djscript=asylabels.js, %upright text labels
+%add3Djscript=3Dspintool.js, %let scene rotate about z-axis
+% 3Dcoo, 3Droo values found with `Generate Default View' from
+% context menu
+3Dmenu,
+playbutton=plain,
+3Droll=124.45821807473328,
+3Dc2c=0.5729350447654724 0.4988637864589691 0.6502924561500549,
+3Dcoo=6.723448276519775 -30.282148361206055 -11.914359092712402,
+3Droo=162.71372963736036,
+3Dlights=Headlamp,
+3Drender=ShadedIllustration,
+]{\includegraphics{figures/2_spim/DualMouse/Splitter.png}}{figures/2_spim/DualMouse/Splitter.prc}
+\caption{\textbf{Illumination branch splitting block.} 3D model of the custom designed splitter block used in the illumination branch. Depending on the horizontal beam position at the lower port, the beam will be reflected either to the right or to the left. Because of the mirror alignment, the beam is rotated 90 degrees.}
+\label{fig:splitter}
+\end{figure}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sodales dignissim eros in accumsan. Donec sapien augue, suscipit ac imperdiet sed, malesuada id orci. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec pharetra sem non nibh accumsan, sed faucibus mauris placerat. Sed et augue et erat bibendum vestibulum. Nunc porttitor eros sed tincidunt varius. Aenean eget orci a libero molestie consectetur. Proin rutrum magna eu est eleifend tincidunt. Vivamus semper orci ut arcu rutrum, ac pellentesque nisl posuere. Nulla ac convallis neque.
+
+Etiam quis erat pulvinar, dictum leo sollicitudin, viverra ante. Morbi non risus venenatis purus eleifend convallis. Sed scelerisque tellus et ipsum maximus, ut finibus ligula varius. Etiam pulvinar nisl quis turpis venenatis pulvinar. Aliquam erat volutpat. Vestibulum sit amet purus non elit egestas elementum ut non turpis. Etiam ac blandit est.
+
+Nam scelerisque placerat viverra. Vestibulum facilisis viverra tincidunt. Nunc eleifend lacus vel mi imperdiet elementum. Nulla id augue lacus. Donec eget congue risus. Nam consequat faucibus lacus quis aliquam. Maecenas nec turpis eu nibh tempus commodo ut in augue. Aenean euismod sapien eleifend mauris gravida ultricies vel sed felis. Curabitur faucibus dui orci, eget convallis sem gravida eget. Mauris ac dui sed ligula dictum sodales ut non ligula.
+
+Vivamus iaculis molestie rutrum. Aenean sit amet eros ex. Aliquam erat volutpat. Proin neque lacus, placerat at sapien eu, consectetur viverra massa. Nullam venenatis fermentum vulputate. Mauris semper tellus pellentesque, blandit tellus maximus, porttitor libero. Duis vulputate purus ac facilisis ultrices. Fusce vel ante mauris. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque fringilla euismod ipsum eu consequat. Sed sed neque sit amet elit viverra vehicula et nec nisi. Suspendisse potenti.
+
+Mauris ipsum sapien, gravida ac diam at, accumsan dictum nibh. Etiam mi odio, dictum sit amet augue et, egestas iaculis diam. Sed suscipit augue eros, nec fringilla odio hendrerit vel. Sed volutpat dui magna. Aliquam justo ligula, ultrices a blandit eu, posuere in justo. In hac habitasse platea dictumst. Quisque blandit arcu nulla, quis pharetra nisl rhoncus luctus. In hac habitasse platea dictumst. Proin ac urna sed ex malesuada pretium. Cras at faucibus tellus. Nunc porttitor, tortor vel imperdiet mollis, est neque lobortis tellus, in imperdiet erat metus non nisl. Suspendisse nec suscipit metus. Aenean vel pulvinar justo. Aliquam erat volutpat. Phasellus sit amet felis nec nisi interdum viverra et sit amet ligula. Vivamus fringilla auctor velit nec interdum.
+
+\begin{figure}[htb]
+\centering
+	\includemedia[
+width=1.0\linewidth,height=0.6\linewidth,
+%add3Djscript=asylabels.js, %upright text labels
+%add3Djscript=3Dspintool.js, %let scene rotate about z-axis
+% 3Dcoo, 3Droo values found with `Generate Default View' from
+% context menu
+3Dmenu,
+playbutton=plain,
+% default view start
+3Droll=104,
+3Dc2c=0.7466059923171997 0.4799830913543701 0.4606471359729767,
+3Dcoo=-5.2039947509765625 -5.257904529571533 23.018417358398438,
+3Droo=353,
+3Dlights=Headlamp,
+3Drender=ShadedIllustration,
+% defult view end
+]{\includegraphics{figures/2_spim/DualMouse/DualMirror.png}}{figures/2_spim/DualMouse/DualMirror.prc}
+\caption{\textbf{Detection branch merging unit.} 3D model of the custom designed unit to enable quick switching between the two detection paths. A high precision stainless steel stage holds two mirror blocks facing opposite directions, and bouncing the light upwards, towards the camera. The units are translated by  pneumatic cylinder to ensure high speed an reproducibility.}
+\label{fig:DualMirror}
+\end{figure}	
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sodales dignissim eros in accumsan. Donec sapien augue, suscipit ac imperdiet sed, malesuada id orci. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec pharetra sem non nibh accumsan, sed faucibus mauris placerat. Sed et augue et erat bibendum vestibulum. Nunc porttitor eros sed tincidunt varius. Aenean eget orci a libero molestie consectetur. Proin rutrum magna eu est eleifend tincidunt. Vivamus semper orci ut arcu rutrum, ac pellentesque nisl posuere. Nulla ac convallis neque.
+
+Etiam quis erat pulvinar, dictum leo sollicitudin, viverra ante. Morbi non risus venenatis purus eleifend convallis. Sed scelerisque tellus et ipsum maximus, ut finibus ligula varius. Etiam pulvinar nisl quis turpis venenatis pulvinar. Aliquam erat volutpat. Vestibulum sit amet purus non elit egestas elementum ut non turpis. Etiam ac blandit est.
+
+Nam scelerisque placerat viverra. Vestibulum facilisis viverra tincidunt. Nunc eleifend lacus vel mi imperdiet elementum. Nulla id augue lacus. Donec eget congue risus. Nam consequat faucibus lacus quis aliquam. Maecenas nec turpis eu nibh tempus commodo ut in augue. Aenean euismod sapien eleifend mauris gravida ultricies vel sed felis. Curabitur faucibus dui orci, eget convallis sem gravida eget. Mauris ac dui sed ligula dictum sodales ut non ligula.
+
+Vivamus iaculis molestie rutrum. Aenean sit amet eros ex. Aliquam erat volutpat. Proin neque lacus, placerat at sapien eu, consectetur viverra massa. Nullam venenatis fermentum vulputate. Mauris semper tellus pellentesque, blandit tellus maximus, porttitor libero. Duis vulputate purus ac facilisis ultrices. Fusce vel ante mauris. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque fringilla euismod ipsum eu consequat. Sed sed neque sit amet elit viverra vehicula et nec nisi. Suspendisse potenti.
+
+Mauris ipsum sapien, gravida ac diam at, accumsan dictum nibh. Etiam mi odio, dictum sit amet augue et, egestas iaculis diam. Sed suscipit augue eros, nec fringilla odio hendrerit vel. Sed volutpat dui magna. Aliquam justo ligula, ultrices a blandit eu, posuere in justo. In hac habitasse platea dictumst. Quisque blandit arcu nulla, quis pharetra nisl rhoncus luctus. In hac habitasse platea dictumst. Proin ac urna sed ex malesuada pretium. Cras at faucibus tellus. Nunc porttitor, tortor vel imperdiet mollis, est neque lobortis tellus, in imperdiet erat metus non nisl. Suspendisse nec suscipit metus. Aenean vel pulvinar justo. Aliquam erat volutpat. Phasellus sit amet felis nec nisi interdum viverra et sit amet ligula. Vivamus fringilla auctor velit nec interdum.
+
 \chapter{Real-time image processing}
 
 \section{Image compression}

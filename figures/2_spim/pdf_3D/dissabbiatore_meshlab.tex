@@ -1,0 +1,15 @@
+\documentclass[a4paper]{article}
+\usepackage[3D]{movie15}
+\usepackage{hyperref}
+\usepackage[UKenglish]{babel}
+\begin{document}
+\includemovie[
+	poster,
+	toolbar, %same as `controls'
+	label=dissabbiatoremeshlab.u3d,
+	text=(dissabbiatoremeshlab.u3d),
+	3Daac=60.000000, 3Droll=0.000000, 3Dc2c=0.613500 -7.545900 0.855200, 3Droo=7.618947, 3Dcoo=0.613470 0.649878 -0.855214,
+	3Dlights=CAD,
+]{\linewidth}{\linewidth}{dissabbiatore_meshlab.u3d}\\
+\movieref[3Dcalculate]{dissabbiatoremeshlab.u3d}{Click here!}
+\end{document}
