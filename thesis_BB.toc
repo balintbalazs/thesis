@@ -1,49 +1,55 @@
 \contentsline {chapter}{\numberline {1}Introduction}{3}{chapter.1}
-\contentsline {chapter}{\numberline {2}Symmetric Mouse SPIM}{5}{chapter.2}
+\contentsline {chapter}{\numberline {2}Hardware}{5}{chapter.2}
 \contentsline {section}{\numberline {2.1}Motivation}{5}{section.2.1}
-\contentsline {section}{\numberline {2.2}Light-sheet microscopy}{5}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}Fluorescence}{5}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2}Wide-field microscopy}{5}{subsection.2.2.2}
-\contentsline {subsection}{\numberline {2.2.3}Confocal laser scanning microscopy}{5}{subsection.2.2.3}
-\contentsline {subsection}{\numberline {2.2.4}Light-sheet microscopy}{5}{subsection.2.2.4}
-\contentsline {subsection}{\numberline {2.2.5}MuVi-SPIM}{5}{subsection.2.2.5}
-\contentsline {subsection}{\numberline {2.2.6}Mouse-SPIM}{5}{subsection.2.2.6}
-\contentsline {section}{\numberline {2.3}Fluorescence microscopy}{5}{section.2.3}
-\contentsline {subsection}{\numberline {2.3.1}Wide-field fluorescence microscopy}{6}{subsection.2.3.1}
-\contentsline {subsubsection}{Resolution of a wide-field microscope}{6}{section*.3}
-\contentsline {section}{\numberline {2.4}Confocal microscopy}{8}{section.2.4}
-\contentsline {section}{\numberline {2.5}Confocal-theta microscopy}{9}{section.2.5}
-\contentsline {chapter}{\numberline {3}Single-plane illumination microscopy}{11}{chapter.3}
-\contentsline {section}{\numberline {3.1}Optical properties}{11}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}Detection}{12}{subsection.3.1.1}
-\contentsline {subsection}{\numberline {3.1.2}Illumination}{13}{subsection.3.1.2}
-\contentsline {subsubsection}{Using cylindrical lens}{13}{section*.7}
-\contentsline {subsubsection}{Using focused beam scanning}{15}{section*.9}
-\contentsline {section}{\numberline {3.2}Multi-view fusion techniques}{17}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Why multi view}{17}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}registration}{17}{subsection.3.2.2}
-\contentsline {subsubsection}{Image based registration}{17}{section*.11}
-\contentsline {subsubsection}{Bead based registration}{17}{section*.12}
-\contentsline {subsubsection}{Affine transformation}{17}{section*.13}
-\contentsline {subsection}{\numberline {3.2.3}fusion}{17}{subsection.3.2.3}
-\contentsline {subsubsection}{Average}{17}{section*.14}
-\contentsline {subsubsection}{Sigmoidal weighted average}{17}{section*.15}
-\contentsline {subsubsection}{Fourier mixing}{17}{section*.16}
-\contentsline {subsubsection}{Multi-view deconvolution}{17}{section*.17}
-\contentsline {section}{\numberline {3.3}Dual Mouse-SPIM}{17}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Previous Mouse-SPIM}{17}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}3D figure test}{17}{subsection.3.3.2}
-\contentsline {chapter}{\numberline {4}Real-time image processing}{21}{chapter.4}
-\contentsline {section}{\numberline {4.1}Image compression}{21}{section.4.1}
-\contentsline {section}{\numberline {4.2}Entropy coding}{21}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Information and Entropy}{21}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Huffman coding}{22}{subsection.4.2.2}
-\contentsline {subsection}{\numberline {4.2.3}Arithmetic coding}{25}{subsection.4.2.3}
-\contentsline {section}{\numberline {4.3}Transform coding}{26}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Discrete Cosine Transform}{27}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Discrete Wavelet Transform}{28}{subsection.4.3.2}
-\contentsline {subsection}{\numberline {4.3.3}Pixel prediction}{30}{subsection.4.3.3}
-\contentsline {section}{\numberline {4.4}Conclusion}{30}{section.4.4}
+\contentsline {section}{\numberline {2.2}Fluorescence microscopy}{5}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Wide-field fluorescence microscopy}{5}{subsection.2.2.1}
+\contentsline {subsubsection}{Resolution of a wide-field microscope}{5}{section*.3}
+\contentsline {section}{\numberline {2.3}Confocal microscopy}{7}{section.2.3}
+\contentsline {section}{\numberline {2.4}Confocal-theta microscopy}{8}{section.2.4}
+\contentsline {section}{\numberline {2.5}Dual Mouse SPIM}{9}{section.2.5}
+\contentsline {section}{\numberline {2.6}Optical properties}{10}{section.2.6}
+\contentsline {subsection}{\numberline {2.6.1}Detection}{10}{subsection.2.6.1}
+\contentsline {subsection}{\numberline {2.6.2}Illumination}{10}{subsection.2.6.2}
+\contentsline {subsubsection}{Using cylindrical lens}{10}{section*.7}
+\contentsline {subsubsection}{Using focused beam scanning}{13}{section*.9}
+\contentsline {section}{\numberline {2.7}Multi-view fusion techniques}{16}{section.2.7}
+\contentsline {subsection}{\numberline {2.7.1}Why multi view}{16}{subsection.2.7.1}
+\contentsline {subsection}{\numberline {2.7.2}registration}{16}{subsection.2.7.2}
+\contentsline {subsubsection}{Image based registration}{16}{section*.11}
+\contentsline {subsubsection}{Bead based registration}{16}{section*.12}
+\contentsline {subsubsection}{Affine transformation}{16}{section*.13}
+\contentsline {subsection}{\numberline {2.7.3}fusion}{16}{subsection.2.7.3}
+\contentsline {subsubsection}{Average}{16}{section*.14}
+\contentsline {subsubsection}{Sigmoidal weighted average}{16}{section*.15}
+\contentsline {subsubsection}{Fourier mixing}{16}{section*.16}
+\contentsline {subsubsection}{Multi-view deconvolution}{16}{section*.17}
+\contentsline {section}{\numberline {2.8}Dual Mouse-SPIM}{16}{section.2.8}
+\contentsline {subsection}{\numberline {2.8.1}Previous Mouse-SPIM}{16}{subsection.2.8.1}
+\contentsline {subsection}{\numberline {2.8.2}3D figure test}{16}{subsection.2.8.2}
+\contentsline {chapter}{\numberline {3}Software}{19}{chapter.3}
+\contentsline {section}{\numberline {3.1}Multi-view image fusion}{19}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Image registration techniques}{19}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}Image fusion techniques}{19}{subsection.3.1.2}
+\contentsline {subsubsection}{Average}{19}{section*.20}
+\contentsline {subsubsection}{Weighted average (image blending)}{19}{section*.21}
+\contentsline {subsubsection}{Fourier mixing?}{19}{section*.22}
+\contentsline {subsubsection}{Multi-view deconvolution}{19}{section*.23}
+\contentsline {section}{\numberline {3.2}Image compression}{19}{section.3.2}
+\contentsline {section}{\numberline {3.3}Entropy coding}{20}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Information and Entropy}{20}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Huffman coding}{20}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.3}Arithmetic coding}{23}{subsection.3.3.3}
+\contentsline {section}{\numberline {3.4}Transform coding}{24}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Discrete Cosine Transform}{25}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}Discrete Wavelet Transform}{26}{subsection.3.4.2}
+\contentsline {subsection}{\numberline {3.4.3}Pixel prediction}{28}{subsection.3.4.3}
+\contentsline {section}{\numberline {3.5}Conclusion}{28}{section.3.5}
+\contentsline {chapter}{\numberline {4}Real-time image processing}{29}{chapter.4}
+\contentsline {section}{\numberline {4.1}GPU architecture}{29}{section.4.1}
+\contentsline {section}{\numberline {4.2}Live fusion}{29}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}MuVi-SPIM}{29}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Bead based registration}{29}{subsection.4.2.2}
+\contentsline {section}{\numberline {4.3}B3D image compression}{29}{section.4.3}
 \contentsline {chapter}{\numberline {5}Discussion}{31}{chapter.5}
-\contentsline {chapter}{Acknowledgements}{33}{section*.28}
-\contentsline {chapter}{References}{35}{section*.29}
+\contentsline {chapter}{Acknowledgements}{33}{section*.32}
+\contentsline {chapter}{References}{35}{section*.33}

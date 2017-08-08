@@ -51,36 +51,28 @@ Abstract in English.
 \cite{huisken_optical_2004}
 
 
-\chapter{Symmetric Mouse SPIM}
+\chapter{Hardware}
 
 \section{Motivation}
 
-\section{Light-sheet microscopy}
-	\subsection{Fluorescence}
-	\subsection{Wide-field microscopy}
-	\subsection{Confocal laser scanning microscopy}
-	\subsection{Light-sheet microscopy}
-		\cite{huisken_optical_2004}
-	\subsection{MuVi-SPIM}
-		\cite{krzic_multiview_2012}
-	\subsection{Mouse-SPIM}
-		\cite{strnad_inverted_2016}
-
 \section{Fluorescence microscopy}
-Fluorescence microscopy \cite{lichtman_fluorescence_2005} is a microscopy technique that uses fluorophores, a special group  of chemicals that are capable of absorbing a photon of well defined energy, and emit a different photon within a stochastically determined time frame. The emitted photon usually has less energy than the absorbed photon, it is shifted towards the red side of the spectrum. This effect is called the Stokes-shift.
+Fluorescence microscopy \cite{lichtman_fluorescence_2005} 
+ very small amount of illumination photons will result in fluorescence ($<0.0001\%$), the signal to noise ratio of the fluorescence is still very high due to the filtering.
 
-Using this phenomenon, it is possible to differentiate between the photons used for excitation and the emitted photons using an appropriate filter. Since the emitted photon usually has less energy, a low-pass filter can be used that will filter out the higher energy, lower wavelength illumination photons. Even though a very small amount of illumination photons will result in fluorescence ($<0.0001\%$), the signal to noise ratio of the fluorescence is still very high due to the filtering.
+good for live, naturally fluorescent structures
 
-Fluorescent microscopy is especially suitable to image live specimens, since a lot of organisms have naturally fluorescent structures. This phenomenon is called autofluorescence.
-
-Imaging specimens using just autofluorescence although can be useful in some cases, but in most of the time we would want to narrow our interest in a specific part, specific structure of the specimen. This can be achieved in several ways, but the simplest and earliest solution is the use of fluorescent dyes. These dyes, as the name implies, emit fluorescence under a certain excitation wavelength, and have such a structure, that they can specifically bind to certain parts of the cell. Fluorescent dyes although very useful in most cases, have some limitations. 
-
-However, fluorescent microscopy took a great leap with the discovery of the green fluorescent protein. This had such an impact on future development of fluorescence microscopy, that three scientists were awarded with a Nobel Prize in chemistry in 2008 for it's discovery \cite{service_three_2008}. Since then, several variants were generated, and so today a whole spectrum of fluorescent proteins are available \cite{shaner_guide_2005}. The huge benefit of these proteins over the synthetic fluorescent dyes, is that the cell is capable of producing them by itself. Using genetic manipulation techniques, it is possible to introduce the genetic material coding a fluorescent protein into the genome of virtually any organism. These proteins can also be modified and fused with certain proteins of interest. Using this technique, the fluorescent protein will be attached to a functional protein, this way its expression and localisation pattern can be determined.
+autofluorescence not specific
+fluorescent dyes
+fluorescent proteins
+Nobel Prize in chemistry in 2008 GFP \cite{service_three_2008}
+lot of fluorescent proteins since then \cite{shaner_guide_2005}. 
+benefits: cell is producing
+using genetic techniques possible to bind to other proteins, and specifically label structures of interest
 
 \subsection{Wide-field fluorescence microscopy}
-
-One of the simplest fluorescent microscopes is a wide-field fluorescent microscope (Figure \ref{fig:wide-field}). The main difference to a regular microscope, is the introduction of a filter cube. This cube contains an
-excitation filter, emission filter and a dichroic mirror. The dichroic mirror is used to couple the illumination and detection light paths, and the filters are used to separate the fluorescent light from the excitation light. The image of the sample is focused on the detector of a digital camera.
+(Figure \ref{fig:wide-field})
+regular microscope -> figure for this?
+filter cube
 
 \begin{figure}[htbp]
 	\centering
@@ -91,9 +83,20 @@ excitation filter, emission filter and a dichroic mirror. The dichroic mirror is
 
 \subsubsection{Resolution of a wide-field microscope}
 
-Resolution of a microscope is given by the minimal distance of two point that can sill be distinguished. The smaller this distance is, the better the resolving power of the microscope. However, the resolution is limited by the wave nature of light, and cannot be decreased infinitely.
+resolution
+smallest distance of two points still distinguishable
+few different definitions
+this is because of diffraction
+Airy pattern
+Rayleigh criterion -> Abbe's formula
+$d = 0.61 \frac{\lambda}{NA}$
+plus axial resolution
+$d_z = \frac{2\lambda}{NA^2}$
 
+this result is base on the paraxial approximation of the Helmholtz equaiton, thus only apply for small NA.
+a more general method to calculate resolution for high NA imaging systems is SGH:
 A generally accepted method to calculate lateral ($\sigma_{xy}$) and axial ($\sigma_{z}$) resolution of an optical microscope is described by the Stelzer-Grill-Heisenberg, or SGH~theory\cite{grill_method_1999, stelzer_uncertainty_2000}:
+A more general expression, works for large NA as well
 \begin{equation} \label{eq:latres}
 \sigma_{xy}=\frac{\lambda}{\sqrt{3-2 \cos \alpha - \cos 2 \alpha}}
 \end{equation}
@@ -103,7 +106,8 @@ A generally accepted method to calculate lateral ($\sigma_{xy}$) and axial ($\si
 Generally, instead of $\alpha$, the numerical aperture (NA) is commonly used to characterize a lens' aperture. 
 $NA=n\cdot \sin \alpha$, where n is the refractive index of the medium and $\alpha$ stands for the angular aperture.
 
-Although high NA objectives have better axial resolution (Figure~\ref{fig:resolution}), this is still around 3--6 times worse than the lateral resolution. In theory, it is possible to achieve isotropic resolution in case of $\alpha = 180^\circ$, which means collecting all light emitted from the sample. However, it is currently unachievable to realize such a device that is capable of this. Because of this, 3D imaging with any microscopy technique that use one objective will always produce an anisotropic image.
+even for high NA axial/lateral ratio ~ 3-6 (Figure~\ref{fig:resolution})
+In principle it is possible to achieve isotropic resolution by increasing the acceptance angle to $\alpha = 180^\circ$, which means all light needs to be collected from the sample. Designing an objective that is capable of this feat, however, is currently beyond our technological capabilities, furthermore is would require an alternative method for sample positioning, since mechanical translation is not possible in such a configuration. One attempt at such an imaging system was the Multi-Imaging Axis Microscopy (MIAM) \cite{swoger_multiple_2003,swoger_multi-view_2007} that consisted of 4 identical objectives arranged in a tetrahedral fashion to collect as much light as possible from multiple directions. 
 
 Another disadvantage of the wide-field microscope, is that it can not be used with thick specimens. Usually this type of microscopy is only used for a single layer of cells, because all the objects in the field of view will appear on the imaging plane, not just the plane in focus. These objects will appear blurred if close to the focus, or just evenly add to the background noise if they are further from the focus. This is why imaging specimens much thicker than $10\ \mu m$ will result in suboptimal image quality.
 
@@ -159,14 +163,14 @@ Although this is a big improvement to confocal microscopy, the issue of photoble
 
 
 
-\chapter{Single-plane illumination microscopy}
-\label{chap2}
+\section{Dual Mouse SPIM}
+\label{DualMouseSPIM}
 
 The main principle behind single plane illumination microscopy, that is illuminating the sample from the side by a very thin light-sheet, dates back to the early 20\textsuperscript{th} century, when Siedentopf and Zsigmondy first described the ultramicroscope \cite{siedentopf_uber_1902}. This microscope used sunlight as an illumination source, that was guided through a precision slit to generate a thin light-sheet. This allowed Zsigmondy to visualize gold nanoparticles floating in and out of the light-sheet. Since these particles are much smaller than the wavelength of the light, the device was called an ultramicroscope. His studies with colloids together with the development of the ultramicroscope led Zsigmondy to win the Nobel Prize in 1925.
 
 Since then however, light-sheet microscopy was seldom used, but in the last decade it was reinvented and combined with fluorescent microscopy. The first notable light-sheet fluorescent microscope (LSFM) was developed at EMBL in 2004 \cite{huisken_optical_2004}, that demonstrated the benefits of using a light-sheet in imaging developmental processes in three dimension.
 
-Since then, light-sheet based imaging has gained more and more popularity, as it can be adapted and applied to a wide variety of problems. It was numerously proven to be a better choice than confocal microscopy \cite{reynaud_light_2008,huisken_selective_2009} especially in developmental biological applications \cite{weber_light_2011}. It can also be used with a wide variety of specimens of different sizes, such as zebrafish embryo \cite{keller_reconstruction_2008}, mouse brain \cite{dodt_ultramicroscopy:_2007} or drosophila embryo \cite{krzic_multiview_2012}. It is also possible to use light-sheet microscopy in super-resolution, allowing for individual molecule localization \cite{zanacchi_live-cell_2011}.
+Since then, light-sheet based imaging has gained more and more popularity, as it can be adapted and applied to a wide variety of problems. It was numerously proven to be a better choice than confocal microscopy \cite{reynaud_light_2008,huisken_selective_2009} especially in developmental biological applications \cite{weber_light_2011}. It can also be used with a wide variety of specimens of different sizes, such as zebrafish embryo \cite{keller_reconstruction_2008}, mouse brain \cite{dodt_ultramicroscopy:_2007} or drosophila embryo \cite{krzic_multiview_2012}. It is also possible to use light-sheet microscopy in super-resolution, allowing for individual molecule localization \cite{cella_zanacchi_live-cell_2011}.
 	
 %\begin{itemize}	
 %	\item mSPIM, pivoting light-sheet \cite{huisken_even_2007}
@@ -338,15 +342,6 @@ playbutton=plain,
 \label{fig:splitter}
 \end{figure}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sodales dignissim eros in accumsan. Donec sapien augue, suscipit ac imperdiet sed, malesuada id orci. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec pharetra sem non nibh accumsan, sed faucibus mauris placerat. Sed et augue et erat bibendum vestibulum. Nunc porttitor eros sed tincidunt varius. Aenean eget orci a libero molestie consectetur. Proin rutrum magna eu est eleifend tincidunt. Vivamus semper orci ut arcu rutrum, ac pellentesque nisl posuere. Nulla ac convallis neque.
-
-Etiam quis erat pulvinar, dictum leo sollicitudin, viverra ante. Morbi non risus venenatis purus eleifend convallis. Sed scelerisque tellus et ipsum maximus, ut finibus ligula varius. Etiam pulvinar nisl quis turpis venenatis pulvinar. Aliquam erat volutpat. Vestibulum sit amet purus non elit egestas elementum ut non turpis. Etiam ac blandit est.
-
-Nam scelerisque placerat viverra. Vestibulum facilisis viverra tincidunt. Nunc eleifend lacus vel mi imperdiet elementum. Nulla id augue lacus. Donec eget congue risus. Nam consequat faucibus lacus quis aliquam. Maecenas nec turpis eu nibh tempus commodo ut in augue. Aenean euismod sapien eleifend mauris gravida ultricies vel sed felis. Curabitur faucibus dui orci, eget convallis sem gravida eget. Mauris ac dui sed ligula dictum sodales ut non ligula.
-
-Vivamus iaculis molestie rutrum. Aenean sit amet eros ex. Aliquam erat volutpat. Proin neque lacus, placerat at sapien eu, consectetur viverra massa. Nullam venenatis fermentum vulputate. Mauris semper tellus pellentesque, blandit tellus maximus, porttitor libero. Duis vulputate purus ac facilisis ultrices. Fusce vel ante mauris. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque fringilla euismod ipsum eu consequat. Sed sed neque sit amet elit viverra vehicula et nec nisi. Suspendisse potenti.
-
-Mauris ipsum sapien, gravida ac diam at, accumsan dictum nibh. Etiam mi odio, dictum sit amet augue et, egestas iaculis diam. Sed suscipit augue eros, nec fringilla odio hendrerit vel. Sed volutpat dui magna. Aliquam justo ligula, ultrices a blandit eu, posuere in justo. In hac habitasse platea dictumst. Quisque blandit arcu nulla, quis pharetra nisl rhoncus luctus. In hac habitasse platea dictumst. Proin ac urna sed ex malesuada pretium. Cras at faucibus tellus. Nunc porttitor, tortor vel imperdiet mollis, est neque lobortis tellus, in imperdiet erat metus non nisl. Suspendisse nec suscipit metus. Aenean vel pulvinar justo. Aliquam erat volutpat. Phasellus sit amet felis nec nisi interdum viverra et sit amet ligula. Vivamus fringilla auctor velit nec interdum.
 
 \begin{figure}[htb]
 \centering
@@ -371,18 +366,18 @@ playbutton=plain,
 \label{fig:DualMirror}
 \end{figure}	
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sodales dignissim eros in accumsan. Donec sapien augue, suscipit ac imperdiet sed, malesuada id orci. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec pharetra sem non nibh accumsan, sed faucibus mauris placerat. Sed et augue et erat bibendum vestibulum. Nunc porttitor eros sed tincidunt varius. Aenean eget orci a libero molestie consectetur. Proin rutrum magna eu est eleifend tincidunt. Vivamus semper orci ut arcu rutrum, ac pellentesque nisl posuere. Nulla ac convallis neque.
-
-Etiam quis erat pulvinar, dictum leo sollicitudin, viverra ante. Morbi non risus venenatis purus eleifend convallis. Sed scelerisque tellus et ipsum maximus, ut finibus ligula varius. Etiam pulvinar nisl quis turpis venenatis pulvinar. Aliquam erat volutpat. Vestibulum sit amet purus non elit egestas elementum ut non turpis. Etiam ac blandit est.
-
-Nam scelerisque placerat viverra. Vestibulum facilisis viverra tincidunt. Nunc eleifend lacus vel mi imperdiet elementum. Nulla id augue lacus. Donec eget congue risus. Nam consequat faucibus lacus quis aliquam. Maecenas nec turpis eu nibh tempus commodo ut in augue. Aenean euismod sapien eleifend mauris gravida ultricies vel sed felis. Curabitur faucibus dui orci, eget convallis sem gravida eget. Mauris ac dui sed ligula dictum sodales ut non ligula.
-
-Vivamus iaculis molestie rutrum. Aenean sit amet eros ex. Aliquam erat volutpat. Proin neque lacus, placerat at sapien eu, consectetur viverra massa. Nullam venenatis fermentum vulputate. Mauris semper tellus pellentesque, blandit tellus maximus, porttitor libero. Duis vulputate purus ac facilisis ultrices. Fusce vel ante mauris. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque fringilla euismod ipsum eu consequat. Sed sed neque sit amet elit viverra vehicula et nec nisi. Suspendisse potenti.
-
-Mauris ipsum sapien, gravida ac diam at, accumsan dictum nibh. Etiam mi odio, dictum sit amet augue et, egestas iaculis diam. Sed suscipit augue eros, nec fringilla odio hendrerit vel. Sed volutpat dui magna. Aliquam justo ligula, ultrices a blandit eu, posuere in justo. In hac habitasse platea dictumst. Quisque blandit arcu nulla, quis pharetra nisl rhoncus luctus. In hac habitasse platea dictumst. Proin ac urna sed ex malesuada pretium. Cras at faucibus tellus. Nunc porttitor, tortor vel imperdiet mollis, est neque lobortis tellus, in imperdiet erat metus non nisl. Suspendisse nec suscipit metus. Aenean vel pulvinar justo. Aliquam erat volutpat. Phasellus sit amet felis nec nisi interdum viverra et sit amet ligula. Vivamus fringilla auctor velit nec interdum.
 	
-
-\chapter{Real-time image processing}
+\chapter{Software}
+\section{Multi-view image fusion}
+\subsection{Image registration techniques}
+\subsection{Image fusion techniques}
+	\subsubsection{Average}
+	\subsubsection{Weighted average (image blending)}
+	\subsubsection{Fourier mixing?}
+		Huisken had something like this
+	\subsubsection{Multi-view deconvolution}
+		\cite{krzic_multiple-view_2009} Uros thesis
+		\cite{temerinac-ott_multiview_2012}, \cite{temerinac-ott_spatially-variant_2011} Spatially variant deconvolution
 
 \section{Image compression}
 Image compression is an important tool for everyday life, however it's rarely used in the context of scientific imaging because of fear of information loss. This preconception is mainly due to the famous blocking artifacts found in many highly compressed JPEG images, however not all image compression algorithms introduce artifacts, and in fact many lossless algorithms exist that would be suitable for such images. Nowadays, when data production is in an exponential growth compression is again in highlight, without it it would be extremely difficult to maintain many scientific projects that produce images at a high data rate. 
@@ -644,6 +639,15 @@ Of course, for image compression applications, it is desirable to extend this tr
 
 \section{Conclusion}
 In this paper I have introduced some of the most important techniques for image compression. Many of these are used in diferent image compression algorithms, such as JPEG \cite{pennebaker_jpeg:_1992}, JPEG-LS \cite{weinberger_loco-i_2000} and JPEG2000. The common point for each of these formats is that they first transform the images to effectively reduce first order entropy, either by predicting the pixel values and coding only the differences (JPEG-LS), or by using either Discrete Cosine Transform (JPEG) or Discrete Wavelet Transform (JPEG2000). In the case of lossy standards after this transformation step a quantization is also performed depending on the desired quality setting for the coder. Finally as the last step the transformed and quantized coefficeints are compressed by an arithmetic coder, such as Huffman coding in JPEG of arithmetic coding in JPEG2000. The end result in each case is a highly optimized compression that greatly reduces the file size.
+
+
+
+\chapter{Real-time image processing}
+\section{GPU architecture}
+\section{Live fusion}
+	\subsection{MuVi-SPIM}
+	\subsection{Bead based registration}
+\section{B3D image compression}
 
 
 \chapter{Discussion}

@@ -30,22 +30,6 @@ J.~Huisken, J.~Swoger, F.~Del~Bene, J.~Wittbrodt, and E.~H.~K. Stelzer,
   \url{http://www.sciencemag.org/content/305/5686/1007.abstract}
 \BIBentrySTDinterwordspacing
 
-\bibitem{krzic_multiview_2012}
-\BIBentryALTinterwordspacing
-U.~Krzic, S.~Gunther, T.~E. Saunders, S.~J. Streichan, and L.~Hufnagel,
-  ``\BIBforeignlanguage{en}{Multiview light-sheet microscope for rapid in toto
-  imaging},'' \emph{\BIBforeignlanguage{en}{Nature Methods}}, vol.~9, no.~7,
-  pp. 730--733, Jul. 2012. [Online]. Available:
-  \url{http://www.nature.com/nmeth/journal/v9/n7/full/nmeth.2064.html}
-\BIBentrySTDinterwordspacing
-
-\bibitem{strnad_inverted_2016}
-P.~Strnad, S.~Gunther, J.~Reichmann, U.~Krzic, B.~Balazs, G.~de~Medeiros,
-  N.~Norlin, T.~Hiiragi, L.~Hufnagel, and J.~Ellenberg,
-  ``\BIBforeignlanguage{eng}{Inverted light-sheet microscope for imaging mouse
-  pre-implantation development},'' \emph{\BIBforeignlanguage{eng}{Nature
-  Methods}}, vol.~13, no.~2, pp. 139--142, Feb. 2016.
-
 \bibitem{lichtman_fluorescence_2005}
 \BIBentryALTinterwordspacing
 J.~W. Lichtman and J.-A. Conchello, ``\BIBforeignlanguage{en}{Fluorescence
@@ -86,6 +70,24 @@ E.~Stelzer and S.~Grill, ``The uncertainty principle applied to estimate focal
   spot dimensions,'' \emph{Optics Communications}, vol. 173, no. 1–6, pp.
   51--56, Jan. 2000. [Online]. Available:
   \url{http://www.sciencedirect.com/science/article/pii/S0030401899006446}
+\BIBentrySTDinterwordspacing
+
+\bibitem{swoger_multiple_2003}
+\BIBentryALTinterwordspacing
+J.~Swoger, J.~Huisken, and E.~H.~K. Stelzer, ``\BIBforeignlanguage{en}{Multiple
+  imaging axis microscopy improves resolution for thick-sample applications},''
+  \emph{\BIBforeignlanguage{en}{Optics Letters}}, vol.~28, no.~18, p. 1654,
+  Sep. 2003. [Online]. Available:
+  \url{http://www.opticsinfobase.org/abstract.cfm?URI=ol-28-18-1654}
+\BIBentrySTDinterwordspacing
+
+\bibitem{swoger_multi-view_2007}
+\BIBentryALTinterwordspacing
+J.~Swoger, P.~Verveer, K.~Greger, J.~Huisken, and E.~H.~K. Stelzer,
+  ``\BIBforeignlanguage{en}{Multi-view image fusion improves resolution in
+  three-dimensional microscopy},'' \emph{\BIBforeignlanguage{en}{Optics
+  Express}}, vol.~15, no.~13, p. 8029, 2007. [Online]. Available:
+  \url{http://www.opticsinfobase.org/abstract.cfm?URI=oe-15-13-8029}
 \BIBentrySTDinterwordspacing
 
 \bibitem{davidovits_photomicrography_1973}
@@ -173,6 +175,25 @@ H.-U. Dodt, U.~Leischner, A.~Schierloh, N.~Jährling, C.~P. Mauch,
   \url{http://www.nature.com/nmeth/journal/v4/n4/full/nmeth1036.html}
 \BIBentrySTDinterwordspacing
 
+\bibitem{krzic_multiview_2012}
+\BIBentryALTinterwordspacing
+U.~Krzic, S.~Gunther, T.~E. Saunders, S.~J. Streichan, and L.~Hufnagel,
+  ``\BIBforeignlanguage{en}{Multiview light-sheet microscope for rapid in toto
+  imaging},'' \emph{\BIBforeignlanguage{en}{Nature Methods}}, vol.~9, no.~7,
+  pp. 730--733, Jul. 2012. [Online]. Available:
+  \url{http://www.nature.com/nmeth/journal/v9/n7/full/nmeth.2064.html}
+\BIBentrySTDinterwordspacing
+
+\bibitem{cella_zanacchi_live-cell_2011}
+\BIBentryALTinterwordspacing
+F.~Cella~Zanacchi, Z.~Lavagnino, M.~Perrone~Donnorso, A.~Del~Bue, L.~Furia,
+  M.~Faretta, and A.~Diaspro, ``\BIBforeignlanguage{en}{Live-cell 3d
+  super-resolution imaging in thick biological samples},''
+  \emph{\BIBforeignlanguage{en}{Nature Methods}}, vol.~8, no.~12, pp.
+  1047--1049, Dec. 2011. [Online]. Available:
+  \url{http://www.nature.com/nmeth/journal/v8/n12/full/nmeth.1744.html}
+\BIBentrySTDinterwordspacing
+
 \bibitem{greger_basic_2007}
 \BIBentryALTinterwordspacing
 K.~Greger, J.~Swoger, and E.~H.~K. Stelzer, ``Basic building units and
@@ -187,6 +208,19 @@ B.~E.~A. Saleh and M.~C. Teich, \emph{\BIBforeignlanguage{en}{Fundamentals of
   {Photonics}}}.\hskip 1em plus 0.5em minus 0.4em\relax John Wiley \& Sons,
   Mar. 2007.
 
+\bibitem{temerinac-ott_multiview_2012}
+M.~Temerinac-Ott, O.~Ronneberger, P.~Ochs, W.~Driever, T.~Brox, and
+  H.~Burkhardt, ``Multiview {Deblurring} for 3-{D} {Images} from
+  {Light}-{Sheet}-{Based} {Fluorescence} {Microscopy},'' \emph{IEEE
+  Transactions on Image Processing}, vol.~21, no.~4, pp. 1863--1873, Apr. 2012.
+
+\bibitem{temerinac-ott_spatially-variant_2011}
+M.~Temerinac-Ott, O.~Ronneberger, R.~Nitschke, W.~Driever, and H.~Burkhardt,
+  ``Spatially-variant {Lucy}-{Richardson} deconvolution for multiview fusion of
+  microscopical 3d images,'' in \emph{2011 {IEEE} {International} {Symposium}
+  on {Biomedical} {Imaging}: {From} {Nano} to {Macro}}, Mar. 2011, pp.
+  899--904.
+
 \bibitem{sayood_introduction_2012}
 K.~Sayood, \emph{Introduction to {Data} {Compression}, {Fourth} {Edition}},
   4th~ed., ser. The {Morgan} {Kaufmann} {Series} in {Multimedia} {Information}
@@ -194,11 +228,11 @@ K.~Sayood, \emph{Introduction to {Data} {Compression}, {Fourth} {Edition}},
 
 \bibitem{shannon_mathematical_1948}
 C.~E. Shannon, ``A mathematical theory of communication,'' \emph{The Bell
-  System Technical Journal}, vol.~27, no.~3, pp. 379--423, Jul. 1948.
+  System Technical Journal}, vol.~27, no.~4, pp. 623--656, Oct. 1948.
 
 \bibitem{shannon_mathematical_1948-1}
 ------, ``A mathematical theory of communication,'' \emph{The Bell System
-  Technical Journal}, vol.~27, no.~4, pp. 623--656, Oct. 1948.
+  Technical Journal}, vol.~27, no.~3, pp. 379--423, Jul. 1948.
 
 \bibitem{huffman_method_1952}
 D.~A. Huffman, ``A {Method} for the {Construction} of {Minimum}-{Redundancy}

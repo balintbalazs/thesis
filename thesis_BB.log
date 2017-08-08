@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.7.6)  8 AUG 2017 01:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.7.6)  8 AUG 2017 13:29
 entering extended mode
 **./thesis_BB.tex
 (thesis_BB.tex
@@ -892,14 +892,14 @@ File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.1a (rcs-revision 1.2)
 ("C:\Program Files\MiKTeX 2.9\tex\latex\ucs\uni-0.def"
 File: uni-0.def 2013/05/13 UCS: Unicode data U+0000..U+00FF
 )
-<figures/0_front/ITK_logo.pdf, id=83, 54.2025pt x 113.42375pt>
+<figures/0_front/ITK_logo.pdf, id=99, 54.2025pt x 113.42375pt>
 File: figures/0_front/ITK_logo.pdf Graphic file (type pdf)
 
 <use figures/0_front/ITK_logo.pdf>
 Package pdftex.def Info: figures/0_front/ITK_logo.pdf used on input line 17.
 (pdftex.def)             Requested size: 56.9055pt x 119.08632pt.
 
-<figures/0_front/EMBL_logo.pdf, id=86, 361.35pt x 155.58125pt>
+<figures/0_front/EMBL_logo.pdf, id=102, 361.35pt x 155.58125pt>
 File: figures/0_front/EMBL_logo.pdf Graphic file (type pdf)
 
 <use figures/0_front/EMBL_logo.pdf>
@@ -936,99 +936,96 @@ Chapter 1.
 
 ]
 Chapter 2.
-[5]
-<figures/2_spim/intro/spim_cyl.pdf, id=174, page=4, 211.79124pt x 311.1625pt>
+<figures/2_spim/intro/spim_cyl.pdf, id=178, page=4, 211.79124pt x 311.1625pt>
 File: figures/2_spim/intro/spim_cyl.pdf Graphic file (type pdf)
 
 <use figures/2_spim/intro/spim_cyl.pdf, page 4>
 Package pdftex.def Info: figures/2_spim/intro/spim_cyl.pdf, page4 used on input
- line 87.
+ line 79.
 (pdftex.def)             Requested size: 169.43321pt x 248.93034pt.
- [6]
-<figures/1_introduction/resolution.pdf, id=188, 433.62pt x 433.62pt>
+ [5]
+<figures/1_introduction/resolution.pdf, id=202, 433.62pt x 433.62pt>
 File: figures/1_introduction/resolution.pdf Graphic file (type pdf)
 
 <use figures/1_introduction/resolution.pdf>
 Package pdftex.def Info: figures/1_introduction/resolution.pdf used on input li
-ne 112.
+ne 116.
 (pdftex.def)             Requested size: 254.71167pt x 254.7154pt.
 
-Underfull \vbox (badness 2865) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [7 <./figures/2_spim/intro/spim_cyl.pdf>] [8 <./figures/1_introduction/resolut
+ [6 <./figures/2_spim/intro/spim_cyl.pdf>] [7 <./figures/1_introduction/resolut
 ion.pdf>]
-<figures/2_spim/intro/spim_cyl.pdf, id=320, page=3, 249.93375pt x 336.25626pt>
+<figures/2_spim/intro/spim_cyl.pdf, id=330, page=3, 249.93375pt x 336.25626pt>
 File: figures/2_spim/intro/spim_cyl.pdf Graphic file (type pdf)
 
 <use figures/2_spim/intro/spim_cyl.pdf, page 3>
 Package pdftex.def Info: figures/2_spim/intro/spim_cyl.pdf, page3 used on input
- line 131.
+ line 135.
 (pdftex.def)             Requested size: 208.01476pt x 279.86737pt.
 
-<figures/1_introduction/conf-theta.pdf, id=321, 712.6625pt x 719.68875pt>
+<figures/1_introduction/conf-theta.pdf, id=331, 712.6625pt x 719.68875pt>
 File: figures/1_introduction/conf-theta.pdf Graphic file (type pdf)
 
 <use figures/1_introduction/conf-theta.pdf>
 Package pdftex.def Info: figures/1_introduction/conf-theta.pdf used on input li
-ne 137.
+ne 141.
 (pdftex.def)             Requested size: 208.01476pt x 210.0661pt.
- [9 <./figures/2_spim/intro/spim_cyl.pdf> <./figures/1_introduction/conf-theta.
+ [8 <./figures/2_spim/intro/spim_cyl.pdf> <./figures/1_introduction/conf-theta.
 pdf
 
 pdfTeX warning: pdflatex (file ./figures/1_introduction/conf-theta.pdf): PDF in
 clusion: multiple pdfs with page group included in a single page
->] [10]
-Chapter 3.
+>]
+Underfull \vbox (badness 2922) has occurred while \output is active []
 
-LaTeX Warning: Citation `zanacchi_live-cell_2011' on page 11 undefined on input
- line 169.
-
-[11
-
-]
-<figures/2_spim/intro/spim_cyl.pdf, id=513, page=1, 361.35pt x 452.18938pt>
+ [9]
+<figures/2_spim/intro/spim_cyl.pdf, id=521, page=1, 361.35pt x 452.18938pt>
 File: figures/2_spim/intro/spim_cyl.pdf Graphic file (type pdf)
 
 <use figures/2_spim/intro/spim_cyl.pdf, page 1>
 Package pdftex.def Info: figures/2_spim/intro/spim_cyl.pdf, page1 used on input
- line 185.
+ line 189.
 (pdftex.def)             Requested size: 339.6134pt x 424.98906pt.
- [12 <./figures/2_spim/intro/spim_cyl.pdf>] [13] [14]
-<figures/2_spim/FOV.pdf, id=666, 914.41624pt x 747.79375pt>
+ [10] [11 <./figures/2_spim/intro/spim_cyl.pdf>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [12]
+<figures/2_spim/FOV.pdf, id=669, 914.41624pt x 747.79375pt>
 File: figures/2_spim/FOV.pdf Graphic file (type pdf)
 
 <use figures/2_spim/FOV.pdf>
-Package pdftex.def Info: figures/2_spim/FOV.pdf used on input line 269.
+Package pdftex.def Info: figures/2_spim/FOV.pdf used on input line 273.
 (pdftex.def)             Requested size: 297.1593pt x 243.00726pt.
 
-<figures/2_spim/width.pdf, id=667, 433.62pt x 433.62pt>
+<figures/2_spim/width.pdf, id=670, 433.62pt x 433.62pt>
 File: figures/2_spim/width.pdf Graphic file (type pdf)
 
 <use figures/2_spim/width.pdf>
-Package pdftex.def Info: figures/2_spim/width.pdf used on input line 275.
+Package pdftex.def Info: figures/2_spim/width.pdf used on input line 279.
 (pdftex.def)             Requested size: 208.01476pt x 208.01613pt.
 
-<figures/2_spim/height.pdf, id=668, 433.62pt x 433.62pt>
+<figures/2_spim/height.pdf, id=671, 433.62pt x 433.62pt>
 File: figures/2_spim/height.pdf Graphic file (type pdf)
 
 <use figures/2_spim/height.pdf>
-Package pdftex.def Info: figures/2_spim/height.pdf used on input line 281.
+Package pdftex.def Info: figures/2_spim/height.pdf used on input line 285.
 (pdftex.def)             Requested size: 208.01476pt x 208.01613pt.
 
-<figures/2_spim/intro/spim_cyl.pdf, id=675, page=2, 378.41376pt x 451.6875pt>
+<figures/2_spim/intro/spim_cyl.pdf, id=678, page=2, 378.41376pt x 451.6875pt>
 File: figures/2_spim/intro/spim_cyl.pdf Graphic file (type pdf)
 
 <use figures/2_spim/intro/spim_cyl.pdf, page 2>
 Package pdftex.def Info: figures/2_spim/intro/spim_cyl.pdf, page2 used on input
- line 292.
+ line 296.
 (pdftex.def)             Requested size: 339.6134pt x 405.37778pt.
-
-<figures/2_spim/DualMouse/Splitter.png, id=678, 777.90625pt x 585.18625pt>
+ [13]
+<figures/2_spim/DualMouse/Splitter.png, id=691, 777.90625pt x 585.18625pt>
 File: figures/2_spim/DualMouse/Splitter.png Graphic file (type png)
 
 <use figures/2_spim/DualMouse/Splitter.png>
 Package pdftex.def Info: figures/2_spim/DualMouse/Splitter.png used on input li
-ne 336.
+ne 340.
 (pdftex.def)             Requested size: 777.90434pt x 585.18481pt.
 \g__file_internal_ior=\read3
 <<figures/2_spim/DualMouse/Splitter.prc>><<3Dmenu.js>>
@@ -1052,22 +1049,17 @@ Missing character: There is no ; in font nullfont!
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [15]
+ [14 <./figures/2_spim/FOV.pdf> <./figures/2_spim/width.pdf> <./figures/2_spim/
+height.pdf>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [16 <./figures/2_spim/FOV.pdf> <./figures/2_spim/width.pdf> <./figures/2_spim/
-height.pdf>]
-Overfull \vbox (185.8612pt too high) has occurred while \output is active []
-
-
-[17 <./figures/2_spim/intro/spim_cyl.pdf>] [18 <./figures/2_spim/DualMouse/Spli
-tter.png>]
-<figures/2_spim/DualMouse/DualMirror.png, id=858, 972.63374pt x 584.1825pt>
+ [15 <./figures/2_spim/intro/spim_cyl.pdf>]
+<figures/2_spim/DualMouse/DualMirror.png, id=848, 972.63374pt x 584.1825pt>
 File: figures/2_spim/DualMouse/DualMirror.png Graphic file (type png)
 
 <use figures/2_spim/DualMouse/DualMirror.png>
 Package pdftex.def Info: figures/2_spim/DualMouse/DualMirror.png used on input 
-line 369.
+line 364.
 (pdftex.def)             Requested size: 972.63136pt x 584.18106pt.
 <<figures/2_spim/DualMouse/DualMirror.prc>>
 Missing character: There is no ( in font nullfont!
@@ -1087,63 +1079,66 @@ Missing character: There is no . in font nullfont!
 Missing character: There is no 4 in font nullfont!
 Missing character: There is no ) in font nullfont!
 Missing character: There is no ; in font nullfont!
- [19 <./figures/2_spim/DualMouse/DualMirror.png>] [20]
-Chapter 4.
-[21
+ [16 <./figures/2_spim/DualMouse/Splitter.png>] [17 <./figures/2_spim/DualMouse
+/DualMirror.png>] [18
 
-] [22]
-<figures/3_compression/intro/huffman.png, id=911, 995.97093pt x 519.44063pt>
+]
+Chapter 3.
+[19] [20]
+<figures/3_compression/intro/huffman.png, id=927, 995.97093pt x 519.44063pt>
 File: figures/3_compression/intro/huffman.png Graphic file (type png)
 
 <use figures/3_compression/intro/huffman.png>
 Package pdftex.def Info: figures/3_compression/intro/huffman.png used on input 
-line 474.
+line 469.
 (pdftex.def)             Requested size: 254.71167pt x 132.84001pt.
-
-Underfull \vbox (badness 5331) has occurred while \output is active []
-
- [23]
+ [21]
 ("C:\Program Files\MiKTeX 2.9\tex\latex\ucs\uni-32.def"
 File: uni-32.def 2013/05/13 UCS: Unicode data U+2000..U+20FF
 )
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 5622) has occurred while \output is active []
 
- [24 <./figures/3_compression/intro/huffman.png>]
-<figures/3_compression/intro/arithmetic.png, id=932, 676.02562pt x 420.06938pt>
+ [22 <./figures/3_compression/intro/huffman.png>] [23]
+<figures/3_compression/intro/arithmetic.png, id=956, 676.02562pt x 420.06938pt>
 File: figures/3_compression/intro/arithmetic.png Graphic file (type png)
 <use figures/3_compression/intro/arithmetic.png>
 Package pdftex.def Info: figures/3_compression/intro/arithmetic.png used on inp
-ut line 548.
+ut line 543.
 (pdftex.def)             Requested size: 254.71167pt x 158.26915pt.
- [25]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [26 <./figures/3_compression/intro/arithmetic.png>]
-<figures/3_compression/intro/DCT_bases.png, id=948, 495.35063pt x 496.10344pt>
+ [24 <./figures/3_compression/intro/arithmetic.png>]
+<figures/3_compression/intro/DCT_bases.png, id=967, 495.35063pt x 496.10344pt>
 File: figures/3_compression/intro/DCT_bases.png Graphic file (type png)
 
 <use figures/3_compression/intro/DCT_bases.png>
 Package pdftex.def Info: figures/3_compression/intro/DCT_bases.png used on inpu
-t line 582.
+t line 577.
 (pdftex.def)             Requested size: 169.80347pt x 170.05823pt.
- [27 <./figures/3_compression/intro/DCT_bases.png>] [28]
-<figures/3_compression/intro/wavelet.png, id=970, 727.21687pt x 441.14813pt>
+ [25] [26 <./figures/3_compression/intro/DCT_bases.png>]
+<figures/3_compression/intro/wavelet.png, id=986, 727.21687pt x 441.14813pt>
 File: figures/3_compression/intro/wavelet.png Graphic file (type png)
 
 <use figures/3_compression/intro/wavelet.png>
 Package pdftex.def Info: figures/3_compression/intro/wavelet.png used on input 
-line 633.
+line 628.
 (pdftex.def)             Requested size: 254.71167pt x 154.51186pt.
- [29 <./figures/3_compression/intro/wavelet.png>] [30]
-Chapter 5.
-[31
 
-] [32
+Underfull \vbox (badness 1297) has occurred while \output is active []
+
+ [27]
+[28 <./figures/3_compression/intro/wavelet.png>]
+Chapter 4.
+[29
+
+] [30
+
+]
+Chapter 5.
+[31] [32
 
 ] ("C:\Program Files\MiKTeX 2.9\tex\latex\ucs\uni-1.def"
 File: uni-1.def 2013/05/13 UCS: Unicode data U+0100..U+01FF
 )
-Overfull \hbox (0.8537pt too wide) in paragraph at lines 662--663
+Overfull \hbox (0.8537pt too wide) in paragraph at lines 666--667
 []\OT1/cmr/m/n/10.95 I thank Ste-fan Gunther for pro-vid-ing the \OT1/cmr/m/it
 /10.95 Drosophila m. \OT1/cmr/m/n/10.95 em-bryos, and []
  []
@@ -1162,10 +1157,10 @@ Overfull \hbox (0.8537pt too wide) in paragraph at lines 662--663
 ** loaded for the language `en'. Using the pattern for
 ** the default language instead.
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
-** loaded for the language `eng'. Using the pattern for
+** loaded for the language `en'. Using the pattern for
 ** the default language instead.
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
-** loaded for the language `eng'. Using the pattern for
+** loaded for the language `en'. Using the pattern for
 ** the default language instead.
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
 ** loaded for the language `en'. Using the pattern for
@@ -1230,27 +1225,36 @@ Overfull \hbox (0.8537pt too wide) in paragraph at lines 662--663
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
 ** loaded for the language `en'. Using the pattern for
 ** the default language instead.
-) [36]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 676.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 676.
+** WARNING: IEEEtran.bst: No hyphenation pattern has been
+** loaded for the language `en'. Using the pattern for
+** the default language instead.
+** WARNING: IEEEtran.bst: No hyphenation pattern has been
+** loaded for the language `en'. Using the pattern for
+** the default language instead.
+** WARNING: IEEEtran.bst: No hyphenation pattern has been
+** loaded for the language `en'. Using the pattern for
+** the default language instead.
+[36]
+** WARNING: IEEEtran.bst: No hyphenation pattern has been
+** loaded for the language `en'. Using the pattern for
+** the default language instead.
+) [37]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 680.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 680.
  (thesis_BB.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 676.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 676.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 680.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 680.
 Package rerunfilecheck Info: File `thesis_BB.out' has not changed.
-(rerunfilecheck)             Checksum: D75785F1F040271EBB1B1B33607F07AD;1216.
+(rerunfilecheck)             Checksum: 7729773FFBD0F176403DC8224C5016E7;1444.
 Package rerunfilecheck Info: File `thesis_BB.brf' has not changed.
-(rerunfilecheck)             Checksum: 5D8ABE6AD1F63199E9F25704ABD83659;1876.
-
-
-LaTeX Warning: There were undefined references.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 676.
+(rerunfilecheck)             Checksum: 3E9DF4FE73DB2763E7F6D2E0C5961866;2006.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 680.
  ) 
 Here is how much of TeX's memory you used:
- 28179 strings out of 493323
- 539608 string characters out of 3139064
- 588396 words of memory out of 3000000
- 31170 multiletter control sequences out of 15000+200000
+ 28207 strings out of 493323
+ 540329 string characters out of 3139064
+ 589007 words of memory out of 3000000
+ 31187 multiletter control sequences out of 15000+200000
  541447 words of font info for 63 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  56i,11n,110p,10369b,673s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1271,9 +1275,9 @@ blic/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsf
 onts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
 cmti9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm
 10.pfb>
-Output written on thesis_BB.pdf (40 pages, 3139156 bytes).
+Output written on thesis_BB.pdf (41 pages, 3144244 bytes).
 PDF statistics:
- 1163 PDF objects out of 1200 (max. 8388607)
- 162 named destinations out of 1000 (max. 500000)
- 376 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1205 PDF objects out of 1440 (max. 8388607)
+ 173 named destinations out of 1000 (max. 500000)
+ 408 words of extra memory for PDF output out of 10000 (max. 10000000)
 
