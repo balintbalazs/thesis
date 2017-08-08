@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.7.6)  8 AUG 2017 13:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.7.6)  8 AUG 2017 22:29
 entering extended mode
 **./thesis_BB.tex
 (thesis_BB.tex
@@ -1020,12 +1020,24 @@ Package pdftex.def Info: figures/2_spim/intro/spim_cyl.pdf, page2 used on input
  line 296.
 (pdftex.def)             Requested size: 339.6134pt x 405.37778pt.
  [13]
-<figures/2_spim/DualMouse/Splitter.png, id=691, 777.90625pt x 585.18625pt>
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [14 <./figures/2_spim/FOV.pdf> <./figures/2_spim/width.pdf> <./figures/2_spim/
+height.pdf>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [15 <./figures/2_spim/intro/spim_cyl.pdf>]
+
+LaTeX Warning: Reference `fig:sphericalCap' on page 16 undefined on input line 
+331.
+
+[16]
+<figures/2_spim/DualMouse/Splitter.png, id=847, 777.90625pt x 585.18625pt>
 File: figures/2_spim/DualMouse/Splitter.png Graphic file (type png)
 
 <use figures/2_spim/DualMouse/Splitter.png>
 Package pdftex.def Info: figures/2_spim/DualMouse/Splitter.png used on input li
-ne 340.
+ne 361.
 (pdftex.def)             Requested size: 777.90434pt x 585.18481pt.
 \g__file_internal_ior=\read3
 <<figures/2_spim/DualMouse/Splitter.prc>><<3Dmenu.js>>
@@ -1047,19 +1059,12 @@ Missing character: There is no 4 in font nullfont!
 Missing character: There is no ) in font nullfont!
 Missing character: There is no ; in font nullfont!
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [14 <./figures/2_spim/FOV.pdf> <./figures/2_spim/width.pdf> <./figures/2_spim/
-height.pdf>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [15 <./figures/2_spim/intro/spim_cyl.pdf>]
-<figures/2_spim/DualMouse/DualMirror.png, id=848, 972.63374pt x 584.1825pt>
+<figures/2_spim/DualMouse/DualMirror.png, id=864, 972.63374pt x 584.1825pt>
 File: figures/2_spim/DualMouse/DualMirror.png Graphic file (type png)
 
 <use figures/2_spim/DualMouse/DualMirror.png>
 Package pdftex.def Info: figures/2_spim/DualMouse/DualMirror.png used on input 
-line 364.
+line 385.
 (pdftex.def)             Requested size: 972.63136pt x 584.18106pt.
 <<figures/2_spim/DualMouse/DualMirror.prc>>
 Missing character: There is no ( in font nullfont!
@@ -1079,18 +1084,18 @@ Missing character: There is no . in font nullfont!
 Missing character: There is no 4 in font nullfont!
 Missing character: There is no ) in font nullfont!
 Missing character: There is no ; in font nullfont!
- [16 <./figures/2_spim/DualMouse/Splitter.png>] [17 <./figures/2_spim/DualMouse
-/DualMirror.png>] [18
-
-]
+ [17 <./figures/2_spim/DualMouse/Splitter.png>] [18 <./figures/2_spim/DualMouse
+/DualMirror.png>]
 Chapter 3.
-[19] [20]
-<figures/3_compression/intro/huffman.png, id=927, 995.97093pt x 519.44063pt>
+[19
+
+] [20]
+<figures/3_compression/intro/huffman.png, id=928, 995.97093pt x 519.44063pt>
 File: figures/3_compression/intro/huffman.png Graphic file (type png)
 
 <use figures/3_compression/intro/huffman.png>
 Package pdftex.def Info: figures/3_compression/intro/huffman.png used on input 
-line 469.
+line 490.
 (pdftex.def)             Requested size: 254.71167pt x 132.84001pt.
  [21]
 ("C:\Program Files\MiKTeX 2.9\tex\latex\ucs\uni-32.def"
@@ -1099,27 +1104,27 @@ File: uni-32.def 2013/05/13 UCS: Unicode data U+2000..U+20FF
 Underfull \vbox (badness 5622) has occurred while \output is active []
 
  [22 <./figures/3_compression/intro/huffman.png>] [23]
-<figures/3_compression/intro/arithmetic.png, id=956, 676.02562pt x 420.06938pt>
+<figures/3_compression/intro/arithmetic.png, id=957, 676.02562pt x 420.06938pt>
 File: figures/3_compression/intro/arithmetic.png Graphic file (type png)
 <use figures/3_compression/intro/arithmetic.png>
 Package pdftex.def Info: figures/3_compression/intro/arithmetic.png used on inp
-ut line 543.
+ut line 564.
 (pdftex.def)             Requested size: 254.71167pt x 158.26915pt.
  [24 <./figures/3_compression/intro/arithmetic.png>]
-<figures/3_compression/intro/DCT_bases.png, id=967, 495.35063pt x 496.10344pt>
+<figures/3_compression/intro/DCT_bases.png, id=968, 495.35063pt x 496.10344pt>
 File: figures/3_compression/intro/DCT_bases.png Graphic file (type png)
 
 <use figures/3_compression/intro/DCT_bases.png>
 Package pdftex.def Info: figures/3_compression/intro/DCT_bases.png used on inpu
-t line 577.
+t line 598.
 (pdftex.def)             Requested size: 169.80347pt x 170.05823pt.
  [25] [26 <./figures/3_compression/intro/DCT_bases.png>]
-<figures/3_compression/intro/wavelet.png, id=986, 727.21687pt x 441.14813pt>
+<figures/3_compression/intro/wavelet.png, id=987, 727.21687pt x 441.14813pt>
 File: figures/3_compression/intro/wavelet.png Graphic file (type png)
 
 <use figures/3_compression/intro/wavelet.png>
 Package pdftex.def Info: figures/3_compression/intro/wavelet.png used on input 
-line 628.
+line 649.
 (pdftex.def)             Requested size: 254.71167pt x 154.51186pt.
 
 Underfull \vbox (badness 1297) has occurred while \output is active []
@@ -1138,7 +1143,7 @@ Chapter 5.
 ] ("C:\Program Files\MiKTeX 2.9\tex\latex\ucs\uni-1.def"
 File: uni-1.def 2013/05/13 UCS: Unicode data U+0100..U+01FF
 )
-Overfull \hbox (0.8537pt too wide) in paragraph at lines 666--667
+Overfull \hbox (0.8537pt too wide) in paragraph at lines 687--688
 []\OT1/cmr/m/n/10.95 I thank Ste-fan Gunther for pro-vid-ing the \OT1/cmr/m/it
 /10.95 Drosophila m. \OT1/cmr/m/n/10.95 em-bryos, and []
  []
@@ -1239,22 +1244,26 @@ Overfull \hbox (0.8537pt too wide) in paragraph at lines 666--667
 ** loaded for the language `en'. Using the pattern for
 ** the default language instead.
 ) [37]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 680.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 680.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 701.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 701.
  (thesis_BB.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 680.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 680.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 701.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 701.
 Package rerunfilecheck Info: File `thesis_BB.out' has not changed.
 (rerunfilecheck)             Checksum: 7729773FFBD0F176403DC8224C5016E7;1444.
 Package rerunfilecheck Info: File `thesis_BB.brf' has not changed.
 (rerunfilecheck)             Checksum: 3E9DF4FE73DB2763E7F6D2E0C5961866;2006.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 680.
+
+
+LaTeX Warning: There were undefined references.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 701.
  ) 
 Here is how much of TeX's memory you used:
- 28207 strings out of 493323
- 540329 string characters out of 3139064
- 589007 words of memory out of 3000000
- 31187 multiletter control sequences out of 15000+200000
+ 28209 strings out of 493323
+ 540363 string characters out of 3139064
+ 587474 words of memory out of 3000000
+ 31188 multiletter control sequences out of 15000+200000
  541447 words of font info for 63 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  56i,11n,110p,10369b,673s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1275,9 +1284,9 @@ blic/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsf
 onts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
 cmti9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm
 10.pfb>
-Output written on thesis_BB.pdf (41 pages, 3144244 bytes).
+Output written on thesis_BB.pdf (41 pages, 3147800 bytes).
 PDF statistics:
- 1205 PDF objects out of 1440 (max. 8388607)
- 173 named destinations out of 1000 (max. 500000)
+ 1206 PDF objects out of 1440 (max. 8388607)
+ 174 named destinations out of 1000 (max. 500000)
  408 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -25,7 +25,8 @@
 \contentsline {subsubsection}{Multi-view deconvolution}{16}{section*.17}
 \contentsline {section}{\numberline {2.8}Dual Mouse-SPIM}{16}{section.2.8}
 \contentsline {subsection}{\numberline {2.8.1}Previous Mouse-SPIM}{16}{subsection.2.8.1}
-\contentsline {subsection}{\numberline {2.8.2}3D figure test}{16}{subsection.2.8.2}
+\contentsline {subsection}{\numberline {2.8.2}Light collection efficiency of an objective}{16}{subsection.2.8.2}
+\contentsline {subsection}{\numberline {2.8.3}3D figure test}{17}{subsection.2.8.3}
 \contentsline {chapter}{\numberline {3}Software}{19}{chapter.3}
 \contentsline {section}{\numberline {3.1}Multi-view image fusion}{19}{section.3.1}
 \contentsline {subsection}{\numberline {3.1.1}Image registration techniques}{19}{subsection.3.1.1}
