@@ -1,3 +1,9 @@
 ~$*.SLDPRT
 ~$*.SLDASM
 ~$*.SLDDRW
+*.aux
+*.brf
+*.log
+*.out
+*.gz
+*.toc
