@@ -31,10 +31,10 @@
 \contentsline {section}{\numberline {3.1}Multi-view image fusion}{19}{section.3.1}
 \contentsline {subsection}{\numberline {3.1.1}Image registration techniques}{19}{subsection.3.1.1}
 \contentsline {subsection}{\numberline {3.1.2}Image fusion techniques}{19}{subsection.3.1.2}
-\contentsline {subsubsection}{Average}{19}{section*.20}
-\contentsline {subsubsection}{Weighted average (image blending)}{19}{section*.21}
-\contentsline {subsubsection}{Fourier mixing?}{19}{section*.22}
-\contentsline {subsubsection}{Multi-view deconvolution}{19}{section*.23}
+\contentsline {subsubsection}{Average}{19}{section*.21}
+\contentsline {subsubsection}{Weighted average (image blending)}{19}{section*.22}
+\contentsline {subsubsection}{Fourier mixing?}{19}{section*.23}
+\contentsline {subsubsection}{Multi-view deconvolution}{19}{section*.24}
 \contentsline {section}{\numberline {3.2}Image compression}{19}{section.3.2}
 \contentsline {section}{\numberline {3.3}Entropy coding}{20}{section.3.3}
 \contentsline {subsection}{\numberline {3.3.1}Information and Entropy}{20}{subsection.3.3.1}
@@ -52,5 +52,5 @@
 \contentsline {subsection}{\numberline {4.2.2}Bead based registration}{29}{subsection.4.2.2}
 \contentsline {section}{\numberline {4.3}B3D image compression}{29}{section.4.3}
 \contentsline {chapter}{\numberline {5}Discussion}{31}{chapter.5}
-\contentsline {chapter}{Acknowledgements}{33}{section*.32}
-\contentsline {chapter}{References}{35}{section*.33}
+\contentsline {chapter}{Acknowledgements}{33}{section*.33}
+\contentsline {chapter}{References}{35}{section*.34}
