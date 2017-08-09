@@ -328,7 +328,7 @@ This method to generate the light-sheet has several advantages compared to a sta
 	\[
 	\eta = \frac{N_{collected}}{N_{emitted}}
 	\]
-	Since we can assume that the direction of photons emitted from a fluorescent molecule are random, the light collection efficiency will correspond to the solid angle subtended by the objective front lens at the focal point. To calculate this, let's consider the unit sphere centered at the focal point, and calculate the surface area of the psherical cap corresponding to the objective acceptance angle $\alpha$ (Fig. \ref{fig:sphericalCap}). The area of the cap can be expressed as a function of the angle:
+	Since we can assume that the direction of photons emitted from a fluorescent molecule are random, the light collection efficiency will correspond to the solid angle subtended by the objective front lens at the focal point. To calculate this, let's consider the unit sphere centered at the focal point, and calculate the surface area of the psherical cap corresponding to the objective acceptance angle $\alpha$ (Fig. \ref{fig:light_effa}). The area of the cap can be expressed as a function of the angle:
 	\[
 	A_{cap} = 2\pi r^2 (1-\cos \alpha)
 	\]
@@ -341,12 +341,26 @@ This method to generate the light-sheet has several advantages compared to a sta
 	\eta = \frac{N_{collected}}{N_{emitted}} = \frac{A_{cap}}{A_{sph}} = \frac{1-\cos \alpha}{2}
 	\]
 
+Some more calcualtions: (Fig. \ref{fig:light_effb}).
+
 \begin{figure}[tpb]
- \centering
- \includegraphics[page=1,width=0.4\textwidth]{figures/2_spim/efficiency/sphere}
- \caption{\textbf{Light collection efficiency of an objective.} Light collection efficiency is the ratio of photons collected by the objective and all emitted photons. If the fluorophores are emitted randomly in all directions, it will be the ratio of the surf}
- \label{fig:sphericalCap}
+\begin{subfigure}[t]{0.49\textwidth}
+	\centering
+	\includegraphics[page=1,width=0.8\textwidth]{figures/2_spim/efficiency/sphere}
+	\caption{\textbf{}}
+	\label{fig:light_effa}
+\end{subfigure}
+\begin{subfigure}[t]{0.49\textwidth}
+	\centering
+	\includegraphics[page=1,width=1\textwidth]{figures/2_spim/efficiency/light_eff}
+	\caption{\textbf{}}
+	\label{fig:light_effb}
+\end{subfigure} 
+ \caption{\textbf{Light collection efficiency of an objective.} \textbf{(a)} Light collection efficiency is the ratio of photons collected by the objective and all emitted photons. If the fluorophores are emitted randomly in all directions, it will be the surface ratio of the conical section (blue) to the whole sphere. \textbf{(b)} Light collection efficiency ($\eta$) as a function of the numerical aperture (NA)}
+ \label{fig:light_eff}
 \end{figure}
+
+
 	
 	
 	
