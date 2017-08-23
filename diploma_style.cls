@@ -1,7 +1,7 @@
 \ProvidesClass{diploma_style}
 \LoadClass[11pt,a4paper,twoside,openright]{report}
-\usepackage[utf8x]{inputenc}
-\usepackage{ucs}
+%\usepackage[utf8x]{inputenc}
+%\usepackage{ucs}
 \usepackage{fullpage}
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -12,9 +12,12 @@
 \usepackage{subcaption}
 \usepackage{verbatim}
 \usepackage{booktabs}
+\usepackage{upgreek}
+\usepackage{siunitx}
 %\usepackage{fancyhdr} % for better header layout
 
-\usepackage[ pdftex, plainpages = false, pdfpagelabels, 
+\usepackage[ plainpages = false, pdfpagelabels,
+                 %pdftex,
                  %pdfpagelayout = useoutlines,
                  bookmarks,
                  bookmarksopen = true,
