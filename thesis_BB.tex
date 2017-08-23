@@ -1,5 +1,5 @@
 \documentclass{diploma_style}
-\newcommand{\bbbd}{B\textsuperscript{3}D }
+	\def\b3d{B\textsuperscript{3}D}
 
 \author{\href{mailto:balint.balazs@embl.de}{Balázs Bálint}}
 \supervisor{\href{mailto:hufnagel@embl.de}{Lars Hufnagel}, \href{mailto:rozsabal@koki.hu}{Balázs Rózsa}}
@@ -49,8 +49,6 @@ Abstract in English.
 \tableofcontents
 \setcounter{page}{1}
 \pagenumbering{arabic}
-
-
 
 \chapter{Introduction}
 \cite{huisken_optical_2004}
@@ -398,12 +396,13 @@ playbutton=plain,
 3Droo=353,
 3Dlights=Headlamp,
 3Drender=ShadedIllustration,
-% defult view end
+% default view end
 ]{\includegraphics{figures/2_DualMouse/DualMirror.png}}{figures/2_DualMouse/DualMirror.prc}
 \caption{\textbf{Detection branch merging unit.} 3D model of the custom designed unit to enable quick switching between the two detection paths. A high precision stainless steel stage holds two mirror blocks facing opposite directions, and bouncing the light upwards, towards the camera. The units are translated by  pneumatic cylinder to ensure high speed an reproducibility.}
 \label{fig:DualMirror}
 \end{figure}	
 
+some blabla here wwww dsdflaskdf why soden wokr here kakakakaaaaaa
 
 \section{Optical layout}
 
@@ -723,7 +722,7 @@ In this paper I have introduced some of the most important techniques for image 
 	\subsection{MuVi-SPIM}
 	\subsection{Bead based registration}
 
-\section{\bbbd image compression}
+\section{B³D image compression}
 
 \subsection{Data sizes in microscopy}
 
@@ -758,7 +757,7 @@ In this paper I have introduced some of the most important techniques for image 
 \begin{figure}[tpb]
  \centering
  \includegraphics[page=1,width=0.6\textwidth]{figures/4_gpu/bubbles}
- \caption{\textbf{Lossless compression performance.} Performance comparison of our B³D \bbbd compression algorithm (red circle) vs. KLB (orange), uncompressed TIFF (light yellow), LZW compressed TIFF (light blue) and JPEG2000 (blue) regarding write speed (horizontal axis), read speed (vertical axis) and file size (circle size). (see also Table \ref{tab:performance}).}
+ \caption{\textbf{Lossless compression performance.} Performance comparison of our B³D \b3d compression algorithm (red circle) vs. KLB (orange), uncompressed TIFF (light yellow), LZW compressed TIFF (light blue) and JPEG2000 (blue) regarding write speed (horizontal axis), read speed (vertical axis) and file size (circle size). (see also Table \ref{tab:performance}).}
  \label{fig:performance}
 \end{figure}
 
@@ -770,13 +769,13 @@ In this paper I have introduced some of the most important techniques for image 
 	& \textbf{write speed} & \textbf{read speed} & \textbf{CR} & \textbf{file size} \\
 	\hline
 	\hline
-	\textbf{\bbbd} & 1,115.08 MB/s & 928.97 MB/s & 9.861 & 100\% \\ \hline
+	\textbf{\b3d} & 1,115.08 MB/s & 928.97 MB/s & 9.861 & 100\% \\ \hline
 	\textbf{KLB} & 283.19 MB/s & 619.95 MB/s & 10.571 & 93.28\% \\ \hline
 	\textbf{JPEG2000} & 31.94 MB/s & 26.38 MB/s & 11.782 & 83.69\% \\ \hline
 	\textbf{JPEG2000} & 202.32 MB/s & 161.08 MB/s & 1.00 & 986.1\% \\ \hline
 	\textbf{TIFF + LZW} & 40.85 MB/s & 102.37 MB/s & 5.822 & 169.37\%
 \end{tabular}
-\caption{\textbf{Lossless compression performance.} \bbbd is compared with various popular lossless image compression methods regarding write speed, read speed and compression ratio (original size / compressed size). Data visualized on Figure \ref{fig:performance}.}
+\caption{\textbf{Lossless compression performance.} \b3d is compared with various popular lossless image compression methods regarding write speed, read speed and compression ratio (original size / compressed size). Data visualized on Figure \ref{fig:performance}.}
 \label{tab:performance}
 \end{table}
 
@@ -812,12 +811,12 @@ In this paper I have introduced some of the most important techniques for image 
 \end{small}
 \end{table}
 
+\section{Noise dependent lossy compression}
+
 \section{Methods}
 
 
 \chapter{Discussion}
-
-
 
 \newpage
 \cleardoublepage
