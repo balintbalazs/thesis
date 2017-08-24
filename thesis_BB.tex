@@ -172,24 +172,34 @@ Although this is a big improvement to confocal microscopy, the issue of photoble
 
 \section{Light-sheet microscopy}
 \label{sec:light-sheet}
+One main drawback of the point scanning methods introduced in the previous section is the inefficiency of the illumination scheme. Although almost the whole sample is illuminated, information is only collected from the focal volume. This results in two main limiting factors: acquisition speed depends on the point scanning speed, which in turn is inversely proportional to the signal to noise ratio. Furthermore, because of the inefficiency of the illumination scheme, photobleaching and phototoxic effects further reduce the usability of these techniques for live imaging, especially for long term experiments \cite{}.
+
+The 
 
 The main principle behind single plane illumination microscopy, that is illuminating the sample from the side by a very thin light-sheet, dates back to the early 20\textsuperscript{th} century, when Siedentopf and Zsigmondy first described the ultramicroscope \cite{siedentopf_uber_1902}. This microscope used sunlight as an illumination source, that was guided through a precision slit to generate a thin light-sheet. This allowed Zsigmondy to visualize gold nanoparticles floating in and out of the light-sheet. Since these particles are much smaller than the wavelength of the light, the device was called an ultramicroscope. His studies with colloids together with the development of the ultramicroscope led Zsigmondy to win the Nobel Prize in 1925.
 
 previous to SPIM:
-Voie et al. fixed guinea pig cochlea, rotating and reconstruction in 3D \cite{voie_orthogonal-plane_1993}, called Orthogonal-plane Fluorescent Optical Sectioning. Lateral resolution around 
+Voie et al. fixed guinea pig cochlea, rotating and reconstruction in 3D \cite{voie_orthogonal-plane_1993}, called Orthogonal-plane Fluorescent Optical Sectioning. Lateral resolution around \SI{10}{\micro m} and axial resolution of \SI{26}{\micro m}, with very large, \SI{1.5}{mm} field of view. Since the specimens they imaged contained calcium rich bone tissue, optical imaging was only possible by using an optical clearing method. In this work, they used EDTA (ethylenediaminetetraacetic acid) dehydrated in ethyl alcohol, then it was cleared, finally immersed in a fluorescent dye bath. TO acquire 3D images, the specimen was rotated, and translated to compensate for the off-axis rotation.
 
-1 $\upmu$m,
-1 $\mu$m,
-1 $\mu = 3$,
-\SI{1}{\micro\meter},
-\SI{16}{kg} fekete szen, 16 kg fekete szen
+follow-up to Voie and Spelman: \cite{voie_three-dimensional_1995} 3D reconstruction of the cochlea for the images
 
-q=1$\upsigma, \sigma$.
+Then, in 2002, Fuchs et al. introduces Thin  Light-Sheet Microscopy \cite{fuchs_thin_2002} who use this technique to investigate the microbial life in seawater samples without disturbing their natural environment (by e.g. placing them on a coverslip). Using TSLM allowed the to image the bacteria directly in the staining solution containing SYBR Green I without having to deal with background illumination from the dye, which would have been an issue with confocal microscopy for example. Their light-sheet was similar to the one utilized in OPFOS, being \SI{23}{\micro m} thin, and providing a \SI{1}{mm} \ \SI{1}{mm} field of view.
+
+The real breakthrough happened when light-sheet microscopy was combined with 
+endogenous fluorecsent labels: fluorescent proteins
+live imaging for long time
+and light-sheet
+these techniques were all combined in the 2004 Science paper from Huisken et al. that marks a landmark in light-sheet microscopy, and since then a widespread adoption started  in biological research, with multiple groups implementing their own setups.
 
 Since then however, light-sheet microscopy was seldom used, but in the last decade it was reinvented and combined with fluorescent microscopy. The first notable light-sheet fluorescent microscope (LSFM) was developed at EMBL in 2004 \cite{huisken_optical_2004}, that demonstrated the benefits of using a light-sheet in imaging developmental processes in three dimension.
 
 Since then, light-sheet based imaging has gained more and more popularity, as it can be adapted and applied to a wide variety of problems. It was numerously proven to be a better choice than confocal microscopy \cite{reynaud_light_2008,huisken_selective_2009} especially in developmental biological applications \cite{weber_light_2011}. It can also be used with a wide variety of specimens of different sizes, such as zebrafish embryo \cite{keller_reconstruction_2008}, mouse brain \cite{dodt_ultramicroscopy:_2007} or drosophila embryo \cite{krzic_multiview_2012}. It is also possible to use light-sheet microscopy in super-resolution, allowing for individual molecule localization \cite{cella_zanacchi_live-cell_2011}.
-	
+
+
+\subsection{Multi-view light-sheet microscopy}
+already in 1989 multi-view to increase axial resolution in conventional optical microscope. They imaged \textit{Drosohpila} metaphase plate in Zeiss Axiomat microscope using a 63x 1.2 NA water immersion objective lens. To increase the axial resolution, a special rotation stage was constructed, that allowed rotation around the object of interest to image it from a 90\si{\degree} tilted view. Using a fusion method in the Fourier space, the resolution increased to \SI{0.25}{\micro\meter} in lateral and \SI{0.4}{\micro\meter} in the axial direction for real samples.
+
+
 %\begin{itemize}	
 %	\item mSPIM, pivoting light-sheet \cite{huisken_even_2007}
 %	\item omnidirectional microscopy (review) \cite{weber_omnidirectional_2012}
