@@ -2,7 +2,8 @@
 \LoadClass[11pt,a4paper,twoside,openright]{report}
 %\usepackage[utf8x]{inputenc}
 %\usepackage{ucs}
-\usepackage{fullpage}
+%\usepackage{fullpage}
+\usepackage[includeheadfoot,inner=3.75cm,outer=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -14,7 +15,7 @@
 \usepackage{booktabs}
 \usepackage{upgreek}
 \usepackage{siunitx}
-%\usepackage{fancyhdr} % for better header layout
+\usepackage{fancyhdr} % for better header layout
 
 \usepackage[ plainpages = false, pdfpagelabels,
                  %pdftex,
@@ -40,13 +41,14 @@
 
 \renewcommand{\bibname}{References}
 
-%\pagestyle{fancy}
-%\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\thechapter. #1 }}{}}
-%\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
-%\fancyhf{}
-%\fancyhead[R]{\bfseries\rightmark}
-%\fancyhead[L]{\bfseries\leftmark}
-%\fancyfoot[C]{\thepage}
+%\pagestyle{headings}
+\pagestyle{fancy}
+\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\thechapter. #1 }}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+\fancyhf{}
+\fancyhead[R]{\bfseries\rightmark}
+\fancyhead[L]{\bfseries\leftmark}
+\fancyfoot[C]{\thepage}
 
 %\setlength{textwidth}{15.2cm}
 
@@ -160,7 +162,9 @@
 \setcounter{tocdepth}{1}
 
 
-\addtolength{\textwidth}{-1cm}
-\addtolength{\oddsidemargin}{1cm}
-\addtolength{\textheight}{-0.5cm}
-\addtolength{\topmargin}{0.5cm}
+%\addtolength{\textwidth}{-1cm}
+%\addtolength{\oddsidemargin}{1cm}
+%\addtolength{\textheight}{-0.5cm}
+%\addtolength{\topmargin}{0.5cm}
+%\setlength{\headwidth}{\textwidth}
+%\usepackage{showframe}
