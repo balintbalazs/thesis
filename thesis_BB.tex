@@ -52,7 +52,8 @@ Abstract in English.
 \setcounter{page}{1}
 \pagenumbering{arabic}
 
-\chapter{Introduction}
+\chapter*{Introduction}
+\addcontentsline{toc}{chapter}{Introduction}
 \cite{huisken_optical_2004}
 
 
@@ -174,7 +175,7 @@ Although this is a big improvement to confocal microscopy, the issue of photoble
 \label{sec:light-sheet}
 One main drawback of the point scanning methods introduced in the previous section is the inefficiency of the illumination scheme. Although almost the whole sample is illuminated, information is only collected from the focal volume. This results in two main limiting factors: acquisition speed depends on the point scanning speed, which in turn is inversely proportional to the signal to noise ratio. Furthermore, because of the inefficiency of the illumination scheme, photobleaching and phototoxic effects further reduce the usability of these techniques for live imaging, especially for long term experiments \cite{}.
 
-The 
+
 
 The main principle behind single plane illumination microscopy, that is illuminating the sample from the side by a very thin light-sheet, dates back to the early 20\textsuperscript{th} century, when Siedentopf and Zsigmondy first described the ultramicroscope \cite{siedentopf_uber_1902}. This microscope used sunlight as an illumination source, that was guided through a precision slit to generate a thin light-sheet. This allowed Zsigmondy to visualize gold nanoparticles floating in and out of the light-sheet. Since these particles are much smaller than the wavelength of the light, the device was called an ultramicroscope. His studies with colloids together with the development of the ultramicroscope led Zsigmondy to win the Nobel Prize in 1925.
 
@@ -182,6 +183,8 @@ previous to SPIM:
 Voie et al. fixed guinea pig cochlea, rotating and reconstruction in 3D \cite{voie_orthogonal-plane_1993}, called Orthogonal-plane Fluorescent Optical Sectioning. Lateral resolution around \SI{10}{\micro m} and axial resolution of \SI{26}{\micro m}, with very large, \SI{1.5}{mm} field of view. Since the specimens they imaged contained calcium rich bone tissue, optical imaging was only possible by using an optical clearing method. In this work, they used EDTA (ethylenediaminetetraacetic acid) dehydrated in ethyl alcohol, then it was cleared, finally immersed in a fluorescent dye bath. TO acquire 3D images, the specimen was rotated, and translated to compensate for the off-axis rotation.
 
 follow-up to Voie and Spelman: \cite{voie_three-dimensional_1995} 3D reconstruction of the cochlea for the images
+
+Similar to SPIM but not fluorescent: light scanning photomacrography \cite{huber_3d_2001}
 
 Then, in 2002, Fuchs et al. introduces Thin  Light-Sheet Microscopy \cite{fuchs_thin_2002} who use this technique to investigate the microbial life in seawater samples without disturbing their natural environment (by e.g. placing them on a coverslip). Using TSLM allowed the to image the bacteria directly in the staining solution containing SYBR Green I without having to deal with background illumination from the dye, which would have been an issue with confocal microscopy for example. Their light-sheet was similar to the one utilized in OPFOS, being \SI{23}{\micro m} thin, and providing a \SI{1}{mm} \ \SI{1}{mm} field of view.
 
@@ -194,15 +197,6 @@ these techniques were all combined in the 2004 Science paper from Huisken et al.
 Since then however, light-sheet microscopy was seldom used, but in the last decade it was reinvented and combined with fluorescent microscopy. The first notable light-sheet fluorescent microscope (LSFM) was developed at EMBL in 2004 \cite{huisken_optical_2004}, that demonstrated the benefits of using a light-sheet in imaging developmental processes in three dimension.
 
 Since then, light-sheet based imaging has gained more and more popularity, as it can be adapted and applied to a wide variety of problems. It was numerously proven to be a better choice than confocal microscopy \cite{reynaud_light_2008,huisken_selective_2009} especially in developmental biological applications \cite{weber_light_2011}. It can also be used with a wide variety of specimens of different sizes, such as zebrafish embryo \cite{keller_reconstruction_2008}, mouse brain \cite{dodt_ultramicroscopy:_2007} or drosophila embryo \cite{krzic_multiview_2012}. It is also possible to use light-sheet microscopy in super-resolution, allowing for individual molecule localization \cite{cella_zanacchi_live-cell_2011}.
-
-
-\subsection{Multi-view light-sheet microscopy}
-already in 1989 multi-view to increase axial resolution in conventional optical microscope. They imaged \textit{Drosohpila} metaphase plate in Zeiss Axiomat microscope using a 63x 1.2 NA water immersion objective lens. To increase the axial resolution, a special rotation stage was constructed, that allowed rotation around the object of interest to image it from a 90\si{\degree} tilted view. Using a fusion method in the Fourier space, the resolution increased to \SI{0.25}{\micro\meter} in lateral and \SI{0.4}{\micro\meter} in the axial direction for real samples.
-
-Multiple imaging axis microscopy (MIAM) \cite{swoger_multiple_2003}
-to image specimens from 4 directions in a tetrahedral objective configuration, could reach a 5.8 fold increase in axial resolution by combining the four views as a weighted average.
-Follow up for this: sample manipulation with optical tweezers / optical levitation in 3D \cite{huisken_three-dimensional_2007}(because of the lack of space for mechanical translation stage)
-positioning of a \SI{20}{\micro m} latex bead in a \SI{100}{\micro m} diameter volume by changing the intensity of 4 laser beams. 
 
 %\begin{itemize}	
 %	\item mSPIM, pivoting light-sheet \cite{huisken_even_2007}
@@ -222,18 +216,6 @@ A selective-plane illumination microscope (SPIM) uses a light-sheet to illuminat
     \caption{\textbf{Basic optical components of a SPIM.} A selective plane illumination microscope uses two objectives orthogonally aligned. One objective is used to generate a thin light-sheet that illuminates the sample from the side, while the other is used for detection. To generate an image of the specimen, a suitable tube lens is used to focus the light on the sensor of a detection unit (e.g. sCMOS camera). The light-sheet is generated by the illumination objective, using a beam that is previously shaped by a cylindrical lens.}
     \label{fig:light-sheet}
 \end{figure}
-
-%\begin{figure}[htpb]
-%	\centering
-%	\includegraphics[width=0.8\textwidth]{figures/1_spim/sample_holder}
-%	\caption{\textbf{Experimental chamber of a LSFM \cite{krzic_multiple-view_2009}.} LSFM is used mostly with water-dipping lenses. The specimen is immersed into a water-based medium contained in a chamber. The chamber has three glass windows, one of them being used for the light-sheet illumination, and the detection objective lens is inserted through a sealing rubber O-ring (shaft seal) in the remaining side. Size of the light sheet is exaggerated.}
-%	\label{fig:chamber}
-%\end{figure}
-
-%
-
-%The second option to use a virtual light-sheet that is generated by scanning a thin line of laser beam through the sample \cite{weber_light_2011}. If this is done with sufficient speed, a virtual light-sheet will be generated. Since most lasers use Gaussian beams, a light-sheet created by a cylindrical lens will have less intensity towards the edges, which means a wider sheet is needed than the field of view. However, when using the scanning method, the intensity of the virtual light-sheet is uniform through the whole field of view. The disadvantage of this scanning method, is that this scanning motion needs to be very precise, down to the sub-micrometer to generate a stable virtual light-sheet and this can be hard to achieve.
-
 
 
 \subsection{Detection}
@@ -336,6 +318,19 @@ Since using cylindrical lenses it's not possible to generate a homogeneous light
 
 This method to generate the light-sheet has several advantages compared to a static light-sheet. The height of this sheet is not determined by the cylindrical lens, but it can be dynamically modified. Also, the intensity is uniform through the whole height of the light-sheet.
 
+\section{Multi-view light-sheet microscopy}
+already in 1989 multi-view to increase axial resolution in conventional optical microscope. They imaged \textit{Drosohpila} metaphase plate in Zeiss Axiomat microscope using a 63x 1.2 NA water immersion objective lens. To increase the axial resolution, a special rotation stage was constructed, that allowed rotation around the object of interest to image it from a 90\si{\degree} tilted view. Using a fusion method in the Fourier space, the resolution increased to \SI{0.25}{\micro\meter} in lateral and \SI{0.4}{\micro\meter} in the axial direction for real samples.
+
+Multiple imaging axis microscopy (MIAM) \cite{swoger_multiple_2003}
+to image specimens from 4 directions in a tetrahedral objective configuration, could reach a 5.8 fold increase in axial resolution by combining the four views as a weighted average.
+Follow up for this: sample manipulation with optical tweezers / optical levitation in 3D \cite{huisken_three-dimensional_2007}(because of the lack of space for mechanical translation stage)
+positioning of a \SI{20}{\micro m} latex bead in a \SI{100}{\micro m} diameter volume by changing the intensity of 4 laser beams. 
+
+\section{SPIM improvements}
+things to improve: resolution
+axial resolution relative to lateral
+complete view
+reduce scattering
 
 \chapter{Dual Mouse-SPIM}
     \section{Previous Mouse-SPIM}
@@ -459,6 +454,7 @@ When using any kind of microscopy in research, image processing is a crucial par
 As it is apparent from this table, 
 
 
+proportional to the symbol frequencies. A string of symbols can be encoded by applyingthis process recursively: The sub-interval from the previous step is subdivided againusing the same proportions. Figure4.2. shows an example of arithmetic coding using
 
 \section{Multi-view fusion techniques}
     \subsection{Why multi view}
@@ -769,7 +765,7 @@ B³D image compression
 \renewcommand{\arraystretch}{2}
 \centering
 \begin{tabular}{rp{5cm}cccc}
-    & \textbf{imaging device} & \textbf{image size} &  \parbox[c]{1cm}{\textbf{frame}\\ \textbf{rate}} & \textbf{data rate} & \parbox[c]{1cm}{\textbf{data\\ size}} \\
+    & \textbf{imaging device} & \textbf{image size} &  \parbox[c]{1.2cm}{\textbf{frame}\\ \textbf{rate}} & \textbf{data rate} & \parbox[c]{1.2cm}{\textbf{data\\ size}} \\
     \hline
     \hline
     \textbf{SPIM} & 2x sCMOS camera (e.g. Hamamatsu ORCA Flash4.0) & 2048x2048 & 50/s & 800 MB/s & 10 TB \\ \hline
@@ -868,7 +864,7 @@ Finally, I would like to thank Gustavo Quintas Glasner de Medeiros and Nils Norl
 \phantomsection
 \addcontentsline{toc}{chapter}{References}
 \bibliographystyle{IEEE/IEEEtran}
-{ \footnotesize \bibliography{EMBL}}
+{ \small \bibliography{EMBL}}
 
 
 \end{document}
