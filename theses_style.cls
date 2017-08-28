@@ -2,7 +2,7 @@
 \LoadClass[11pt,a5paper,twoside,openright]{article}
 %\usepackage[utf8x]{inputenc}
 %\usepackage{ucs}
-%\usepackage{fullpage}
+\usepackage{fullpage}
 %\usepackage[includeheadfoot,inner=3.75cm,outer=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -25,7 +25,7 @@
                  bookmarksnumbered = true,
                  breaklinks = true,
                  linktocpage,
-                 pagebackref,
+                 %pagebackref,
                  colorlinks = true,  % was true
                  linkcolor = black,	% blue
                  urlcolor  = black,	% blue
@@ -35,7 +35,6 @@
                  hyperfigures]{hyperref} 
 
 \usepackage{setspace}
-\usepackage{media9}
 \onehalfspacing
 
 

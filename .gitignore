@@ -10,4 +10,6 @@
 *.bbl
 *.blg
 *.dvi
+*.bcf
+*.run.xml
 .vscode

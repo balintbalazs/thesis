@@ -1,6 +1,33 @@
 % !TEX program = xelatex
 \documentclass{theses_style}
 \usepackage{lipsum}
+\usepackage[hyperref=true,
+            backref=true,
+            style=numeric-comp,
+            sorting=none,
+            maxnames=100,
+            giveninits=true,
+            url=false,
+            isbn=false,
+            defernumbers=true
+            ]{biblatex}
+
+\renewbibmacro{in:}{}
+\AtEveryBibitem{%
+    \clearlist{language}%
+}
+
+\addbibresource{sajat.bib}
+\addbibresource{EMBL.bib}
+
+\DeclareRefcontext{journal}{labelprefix=J}
+\DeclareBibliographyCategory{journal}
+\addtocategory{journal}{balazs_real-time_2017,de_medeiros_light-sheet_2016,strnad_inverted_2016,hoyer_breaking_2016}
+
+
+\DeclareRefcontext{conference}{labelprefix=C}
+\DeclareBibliographyCategory{conference}
+\addtocategory{conference}{balazs_gpu-based_2016,balazs_gpu-based_2016-1,balazs_gpu-based_2017}
 
 \def\b3d{B\textsuperscript{3}D}
 
@@ -16,6 +43,9 @@
 
 \title{Title goes here}
 %\date{2012 november}
+
+
+
 \begin{document}
 
 \maketitle
@@ -24,19 +54,37 @@
 \newpage
 \setcounter{page}{1}
 \section{Introduction}
-\cite{huisken_even_2007}
-\lipsum
 
 \section{DualMouse SPIM}
 
 \section{\b3d image compression algorithm}
+other papers cited here
+huisken \cite{huisken_optical_2004}
+muvi spim \cite{krzic_multiview_2012}
 
 \section{New scientific results}
+journal publications
+b3d \cite{balazs_real-time_2017}
+light-sheet review \cite{de_medeiros_light-sheet_2016}
+mouse SPIM \cite{strnad_inverted_2016}
+LS-RESOLFT \cite{hoyer_breaking_2016}
 
-\section{Applications}
+conference presentations
+LSFM2016 \cite{balazs_gpu-based_2016}
+FOM2016 \cite{balazs_gpu-based_2016-1}
+FOM2017 \cite{balazs_gpu-based_2017}
 
-\bibliographystyle{IEEE/IEEEtran}
-{ \small \bibliography{EMBL}}
+\section{Application of the results}
 
+%\bibliographystyle{IEEE/IEEEtran}
+%\bibliography{sajat}
+\newrefcontext{journal}
+\printbibliography[category=journal, title={The Author's journal publications}]
+
+\newrefcontext{conference}
+\printbibliography[category=conference, title={The Author's conference presentations}]
+
+\newrefcontext
+\printbibliography[notcategory=journal,notcategory=conference, resetnumbers=true, title={References}]
 
 \end{document}
