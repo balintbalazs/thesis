@@ -377,12 +377,22 @@ Some more calculations: (Fig. \ref{fig:light_effb}).
 
 
     
-    
-    
-    \section{3D figure test}
-    
+
+
+\section{Optical layout}
+
+\begin{figure}[hbt]
+    \centering
+    \includegraphics[page=1,width=1\textwidth]{figures/2_DualMouse/fullSchematics}
+    \caption{\textbf{Dual Mouse SPIM optical layout.} The microscope consists of two main parts, the illumination branch (blue) and detection branch (yellow). For both illumination and detection there are two identical paths implemented, that can be chose by either the galvanometric mirror (G), or the pneumatic switcher unit (SW). 
+}
+    \label{fig:fullSchematics}
+\end{figure}
+
+\subsection{Illuminaiton splitter unit}
+\label{sec:splitter}
 \begin{figure}[htb]
-\centering
+    \centering
     \includemedia[
     width=0.8\linewidth,height=0.6\linewidth,
     %add3Djscript=asylabels.js, %upright text labels
@@ -402,6 +412,8 @@ Some more calculations: (Fig. \ref{fig:light_effb}).
 \label{fig:splitter}
 \end{figure}
 
+\subsection{Detection merging unit}
+\label{sec:dualMirror}
 
 \begin{figure}[htb]
 \centering
@@ -426,17 +438,25 @@ playbutton=plain,
 \label{fig:DualMirror}
 \end{figure}	
 
-\section{Optical layout}
 
-\begin{figure}[hbt]
-    \centering
-    \includegraphics[page=1,width=1\textwidth]{figures/2_DualMouse/fullSchematics}
-    \caption{\textbf{Dual Mouse SPIM optical layout.} The microscope consists of two main parts, the illumination branch (blue) and detection branch (yellow). For both illumination and detection there are two identical paths implemented, that can be chose by either the galvanometric mirror (G), or the pneumatic switcher unit (SW). 
-}
-    \label{fig:fullSchematics}
-\end{figure}
+\section{Optical alignment}
+Precise alignment of the illumination and detection paths are crucial for high quality imaging, and has a pronounced  importance for high magnification and high resolution optical systems. The DualMouse SPIM contains two illumination and detection paths that share many common elements, which makes alignment a *important?* process. The final aim for the alignment is to perfectly overlap the light-sheets with the detection focal planes, and to optimize ... 
 
-    
+\subsection{Alignment of illuminaiton branches}
+The two illumination braches start with a common light source, a single mode fiber coupled to laser combiner, and they also share a galvanometric mirror that performs the beam scanning to generate the virtual light-sheet. Likewise shared is a scan lens focusing on the galvo mirror, and the illumination splitter unit (see Section \ref{sec:splitter})
+
+\subsection{Alignment of detection branches}
+Since the detection path is equivalent to a wide-field detection scheme, its alignment is much simpler than that of the illumination branches. The only difference is the detection branch merging unit (see Sec. \ref{sec:dualMirror}.) that features two moving mirrors. This, however doesn't effect the alignment procedure, since the movement direction is parallel to both mirror's surface, meaning that the exact position of the mirrors will not affect the image quality, as long as the mirrors are not clipping the image itself. Stability test were performed to confirm the consistent switching performance of the mirror unit before the final alignment took place (see Sec. \ref{sec:mirrorStability}).
+
+The final alignment procedure 
+
+\paragraph{Positioning the tube lens}
+The position of the tube lens determines the focal plane the is being imaged on the camera sensor. Ideally, the tube lens' distance from the camera sensor is exactly the tube lens focal length, which will ensure the best imaging performance. If the tube lens distance is not correct, the focal plane will be slightly shited in the axial direction. Although small shifts will not necessarily have detrimental effect on the image quality, because the light sheet can also be shifted accordingly. Because of the shifted focal and image planes, however, the magnificaiton of the system will be affected, since is depends on the 
+
+
+
+
+
 \chapter{Image processing}
 
 When using any kind of microscopy in research, image processing is a crucial part of the workflow. This is especially true for light-sheet microscopy, since it's capable imaging the same specimen for multiple days, producing immense amounts of data. A single overnight experiment of \textit{Drosophila} development (which is a very typical use-case for light-sheet) can produce multiple terabytes of data. To see the real scales, let's consider the following imaging conditions:
