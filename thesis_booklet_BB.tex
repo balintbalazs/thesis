@@ -1,0 +1,122 @@
+% !TEX program = xelatex
+\documentclass{booklet_style}
+
+%\usepackage[pagewise, mathlines]{lineno}
+
+%\usepackage[draft]{todonotes}
+% \usepackage[disable]{todonotes} % notes not showed
+
+%\setmainfont{Garamond}
+
+\usepackage[hyperref=true,
+            backref=true,
+            style=numeric-comp,
+            sorting=none,
+            maxnames=100,
+            giveninits=true,
+            url=false,
+            isbn=false,
+            defernumbers=true
+            ]{biblatex}
+
+\renewbibmacro{in:}{}
+\AtEveryBibitem{%
+    \clearlist{language}%
+}
+
+\addbibresource{sajat.bib}
+\addbibresource{EMBL.bib}
+
+\sloppy
+\frenchspacing
+
+\DeclareRefcontext{journal}{labelprefix=J}
+\DeclareBibliographyCategory{journal}
+\addtocategory{journal}{balazs_real-time_2017,de_medeiros_light-sheet_2016,strnad_inverted_2016,hoyer_breaking_2016}
+
+
+\DeclareRefcontext{conference}{labelprefix=C}
+\DeclareBibliographyCategory{conference}
+\addtocategory{conference}{balazs_gpu-based_2016,balazs_gpu-based_2016-1,balazs_gpu-based_2017}
+
+\def\b3d{B\textsuperscript{3}D}
+
+\author{\href{mailto:balint.balazs@embl.de}{Bálint Balázs}}
+\supervisor{\href{mailto:hufnagel@embl.de}{Lars Hufnagel}, \href{mailto:rozsabal@koki.hu}{Balázs Rózsa}}
+\lab{\href{http://www.embl.de/}{European Molecular Biology Laboratory}}
+\university{\href{http://www.ppke.hu/}{Pázmány Péter Catholic University}}
+\collegeordept{\href{http://www.itk.ppke.hu/}{Faculty of Information Technology}}
+\degreedate{\textit{Theses of the Ph.D. Dissertation} \\ Budapest, 2017}
+\ppke{\includegraphics[width=1cm]{figures/0_front/ITK_logo}}
+\embl{\includegraphics[width=2.5cm]{figures/0_front/EMBL_logo}}
+\degree{PhD}
+
+\title{Title goes here}
+%\date{2012 november}
+
+
+
+\begin{document}
+%\begin{linenumbers}
+\maketitle
+%\pagenumbering{roman}
+
+\newpage
+\setcounter{page}{1}
+\section{Introduction}
+
+
+\section{DualMouse SPIM}
+
+\section{\b3d image compression algorithm}
+other papers cited here
+huisken \cite{huisken_optical_2004}
+muvi spim \cite{krzic_multiview_2012}
+
+\section{New scientific results}
+
+\paragraph{Thesis I.}\textit{I have designed and constructed a new light-sheet microscope suitable for high sensitivity imaging of delicate samples. This setup greatly improves existing solutions by employing two high NA objectives}
+
+Corresponding publications: \cite{de_medeiros_light-sheet_2016},\cite{strnad_inverted_2016}, \cite{hoyer_breaking_2016}
+
+More description coming. %\todo{add more stuff here}
+
+\paragraph{Thesis II.} \textit{I have developed a GPU-based image procesing pipeline for multi-view light-sheet microscopy that enables real time fusion of opposing views.}
+
+Corresponding publications: \cite{balazs_gpu-based_2016}, \cite{balazs_gpu-based_2016-1}, \cite{balazs_gpu-based_2017}
+
+\subsection*{Thesis Group II.}
+
+\paragraph{Thesis III.} \textit{I have  developed a new image compression algorithm that enables noise dependent lossy compression of light microscopy images, and can reach a compression ratio of 100 fold while preserving the results of downstream data analysis steps.}
+
+Corresponding publications: \cite{balazs_real-time_2017}, \cite{balazs_gpu-based_2016}, \cite{balazs_gpu-based_2016-1}, \cite{balazs_gpu-based_2017}\\[1ex]
+\indent
+All microscopy images contain inherent noise, that is 
+
+Trying some formulas inline $q=1\sigma$. And more formuals in their own line:
+\begin{equation}
+    x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+\end{equation}
+
+\paragraph{Thesis IV.} \textit{I have  developed a new GPU-based image compression library, \b3d, that implements the algorithm described in Thesis III, and allows for real time compression of microscopy images with a throughput of up to 1 GB/s.}
+
+Corresponding publications: \cite{balazs_real-time_2017}, \cite{balazs_gpu-based_2016}, \cite{balazs_gpu-based_2016-1}, \cite{balazs_gpu-based_2017}
+
+\b3d is an efficient, GPU-based image compression library allowing lossless and noise dependent lossy compression of microscopy images. Since many high-speed microscopy methods generate immense amounts of data, easily reaching terabytes per expriment, image compression is especially important to efficiently deal with such datasets.
+
+
+\section{Application of the results}
+
+%\bibliographystyle{IEEE/IEEEtran}
+%\bibliography{sajat}
+\newrefcontext{journal}
+\printbibliography[category=journal, title={The Author's Journal Publications}]
+
+\newrefcontext{conference}
+\printbibliography[category=conference, title={The Author's Conference Presentations}]
+
+\newrefcontext
+\printbibliography[notcategory=journal,notcategory=conference, resetnumbers=true, title={References}]
+
+%\end{linenumbers}
+\end{document}

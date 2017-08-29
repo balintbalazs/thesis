@@ -1,5 +1,5 @@
-\ProvidesClass{theses_style}
-\LoadClass[11pt,a5paper,twoside,openright]{article}
+\ProvidesClass{booklet_style}
+\LoadClass[9pt,a5paper,twoside,openright]{article}
 %\usepackage[utf8x]{inputenc}
 %\usepackage{ucs}
 \usepackage{fullpage}
