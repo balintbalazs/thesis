@@ -1,0 +1,27 @@
+\usepackage[hyperref=true,
+            backref=true,
+            style=numeric-comp,
+            sorting=none,
+            maxnames=100,
+            giveninits=true,
+            url=false,
+            isbn=false,
+            defernumbers=true
+            ]{biblatex}
+
+\renewbibmacro{in:}{}
+\AtEveryBibitem{%
+    \clearlist{language}%
+}
+
+\addbibresource{sajat.bib}
+\addbibresource{EMBL.bib}
+
+\DeclareRefcontext{journal}{labelprefix=J}
+\DeclareBibliographyCategory{journal}
+\addtocategory{journal}{balazs_real-time_2017,de_medeiros_light-sheet_2016,strnad_inverted_2016,hoyer_breaking_2016}
+
+
+\DeclareRefcontext{conference}{labelprefix=C}
+\DeclareBibliographyCategory{conference}
+\addtocategory{conference}{balazs_gpu-based_2016,balazs_gpu-based_2016-1,balazs_gpu-based_2017}

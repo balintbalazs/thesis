@@ -25,7 +25,7 @@
                  bookmarksnumbered = true,
                  breaklinks = true,
                  linktocpage,
-                 pagebackref,
+                 %pagebackref,
                  colorlinks = true,  % was true
                  linkcolor = black,	% blue
                  urlcolor  = black,	% blue

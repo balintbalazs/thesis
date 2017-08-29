@@ -1,5 +1,6 @@
+% !TEX root = thesis_booklet_BB.tex
 \ProvidesClass{booklet_style}
-\LoadClass[9pt,a5paper,twoside,openright]{article}
+\LoadClass[8pt,a5paper,twoside,openright]{article}
 %\usepackage[utf8x]{inputenc}
 %\usepackage{ucs}
 \usepackage{fullpage}

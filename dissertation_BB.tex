@@ -1,6 +1,8 @@
 % !TEX program = xelatex
 \documentclass{diploma_style}
 
+\include{defBib}
+
 \def\b3d{B\textsuperscript{3}D}
 
 \author{\href{mailto:balint.balazs@embl.de}{Bálint Balázs}}
@@ -451,7 +453,9 @@ Since the detection path is equivalent to a wide-field detection scheme, its ali
 The final alignment procedure 
 
 \paragraph{Positioning the tube lens}
-The position of the tube lens determines the focal plane the is being imaged on the camera sensor. Ideally, the tube lens' distance from the camera sensor is exactly the tube lens focal length, which will ensure the best imaging performance. If the tube lens distance is not correct, the focal plane will be slightly shited in the axial direction. Although small shifts will not necessarily have detrimental effect on the image quality, because the light sheet can also be shifted accordingly. Because of the shifted focal and image planes, however, the magnificaiton of the system will be affected, since is depends on the 
+The position of the tube lens determines the focal plane the is being imaged on the camera sensor. Ideally, the tube lens' distance from the camera sensor is exactly the tube lens focal length, which will ensure the best imaging performance. If the tube lens distance is not correct, the focal plane will be slightly shifted in the axial direction. Although small shifts will not necessarily have detrimental effect on the image quality, because the light sheet can also be shifted accordingly. Because of the shifted focal and image planes, however, the magnification of the system will be affected, and will change depending on the amount of defocus. For this reason we aim for positioning the tube lens as close to the theoretical position as possible.
+
+Our tube lens is a compound, achromatic lens with a center thickness of \SI{12.5}{mm}, and edge thickness of \SI{11.3}{mm}.
 
 
 
@@ -863,6 +867,8 @@ B³D image compression
 
 
 \chapter{Discussion}
+\include{newResults}
+
 
 \newpage
 \cleardoublepage
@@ -883,8 +889,8 @@ Finally, I would like to thank Gustavo Quintas Glasner de Medeiros and Nils Norl
 \cleardoublepage
 \phantomsection
 \addcontentsline{toc}{chapter}{References}
-\bibliographystyle{IEEE/IEEEtran}
-{ \small \bibliography{EMBL}}
+
+\include{references}
 
 
 \end{document}

@@ -6,38 +6,10 @@
 %\usepackage[draft]{todonotes}
 % \usepackage[disable]{todonotes} % notes not showed
 
-%\setmainfont{Garamond}
-
-\usepackage[hyperref=true,
-            backref=true,
-            style=numeric-comp,
-            sorting=none,
-            maxnames=100,
-            giveninits=true,
-            url=false,
-            isbn=false,
-            defernumbers=true
-            ]{biblatex}
-
-\renewbibmacro{in:}{}
-\AtEveryBibitem{%
-    \clearlist{language}%
-}
-
-\addbibresource{sajat.bib}
-\addbibresource{EMBL.bib}
-
 \sloppy
 \frenchspacing
 
-\DeclareRefcontext{journal}{labelprefix=J}
-\DeclareBibliographyCategory{journal}
-\addtocategory{journal}{balazs_real-time_2017,de_medeiros_light-sheet_2016,strnad_inverted_2016,hoyer_breaking_2016}
-
-
-\DeclareRefcontext{conference}{labelprefix=C}
-\DeclareBibliographyCategory{conference}
-\addtocategory{conference}{balazs_gpu-based_2016,balazs_gpu-based_2016-1,balazs_gpu-based_2017}
+\include{defBib}
 
 \def\b3d{B\textsuperscript{3}D}
 
@@ -64,59 +36,40 @@
 \newpage
 \setcounter{page}{1}
 \section{Introduction}
-
+general intro to light-sheet
+challenges in mammalian imaging
+    incubation
+    light sensitivity
+    microdrop culture
+challenges in data handling
+    extremely high data rate
+    preprocessing necessary
+        image fusion
+        image compression
+    
 
 \section{DualMouse SPIM}
 
-\section{\b3d image compression algorithm}
+
+\section{Real time image processing}
+
+\subsection*{GPU-based image fusion}
+
+\subsection*{\b3d image compression algorithm}
+
+
+
 other papers cited here
 huisken \cite{huisken_optical_2004}
 muvi spim \cite{krzic_multiview_2012}
 
-\section{New scientific results}
-
-\paragraph{Thesis I.}\textit{I have designed and constructed a new light-sheet microscope suitable for high sensitivity imaging of delicate samples. This setup greatly improves existing solutions by employing two high NA objectives}
-
-Corresponding publications: \cite{de_medeiros_light-sheet_2016},\cite{strnad_inverted_2016}, \cite{hoyer_breaking_2016}
-
-More description coming. %\todo{add more stuff here}
-
-\paragraph{Thesis II.} \textit{I have developed a GPU-based image procesing pipeline for multi-view light-sheet microscopy that enables real time fusion of opposing views.}
-
-Corresponding publications: \cite{balazs_gpu-based_2016}, \cite{balazs_gpu-based_2016-1}, \cite{balazs_gpu-based_2017}
-
-\subsection*{Thesis Group II.}
-
-\paragraph{Thesis III.} \textit{I have  developed a new image compression algorithm that enables noise dependent lossy compression of light microscopy images, and can reach a compression ratio of 100 fold while preserving the results of downstream data analysis steps.}
-
-Corresponding publications: \cite{balazs_real-time_2017}, \cite{balazs_gpu-based_2016}, \cite{balazs_gpu-based_2016-1}, \cite{balazs_gpu-based_2017}\\[1ex]
-\indent
-All microscopy images contain inherent noise, that is 
-
-Trying some formulas inline $q=1\sigma$. And more formuals in their own line:
-\begin{equation}
-    x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
-\end{equation}
-
-\paragraph{Thesis IV.} \textit{I have  developed a new GPU-based image compression library, \b3d, that implements the algorithm described in Thesis III, and allows for real time compression of microscopy images with a throughput of up to 1 GB/s.}
-
-Corresponding publications: \cite{balazs_real-time_2017}, \cite{balazs_gpu-based_2016}, \cite{balazs_gpu-based_2016-1}, \cite{balazs_gpu-based_2017}
-
-\b3d is an efficient, GPU-based image compression library allowing lossless and noise dependent lossy compression of microscopy images. Since many high-speed microscopy methods generate immense amounts of data, easily reaching terabytes per expriment, image compression is especially important to efficiently deal with such datasets.
+\include{newResults}
 
 
 \section{Application of the results}
 
-%\bibliographystyle{IEEE/IEEEtran}
-%\bibliography{sajat}
-\newrefcontext{journal}
-\printbibliography[category=journal, title={The Author's Journal Publications}]
 
-\newrefcontext{conference}
-\printbibliography[category=conference, title={The Author's Conference Presentations}]
-
-\newrefcontext
-\printbibliography[notcategory=journal,notcategory=conference, resetnumbers=true, title={References}]
+\include{references}
 
 %\end{linenumbers}
 \end{document}
