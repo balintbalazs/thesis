@@ -445,17 +445,34 @@ playbutton=plain,
 Precise alignment of the illumination and detection paths are crucial for high quality imaging, and has a pronounced  importance for high magnification and high resolution optical systems. The DualMouse SPIM contains two illumination and detection paths that share many common elements, which makes alignment a *important?* process. The final aim for the alignment is to perfectly overlap the light-sheets with the detection focal planes, and to optimize ... 
 
 \subsection{Alignment of illuminaiton branches}
-The two illumination braches start with a common light source, a single mode fiber coupled to laser combiner, and they also share a galvanometric mirror that performs the beam scanning to generate the virtual light-sheet. Likewise shared is a scan lens focusing on the galvo mirror, and the illumination splitter unit (see Section \ref{sec:splitter})
+The two illumination braches start with a common light source, a single mode fiber coupled to laser combiner, and they also share a galvanometric mirror that performs the beam scanning to generate the virtual light-sheet. Likewise shared is a scan lens focusing on the galvo mirror (GM), and the illumination splitter unit (PM, see Section \ref{sec:splitter}).
+
+Alignment for the illumination arms are done in three steps. First the laser beam is aligned on the first rail that holds the galvo, lens L1, and the splitter unit PM. This is performed by two kinematic mirrors placed between the fiber output and the galvo mirror. Using these two mirrors it's possible to freely align the beam along all 4 degrees of freedom: translation in two orthogonal directions, and rotation around two orthogonal axes. Beam alignment on the rail is tested by two irises at the two ends of the rail, if the beam passes through both of them we consider it centered and straight on the optical axis.
+
+
 
 \subsection{Alignment of detection branches}
 Since the detection path is equivalent to a wide-field detection scheme, its alignment is much simpler than that of the illumination branches. The only difference is the detection branch merging unit (see Sec. \ref{sec:dualMirror}.) that features two moving mirrors. This, however doesn't effect the alignment procedure, since the movement direction is parallel to both mirror's surface, meaning that the exact position of the mirrors will not affect the image quality, as long as the mirrors are not clipping the image itself. Stability test were performed to confirm the consistent switching performance of the mirror unit before the final alignment took place (see Sec. \ref{sec:mirrorStability}).
 
+% TODO: complete paragraph
 The final alignment procedure 
 
-\paragraph{Positioning the tube lens}
+\paragraph{Positioning the tube lens.}
 The position of the tube lens determines the focal plane the is being imaged on the camera sensor. Ideally, the tube lens' distance from the camera sensor is exactly the tube lens focal length, which will ensure the best imaging performance. If the tube lens distance is not correct, the focal plane will be slightly shifted in the axial direction. Although small shifts will not necessarily have detrimental effect on the image quality, because the light sheet can also be shifted accordingly. Because of the shifted focal and image planes, however, the magnification of the system will be affected, and will change depending on the amount of defocus. For this reason we aim for positioning the tube lens as close to the theoretical position as possible.
 
-Our tube lens is a compound, achromatic lens with a center thickness of \SI{12.5}{mm}, and edge thickness of \SI{11.3}{mm}.
+Our tube lens is a compound, achromatic lens with a center thickness of \SI{12.5}{mm}, and edge thickness of \SI{11.3}{mm}. Its effective focal length is \SI{400}{mm} which will produce a 50x magnified image. Back focal length is \SI{394.33}{mm} which we measured form the camera chip, and the lens was positioned at this theoretically optimal position.
+
+\paragraph{Adjusting correction collar.}
+The Nikon 25x objectives used for this setup have a built in correcction ring that can be used to correct spherical aberrations resulting from refractive index differences when imaging samples behind a coverslip. This can be also effectively used to correct for any spherical aberrations occurring from imaging through the FEP foil. Although these aberrations are expected to be extremely low, due to the relatively thin, \SI{50}{\micro m} foil thickness, and the close matching of refractive index ($n_{FEP} = 1.344$, $n_{H_2O}=1.333$), for optimal, aberration free image quality it can't be neglected.
+
+The correction collars are adjusted by inspecting a gel suspended fluorescent bead specimen with the microscope, where the beads can act as a reporter of the point spread function of the microscope. The alignment can be performed "live" by inspecting the bead image quality for any aberrations. By gradually changing the correction collar, the ring are minimized on out of focus beads, and the peak intensity is maximized for in focus beads. By moving the correction ring, the focal plane is also slightly shifted, which has to be compensated by shifting the light-sheet correspondingly to coincide with the correct imaging plane.
+
+\paragraph{Adjusting field of view.}
+To allow for proper sampling of the image, we use 50x magnification, which, combined with the \SI{6.5}{\micro m} pixel pitch of our sCMOS camera will result in a \SI{0.13}{\micro m} pixel size. The full field of view with this magnification is $2048 \times 0.13 = \SI{266.24}{\micro m}$. The full field of view the objective provide, are larger than this, at \SI{800}{\micro m}. To ensure the best image quality, we align the center of the objective field of view on the camera sensor, since this region has the best optical properties in term of numerical aperture, aberration correction and field flatness.
+
+Field of view alignment can be performed using mirror M4 just before the detection merging unit. To identify the center region of the field of view, diffuse white light is used to illuminate the entire sample chamber, and is imaged on the camera. Then, mirror M4 is adjusted until the top edge of the field of view becomes visible, \textit{i.e.} where the illumination from the chamber is clipped. This will have a circular shape. Then, adjusting the mirror in the orthogonal direction, the left-right position of the field of view can be adjusted, by centering the visible arc on the camera sensor.
+
+After the horizontal direction is centered, vertical centering is performed. This, however can't be centered the same way as the horizontal direction, since for that we would have to misalign the already aligned horizontal position. To determine the center, we move the field of view from the topmost position to the bottom. During this process the number of  turns of the adjustment screw is counted (this can be done accurately by using a hex key). After reaching the far end of the field of view, the mirror movement is reversed, and the screw is turned halfway to reach the middle.
 
 
 

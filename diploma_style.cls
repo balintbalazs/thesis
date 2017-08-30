@@ -38,6 +38,8 @@
 \usepackage{media9}
 \onehalfspacing
 
+\frenchspacing
+\sloppy
 
 \renewcommand{\bibname}{References}
 
