@@ -18,10 +18,18 @@
 \addbibresource{EMBL.bib}
 
 \DeclareRefcontext{journal}{labelprefix=J}
+
 \DeclareBibliographyCategory{journal}
 \addtocategory{journal}{balazs_real-time_2017,de_medeiros_light-sheet_2016,strnad_inverted_2016,hoyer_breaking_2016}
+
+\DeclareBibliographyCategory{others}
+\addtocategory{others}{jakus_genetic_2010,gyorffy_recurrenceonline:_2011,shi_combined_2014}
 
 
 \DeclareRefcontext{conference}{labelprefix=C}
 \DeclareBibliographyCategory{conference}
 \addtocategory{conference}{balazs_gpu-based_2016,balazs_gpu-based_2016-1,balazs_gpu-based_2017}
+
+\defbibheading{secbib}[\bibname]{
+\section*{#1}
+\markboth{#1}{#1}}
