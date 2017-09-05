@@ -48,8 +48,8 @@
 \renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\thechapter. #1 }}{}}
 \renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
 \fancyhf{}
-\fancyhead[R]{\bfseries\rightmark}
-\fancyhead[L]{\bfseries\leftmark}
+\fancyhead[RO]{\bfseries\rightmark}
+\fancyhead[LE]{\bfseries\leftmark}
 \fancyfoot[C]{\thepage}
 
 %\setlength{textwidth}{15.2cm}

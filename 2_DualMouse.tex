@@ -11,28 +11,51 @@
 
 \graphicspath{{./figures/2_DualMouse/}}
 
-    \section{Previous Mouse-SPIM}
-    \section{Light collection efficiency of an objective}
-    Resolution is not the only parameter of concern when designing a new microscope setup. We also have to consider light collection efficiency, since many application, especially live imaging applications require a tight photon budget. This means a single fluorophore can only emit so many times before it undergoes an irreversible chemical reaction, i.e. it bleaches. The more we can collect of these photons, the more information we gain, and altogether the efficiency is higher.
-    
-    Photon collection efficiency also defines single molecule localization accuracy, since the signal to noise ratio will depend on the square of the number of collected photons. This is why it's important to also maximize light collection efficiency.
-    
-    Let's define light collection efficiency $\eta$ as the ratio of collected photons and all emitted photons:
-    \[
-    \eta = \frac{N_{collected}}{N_{emitted}}
-    \]
-    Since we can assume that the direction of photons emitted from a fluorescent molecule are random, the light collection efficiency will correspond to the solid angle subtended by the objective front lens at the focal point. To calculate this, let's consider the unit sphere centered at the focal point, and calculate the surface area of the spherical cap corresponding to the objective acceptance angle $\alpha$ (Fig. \ref{fig:light_effa}). The area of the cap can be expressed as a function of the angle:
-    \[
-    A_{cap} = 2\pi r^2 (1-\cos \alpha)
-    \]
-    The surface area of the full sphere is calculated as:
-    \[
-    A_{sph} = 4 \pi r^2
-    \]
-    For both equations $r$ is the radius of the sphere. From here, the light collection efficiency can be calculated as:
-    \[
-    \eta = \frac{N_{collected}}{N_{emitted}} = \frac{A_{cap}}{A_{sph}} = \frac{1-\cos \alpha}{2}
-    \]
+\section{Previous Mouse-SPIM}
+mammalian development
+chromosome segregation
+cell specification
+symmetry breaking
+signaling pathways
+human infertility
+congenital diseases 
+
+current mouse-SPIM \cite{strnad_inverted_2016} already is very good for answering many of these questions
+
+advantages:
+    immersion liquid and culture medium separated
+    open-top sample holder allow standard microdrop \textit{in vitro} embryo culture
+    row of embryos - high throughput
+    dual color imaging
+    environmental chamber allows live imaging for 3 days, every 
+
+follow chromosomes by tracking kinetochores
+
+from lattice paper: ``because photodamage mechanisms that scale supralinearly with peak intensity have been identified for both visible \cite{donnert_major_2007} and two-photon \cite{ji_high-speed_2008} excitation."
+
+
+
+\section{Light collection efficiency of an objective}
+Resolution is not the only parameter of concern when designing a new microscope setup. We also have to consider light collection efficiency, since many application, especially live imaging applications require a tight photon budget. This means a single fluorophore can only emit so many times before it undergoes an irreversible chemical reaction, i.e. it bleaches. The more we can collect of these photons, the more information we gain, and altogether the efficiency is higher.
+
+Photon collection efficiency also defines single molecule localization accuracy, since the signal to noise ratio will depend on the square of the number of collected photons. This is why it's important to also maximize light collection efficiency.
+
+Let's define light collection efficiency $\eta$ as the ratio of collected photons and all emitted photons:
+\[
+\eta = \frac{N_{collected}}{N_{emitted}}
+\]
+Since we can assume that the direction of photons emitted from a fluorescent molecule are random, the light collection efficiency will correspond to the solid angle subtended by the objective front lens at the focal point. To calculate this, let's consider the unit sphere centered at the focal point, and calculate the surface area of the spherical cap corresponding to the objective acceptance angle $\alpha$ (Fig. \ref{fig:light_effa}). The area of the cap can be expressed as a function of the angle:
+\[
+A_{cap} = 2\pi r^2 (1-\cos \alpha)
+\]
+The surface area of the full sphere is calculated as:
+\[
+A_{sph} = 4 \pi r^2
+\]
+For both equations $r$ is the radius of the sphere. From here, the light collection efficiency can be calculated as:
+\[
+\eta = \frac{N_{collected}}{N_{emitted}} = \frac{A_{cap}}{A_{sph}} = \frac{1-\cos \alpha}{2}
+\]
 
 Some more calculations: (Fig. \ref{fig:light_effb}).
 
@@ -60,13 +83,12 @@ Some more calculations: (Fig. \ref{fig:light_effb}).
 \section{Optical layout}
 
 
-\begin{figure}[hbt]
+\begin{figure}[bth]
     \centering
-    \includegraphics[page=1,width=1\textwidth]{fullSchematics}
-    \caption{\textbf{Dual Mouse SPIM optical layout.} The microscope consists of two main parts, the illumination branches (blue) and detection branches (yellow). For both illumination and detection there are two identical paths implemented. Illumination direction can be changed by applying a different offset to the galvo mirror, which in turn will direct the beam to the opposite face of the prism mirror. L1 and L2 will then image the galvo on M1. Using L3 as a scan lens, and L4 as a tube lens, the scanned beam is coupled to the objective path by quad band dichroic mirror (DM)
-    CAM -- camera, DM -- dichroic mirror, F -- filter wheel, L -- lens, M -- mirror, O -- objective, PM -- prism mirror, S -- sample, SU -- switcher unit 
+    \includegraphics[page=1,width=1\textwidth]{schematicsLinear}
+    \caption{\textbf{Simplified schematics for illumination.}  
 }
-    \label{fig:fullSchematics}
+    \label{fig:schematicsLinear}
 \end{figure}
 
 When designing the optical layout of the setup, we had two principles in mind: simplicity and efficiency. Because of the symmetrical design it is possible that
@@ -76,14 +98,6 @@ When designing the optical layout of the setup, we had two principles in mind: s
 Precise alignment of the illumination and detection paths are crucial for high quality imaging, and has a pronounced  importance for high magnification and high resolution optical systems. The DualMouse SPIM contains two illumination and detection paths that share many common elements, which makes alignment a *important?* process. The final aim for the alignment is to perfectly overlap the light-sheets with the detection focal planes, and to optimize ... 
 
 \subsection{Alignment of illuminaiton branches}
-
-\begin{figure}[hbt]
-    \centering
-    \includegraphics[page=1,width=1\textwidth]{schematicsLinear}
-    \caption{\textbf{Simplified schematics for illumination.}  
-}
-    \label{fig:schematicsLinear}
-\end{figure}
 
 The two illumination braches start with a common light source, a single mode fiber coupled to laser combiner, and they also share a galvanometric mirror that performs the beam scanning to generate the virtual light-sheet. Likewise shared is a scan lens focusing on the galvo mirror (GM), and the illumination splitter unit (PM, see Section \ref{sec:splitter}).
 
@@ -110,7 +124,7 @@ After the beam is properly aligned, i.e. it is in focus, and in the center of fi
 
 
 
-\subsection{Alignment of detection branches.}
+\subsection{Alignment of detection branches}
 Since the detection path is equivalent to a wide-field detection scheme, its alignment is much simpler than that of the illumination branches. The only difference is the detection branch merging unit (see Sec. \ref{sec:dualMirror}.) that features two moving mirrors. This, however doesn't effect the alignment procedure, since the movement direction is parallel to both mirror's surface, meaning that the exact position of the mirrors will not affect the image quality, as long as the mirrors are not clipping the image itself. Stability test were performed to confirm the consistent switching performance of the mirror unit before the final alignment took place (see Sec. \ref{sec:mirrorStability}).
 
 % TODO: complete paragraph
@@ -132,6 +146,15 @@ To allow for proper sampling of the image, we use 50x magnification, which, comb
 Field of view alignment can be performed using mirror M4 just before the detection merging unit. To identify the center region of the field of view, diffuse white light is used to illuminate the entire sample chamber, and is imaged on the camera. Then, mirror M4 is adjusted until the top edge of the field of view becomes visible, \textit{i.e.} where the illumination from the chamber is clipped. This will have a circular shape. Then, adjusting the mirror in the orthogonal direction, the left-right position of the field of view can be adjusted, by centering the visible arc on the camera sensor.
 
 After the horizontal direction is centered, vertical centering is performed. This, however can't be centered the same way as the horizontal direction, since for that we would have to misalign the already aligned horizontal position. To determine the center, we move the field of view from the topmost position to the bottom. During this process the number of  turns of the adjustment screw is counted (this can be done accurately by using a hex key). After reaching the far end of the field of view, the mirror movement is reversed, and the screw is turned halfway to reach the middle.
+
+\begin{figure}[hbt]
+    \centering
+    \includegraphics[page=1,width=1\textwidth]{fullSchematics}
+    \caption{\textbf{Dual Mouse SPIM optical layout.} The microscope consists of two main parts, the illumination branches (blue) and detection branches (yellow). For both illumination and detection there are two identical paths implemented. Illumination direction can be changed by applying a different offset to the galvo mirror, which in turn will direct the beam to the opposite face of the prism mirror. L1 and L2 will then image the galvo on M1. Using L3 as a scan lens, and L4 as a tube lens, the scanned beam is coupled to the objective path by quad band dichroic mirror (DM)
+    CAM -- camera, DM -- dichroic mirror, F -- filter wheel, L -- lens, M -- mirror, O -- objective, PM -- prism mirror, S -- sample, SU -- switcher unit 
+}
+    \label{fig:fullSchematics}
+\end{figure}
 
 \subsection{3D figures}
 \subsection{Illuminaiton splitter unit}
