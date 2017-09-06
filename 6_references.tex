@@ -1,15 +1,19 @@
 % !TEX root = dissertation_BB.tex
 %% spellcheck-language en-US
 
+\cleardoublepage
+\section*{References}
+\addcontentsline{toc}{chapter}{References}
 
 \newrefcontext{journal}
 \printbibliography[category=journal, title={The author's publications}, heading=secbib]
 
+%\newrefcontext{others}
 \nocite{jakus_genetic_2010,gyorffy_recurrenceonline:_2011,shi_combined_2014}
-\printbibliography[category=others, title={The author's others publications}, heading=secbib]
+\printbibliography[category=others, title={The author's others publications}, heading=secbib, resetnumbers=5]
 
 \newrefcontext{conference}
 \printbibliography[category=conference, title={The author's conference presentations}, heading=secbib]
 
 \newrefcontext
-\printbibliography[notcategory=journal,notcategory=conference,notcategory=others, resetnumbers=true, title={References}, heading=secbib]
+\printbibliography[notcategory=journal,notcategory=conference,notcategory=others, resetnumbers=true, title={References cited in the thesis}, heading=secbib]

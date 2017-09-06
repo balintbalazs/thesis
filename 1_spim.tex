@@ -11,11 +11,57 @@
 
 \graphicspath{{./figures/1_spim/}}
 
+Understanding mammalian development has been a long standing challenge for developmental biologists and medical professionals alike. Understanding early embryonic development allows to shed light on questions such as human infertility and congenital diseases \cite{todo}. 
+This phase of early life is an incredibly complex and dynamic process spanning through large scales in space and time. Subcellular processes at the nanoscale are happening in the range of milliseconds or faster, while whole embryo reorganizations and tissue migration events take place over the course of hours \cite{gilbert_developmental_2013}. Resolving these processes presents a true challenge, since to also understand the underlying mechanisms molecular specificity is just as crucial as high spatial and temporal resolution.
+
+Fluorescence microscopy \cite{diaspro_optical_2011}
+
+The most commonly used model organism for these kind of questions is the mouse embryo, that exhibits several common features to human development, and allows to study it 
+It has several advantages: full genome is sequenced \cite{mouse_genome_sequencing_consortium_initial_2002}, relatively fast reproduction rate facilitating genetic modifications, already extensively developed tools for genetics and handling \cite{capecchi_new_1989,silver_mouse_1995}. All of these make the mouse embryo the primary model organism when investigating biological processes in mammalians.
+
+fixed samples, histology, immunofluorescence -> no time lapse
+
+ex vivo embryo culture
+
+Hooke's Micrographia 1665 \cite{hooke_micrographia:_1665}
+
+Imaging mouse embryonic development is an extremely challenging task, due to the intrauterine development of embryos. Although this prevents direct access to the embryos, for some developmental stages it is possible to culture them in an \textit{ex vivo} environment using special media and carefully controlled environmental conditions \cite{garcia_live_2011,doherty_culture_2000}. A second hurdle, aside from \textit{in vitro} culturing, arises from the extreme light sensitivity \cite{nowotschin_chapter_2010} of these embryos, hindering the possibility of long term time-lapse experiments in standard confocal microscopes. Even a few hours of imaging every \SI{15}{mins} can impair or arrest normal development \cite{strnad_inverted_2016}.
+
+Despite these difficulties, numerous studies successfully used confocal microscopy to image live embryos in an \textit{ex vivo} environment, although these studies typically only 
+
+mostly wide-field, Oct4 - self renewal of pluripotent stem cells in ICM/epiblast \cite{nichols_formation_1998}
+
+Sox2 in ICM, also maternal proteins important, similar role as Oct4 Both Oct4 and Sox2 are necessary for ICM formation, without cells become trophoectoderm. Furthermore, for extraembryonic endoderm (ExEn) only Oct4 is required, while for extraembryonic ectoderm (ExE) only Sox2 is required. No time lapse, but confocal used to locate proteins in embryo \cite{avilion_multipotent_2003}
+
+inactivation of X chromosome and histone macroH2A1
+mouse liver in confocal - fixed samples \cite{costanzi_histone_1998}
+
+antibodies against amyloid $\upbeta$-peptide reduce Alzheimer in mouse, cryostat sections of mouse brain imaged in confocal\cite{bard_peripherally_2000}
+
+
+aorta imaging in embryo slices, confocal, live stem cells from aorta endothelium? \cite{boisset_vivo_2010}
+
+fixed embryos, maintaining pluripotency in embryonic stem cells\cite{sato_maintenance_2004}
+
+imaging thrombus formation in real time with intravital high-speed confocal microscopy\cite{falati_real-time_2002}
+
+turning blood into brain hematopoietic stem cells migrate to brain and express neuron-specific antigens \cite{mezey_turning_2000}
+
+uj regi cikk Keller \cite{keller_life_2006}
+
+
 Light microscopy is one of the oldest methods that is still widely used today to investigate the inner workings of microscopic life. Light-sheet microscopy is a relatively new addition to the arsenal of tools that comprise light microscopy methods, and is especially suitable for live imaging of embryonic samples over extended periods of time \cite{krzic_multiview_2012,tomer_quantitative_2012}. It is also easily adapted to the sample, allowing to image a large variety of specimens, from entire organs, such as cleared mouse brains \cite{dunsby_optically_2008}, to the subcellular processes occurring inside cultured cells \cite{capoulade_quantitative_2011}.
 
+basic concept of spim
+\begin{figure}[hbt]
+    \centering
+    \includegraphics[width=0.6\textwidth]{spim_concept}
+    \caption{\textbf{Basic concept of single-plane illumination microscopy.} The sample is illuminated from the side by laser light shaped to a light-sheet (blue). This illuminates the focal plane of the detection lens, that collects light in a wide-field mode (yellow). The image is recorded, and the sample is translated through the light-sheet to acquire an entire 3D stack.}
+    \label{fig:spim_concept}
+\end{figure}
+
 \section{Fluorescence microscopy}
-Fluorescence microscopy \cite{lichtman_fluorescence_2005} 
- very small amount of illumination photons will result in fluorescence ($<0.0001\%$), the signal to noise ratio of the fluorescence is still very high due to the filtering.
+Fluorescence microscopy \cite{lichtman_fluorescence_2005} very small amount of illumination photons will result in fluorescence ($<0.0001\%$), the signal to noise ratio of the fluorescence is still very high due to the filtering.
 
 good for live, naturally fluorescent structures
 
@@ -46,7 +92,7 @@ smallest distance of two points still distinguishable
 few different definitions
 this is because of diffraction
 Airy pattern
-Rayleigh criterion -> Abbe's formula
+Rayleigh criterion -> Abbe's formula \cite{abbe_beitrage_1873}
 $d = 0.61 \frac{\lambda}{NA}$
 plus axial resolution
 $d_z = \frac{2\lambda}{NA^2}$
