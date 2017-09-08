@@ -25,6 +25,10 @@ ex vivo embryo culture
 
 Hooke's Micrographia 1665 \cite{hooke_micrographia:_1665}
 
+Marvin Misky confocal microscope, no laser, moving smaple \cite{minsky_microscopy_1961}
+first laser scanning confocal: sample stationary, objective is moved Davidovits and Egger \cite{davidovits_scanning_1969}
+first application of laser scanning confocal in "observation of endothelial cells lining the inside of the cornea" \cite{davidovits_photomicrography_1973}
+
 Imaging mouse embryonic development is an extremely challenging task, due to the intrauterine development of embryos. Although this prevents direct access to the embryos, for some developmental stages it is possible to culture them in an \textit{ex vivo} environment using special media and carefully controlled environmental conditions \cite{garcia_live_2011,doherty_culture_2000}. A second hurdle, aside from \textit{in vitro} culturing, arises from the extreme light sensitivity \cite{nowotschin_chapter_2010} of these embryos, hindering the possibility of long term time-lapse experiments in standard confocal microscopes. Even a few hours of imaging every \SI{15}{mins} can impair or arrest normal development \cite{strnad_inverted_2016}.
 
 Despite these difficulties, numerous studies successfully used confocal microscopy to image live embryos in an \textit{ex vivo} environment, although these studies typically only 
@@ -47,6 +51,18 @@ imaging thrombus formation in real time with intravital high-speed confocal micr
 
 turning blood into brain hematopoietic stem cells migrate to brain and express neuron-specific antigens \cite{mezey_turning_2000}
 
+papers from Takashi:
+apical domain for symmetry breaking \cite{korotkevich_apical_2017}
+
+Asymmetric division of contractile domains couples cell positioning and fate specification, Jean-Léon + Hervé \cite{maitre_asymmetric_2016}
+
+specification of first embryonic lineage, venus trap \cite{dietrich_venus_2015}
+
+surface tension and compaction \cite{maitre_pulsatile_2015}
+
+self organization framework for symmetry breaking (review)
+
+
 uj regi cikk Keller \cite{keller_life_2006}
 
 
@@ -60,8 +76,19 @@ basic concept of spim
     \label{fig:spim_concept}
 \end{figure}
 
-\section{Fluorescence microscopy}
+
+
+
+
+%\section{Light-sheet microscopy}
+
+\section{Wide-field fluorescence microscopy}
 Fluorescence microscopy \cite{lichtman_fluorescence_2005} very small amount of illumination photons will result in fluorescence ($<0.0001\%$), the signal to noise ratio of the fluorescence is still very high due to the filtering.
+
+\subsection{Fluorescent proteins}
+Discovery and purification of green fluorescent protein from \textit{Aequorea victoria} \cite{shimomura_extraction_1962}
+cloning of GFP  cDNA \cite{prasher_primary_1992}
+first GFP applications as in vivo cell markers: nematodes \cite{chalfie_green_1994}, zebrafish \cite{amsterdam_aequorea_1995}, mouse \cite{okabe_green_1997}
 
 good for live, naturally fluorescent structures
 
@@ -73,29 +100,95 @@ lot of fluorescent proteins since then \cite{shaner_guide_2005}.
 benefits: cell is producing
 using genetic techniques possible to bind to other proteins, and specifically label structures of interest
 
-\subsection{Wide-field fluorescence microscopy}
+
+\subsection{Wide-field image formation}
 (Figure \ref{fig:wide-field})
 regular microscope -> figure for this?
 filter cube
 
 \begin{figure}[htbp]
-    \centering
-    \includegraphics[page=4,scale=0.8]{spim_cyl}
-    \caption{\textbf{Wide-field fluorescent microscope.}}
-    \label{fig:wide-field}
+    \begin{subfigure}[t]{0.49\textwidth}
+        \centering
+        \includegraphics[page=4,width=0.8\textwidth]{spim_cyl}
+        \caption{\textbf{Optical layout}}
+        \label{fig:wide-field}
+    \end{subfigure}
+    \begin{subfigure}[t]{0.49\textwidth}
+        \centering
+        \includegraphics[page=6,width=\textwidth]{spim_cyl}
+        \caption{\textbf{Light collection of a wide-field miroscope.}}
+        \label{fig:alpha}
+    \end{subfigure}
+    \caption{\textbf{Wide-field fluorescence microscope.} (a) The light source is focused on the back focal plane of the objective to provide an even illumination to the sample. Emitted photons are collected by the objective, and are separated from the illumination light by a dichroic mirror. (b) , $\alpha$}
 \end{figure}
 
-\subsubsection{Resolution of a wide-field microscope}
+Apart from magnification, the most important property of the objective is the half-angle of the light acceptance cone
+
+\begin{equation}
+    NA = n\cdot \sin \alpha
+    \label{eq:NA}
+\end{equation}
+
+\begin{equation}
+    NA \approx n \frac{d}{f},\quad \text{when }\alpha \ll 1
+\end{equation}
+
+\begin{equation}
+    FOV = \frac{A}{M}
+\end{equation}
+
+
+\subsection{Resolution of a wide-field microscope}
 
 resolution
 smallest distance of two points still distinguishable
 few different definitions
 this is because of diffraction
-Airy pattern
-Rayleigh criterion -> Abbe's formula \cite{abbe_beitrage_1873}
-$d = 0.61 \frac{\lambda}{NA}$
-plus axial resolution
-$d_z = \frac{2\lambda}{NA^2}$
+
+scalar theory of diffraction (no polarization), intensity of PSF Fraunhofer diffraction \cite{born_principles_2013}
+
+\begin{equation}
+    H(u,v) = C_0 \left| \int_0^1 J_0 (vr)e^{i\cdot ur^2} rdr \right|^2
+    \label{eq:psf}
+\end{equation}
+
+\begin{equation}
+    v = \frac{2\pi n \Delta r}{\lambda_0} \sin \alpha, \quad
+    u=\frac{8\pi n \Delta z}{\lambda_0} \sin^2 \frac{\alpha}{2}
+    \label{eq:substitutions}
+\end{equation}
+and $r = \sqrt{x^2 + y^2}$
+$\alpha$ as in Equation (\ref{eq:NA}).
+
+\begin{equation}
+    H(0,v) = C_0 \left| \int_0^1 J_0(vr)rdr \right|^2 = \left[2\frac{J_1(v)}{v} \right] ^2,
+\end{equation}
+$J_1$ Bessel function of the first kind, first order, $J_0$ zero order
+this is Airy pattern
+first minimum at $v=3.83$
+Substituting to Equation (\ref{eq:substitutions})
+
+\begin{equation}
+    \delta_{xy} = \frac{3.83}{2\pi} \frac{\lambda_0}{n\cdot \sin \alpha} \approx 0.61 \frac{\lambda_0}{NA}
+\end{equation}
+This is the famous formula derived by .
+
+Similarly, to calculate the intensity distribution along the axial axis, let's substitute $v=0$ to Eq. (\ref{eq:psf}):
+\begin{equation}
+   H(u,0)=C_0\left[ \frac{\sin \frac{u}{4}}{\frac{u}{4}}\right] ^2 . 
+\end{equation} 
+first minimum at $u=4\pi$:
+\begin{equation}
+    \delta_z = \frac{2n\lambda_0}{NA^2}
+\end{equation}
+
+final image is psf convolved with fluorophore distribution:
+\begin{equation}
+    I(u,v) = O(u,v) * H(u,v)
+\end{equation}
+
+but this only works for low angles, as the Fraunhofer diffraction equation used to derived these results is only an approximation of the Kirchoff diffraction equation. For high NA objectives, a more reliale way to calculate the resolution is the Stelzer-Grill-Heisenberg principle:
+
 
 this result is base on the paraxial approximation of the Helmholtz equation, thus only apply for small NA.
 a more general method to calculate resolution for high NA imaging systems is SGH:
@@ -122,8 +215,10 @@ Another disadvantage of the wide-field microscope, is that it can not be used wi
     \label{fig:resolution}
 \end{figure}
 
-\subsection{Confocal microscopy}
 
+
+\section{3D microscopy techniques}
+\subsection{Laser scanning confocal microscopy}
 Laser scanning confocal microscopy \cite{davidovits_photomicrography_1973} addresses the problem of noise originating from the out of focus planes. The principle for illumination and detection optics is very similar to a wide-filed microscope, but for illumination a focused laser light is used.
 
 The biggest change is in the detection method: the confocal microscope uses a pinhole, to exclude light coming from out of focus planes. Since only those rays are taking part in the imaging that originate from the focus, the image quality is highly improved. This microscopy technique is also capable of 3D imaging, with an axial resolution corresponding to a wide-filed microscope.
@@ -150,6 +245,7 @@ Although this microscopy technique already has 3D capabilities, it's axial resol
 \label{fig:confocals}
 \end{figure}
 
+
 \subsection{Confocal-theta microscopy}
 
 Although confocal microscopy already provides a better resolution in all dimensions, the ratio of the axial and lateral resolution is still very high, due to the single objective illumination and detection. This seriously limits the microscope's 3D imaging capabilities, since in the $z$ direction (i.e. along the imaging axis) the resolution would be significantly worse than in the other directions.
@@ -167,10 +263,10 @@ Although this is a big improvement to confocal microscopy, the issue of photoble
 
 
 
+
 \section{Light-sheet microscopy}
 \label{sec:light-sheet}
-One main drawback of the point scanning methods introduced in the previous section is the inefficiency of the illumination scheme. Although almost the whole sample is illuminated, information is only collected from the focal volume. This results in two main limiting factors: acquisition speed depends on the point scanning speed, which in turn is inversely proportional to the signal to noise ratio. Furthermore, because of the inefficiency of the illumination scheme, photobleaching and phototoxic effects further reduce the usability of these techniques for live imaging, especially for long term experiments \cite{}.
-
+One main drawback of the point scanning methods introduced in the previous section is the inefficiency of the illumination scheme. Although almost the whole sample is illuminated, information is only collected from the focal volume. This results in two main limiting factors: acquisition speed depends on the point scanning speed, which in turn is inversely proportional to the signal to noise ratio. Furthermore, because of the inefficiency of the illumination scheme, photobleaching and phototoxic effects further reduce the usability of these techniques for live imaging, especially for long term experiments \cite{reynaud_light_2008}.
 
 
 The main principle behind single plane illumination microscopy, that is illuminating the sample from the side by a very thin light-sheet, dates back to the early 20\textsuperscript{th} century, when Siedentopf and Zsigmondy first described the ultramicroscope \cite{siedentopf_uber_1902}. This microscope used sunlight as an illumination source, that was guided through a precision slit to generate a thin light-sheet. This allowed Zsigmondy to visualize gold nanoparticles floating in and out of the light-sheet. Since these particles are much smaller than the wavelength of the light, the device was called an ultramicroscope. His studies with colloids together with the development of the ultramicroscope led Zsigmondy to win the Nobel Prize in 1925.
@@ -200,7 +296,7 @@ Since then, light-sheet based imaging has gained more and more popularity, as it
 %	\item SiMView \cite{tomer_quantitative_2012}
 %\end{itemize}
 
-\section{Optics of light-sheet microscopy}
+\subsection{Optics of light-sheet microscopy}
 
 A selective-plane illumination microscope (SPIM) uses a light-sheet to illuminate only a thin section of the sample (Figure~\ref{fig:light-sheet}). This illumination plane is perpendicular to the imaging axis of the detection objective and coincides with the focal plane. This way the image is taken of only that specific plane that is illuminated, thus providing much better signal to noise ratio. In case of conventional wide-field fluorescent microscopy, where the whole specimen is illuminated, light scattering from different regions contribute to a significant background noise. With selective-plane illumination, this problem is intrinsically solved, and it also provides a true sectioning capability. This makes SPIM especially suitable for 3D imaging.
 
@@ -220,6 +316,7 @@ The detection unit of a SPIM is basically equivalent to a detection unit of a wi
 One of the most important aspects that determine the resolution of the microscope is the detection objective. Since in developmental biology specimens require a water-based solution, these objectives are usually water dipping objectives directly submerged in the medium. Since the refraction index of water ($n=1.333$) is greater than the refraction index of air, these objectives tend to have a higher $NA$, which results in higher resolution. This, however, also depends on the sensor used, mainly on the pixel size ($d_{sensor}$).
 
 The magnification is typically $10\times$, $20\times$, $40\times$ or $100\times$ but these values are sound only when the objective is used together with the prescribed tube lens. These lenses are specially made to be used with the specific objectives, and are corrected for any aberrations. They typically have a focal length of 160--200mm.
+
 
 \subsection{Illumination}
 
