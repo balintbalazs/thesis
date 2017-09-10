@@ -72,7 +72,7 @@ basic concept of spim
 \begin{figure}[hbt]
     \centering
     \includegraphics[width=0.6\textwidth]{spim_concept}
-    \caption{\textbf{Basic concept of single-plane illumination microscopy.} The sample is illuminated from the side by laser light shaped to a light-sheet (blue). This illuminates the focal plane of the detection lens, that collects light in a wide-field mode (yellow). The image is recorded, and the sample is translated through the light-sheet to acquire an entire 3D stack.}
+    \bcaption[Basic concept of single-plane illumination microscopy]{The sample is illuminated from the side by laser light shaped to a light-sheet (blue). This illuminates the focal plane of the detection lens, that collects light in a wide-field mode (yellow). The image is recorded, and the sample is translated through the light-sheet to acquire an entire 3D stack.}
     \label{fig:spim_concept}
 \end{figure}
 
@@ -106,20 +106,11 @@ using genetic techniques possible to bind to other proteins, and specifically la
 regular microscope -> figure for this?
 filter cube
 
-\begin{figure}[htbp]
-    \begin{subfigure}[t]{0.49\textwidth}
-        \centering
-        \includegraphics[page=4,width=0.8\textwidth]{spim_cyl}
-        \caption{\textbf{Optical layout}}
-        \label{fig:wide-field}
-    \end{subfigure}
-    \begin{subfigure}[t]{0.49\textwidth}
-        \centering
-        \includegraphics[page=6,width=\textwidth]{spim_cyl}
-        \caption{\textbf{Light collection of a wide-field miroscope.}}
-        \label{fig:alpha}
-    \end{subfigure}
-    \caption{\textbf{Wide-field fluorescence microscope.} (a) The light source is focused on the back focal plane of the objective to provide an even illumination to the sample. Emitted photons are collected by the objective, and are separated from the illumination light by a dichroic mirror. (b) , $\alpha$}
+\begin{figure}[htb]
+    \centering
+    \includegraphics[page=4,width=0.7\textwidth]{spim_cyl}
+    \bcaption[Wide-field fluorescence microscope]{(a) The light source is focused on the back focal plane of the objective to provide an even illumination to the sample. Emitted photons are collected by the objective, and are separated from the illumination light by a dichroic mirror. (b) , $\alpha$}
+    \label{fig:wide-field}
 \end{figure}
 
 Apart from magnification, the most important property of the objective is the half-angle of the light acceptance cone
@@ -140,15 +131,21 @@ Apart from magnification, the most important property of the objective is the ha
 
 \subsection{Resolution of a wide-field microscope}
 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{airy}
+    \bcaption[Airy pattern]{Airy pattern calculated in Matlab based on Equation (\ref{eq:airy})}
+\end{figure}
+
 resolution
 smallest distance of two points still distinguishable
 few different definitions
 this is because of diffraction
 
-scalar theory of diffraction (no polarization), intensity of PSF Fraunhofer diffraction \cite{born_principles_2013}
+scalar theory of diffraction (no polarization), intensity of PSF Fraunhofer diffraction \cite{born_principles_2013} \cite{sheppard_imaging_1987}
 
 \begin{equation}
-    H(u,v) = C_0 \left| \int_0^1 J_0 (vr)e^{i\cdot ur^2} rdr \right|^2
+    H(u,v) = C_0 \left| \int_0^1 J_0 (vr)e^{-i\frac{1}{2}\cdot ur^2} rdr \right|^2
     \label{eq:psf}
 \end{equation}
 
@@ -161,7 +158,8 @@ and $r = \sqrt{x^2 + y^2}$
 $\alpha$ as in Equation (\ref{eq:NA}).
 
 \begin{equation}
-    H(0,v) = C_0 \left| \int_0^1 J_0(vr)rdr \right|^2 = \left[2\frac{J_1(v)}{v} \right] ^2,
+    H(0,v) = C_0 \left| \int_0^1 J_0(vr)rdr \right|^2 = \left(2\frac{J_1(v)}{v} \right) ^2,
+    \label{eq:airy}
 \end{equation}
 $J_1$ Bessel function of the first kind, first order, $J_0$ zero order
 this is Airy pattern
@@ -175,7 +173,7 @@ This is the famous formula derived by .
 
 Similarly, to calculate the intensity distribution along the axial axis, let's substitute $v=0$ to Eq. (\ref{eq:psf}):
 \begin{equation}
-   H(u,0)=C_0\left[ \frac{\sin \frac{u}{4}}{\frac{u}{4}}\right] ^2 . 
+   H(u,0)=C_0\left( \frac{\sin \frac{u}{4}}{\frac{u}{4}}\right) ^2 . 
 \end{equation} 
 first minimum at $u=4\pi$:
 \begin{equation}
@@ -211,7 +209,7 @@ Another disadvantage of the wide-field microscope, is that it can not be used wi
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.6\textwidth]{resolution}
-    \caption{\textbf{Resolution of a wide-field microscope.} Axial (blue) and lateral (red) resolutions of a wide-field microscope are shown with respect to the numerical aperture (NA). Resolutions are calculated with $\lambda =510nm$, the emission maximum of GFP and $n=1.333$, the refractive index of water, for water dipping objectives.}
+    \bcaption[Resolution of a wide-field microscope]{Axial (blue) and lateral (red) resolutions of a wide-field microscope are shown with respect to the numerical aperture (NA). Resolutions are calculated with $\lambda =510nm$, the emission maximum of GFP and $n=1.333$, the refractive index of water, for water dipping objectives.}
     \label{fig:resolution}
 \end{figure}
 
@@ -241,7 +239,7 @@ Although this microscopy technique already has 3D capabilities, it's axial resol
     \caption{\textbf{Confocal-theta microscope}}
     \label{fig:conf-theta}
 \end{subfigure}
-\caption{\textbf{Basic optical components of a laser scanning confocal and confocal-theta microscope.} Both type of microscopes use confocal images detection, which means that a pinhole is used to exclude light coming from out of focus points. Light intensity is measured by a photomultiplier for every voxel in the region of interest. The final image is generated on a computer using the positions and recorded intensity values. A regular confocal microscope (\ref{fig:confocal}) uses the same objective for illumination and detection, while a confocal-theta microscope (\ref{fig:conf-theta}) uses a second objective that is rotated by $\vartheta$ around the focus. In this case, $\vartheta = 90^\circ$.}
+\bcaption[Basic optical components of a laser scanning confocal and confocal-theta microscope]{Both type of microscopes use confocal images detection, which means that a pinhole is used to exclude light coming from out of focus points. Light intensity is measured by a photomultiplier for every voxel in the region of interest. The final image is generated on a computer using the positions and recorded intensity values. A regular confocal microscope (\ref{fig:confocal}) uses the same objective for illumination and detection, while a confocal-theta microscope (\ref{fig:conf-theta}) uses a second objective that is rotated by $\vartheta$ around the focus. In this case, $\vartheta = 90^\circ$.}
 \label{fig:confocals}
 \end{figure}
 
@@ -305,7 +303,7 @@ A selective-plane illumination microscope (SPIM) uses a light-sheet to illuminat
 \begin{figure}[htpb]
     \centering
     \includegraphics[page=1,width=0.8\textwidth]{spim_cyl}
-    \caption{\textbf{Basic optical components of a SPIM.} A selective plane illumination microscope uses two objectives orthogonally aligned. One objective is used to generate a thin light-sheet that illuminates the sample from the side, while the other is used for detection. To generate an image of the specimen, a suitable tube lens is used to focus the light on the sensor of a detection unit (e.g. sCMOS camera). The light-sheet is generated by the illumination objective, using a beam that is previously shaped by a cylindrical lens.}
+    \bcaption[Basic optical components of a SPIM]{A selective plane illumination microscope uses two objectives orthogonally aligned. One objective is used to generate a thin light-sheet that illuminates the sample from the side, while the other is used for detection. To generate an image of the specimen, a suitable tube lens is used to focus the light on the sensor of a detection unit (e.g. sCMOS camera). The light-sheet is generated by the illumination objective, using a beam that is previously shaped by a cylindrical lens.}
     \label{fig:light-sheet}
 \end{figure}
 
@@ -394,7 +392,7 @@ Light-sheet height is determined by the profile of the beam along the vertical a
         \caption{}
         \label{fig:height}
     \end{subfigure}
-    \caption{\textbf{Light-sheet dimensions.} \ref{fig:fov} shows a light sheet, with the field of view indicated. Since the light-sheet intensity is uneven, the field of view has to be confined to a smaller region. \ref{fig:width} The width and thickness of the field of view depends on the Rayleigh length of the beam ($z_{y,0}$). \ref{fig:height} Height of the field of view is determined by the Gaussian profile of the elliptical beam.}
+    \bcaption[Light-sheet dimensions]{ \ref{fig:fov} shows a light sheet, with the field of view indicated. Since the light-sheet intensity is uneven, the field of view has to be confined to a smaller region. \ref{fig:width} The width and thickness of the field of view depends on the Rayleigh length of the beam ($z_{y,0}$). \ref{fig:height} Height of the field of view is determined by the Gaussian profile of the elliptical beam.}
     \label{fig:ls_dim}
 \end{figure}
 
@@ -402,7 +400,7 @@ Light-sheet height is determined by the profile of the beam along the vertical a
 \begin{figure}[hbt]
     \centering
     \includegraphics[page=2,width=0.8\textwidth]{spim_cyl}
-    \caption{\textbf{DSLM illumination.} DSLM illuminates a specimen by a circularly-symmetric beam that is scanned over the field of view. This creates a virtual light-sheet, which illuminates a section of a specimen just like the SPIM. Light-sheet in DSLM is uniform over the whole field of view and its height can be dynamically altered by changing the beam scan range.
+    \bcaption[DSLM illumination]{DSLM illuminates a specimen by a circularly-symmetric beam that is scanned over the field of view. This creates a virtual light-sheet, which illuminates a section of a specimen just like the SPIM. Light-sheet in DSLM is uniform over the whole field of view and its height can be dynamically altered by changing the beam scan range.
 }
     \label{fig:dslm}
 \end{figure}
@@ -419,7 +417,12 @@ to image specimens from 4 directions in a tetrahedral objective configuration, c
 Follow up for this: sample manipulation with optical tweezers / optical levitation in 3D \cite{huisken_three-dimensional_2007}(because of the lack of space for mechanical translation stage)
 positioning of a \SI{20}{\micro m} latex bead in a \SI{100}{\micro m} diameter volume by changing the intensity of 4 laser beams. 
 
-\section{SPIM improvements}
+\section{Imaging mouse preimplantation development}
+
+\section{Imaging mouse postimplantation development}
+
+\section{Imaging adult mice}
+
 things to improve: resolution
 axial resolution relative to lateral
 complete view

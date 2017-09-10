@@ -1,5 +1,6 @@
 \ProvidesClass{diploma_style}
-\LoadClass[11pt,a4paper,twoside,openright]{report}
+%\LoadClass[11pt,a4paper,twoside,openright]{report}
+\LoadClass[11pt,a4paper,twoside,openany]{report}
 %\usepackage[utf8x]{inputenc}
 %\usepackage{ucs}
 %\usepackage{fullpage}
@@ -42,6 +43,10 @@
 \sloppy
 
 \renewcommand{\bibname}{References}
+
+%\let\ocaption\caption
+\newcommand{\bcaption}[2][]{\caption[#1]{\textbf{#1.} #2}}
+
 
 %\pagestyle{headings}
 \pagestyle{fancy}

@@ -27,7 +27,7 @@ B³D image compression
 \begin{figure}[tpb]
  \centering
  \includegraphics[page=1,width=0.6\textwidth]{comparison_with_pictograms}
- \caption{\textbf{Experiment sizes and data rate of different imaging modalities.} Comparison of single-plane illumination microscopy (SPIM, red rectangle), high-content screening (light blue), single molecule localization microscopy (SMLM, orange) and confocal microscopy (blue) by typical experiment size and data production rate (see also Table \ref{tab:sizes}).}
+ \bcaption[Experiment sizes and data rate of different imaging modalities.]{Comparison of single-plane illumination microscopy (SPIM, red rectangle), high-content screening (light blue), single molecule localization microscopy (SMLM, orange) and confocal microscopy (blue) by typical experiment size and data production rate (see also Table \ref{tab:sizes}).}
  \label{fig:sizes}
 \end{figure}
 
@@ -45,7 +45,7 @@ B³D image compression
     \textbf{screening} & CCD camera (e.g. Hamamatsu ORCA-R2) & 1344x1024 & 8.5s/ & 22 MB/s & 5 TB \\ \hline
     \textbf{confocal} & Zeiss LSM 880, 10 channels & 512x512 & 5/s & 12.5 MB/s & 50 GB \\ 
 \end{tabular}
-\caption{\textbf{Data sizes in microscopy.} Typical devices used for confocal microscopy, high-content screening, single-molecule localization microscopy and light-sheet microscopy and their data production characteristics. Data visualized on Figure \ref{fig:sizes}}
+\bcaption[Data sizes in microscopy]{Typical devices used for confocal microscopy, high-content screening, single-molecule localization microscopy and light-sheet microscopy and their data production characteristics. Data visualized on Figure \ref{fig:sizes}}
 \label{tab:sizes}
 \end{small}
 \end{table}
@@ -55,7 +55,7 @@ B³D image compression
 \begin{figure}[tpb]
  \centering
  \includegraphics[page=1,width=0.6\textwidth]{bubbles}
- \caption{\textbf{Lossless compression performance.} Performance comparison of our B³D \b3d compression algorithm (red circle) vs. KLB (orange), uncompressed TIFF (light yellow), LZW compressed TIFF (light blue) and JPEG2000 (blue) regarding write speed (horizontal axis), read speed (vertical axis) and file size (circle size). (see also Table \ref{tab:performance}).}
+ \bcaption[Lossless compression performance]{Performance comparison of our B³D \b3d compression algorithm (red circle) vs. KLB (orange), uncompressed TIFF (light yellow), LZW compressed TIFF (light blue) and JPEG2000 (blue) regarding write speed (horizontal axis), read speed (vertical axis) and file size (circle size). (see also Table \ref{tab:performance}).}
  \label{fig:performance}
 \end{figure}
 
@@ -73,7 +73,7 @@ B³D image compression
     \textbf{JPEG2000} & 202.32 MB/s & 161.08 MB/s & 1.00 & 986.1\% \\ \hline
     \textbf{TIFF + LZW} & 40.85 MB/s & 102.37 MB/s & 5.822 & 169.37\%
 \end{tabular}
-\caption{\textbf{Lossless compression performance.} \b3d is compared with various popular lossless image compression methods regarding write speed, read speed and compression ratio (original size / compressed size). Data visualized on Figure \ref{fig:performance}.}
+\bcaption[Lossless compression performance]{\b3d is compared with various popular lossless image compression methods regarding write speed, read speed and compression ratio (original size / compressed size). Data visualized on Figure \ref{fig:performance}.}
 \label{tab:performance}
 \end{table}
 
@@ -82,7 +82,7 @@ B³D image compression
 \begin{figure}[tpb]
  \centering
  \includegraphics[page=1,width=0.6\textwidth]{Fig1c_compressionBars}
- \caption{\textbf{Lossless compression performance.}  For description of datasets see Table \ref{tab:datasets}.}
+ \bcaption[Lossless compression performance.]{For description of datasets see Table \ref{tab:datasets}.}
  \label{fig:benchmark}
 \end{figure}
 
@@ -104,7 +104,7 @@ B³D image compression
     \textbf{vsvg} & screening & wide field fluorescence images of CFP-tsO45G proteins in HeLa Kyoto cells \cite{simpson_genome-wide_2012} & 1,005.38  \\ \hline
     \textbf{membrane} & screening & wide field fluorescence images of membrane localized CFP-tsO45G proteins labeled with AlexaFluor647 in HeLa Kyoto cells \cite{simpson_genome-wide_2012} & 1,005.38  \\ 
 \end{tabular}
-\caption{\textbf{Datasets used for benchmarking compression performance.}}.
+\bcaption[Datasets used for benchmarking compression performance]{}
 \label{tab:datasets}
 \end{small}
 \end{table}

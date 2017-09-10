@@ -64,7 +64,7 @@ Some more calculations: (Fig. \ref{fig:light_effb}).
     \centering
     \includegraphics[page=1,width=0.8\textwidth]{efficiency/sphere}
     \caption{\textbf{}}
-    \label{fig:light_effa}2
+    \label{fig:light_effa}
 \end{subfigure}
 \begin{subfigure}[t]{0.49\textwidth}
     \centering
@@ -72,7 +72,7 @@ Some more calculations: (Fig. \ref{fig:light_effb}).
     \caption{\textbf{}}
     \label{fig:light_effb}
 \end{subfigure} 
- \caption{\textbf{Light collection efficiency of an objective.} \textbf{(a)} Light collection efficiency is the ratio of photons collected by the objective and all emitted photons. If the fluorophores are emitted randomly in all directions, it will be the surface ratio of the conical section (blue) to the whole sphere. \textbf{(b)} Light collection efficiency ($\eta$) as a function of the numerical aperture (NA)}
+ \bcaption[Light collection efficiency of an objective]{\textbf{(a)} Light collection efficiency is the ratio of photons collected by the objective and all emitted photons. If the fluorophores are emitted randomly in all directions, it will be the surface ratio of the conical section (blue) to the whole sphere. \textbf{(b)} Light collection efficiency ($\eta$) as a function of the numerical aperture (NA)}
  \label{fig:light_eff}
 \end{figure}
 
@@ -81,13 +81,16 @@ Some more calculations: (Fig. \ref{fig:light_effb}).
 
 
 \section{Optical layout}
-
+design principles:
+highest isotropic resolution, highest light collection efficiency possible
+2x0.8 NA water dipping in 90$\circ$ multi-view deconvolve Gaussian fit $\sigma_{xyz}=135$
+2x1.1 NA water dipping in 120$\circ$ multi-view deconvolced Gaussian fit $\sigma_z = 135$, and $\sigma_{xy} = 82.2$
+simulations from PSF generator! put here
 
 \begin{figure}[bth]
     \centering
     \includegraphics[page=1,width=1\textwidth]{schematicsLinear}
-    \caption{\textbf{Simplified schematics for illumination.}  
-}
+    \bcaption[Simplified schematics for illumination]{}
     \label{fig:schematicsLinear}
 \end{figure}
 
@@ -150,7 +153,7 @@ After the horizontal direction is centered, vertical centering is performed. Thi
 \begin{figure}[hbt]
     \centering
     \includegraphics[page=1,width=1\textwidth]{fullSchematics}
-    \caption{\textbf{Dual Mouse SPIM optical layout.} The microscope consists of two main parts, the illumination branches (blue) and detection branches (yellow). For both illumination and detection there are two identical paths implemented. Illumination direction can be changed by applying a different offset to the galvo mirror, which in turn will direct the beam to the opposite face of the prism mirror. L1 and L2 will then image the galvo on M1. Using L3 as a scan lens, and L4 as a tube lens, the scanned beam is coupled to the objective path by quad band dichroic mirror (DM)
+    \bcaption[Dual Mouse SPIM optical layout]{The microscope consists of two main parts, the illumination branches (blue) and detection branches (yellow). For both illumination and detection there are two identical paths implemented. Illumination direction can be changed by applying a different offset to the galvo mirror, which in turn will direct the beam to the opposite face of the prism mirror. L1 and L2 will then image the galvo on M1. Using L3 as a scan lens, and L4 as a tube lens, the scanned beam is coupled to the objective path by quad band dichroic mirror (DM)
     CAM -- camera, DM -- dichroic mirror, F -- filter wheel, L -- lens, M -- mirror, O -- objective, PM -- prism mirror, S -- sample, SU -- switcher unit 
 }
     \label{fig:fullSchematics}
@@ -176,7 +179,7 @@ After the horizontal direction is centered, vertical centering is performed. Thi
     3Dlights=Headlamp,
     3Drender=ShadedIllustration,
     ]{\includegraphics{Splitter.png}}{Splitter.prc}
-\caption{\textbf{Illumination branch splitting block.} 3D model of the custom designed splitter block used in the illumination branch. Depending on the horizontal beam position at the lower port, the beam will be reflected either to the right or to the left. Because of the mirror alignment, the beam is rotated 90 degrees.}
+\bcaption[Illumination branch splitting block]{3D model of the custom designed splitter block used in the illumination branch. Depending on the horizontal beam position at the lower port, the beam will be reflected either to the right or to the left. Because of the mirror alignment, the beam is rotated 90 degrees.}
 \label{fig:splitter}
 \end{figure}
 
@@ -202,6 +205,31 @@ playbutton=plain,
 3Drender=ShadedIllustration,
 % default view end
 ]{\includegraphics{DualMirror.png}}{DualMirror.prc}
-\caption{\textbf{Detection branch merging unit.} 3D model of the custom designed unit to enable quick switching between the two detection paths. A high precision stainless steel stage holds two mirror blocks facing opposite directions, and bouncing the light upwards, towards the camera. The units are translated by  pneumatic cylinder to ensure high speed an reproducibility.}
+\caption[Detection branch merging unit]{3D model of the custom designed unit to enable quick switching between the two detection paths. A high precision stainless steel stage holds two mirror blocks facing opposite directions, and bouncing the light upwards, towards the camera. The units are translated by  pneumatic cylinder to ensure high speed an reproducibility.}
 \label{fig:DualMirror}
+\end{figure}
+
+\section{Results}
+\begin{figure}[htb]
+    \begin{subfigure}[t]{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{front_solidworks_overlay}
+        \caption{Rendering of SolidWorks design.}
+    \end{subfigure}
+    \begin{subfigure}[t]{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{front_photo_overlay}
+        \caption{Photo of constructed microscope.}
+    \end{subfigure}
+    \bcaption[Front view of the Dual Mouse-SPIM]{}
+    \label{fig:frontView}
+\end{figure}
+
+Resolution for Lattice light-sheet \cite{chen_lattice_2014}: \SI{230}{nm} in x and \SI{370}{nm} in z
+\cite{chhetri_whole-animal_2015}
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\textwidth]{PSF}
+    \bcaption[Simulated and measured PSF of Dual Mouse-SPIM]{Top row: axial sections of simulated and measured point spread funcitons. Middle row: lateral intensity profile and Gaussian fit. Bottom row: Axial intensity profile and Gaussian fit. Simulations were performed based on the Gibson-Lanni model. Immersion medium  and sample refractive index: 1.330, coverslip (FEP foil) refractive index: 1.344, coverslip distance: \SI{1900}{\micro m}, coverslip thickness: \SI{50}{\micro m}. Scale bar: \SI{500}{nm}.}
 \end{figure}

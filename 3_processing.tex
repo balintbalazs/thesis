@@ -88,7 +88,7 @@ Although it produces a variable length code which can introduce some issues with
 Let's take the example in Table \ref{tab:huffman1}. Five letters are coded in binary code by Code \#1 and by Code \#2. Code 1 is not a prefix code, and because of this when reading the encoded sequence we can not be sure when we reach the end of a codeword. Decoding the sequence 0000 for example could be interpreted as 4 letters of $a_1$ or 2 letters of $a_3$.
 
 \begin{table}
-\caption{Examples of a random binary code (\#1) and a prefix-free binary code (\#2). Code \#2 is uniquely decodable, while for code \#1 it's necessary to introduce boundaries between codewords to be able to distinguish them.}
+\bcaption[Examples of a random binary code (\#1) and a prefix-free binary code (\#2)]{Code \#2 is uniquely decodable, while for code \#1 it's necessary to introduce boundaries between codewords to be able to distinguish them.}
 \centering
 \begin{tabular}{crr}
 \toprule
@@ -115,7 +115,7 @@ From these statements the first is trivial to see that is correct. If the more f
 The second statement at first glance might be so intuitive, so let's consider the following situation. The two least frequent codewords do not have the same lengths, that is the least frequent is longer. However, because this is a prefix code, the second longest codeword is not a prefix of the longest codeword. This means, if we truncate the longest codeword to the same length as the second longest, they will still be distinct codes and uniquely decodable. This way we have a new coding scheme which requires less space on average to code the same sequence as the original code, from which we can conclude the original code was not optimal. Therefore, for an optimal code, statement 2 must be true.
 
 \begin{table}
-\caption{Huffman code table}
+\bcaption[Huffman code table]{}
 \centering
 \begin{tabular}{ccr}
 \toprule
@@ -134,7 +134,7 @@ $a_5$ & 0.1 & $c(a_2)$ \\
 \begin{figure}
 \centering
 \includegraphics[width=0.6\textwidth]{huffman}
-\caption{Building the binary Huffman tree. The letters are ordered by probability, these will be the final leave of the tree. To join the to branches at every iteration we join the to nodes with the smallest probability, and create a new common node with the sum of the probabilities. This process is continued until all nodes are joined in a root node with probability of 1. Now, if we traverse down the tree to each leaf, the codeword will be defined by their position. }
+\bcaption[Building the binary Huffman tree]{The letters are ordered by probability, these will be the final leave of the tree. To join the to branches at every iteration we join the to nodes with the smallest probability, and create a new common node with the sum of the probabilities. This process is continued until all nodes are joined in a root node with probability of 1. Now, if we traverse down the tree to each leaf, the codeword will be defined by their position.}
 \label{fig:huffman}
 \end{figure}
 
@@ -153,7 +153,7 @@ and the average length. In this case, the redundancy is 0.078 bits/symbol. The r
 zero when the probabilities are negative powers of two.
 
 \begin{table}
-\caption{Huffman code table}
+\bcaption[Huffman code table]{}
 \centering
 \begin{tabular}{ccr}
 \toprule
@@ -191,7 +191,7 @@ step is subdivided again using the same proportions. Figure \ref{fig:arithmetic}
 arithmetic coding using the symbol frequencies given in Table \ref{tab:arithmetic}.
 
 \begin{table}
-\caption{Example alphabet for arithmetic coding}
+\bcaption[Example alphabet for arithmetic coding]{}
 \centering
 \begin{tabular}{cc}
 \toprule
@@ -208,7 +208,7 @@ $a_3$ & 0.2 \\
 \begin{figure}
 \centering
 \includegraphics[width=0.6\textwidth]{arithmetic}
-\caption{Arithmetic coding scheme in practice with the alphabet from Table \ref{tab:arithmetic} on the sequence $a_1,a_2,a_3$}
+\bcaption[Arithmetic coding scheme in practice with the alphabet from Table \ref{tab:arithmetic} on the sequence $a_1,a_2,a_3$]{}
 \label{fig:arithmetic}
 \end{figure}
 
@@ -242,7 +242,7 @@ simply transposing the transform matrix.
 \begin{figure}
 \centering
 \includegraphics[width=0.4\textwidth]{DCT_bases}
-\caption{Basis functions of the $8 \times 8$ 2D DCT, computed as the outer product of the 1D basis vectors.}
+\bcaption[Basis functions of the $8 \times 8$ 2D DCT, computed as the outer product of the 1D basis vectors.]{}
 \label{fig:DCT_bases}
 \end{figure}
 
@@ -293,7 +293,7 @@ Figure \ref{fig:wavelet}. (left) schematically shows the decomposition of a sign
 \begin{figure}
 \centering
 \includegraphics[width=0.6\textwidth]{wavelet}
-\caption{Multi-resolution wavelet decomposition, using the Haar wavelets as an example. Left: decomposition to multiple levels of low pass and high pass coefficients corresponding to the scaling and the wavelet functions respectively. Right: some of the base wavelet functions used for the decomposition.}
+\bcaption[Multi-resolution wavelet decomposition, using the Haar wavelets as an example]{Left: decomposition to multiple levels of low pass and high pass coefficients corresponding to the scaling and the wavelet functions respectively. Right: some of the base wavelet functions used for the decomposition.}
 \label{fig:wavelet}
 \end{figure}
 
