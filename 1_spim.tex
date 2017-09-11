@@ -11,7 +11,7 @@
 
 \graphicspath{{./figures/1_spim/}}
 
-Understanding mammalian development has been a long standing challenge for developmental biologists and medical professionals alike. Understanding early embryonic development allows to shed light on questions such as human infertility and congenital diseases \cite{todo}. 
+Unraveling the secrets of mammalian development has been a long standing challenge for developmental biologists and medical professionals alike. Understanding early embryonic development allows to shed light on questions such as human infertility and congenital diseases \cite{todo}. 
 This phase of early life is an incredibly complex and dynamic process spanning through large scales in space and time. Subcellular processes at the nanoscale are happening in the range of milliseconds or faster, while whole embryo reorganizations and tissue migration events take place over the course of hours \cite{gilbert_developmental_2013}. Resolving these processes presents a true challenge, since to also understand the underlying mechanisms molecular specificity is just as crucial as high spatial and temporal resolution.
 
 Fluorescence microscopy \cite{diaspro_optical_2011}
@@ -83,49 +83,80 @@ basic concept of spim
 %\section{Light-sheet microscopy}
 
 \section{Wide-field fluorescence microscopy}
-Fluorescence microscopy \cite{lichtman_fluorescence_2005} very small amount of illumination photons will result in fluorescence ($<0.0001\%$), the signal to noise ratio of the fluorescence is still very high due to the filtering.
+Fluorescence microscopy \cite{lichtman_fluorescence_2005}, as a subset of light microscopy is one of the few methods that allow subcellular imaging of live specimens. As the name of the technique suggest, this method collects fluorescent light from the specimens which has numerous advantages, but also some drawbacks. Since biological tissue is usually not fluorescent, except for some autofluorescence at shorter wavelengths, fluorescent dyes or proteins have to be introduced to the system in order to be able to collect the necessary information.
+
+A fluorescent molecule is capable of absorbing photons in a given range (excitation spectrum) and temporarily store its energy by having an electron in  a higher energy orbital, \textit{i.e.} in an excited state. This excited state, however is not stable, and the electron quickly jumps back to the ground state while emitting a photon with equal energy to the energy difference between the excited and ground states. The energy of the absorbed and emitted photons are not the same, however. Energy loss occurs due to internal relaxation events, and the emitted photon has lower energy than the excitation photon. This phenomenon is called the Stokes shift, or red shift \cite{stokes}, and can be exploited in microscopy to drastically increase the signal to noise ratio by filtering out the illumination light (Fig. \ref{fig:spectrum}).
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{spectrum/egfp}
+    \bcaption[Excitation and emittion spectrum of enchanced green fluorescent protein (EGFP)]{Excitation spectrum in blue, emission spectrum in yellow. The separeation between the two spectra is due to the Stokes shift.}
+    \label{fig:spectrum}
+\end{figure}
+
+% Although this process can disturb the natural environment 
+
+%  very small amount of illumination photons will result in fluorescence ($<0.0001\%$), the signal to noise ratio of the fluorescence is still very high due to the filtering.
 
 \subsection{Fluorescent proteins}
-Discovery and purification of green fluorescent protein from \textit{Aequorea victoria} \cite{shimomura_extraction_1962}
-cloning of GFP  cDNA \cite{prasher_primary_1992}
-first GFP applications as in vivo cell markers: nematodes \cite{chalfie_green_1994}, zebrafish \cite{amsterdam_aequorea_1995}, mouse \cite{okabe_green_1997}
+Traditionally synthetic fluorescent dyes were used to label certain structures in the specimens. Some of these directly bind to their target, such s DAPI to DNA, and others can be used when conjugated to an antibody specific to the structure of interest. The drawback of these methods is that the fluorescent label has to be added to the sample from an external source, and in many cases this also necessitates sample preparation techniques incompatible with live imaging, such as fixation \cite{!!!}.
 
-good for live, naturally fluorescent structures
+The discovery of fluorescent proteins have revolutionized fluorescence microscopy. Since these molecules are proteins, they can be produced directly by the organism if the proper genetic modifications are performed. Even though this was a hurdle at the time of discovering the green fluorescent protein (GFP) \cite{shimomura_extraction_1962}, the first of its kind, genetic engineering techniques evolved since then \cite{prasher_primary_1992}, and not only has it been successfully integrated in the genome of nematodes \cite{chalfie_green_1994}, zebrafish \cite{amsterdam_aequorea_1995}, and mice \cite{okabe_green_1997}, but many variants have been also engineered by introducing mutations to increase fluorescence intensity, and to change the fluorescent spectrum to allow multicolor imaging \cite{heim_wavelength_1994,heim_engineering_1996,cormack_facs-optimized_1996,okabe_green_1997}. The usefulness and impact of these proteins are so profound, that in 2008 the Nobel Prize in chemistry was awarded to Osamu Shimomura, Martin Chalfie, and Roger Tsien ``for the discovery and development of the green fluorescent protein, GFP" \cite{service_three_2008}.
 
-autofluorescence not specific
-fluorescent dyes
-fluorescent proteins
-Nobel Prize in chemistry in 2008 GFP \cite{service_three_2008}
-lot of fluorescent proteins since then \cite{shaner_guide_2005}. 
-benefits: cell is producing
-using genetic techniques possible to bind to other proteins, and specifically label structures of interest
+ 
+% Discovery and purification of green fluorescent protein from \textit{Aequorea victoria} 
+% cloning of GFP  cDNA 
+% first GFP applications as in vivo cell markers: nematodes , zebrafish , mouse 
+
+% good for live, naturally fluorescent structures
+
+% autofluorescence not specific
+% fluorescent dyes
+% fluorescent proteins
+% lot of fluorescent proteins since then \cite{shaner_guide_2005}. 
+% benefits: cell is producing
+% using genetic techniques possible to bind to other proteins, and specifically label structures of interest
 
 
 \subsection{Wide-field image formation}
-(Figure \ref{fig:wide-field})
-regular microscope -> figure for this?
-filter cube
+By imaging fluorescently labeled specimens, a wide-field fluorescence microscope hat the capability of discriminating illumination light from fluorescent light due to the Stoles shift described in the previous section. The microscope's operating principle is depicted in Figure \ref{fig:wide-field}.
 
-\begin{figure}[htb]
+\begin{figure}[thb]
     \centering
     \includegraphics[page=4,width=0.7\textwidth]{spim_cyl}
     \bcaption[Wide-field fluorescence microscope]{(a) The light source is focused on the back focal plane of the objective to provide an even illumination to the sample. Emitted photons are collected by the objective, and are separated from the illumination light by a dichroic mirror. (b) , $\alpha$}
     \label{fig:wide-field}
 \end{figure}
 
-Apart from magnification, the most important property of the objective is the half-angle of the light acceptance cone
+A light source, typically a mercury lamp is focused on the back focal plane of the objective to create even illumination at the sample. Before entering the objective, the light is filtered, so only those wavelengths that correspond to the excitation properties of the observed fluorophores are transmitted. Since the same objective is used for both illumination and detection, a dichroic mirror is utilized to decouple the illumination an detection paths. The emitted light is filtered again to make sure any reflected and scattered light from the illumination source is blocked to increase signal to noise ratio.
 
+Finally, the light is focused again by a tube lens to create a magnified image in the camera sensor. This type of imaging is called infinity corrected optics, since the back focal length of the objective is in "infinity", meaning that the light exiting the back aperture is parallel. Infinity corrected optics has the advantage that it allows placing various additional optical elements in the infinity space (\textit{i.e.} the space between the objective and the tube lens) without affecting the image quality. In this example such elements are the dichroic mirror and the emission filter. 
+
+The combination of the objective and tube lens together will determine the magnification of the system, it will be the ratio of the focal lengths of these lenses:
 \begin{equation}
-    NA = n\cdot \sin \alpha
+    M = \frac{f_{TL}}{f_{OBJ}}.
+    \label{eq:magnification}
+\end{equation}
+The final field of view of the microscope will depend on the magnification, and also on the size of the imaging sensor:
+\begin{equation}
+    FOV = \frac{A}{M},
+    \label{eq:FOV}
+\end{equation}
+where $A$ is the area of the sensor. 
+
+Apart from magnification, the most important property of the objective is the half-angle of the light acceptance cone, $\alpha$. This not only determines the amount of collected light, but also the achievable resolution of the system (see next section). This angle depends on the size of the lens relative to its focal length. In other words depends on the aperture of the lens, which is why the expression numerical aperture is more commonly used to express this property of the objective:
+\begin{equation}
+    NA = n\cdot \sin \alpha.
     \label{eq:NA}
 \end{equation}
 
+For small $\alpha$ angles, the following approximation holds true: $\sin \alpha \approx \tan \alpha \approx \alpha$. Thus, the numerical aperture can also be expressed as a ratio of the radius of the lens and the focal length:
 \begin{equation}
-    NA \approx n \frac{d}{f},\quad \text{when }\alpha \ll 1
+    NA \approx n \frac{r}{f},\quad \text{when }\alpha \ll 1.
 \end{equation}
-
+This expression also shows the relationship of the numerical aperture and the f-number commonly used in photography to characterize a lens' aperture:
 \begin{equation}
-    FOV = \frac{A}{M}
+    f\# = \frac{f}{d} \approx \frac{2}{n\cdot NA}
 \end{equation}
 
 
@@ -206,12 +237,12 @@ In principle it is possible to achieve isotropic resolution by increasing the ac
 
 Another disadvantage of the wide-field microscope, is that it can not be used with thick specimens. Usually this type of microscopy is only used for a single layer of cells, because all the objects in the field of view will appear on the imaging plane, not just the plane in focus. These objects will appear blurred if close to the focus, or just evenly add to the background noise if they are further from the focus. This is why imaging specimens much thicker than $10\ \mu m$ will result in suboptimal image quality.
 
-\begin{figure}[htpb]
-    \centering
-    \includegraphics[width=0.6\textwidth]{resolution}
-    \bcaption[Resolution of a wide-field microscope]{Axial (blue) and lateral (red) resolutions of a wide-field microscope are shown with respect to the numerical aperture (NA). Resolutions are calculated with $\lambda =510nm$, the emission maximum of GFP and $n=1.333$, the refractive index of water, for water dipping objectives.}
-    \label{fig:resolution}
-\end{figure}
+% \begin{figure}[htpb]
+%     \centering
+%     \includegraphics[width=0.6\textwidth]{resolution}
+%     \bcaption[Resolution of a wide-field microscope]{Axial (blue) and lateral (red) resolutions of a wide-field microscope are shown with respect to the numerical aperture (NA). Resolutions are calculated with $\lambda =510nm$, the emission maximum of GFP and $n=1.333$, the refractive index of water, for water dipping objectives.}
+%     \label{fig:resolution}
+% \end{figure}
 
 
 
