@@ -90,7 +90,7 @@ A fluorescent molecule is capable of absorbing photons in a given range (excitat
 \begin{figure}
     \centering
     \includegraphics[width=0.6\textwidth]{spectrum/egfp}
-    \bcaption[Excitation and emittion spectrum of enchanced green fluorescent protein (EGFP)]{Excitation spectrum in blue, emission spectrum in yellow. The separeation between the two spectra is due to the Stokes shift.}
+    \bcaption[Excitation and emittion spectrum of enchanced green fluorescent protein (EGFP)]{Excitation spectrum in blue, emission spectrum in yellow. The separeation between the two spectra is due to the Stokes shift, which is 19 nm for EGFP. Data from \cite{noauthor_spectra_nodate}. Emitted and excitation light can be separated by a long-pass filter at \SI{500}{nm}.}
     \label{fig:spectrum}
 \end{figure}
 
@@ -102,7 +102,6 @@ A fluorescent molecule is capable of absorbing photons in a given range (excitat
 Traditionally synthetic fluorescent dyes were used to label certain structures in the specimens. Some of these directly bind to their target, such s DAPI to DNA, and others can be used when conjugated to an antibody specific to the structure of interest. The drawback of these methods is that the fluorescent label has to be added to the sample from an external source, and in many cases this also necessitates sample preparation techniques incompatible with live imaging, such as fixation \cite{!!!}.
 
 The discovery of fluorescent proteins have revolutionized fluorescence microscopy. Since these molecules are proteins, they can be produced directly by the organism if the proper genetic modifications are performed. Even though this was a hurdle at the time of discovering the green fluorescent protein (GFP) \cite{shimomura_extraction_1962}, the first of its kind, genetic engineering techniques evolved since then \cite{prasher_primary_1992}, and not only has it been successfully integrated in the genome of nematodes \cite{chalfie_green_1994}, zebrafish \cite{amsterdam_aequorea_1995}, and mice \cite{okabe_green_1997}, but many variants have been also engineered by introducing mutations to increase fluorescence intensity, and to change the fluorescent spectrum to allow multicolor imaging \cite{heim_wavelength_1994,heim_engineering_1996,cormack_facs-optimized_1996,okabe_green_1997}. The usefulness and impact of these proteins are so profound, that in 2008 the Nobel Prize in chemistry was awarded to Osamu Shimomura, Martin Chalfie, and Roger Tsien ``for the discovery and development of the green fluorescent protein, GFP" \cite{service_three_2008}.
-
  
 % Discovery and purification of green fluorescent protein from \textit{Aequorea victoria} 
 % cloning of GFP  cDNA 
@@ -119,18 +118,19 @@ The discovery of fluorescent proteins have revolutionized fluorescence microscop
 
 
 \subsection{Wide-field image formation}
-By imaging fluorescently labeled specimens, a wide-field fluorescence microscope hat the capability of discriminating illumination light from fluorescent light due to the Stoles shift described in the previous section. The microscope's operating principle is depicted in Figure \ref{fig:wide-field}.
+By imaging fluorescently labeled specimens, a wide-field fluorescence microscope has the capability of discriminating illumination light from fluorescent light due to the Stoles shift described in the previous section. The microscope's operating principle is depicted in Figure \ref{fig:wide-field}.
 
-\begin{figure}[thb]
+A light source, typically a mercury lamp is focused on the back focal plane of the objective to create even illumination at the sample. Before entering the objective, the light is filtered, so only those wavelengths that correspond to the excitation properties of the observed fluorophores are transmitted. Since the same objective is used for both illumination and detection, a dichroic mirror is utilized to decouple the illumination an detection paths. The emitted light is filtered again to make sure any reflected and scattered light from the illumination source is blocked to increase signal to noise ratio.
+
+Finally, the light is focused by a tube lens to create a magnified image in the camera sensor. This type of imaging is called infinity corrected optics, since the back focal point of the objective is in "infinity", meaning that the light exiting the back aperture is parallel. This is achieved by placing the sample exactly at the focal point of the objective. Infinity corrected optics has the advantage that it allows placing various additional optical elements in the infinity space (\textit{i.e.} the space between the objective and the tube lens) without affecting the image quality. In this example such elements are the dichroic mirror and the emission filter. 
+
+\begin{figure}[tb]
     \centering
     \includegraphics[page=4,width=0.7\textwidth]{spim_cyl}
     \bcaption[Wide-field fluorescence microscope]{(a) The light source is focused on the back focal plane of the objective to provide an even illumination to the sample. Emitted photons are collected by the objective, and are separated from the illumination light by a dichroic mirror. (b) , $\alpha$}
     \label{fig:wide-field}
 \end{figure}
 
-A light source, typically a mercury lamp is focused on the back focal plane of the objective to create even illumination at the sample. Before entering the objective, the light is filtered, so only those wavelengths that correspond to the excitation properties of the observed fluorophores are transmitted. Since the same objective is used for both illumination and detection, a dichroic mirror is utilized to decouple the illumination an detection paths. The emitted light is filtered again to make sure any reflected and scattered light from the illumination source is blocked to increase signal to noise ratio.
-
-Finally, the light is focused again by a tube lens to create a magnified image in the camera sensor. This type of imaging is called infinity corrected optics, since the back focal length of the objective is in "infinity", meaning that the light exiting the back aperture is parallel. Infinity corrected optics has the advantage that it allows placing various additional optical elements in the infinity space (\textit{i.e.} the space between the objective and the tube lens) without affecting the image quality. In this example such elements are the dichroic mirror and the emission filter. 
 
 The combination of the objective and tube lens together will determine the magnification of the system, it will be the ratio of the focal lengths of these lenses:
 \begin{equation}
@@ -154,69 +154,74 @@ For small $\alpha$ angles, the following approximation holds true: $\sin \alpha 
 \begin{equation}
     NA \approx n \frac{r}{f},\quad \text{when }\alpha \ll 1.
 \end{equation}
-This expression also shows the relationship of the numerical aperture and the f-number commonly used in photography to characterize a lens' aperture:
-\begin{equation}
-    f\# = \frac{f}{d} \approx \frac{2}{n\cdot NA}
-\end{equation}
+% This expression also shows the relationship of the numerical aperture and the f-number commonly used in photography to characterize a lens' aperture:
+% \begin{equation}
+%     f\# = \frac{f}{d} \approx \frac{2}{n\cdot NA}
+% \end{equation}
+
 
 
 \subsection{Resolution of a wide-field microscope}
+The resolution of an optical systems is defined by the size of the smallest distinguishable feature on the image. Practically this means the minimum distance between two point like objects so that the two objects can still be resolved. This mainly depends on two factors: the NA of the objective, and the pixel size of the imaging sensor.
 
-\begin{figure}
-    \centering
-    \includegraphics[width=0.7\textwidth]{airy}
-    \bcaption[Airy pattern]{Airy pattern calculated in Matlab based on Equation (\ref{eq:airy})}
-\end{figure}
+Even if the imaging sensor would have infinitely fine resolution, it is not possible to reach arbitrary high resolutions due to the wave nature of light and diffraction effects that occur at the aperture of the objective. This means that depending on the wavelength of the light, any point source will have a finite size on the image that will limit the resolution. The shape of this image is called the \textit{point spread function}, or PSF, as this function describes the behavior of the optical system when imaging a point like source. This property of lenses was already discovered by Abbe in 1873 \cite{abbe_beitrage_1873}, when he constructed his famous formula for resolution:
+\begin{equation}
+    \delta = \frac{\lambda}{2 \cdot NA}.
+    \label{eq:abbe}
+\end{equation}
+where $d$ is the smallest distance between two distinguishable features.
 
-resolution
-smallest distance of two points still distinguishable
-few different definitions
-this is because of diffraction
-
-scalar theory of diffraction (no polarization), intensity of PSF Fraunhofer diffraction \cite{born_principles_2013} \cite{sheppard_imaging_1987}
+This equation can be also derived from the scalar theory of diffraction using a paraxial approximation (Fraunhofer diffraction, \cite{born_principles_2013}) that describes the intensity of the electric field in the focus of a lens \cite{sheppard_imaging_1987}:
 
 \begin{equation}
-    H(u,v) = C_0 \left| \int_0^1 J_0 (vr)e^{-i\frac{1}{2}\cdot ur^2} rdr \right|^2
+    H(u,v) = C_0 \left| \int_0^1 J_0 (vr)e^{-i\frac{1}{2}\cdot ur^2} rdr \right|^2,
     \label{eq:psf}
 \end{equation}
-
+where $C_0$ is a normalization constant, and $J_0$ is the zero order Bessel function of the first kind. Furthermore, instead of the commonly used Cartesian coordinates $x$, $y$ and $z$, the following optical coordinates are defined:
 \begin{equation}
-    v = \frac{2\pi n \Delta r}{\lambda_0} \sin \alpha, \quad
-    u=\frac{8\pi n \Delta z}{\lambda_0} \sin^2 \frac{\alpha}{2}
+    v = \frac{2\pi n  r}{\lambda_0} \sin \alpha, \quad
+    u=\frac{8\pi n  z}{\lambda_0} \sin^2 \frac{\alpha}{2}
     \label{eq:substitutions}
 \end{equation}
-and $r = \sqrt{x^2 + y^2}$
-$\alpha$ as in Equation (\ref{eq:NA}).
+where $r = \sqrt{x^2 + y^2}$ is the distance from the optical axis, and $\alpha$ is the light collection angle as shown on Fig. \ref{fig:wide-field}. 
 
+To determine the lateral resolution of the system, let's substitute $u=0$ as the axial optical coordinate, and evaluate Eq. (\ref{eq:psf}) which will give the intensity distribution inn the focal plane:
 \begin{equation}
     H(0,v) = C_0 \left| \int_0^1 J_0(vr)rdr \right|^2 = \left(2\frac{J_1(v)}{v} \right) ^2,
     \label{eq:airy}
 \end{equation}
-$J_1$ Bessel function of the first kind, first order, $J_0$ zero order
-this is Airy pattern
-first minimum at $v=3.83$
-Substituting to Equation (\ref{eq:substitutions})
-
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{airy}
+    \bcaption[Airy pattern]{Airy pattern calculated in Matlab based on Equation (\ref{eq:airy})}
+    \label{fig:airy}
+\end{figure}
+where $J_1$ is the first order Bessel function of the first kind. This equation describes the famous Airy pattern (Fig. \ref{fig:airy}) which will be the shape of the PSF in the focal plane. The width of this pattern is the resolution, and although there are multiple definitions for this, the most commonly accepted is the Rayleigh criterion \cite{rayleigh} which defines the resolution as the distance between the central peak and the first local minimum. As this lies at $v=3.38$, the resolution can be expressed by substituting this value to Eq. (\ref{eq:substitutions}) and calculating the real distance ($r$):
 \begin{equation}
-    \delta_{xy} = \frac{3.83}{2\pi} \frac{\lambda_0}{n\cdot \sin \alpha} \approx 0.61 \frac{\lambda_0}{NA}
+    \delta_{xy} = \frac{3.83}{2\pi} \frac{\lambda_0}{n\cdot \sin \alpha} \approx 0.61 \frac{\lambda_0}{NA},
 \end{equation}
-This is the famous formula derived by .
+which is equivalent to Abbe's original formula (Eq. (\ref{eq:abbe})). The only difference is the scaling factor which is due to the slightly different interpretations of width of the Airy disk as mentioned earlier.
 
 Similarly, to calculate the intensity distribution along the axial axis, let's substitute $v=0$ to Eq. (\ref{eq:psf}):
 \begin{equation}
    H(u,0)=C_0\left( \frac{\sin \frac{u}{4}}{\frac{u}{4}}\right) ^2 . 
 \end{equation} 
-first minimum at $u=4\pi$:
+For this expression the first minimum lies at $u=4\pi$. Converting back to Cartesian coordinates, the axial resolution can be expressed as:
 \begin{equation}
-    \delta_z = \frac{2n\lambda_0}{NA^2}
+    \delta_z = \frac{2n\lambda_0}{NA^2}.
 \end{equation}
 
-final image is psf convolved with fluorophore distribution:
+Up till here, we only considered a single, point-like emitter. In a more realistic scenario, however the emitters are neither point-like, nor single. Effectively, however, for every emitter the PSF would be imaged on the sensor, and this creates the final image. In mathematical terms, this can be expressed as a convolution operation between the underlying fluorophore distribution of the object ($O$) and the PSF ($H$):
 \begin{equation}
-    I(u,v) = O(u,v) * H(u,v)
+    I(u,v) = O(u,v) * H(u,v).
 \end{equation}
 
-but this only works for low angles, as the Fraunhofer diffraction equation used to derived these results is only an approximation of the Kirchoff diffraction equation. For high NA objectives, a more reliale way to calculate the resolution is the Stelzer-Grill-Heisenberg principle:
+The effective result of this kind of diffraction limited image formation is a blurred image with a finite resolution of $\delta_{xy}$ in the lateral direction, and $\delta_z$ in the axial direction.
+
+\subsubsection{High NA imaging, and achieving isotropic resolution}
+In the previous paragraphs we defined optical resolution, and derived two formulas to calculate the lateral and axial resolutions. These formulas, however 
+
+but this only works for low angles, as the Fraunhofer diffraction equation used to derived these results is only an approximation of the Kirchoff diffraction equation. For high NA objectives, a more reliable way to calculate the resolution is the Stelzer-Grill-Heisenberg principle:
 
 
 this result is base on the paraxial approximation of the Helmholtz equation, thus only apply for small NA.
@@ -237,12 +242,12 @@ In principle it is possible to achieve isotropic resolution by increasing the ac
 
 Another disadvantage of the wide-field microscope, is that it can not be used with thick specimens. Usually this type of microscopy is only used for a single layer of cells, because all the objects in the field of view will appear on the imaging plane, not just the plane in focus. These objects will appear blurred if close to the focus, or just evenly add to the background noise if they are further from the focus. This is why imaging specimens much thicker than $10\ \mu m$ will result in suboptimal image quality.
 
-% \begin{figure}[htpb]
-%     \centering
-%     \includegraphics[width=0.6\textwidth]{resolution}
-%     \bcaption[Resolution of a wide-field microscope]{Axial (blue) and lateral (red) resolutions of a wide-field microscope are shown with respect to the numerical aperture (NA). Resolutions are calculated with $\lambda =510nm$, the emission maximum of GFP and $n=1.333$, the refractive index of water, for water dipping objectives.}
-%     \label{fig:resolution}
-% \end{figure}
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.6\textwidth]{resolution}
+    \bcaption[Resolution of a wide-field microscope]{Axial (blue) and lateral (red) resolutions of a wide-field microscope are shown with respect to the numerical aperture (NA). Resolutions are calculated with $\lambda =510nm$, the emission maximum of GFP and $n=1.333$, the refractive index of water, for water dipping objectives.}
+    \label{fig:resolution}
+\end{figure}
 
 
 

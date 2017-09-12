@@ -13,3 +13,5 @@
 *.bcf
 *.run.xml
 .vscode
+*.lot
+*.lof
