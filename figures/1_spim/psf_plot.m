@@ -1,6 +1,6 @@
 %%
 clear variables;
-params.size = [5 161 321];
+params.size = [321 321 321];
 params.NA = 1.1;
 params.lambda = 510e-9;
 params.resLateral = 25e-9;
@@ -21,32 +21,69 @@ params.numSamp = 2000;
 params.fastcom = 0;
 params.overSampling = 3;
 %%
+paramsIllu = params;
+paramsIllu.NA = 0.1;
+paramsIllu.lambda = 488e-9;
+%%
 tic;
 PSF = MicroscPSF(params);
+PSFillu = MicroscPSF(paramsIllu);
 t = toc;
 
 disp(['Running time = ' num2str(t) 's']);
 % imagesc(squeeze(PSF(:,80,:))',[0, 0.11]), axis image
 %%
-p = squeeze(PSF(:,3,:))';
+p = squeeze(PSF(:,161,:))';
+pIllu = squeeze(mean(PSFillu,2));
+% pIllu = squeeze(PSFillu(:,161,:));
+pIllu = pIllu ./ max(pIllu(:));
+p = p .* pIllu;
+rot = 180;
+p2 = imrotate(p, rot, 'crop');
+% p3 = imrotate(p, -1*rot, 'crop');
+p = p .^ 5;
+% p = imrotate(p, (180-rot)/2, 'crop');
+% p = pIllu;
+
 a = 1;
 b = 0.002;
 t = @(x)(log(a*x+b));
 it = @(x)((exp(x)-b)/a);
 
-% subplot(1,2,1)
+figure(rot)
+subplot(1,2,1)
 hold off
 imagesc(t(p))
 hold on
 [C,h] = contour(t(p), 8,'Color', 'black');
+% [C,h] = contour(t(p1), 8,'Color', 'black');
+% [C,h] = contour(t(p2), 8,'Color', 'black');
 axis image
+w = 101;
+xlim([(321-w)/2, (321-w)/2+w+1]);
+ylim([(321-w)/2, (321-w)/2+w+1]);
 c = h.LevelList;
 caxis([t(0) t(1)]);
 colorbar('FontSize',11,'YTick',[t(0), c, t(1)],'YTickLabel',[0, round(it(c),3), 1]);
 
-% %%
-% subplot(1,2,2)
-% c = [0, 0.001, 0.002, 0.005, 0.01, 0.015, 0.02, 0.03, 0.05, 0.1, 0.2, 0.3, 0.5, 0.7, 0.9];
-% contourf(t(p), t(c));
-% axis image
-% colorbar
+%
+set(gcf, 'Color', 'w');
+subplot(1,2,2)
+otf = fftshift(psf2otf(p));
+mtf = abs(otf);
+mtf = mtf / max(mtf(:));
+% mtf = mtf(120:202,120:202);
+t = @(x)(x);
+it = @(x)(x);
+hold off
+imagesc(t(mtf))
+hold on
+[C,h] = contour(t(mtf), 4,'Color', 'black');
+% [C,h] = contour(t(p1), 8,'Color', 'black');
+% [C,h] = contour(t(p2), 8,'Color', 'black');
+axis image
+xlim([120, 202]);
+ylim([120, 202]);
+c = h.LevelList;
+caxis([t(0) t(1)]);
+colorbar('FontSize',11,'YTick',[t(0), c, t(1)],'YTickLabel',[0, round(it(c),3), 1]);
