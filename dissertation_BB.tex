@@ -15,6 +15,7 @@
 \embl{\includegraphics[width=5cm]{figures/0_front/EMBL_logo}}
 \degree{PhD}
 
+
 \title{Title goes here}
 %\date{2012 november}
 \begin{document}
@@ -38,27 +39,24 @@
 %aláírás
 %\end{nyilatkozat}
 
-%% spellcheck-language hu-HU
-\begin{absztrakt}
-Absztrakt magyarul.
-\end{absztrakt}
 
 %% spellcheck-language en-US
-\begin{abstract}
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
 Abstract in English.
-\end{abstract}
 
-
+%% spellcheck-language hu-HU
+\chapter*{Tartlami kivonat}
+\addcontentsline{toc}{chapter}{Tartlami kivonat}
+Absztrakt magyarul.
 
 \tableofcontents
 
 \listoffigures
+\addcontentsline{toc}{chapter}{List of figures}
 
 \listoftables
-
-
-
-
+\addcontentsline{toc}{chapter}{List of tables}
 
 %   ###
 %  #  ##
@@ -70,19 +68,16 @@ Abstract in English.
 \setcounter{page}{1}
 \pagenumbering{arabic}
 \addcontentsline{toc}{chapter}{Introduction}
-\cite{huisken_optical_2004}
 
 
 
+\input{1_spim}
 
+\input{3_processing}
 
-\include{1_spim}
+\input{2_DualMouse}
 
-\include{2_DualMouse}
-
-\include{3_processing}
-
-\include{4_gpu}
+\input{4_gpu}
 
 
 
@@ -95,27 +90,16 @@ Abstract in English.
 \chapter{Discussion}
 \graphicspath{{./}}
 
-\include{newResults}
+\input{newResults}
 
 
-\newpage
-\cleardoublepage
-\phantomsection
-\begin{acknowledgements}
 
-I would like to thank Lars Hufnagel for this opportunity to work in his group, and involving me in developing this microscope system. He gave me a lot of support, and helped in understanding and solving the possible difficulties that we came across during the development process.
-
-I greatly appreciate the help of Uroš Kržič, who gave me an insight on the principles of selective plane illumination microscopy, and also prepared some illustrations for this work.
-
-I thank Stefan Günther for providing the \textit{Drosophila m.} embryos, and \mbox{Ulla-Maj} Fiuza for providing the \textit{Phallusia m.} embryos.
-
-Finally, I would like to thank Gustavo Quintas Glasner de Medeiros and Nils Norlin, as they both participated in the microscope design and program development, and both of them inspired me greatly. Without their help, I couldn't have written this paper.
-
+\chapter*{Acknowledgements}
 \addcontentsline{toc}{chapter}{Acknowledgements}
-\end{acknowledgements}
 
 
-\include{6_references}
+
+\input{6_references}
 
 
 \end{document}

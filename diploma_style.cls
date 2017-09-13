@@ -37,6 +37,7 @@
 
 \usepackage{setspace}
 \usepackage{media9}
+
 \onehalfspacing
 
 \frenchspacing
@@ -110,12 +111,12 @@
 }
 
 
-\newenvironment{OTDK}
-{\newpage
-\thispagestyle{empty}
-\vspace*{10cm}
-\begin{quote}\begin{center}}
-{\end{center}\end{quote}}
+% \newenvironment{OTDK}
+% {\newpage
+% \thispagestyle{empty}
+% \vspace*{10cm}
+% \begin{quote}\begin{center}}
+% {\end{center}\end{quote}}
 
 
 \newenvironment{nyilatkozat}
@@ -130,39 +131,39 @@
 {\end{quote}}
 
 
-\newenvironment{absztrakt}
-{\newpage
-\thispagestyle{empty}
-\begin{center}
-\vspace*{1.5cm}
-{\Large \bfseries Tartalmi kivonat}
-\end{center}
-\vspace{0.5cm}
-\begin{quote}}
-{\end{quote}}
+% \newenvironment{absztrakt}
+% {\newpage
+% \thispagestyle{empty}
+% \begin{center}
+% \vspace*{1.5cm}
+% {\Large \bfseries Tartalmi kivonat}
+% \end{center}
+% \vspace{0.5cm}
+% \begin{quote}}
+% {\end{quote}}
 
-\renewenvironment{abstract}
-{
-\newpage
-\thispagestyle{empty}
-\begin{center}
-\vspace*{1.5cm}
-{\Large \bfseries Abstract}
-\end{center}
-\vspace{0.5cm}
-\begin{quote}}
-{\end{quote}}
+% \renewenvironment{abstract}
+% {
+% \newpage
+% \thispagestyle{empty}
+% \begin{center}
+% \vspace*{1.5cm}
+% {\Large \bfseries Abstract}
+% \end{center}
+% \vspace{0.5cm}
+% \begin{quote}}
+% {\end{quote}}
 
-\newenvironment{acknowledgements}
-{\newpage
-\thispagestyle{empty}
-\begin{center}
-\vspace*{1.5cm}
-{\Large \bfseries Acknowledgements}
-\end{center}
-\vspace{0.5cm}
-\begin{quote}}
-{\end{quote}}
+% \newenvironment{acknowledgements}
+% {\newpage
+% \thispagestyle{empty}
+% \begin{center}
+% \vspace*{1.5cm}
+% {\Large \bfseries Acknowledgements}
+% \end{center}
+% \vspace{0.5cm}
+% \begin{quote}}
+% {\end{quote}}
 
 \setcounter{secnumdepth}{2}
 
