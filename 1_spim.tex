@@ -309,23 +309,32 @@ Light microscopy is one of the oldest methods that is still widely used today to
 
     Although this is a big improvement to confocal microscopy in terms of resolution, this technique did not reach a widespread adoption as it complicates sample handling, while still suffering from two big drawbacks of confocal microscopy techniques that limits its live imaging capabilities.
 
-    Imaging live specimens for an extended period of time with confocal microscopy although possible \cite{aldaz_live_2010}, is not ideal. For each voxel imaged, a large portion of the specimen has to be illuminated, which results in a very high dose of radiation on the samples. This can be as much as 30--100 times larger, than the dose used for the actual imaging \cite{reynaud_light_2008}. Illumination with high power of laser for an extended time frame can result in bleaching the fluorophores, which in turn will lower the signal at later times. Furthermore, any absorbed photon has the possibility to disrupt the chemical bonds inside the specimen, which can lead to phototoxic effects. Furthermore, the usage of the pinhole although increases resolution, also decreases the detectable signal intensity, thus has a negative impact on image contrast \cite{stelzer_contrast_1998}.
+    Imaging live specimens for an extended period of time with confocal microscopy although possible \cite{aldaz_live_2010, maitre_asymmetric_2016}, is not ideal. For each voxel imaged, a large portion of the specimen has to be illuminated, which results in a very high dose of radiation on the samples. This can be as much as 30--100 times larger, than the dose used for the actual imaging \cite{reynaud_light_2008}. Illumination with high power of laser for an extended time frame can result in bleaching the fluorophores, which in turn will lower the signal at later times. Furthermore, any absorbed photon has the possibility to disrupt the chemical bonds inside the specimen, which can lead to phototoxic effects. Furthermore, the usage of the pinhole although increases resolution, also decreases the detectable signal intensity, thus has a negative impact on image contrast \cite{stelzer_contrast_1998}.
 
+
+
+
+%  ######  ########  #### ##     ## 
+% ##    ## ##     ##  ##  ###   ### 
+% ##       ##     ##  ##  #### #### 
+%  ######  ########   ##  ## ### ## 
+%       ## ##         ##  ##     ## 
+% ##    ## ##         ##  ##     ## 
+%  ######  ##        #### ##     ## 
 
 
 \section{Light-sheet microscopy}
   \label{sec:light-sheet}
-  basic concept of spim
-  \begin{figure}[bt]
+  \begin{figure}[b!]
     \centering
     \includegraphics[width=0.6\textwidth]{spim_concept}
     \bcaption[Basic concept of single-plane illumination microscopy]{The sample is illuminated from the side by laser light shaped to a light-sheet (blue). This illuminates the focal plane of the detection lens, that collects light in a wide-field mode (yellow). The image is recorded, and the sample is translated through the light-sheet to acquire an entire 3D stack.}
     \label{fig:spim_concept}
   \end{figure}
 
+  A selective-plane illumination microscope (SPIM) uses a light-sheet to illuminate only a thin section of the sample (Figure~\ref{fig:spim_concept}). This illumination plane is perpendicular to the imaging axis of the detection objective and coincides with the focal plane. This way, only the section in focus will be illuminated, thus providing much better signal to noise ratio. In case of conventional wide-field fluorescent microscopy, where the whole specimen is illuminated, light scattering from different regions contribute to a significant background noise. With selective-plane illumination, this problem is intrinsically solved, and it also provides a true sectioning capability. This makes SPIM especially suitable for 3D imaging.
 
-  One main drawback of the point scanning methods introduced in the previous section is the inefficiency of the illumination scheme. Although almost the whole sample is illuminated, information is only collected from the focal volume. This results in two main limiting factors: acquisition speed depends on the point scanning speed, which in turn is inversely proportional to the signal to noise ratio. Furthermore, because of the inefficiency of the illumination scheme, photobleaching and phototoxic effects further reduce the usability of these techniques for live imaging, especially for long term experiments \cite{reynaud_light_2008}.
-
+  
 
   The main principle behind single plane illumination microscopy, that is illuminating the sample from the side by a very thin light-sheet, dates back to the early 20\textsuperscript{th} century, when Siedentopf and Zsigmondy first described the ultramicroscope \cite{siedentopf_uber_1902}. This microscope used sunlight as an illumination source, that was guided through a precision slit to generate a thin light-sheet. This allowed Zsigmondy to visualize gold nanoparticles floating in and out of the light-sheet. Since these particles are much smaller than the wavelength of the light, the device was called an ultramicroscope. His studies with colloids together with the development of the ultramicroscope led Zsigmondy to win the Nobel Prize in 1925.
 
@@ -346,7 +355,7 @@ Light microscopy is one of the oldest methods that is still widely used today to
 
   Since then however, light-sheet microscopy was seldom used, but in the last decade it was reinvented and combined with fluorescent microscopy. The first notable light-sheet fluorescent microscope (LSFM) was developed at EMBL in 2004 \cite{huisken_optical_2004}, that demonstrated the benefits of using a light-sheet in imaging developmental processes in three dimension.
 
-  Since then, light-sheet based imaging has gained more and more popularity, as it can be adapted and applied to a wide variety of problems. It was numerously proven to be a better choice than confocal microscopy \cite{reynaud_light_2008,huisken_selective_2009} especially in developmental biological applications \cite{weber_light_2011}. It can also be used with a wide variety of specimens of different sizes, such as zebrafish embryo \cite{keller_reconstruction_2008}, mouse brain \cite{dodt_ultramicroscopy:_2007} or drosophila embryo \cite{krzic_multiview_2012}. It is also possible to use light-sheet microscopy in super-resolution, allowing for individual molecule localization \cite{cella_zanacchi_live-cell_2011}.
+  Since then, light-sheet based imaging has gained more and more popularity, as it can be adapted and applied to a wide variety of problems. It was numerously proven to be a better choice than confocal microscopy \cite{reynaud_light_2008,huisken_selective_2009} especially in developmental biological applications \cite{weber_light_2011}. It can also be used with a wide variety of specimens of different sizes, such as zebrafish embryo \cite{keller_reconstruction_2008,kaufmann_multilayer_2012,mickoleit_high-resolution_2014}, mouse brain \cite{dodt_ultramicroscopy:_2007,} or drosophila embryo \cite{krzic_multiview_2012}. It is also possible to use light-sheet microscopy in super-resolution, allowing for individual molecule localization \cite{cella_zanacchi_live-cell_2011}.
 
   %\begin{itemize}	
   %	\item mSPIM, pivoting light-sheet \cite{huisken_even_2007}
@@ -356,10 +365,7 @@ Light microscopy is one of the oldest methods that is still widely used today to
 
   \subsection{Optics of light-sheet microscopy}
 
-    A selective-plane illumination microscope (SPIM) uses a light-sheet to illuminate only a thin section of the sample (Figure~\ref{fig:light-sheet}). This illumination plane is perpendicular to the imaging axis of the detection objective and coincides with the focal plane. This way the image is taken of only that specific plane that is illuminated, thus providing much better signal to noise ratio. In case of conventional wide-field fluorescent microscopy, where the whole specimen is illuminated, light scattering from different regions contribute to a significant background noise. With selective-plane illumination, this problem is intrinsically solved, and it also provides a true sectioning capability. This makes SPIM especially suitable for 3D imaging.
-
-
-
+    
     \begin{figure}[htpb]
         \centering
         \includegraphics[page=1,width=0.8\textwidth]{spim_cyl}
@@ -375,7 +381,9 @@ Light microscopy is one of the oldest methods that is still widely used today to
     \end{figure}
 
 
-  \subsection{Detection}
+  % \subsection{Detection}
+    Since illumination and detection for lght-sheet microscopy are decoupled, two independent optical paths are implemented.
+
     The detection unit of a SPIM is basically equivalent to a detection unit of a wide-field microscope, without a dichroic mirror (Figure \ref{fig:light-sheet}). Most important components are the objective together with the tube lens, filter wheel, and a sensor, typically a CCD or sCMOS camera.
 
     One of the most important aspects that determine the resolution of the microscope is the detection objective. Since in developmental biology specimens require a water-based solution, these objectives are usually water dipping objectives directly submerged in the medium. Since the refraction index of water ($n=1.33$) is greater than the refraction index of air, these objectives tend to have a higher $NA$, which results in higher resolution. This, however, also depends on the sensor used, mainly on the pixel size ($d_{sensor}$).
@@ -383,9 +391,9 @@ Light microscopy is one of the oldest methods that is still widely used today to
     The magnification is typically $10\times$, $20\times$, $40\times$ or $100\times$ but these values are sound only when the objective is used together with the prescribed tube lens. These lenses are specially made to be used with the specific objectives, and are corrected for any aberrations. They typically have a focal length of 160--200mm.
 
 
-  \subsection{Illumination}
+  % \subsection{Illumination}
 
-    \subsubsection{Using cylindrical lens}
+    \subsection{Static light-sheet illumination}
       The light-sheet can be generated using a cylindrical lens, which focuses the laser beam in only one direction, and creating a thin sheet in the proximity of the focal point. However, to achieve light-sheets that are thin enough, one would need to use cylindrical lens with low focal lengths, but these are hardly accessible in well corrected formats. For this reason, its more common to use a longer focal length cylindrical lens in conjunction with a microscope objective, which is well corrected for chromatic and spherical aberrations \cite{greger_basic_2007}. This way, the light-sheet length, thickness and width can be adjusted for the specific imaging tasks.
 
       For paraxial waves, i.e. waves with nearly parallel wave front normals, a general wave equation can be approximated with the paraxial Helmholz equation \cite{krzic_multiple-view_2009, saleh_fundamentals_2007}
@@ -459,13 +467,13 @@ Light microscopy is one of the oldest methods that is still widely used today to
         \bcaption[Light-sheet dimensions]{ \ref{fig:fov} shows a light sheet, with the field of view indicated. Since the light-sheet intensity is uneven, the field of view has to be confined to a smaller region. \ref{fig:width} The width and thickness of the field of view depends on the Rayleigh length of the beam ($z_{y,0}$). \ref{fig:height} Height of the field of view is determined by the Gaussian profile of the elliptical beam.}
         \label{fig:ls_dim}
       \end{figure}
-      
+
       Since the illumination is uneven, the usable field of view is smaller than the actual illuminated region (Figure \ref{fig:fov}). The width of the field of view $w_{fov}$ is determined by the Rayleigh length, since this is in a direct relation with the beam divergence. To stay in the optimal region, the light-sheet should only be used in the range of 1 Rayleigh length on both sides of the beam waist (Figure \ref{fig:width}). In this range, the ratio between the thickest (at $z=z_0$) and the thinnest (at $z=0$) part of the beam $W(z)$ will be $\sqrt{2}\approx 1.4142$ which is still acceptable.
 
       Light-sheet height is determined by the profile of the beam along the vertical axis (Figure \ref{fig:height}). Since this is a Gaussian function (see Equation \ref{eq:gaussian}), only a small part in the middle can be used for imaging, because towards the sides the intensity dramatically drops. To allow a maximum 80\% drop of intensity at the edges, the light-sheet height is $h_{fov}=2\cdot 0.472\cdot W_{x,0}$
       
 
-    \subsubsection{Using focused beam scanning}
+    \subsection{DIgitally scanned light-sheet illumination}
       \begin{figure}[bt!]
         \centering
         \includegraphics[page=2,width=0.8\textwidth]{spim_cyl}
@@ -493,3 +501,10 @@ Light microscopy is one of the oldest methods that is still widely used today to
   axial resolution relative to lateral
   complete view
   reduce scattering
+
+  \begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{spim_zoo}
+    \bcaption[Different optical arrangement for light-sheet microscopy]{\textbf{(a)} Original SPIM design with a single lens for detection and illuminaiton. \cite{huisken_optical_2004} \textbf{(b)} Upright SPIM to allow for easier sample mounting such as using a petri dish (iSPIM, \cite{wu_inverted_2011, hoyer_breaking_2016}). \textbf{(c)} Inverted SPIM, where the objectives are below the sample, which is held by a thin foil \cite{strnad_inverted_2016}. \textbf{(d)} Dual-view version of the upright configuration, where both objective can be used for illumination and detection (diSPIM, \cite{kumar_dual-view_2014}). \textbf{(e)} Multidirectional-SPIM (mSPIM) for even illumination of the sample with two objectives for illumination \cite{huisken_even_2007}. \textbf{(f)} Multi-view SPIM with two illumination and detection objectives for \textit{in toto} imaging of whole embryos (MuVI-SPIM \cite{krzic_multiview_2012}, SimView \cite{tomer_quantitative_2012}, Four-lens SPIM \cite{schmid_high-speed_2013}). \textbf{(g)} A combination of (d) and (f), using 4 identical objectives, where both can illuminate and detect in a sequential manner, to achieve isotropic resolution without sample rotation (IsoView \cite{chhetri_whole-animal_2015}).}
+    \label{fig:spim_zoo}
+  \end{figure}
