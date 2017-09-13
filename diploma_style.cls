@@ -37,6 +37,13 @@
 
 \usepackage{setspace}
 \usepackage{media9}
+\usepackage{titletoc}
+% \titlecontents*{chapter}% <section-type>
+%   [0pt]% <left>
+%   {\addvspace{1em}}% <above-code>
+%   {\bfseries\chaptername\ \thecontentslabel\:\quad}% <numbered-entry-format>
+%   {\bfseries\thecontentslabel\quad}% <numberless-entry-format>
+%   {\bfseries\hfill\contentspage}% <filler-page-format>
 
 \onehalfspacing
 
