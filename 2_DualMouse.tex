@@ -101,6 +101,13 @@
 
   When designing the optical layout of the setup, we had two principles in mind: simplicity and efficiency. Because of the symmetrical design it is possible that
 
+  \begin{figure}[bt!]
+    \centering
+    \includegraphics[page=1,width=1\textwidth]{fullSchematics}
+    \bcaption[Dual Mouse SPIM optical layout]{The microscope consists of two main parts, the illumination branches (blue) and detection branches (yellow). For both illumination and detection there are two identical paths implemented. Illumination direction can be changed by applying a different offset to the galvo mirror, which in turn will direct the beam to the opposite face of the prism mirror. L1 and L2 will then image the galvo on M1. Using L3 as a scan lens, and L4 as a tube lens, the scanned beam is coupled to the objective path by quad band dichroic mirror (DM)
+    CAM -- camera, DM -- dichroic mirror, F -- filter wheel, L -- lens, M -- mirror, O -- objective, PM -- prism mirror, S -- sample, SU -- switcher unit}
+    \label{fig:fullSchematics}
+  \end{figure}
 
 \section{Optical alignment}
   Precise alignment of the illumination and detection paths are crucial for high quality imaging, and has a pronounced  importance for high magnification and high resolution optical systems. The DualMouse SPIM contains two illumination and detection paths that share many common elements, which makes alignment a *important?* process. The final aim for the alignment is to perfectly overlap the light-sheets with the detection focal planes, and to optimize ... 
@@ -113,7 +120,7 @@
 
     After the beam is aligned on the first rail, lens L1 and the splitter unit PM are placed in the measured positions to image the galvo mirror on mirror M1 using lenses L1 and L2. Correct positioning of the splitter unit along the rail is crucial, since this will affect the lateral position and tilt of the beam exiting the unit. To some extent, this can also be compensated by adjusting the two mirrors before the galvo mirror, but is avoided if possible as this will also displace the beam from the center of the galvo mirror.
 
-    \paragraph{Adjusting beam position.}
+    \subsubsection{Adjusting beam position.}
       Beam position can be adjusted by either translating the beam in a conjugated image plane, or by rotating the beam in a conjugated back focal plane. The setup was designed in a way, that BFP' coincides with mirror M2. This mirror is mounted in a gimbal mirror mount, allowing to rotate the mirror exactly around its center, which avoids unwanted translational movements, and results in pure rotation of the beam. Lens L3 is positioned exactly 1 focal length from the mirror, thus acting as a scan lens, and transforming the rotational movements to translation. This translation is further imaged and demagnified by the tube lens L4 and the objective O.
 
 
@@ -155,63 +162,57 @@
 
       After the horizontal direction is centered, vertical centering is performed. This, however can't be centered the same way as the horizontal direction, since for that we would have to misalign the already aligned horizontal position. To determine the center, we move the field of view from the topmost position to the bottom. During this process the number of  turns of the adjustment screw is counted (this can be done accurately by using a hex key). After reaching the far end of the field of view, the mirror movement is reversed, and the screw is turned halfway to reach the middle.
 
-      \begin{figure}[hbt]
-        \centering
-        \includegraphics[page=1,width=1\textwidth]{fullSchematics}
-        \bcaption[Dual Mouse SPIM optical layout]{The microscope consists of two main parts, the illumination branches (blue) and detection branches (yellow). For both illumination and detection there are two identical paths implemented. Illumination direction can be changed by applying a different offset to the galvo mirror, which in turn will direct the beam to the opposite face of the prism mirror. L1 and L2 will then image the galvo on M1. Using L3 as a scan lens, and L4 as a tube lens, the scanned beam is coupled to the objective path by quad band dichroic mirror (DM)
-        CAM -- camera, DM -- dichroic mirror, F -- filter wheel, L -- lens, M -- mirror, O -- objective, PM -- prism mirror, S -- sample, SU -- switcher unit}
-        \label{fig:fullSchematics}
-      \end{figure}
+      
 
-  \subsection{3D figures}
-  \subsection{Illuminaiton splitter unit}
-    \label{sec:splitter}
-    \begin{figure}[htb]
-      \centering
-      \includemedia[
-      width=0.8\linewidth,height=0.6\linewidth,
-      %add3Djscript=asylabels.js, %upright text labels
-      %add3Djscript=3Dspintool.js, %let scene rotate about z-axis
-      % 3Dcoo, 3Droo values found with `Generate Default View' from
-      % context menu
-      3Dmenu,
-      playbutton=plain,
-      3Droll=124.45821807473328,
-      3Dc2c=0.5729350447654724 0.4988637864589691 0.6502924561500549,
-      3Dcoo=6.723448276519775 -30.282148361206055 -11.914359092712402,
-      3Droo=162.71372963736036,
-      3Dlights=Headlamp,
-      3Drender=ShadedIllustration,
-      ]{\includegraphics{Splitter.png}}{Splitter.prc}
-    \bcaption[Illumination branch splitting block]{3D model of the custom designed splitter block used in the illumination branch. Depending on the horizontal beam position at the lower port, the beam will be reflected either to the right or to the left. Because of the mirror alignment, the beam is rotated 90 degrees.}
-    \label{fig:splitter}
-    \end{figure}
+  % \subsection{3D figures}
+  % \subsection{Illuminaiton splitter unit}
+  %   \label{sec:splitter}
+  %   \begin{figure}[htb]
+  %     \centering
+  %     \includemedia[
+  %     width=0.8\linewidth,height=0.6\linewidth,
+  %     %add3Djscript=asylabels.js, %upright text labels
+  %     %add3Djscript=3Dspintool.js, %let scene rotate about z-axis
+  %     % 3Dcoo, 3Droo values found with `Generate Default View' from
+  %     % context menu
+  %     3Dmenu,
+  %     playbutton=plain,
+  %     3Droll=124.45821807473328,
+  %     3Dc2c=0.5729350447654724 0.4988637864589691 0.6502924561500549,
+  %     3Dcoo=6.723448276519775 -30.282148361206055 -11.914359092712402,
+  %     3Droo=162.71372963736036,
+  %     3Dlights=Headlamp,
+  %     3Drender=ShadedIllustration,
+  %     ]{\includegraphics{Splitter.png}}{Splitter.prc}
+  %   \bcaption[Illumination branch splitting block]{3D model of the custom designed splitter block used in the illumination branch. Depending on the horizontal beam position at the lower port, the beam will be reflected either to the right or to the left. Because of the mirror alignment, the beam is rotated 90 degrees.}
+  %   \label{fig:splitter}
+  %   \end{figure}
 
-  \subsection{Detection merging unit}
-    \label{sec:dualMirror}
+  % \subsection{Detection merging unit}
+  %   \label{sec:dualMirror}
 
-    \begin{figure}[htb]
-    \centering
-      \includemedia[
-      width=1.0\linewidth,height=0.6\linewidth,
-      %add3Djscript=asylabels.js, %upright text labels
-      %add3Djscript=3Dspintool.js, %let scene rotate about z-axis
-      % 3Dcoo, 3Droo values found with `Generate Default View' from
-      % context menu
-      3Dmenu,
-      playbutton=plain,
-      % default view start
-      3Droll=104,
-      3Dc2c=0.7466059923171997 0.4799830913543701 0.4606471359729767,
-      3Dcoo=-5.2039947509765625 -5.257904529571533 23.018417358398438,
-      3Droo=353,
-      3Dlights=Headlamp,
-      3Drender=ShadedIllustration,
-      % default view end
-      ]{\includegraphics{DualMirror.png}}{DualMirror.prc}
-      \caption[Detection branch merging unit]{3D model of the custom designed unit to enable quick switching between the two detection paths. A high precision stainless steel stage holds two mirror blocks facing opposite directions, and bouncing the light upwards, towards the camera. The units are translated by  pneumatic cylinder to ensure high speed an reproducibility.}
-      \label{fig:DualMirror}
-    \end{figure}
+  %   \begin{figure}[htb]
+  %   \centering
+  %     \includemedia[
+  %     width=1.0\linewidth,height=0.6\linewidth,
+  %     %add3Djscript=asylabels.js, %upright text labels
+  %     %add3Djscript=3Dspintool.js, %let scene rotate about z-axis
+  %     % 3Dcoo, 3Droo values found with `Generate Default View' from
+  %     % context menu
+  %     3Dmenu,
+  %     playbutton=plain,
+  %     % default view start
+  %     3Droll=104,
+  %     3Dc2c=0.7466059923171997 0.4799830913543701 0.4606471359729767,
+  %     3Dcoo=-5.2039947509765625 -5.257904529571533 23.018417358398438,
+  %     3Droo=353,
+  %     3Dlights=Headlamp,
+  %     3Drender=ShadedIllustration,
+  %     % default view end
+  %     ]{\includegraphics{DualMirror.png}}{DualMirror.prc}
+  %     \caption[Detection branch merging unit]{3D model of the custom designed unit to enable quick switching between the two detection paths. A high precision stainless steel stage holds two mirror blocks facing opposite directions, and bouncing the light upwards, towards the camera. The units are translated by  pneumatic cylinder to ensure high speed an reproducibility.}
+  %     \label{fig:DualMirror}
+  %   \end{figure}
 
 \section{Results}
   \begin{figure}[htb]
@@ -232,8 +233,28 @@
   Resolution for Lattice light-sheet \cite{chen_lattice_2014}: \SI{230}{nm} in x and \SI{370}{nm} in z
   \cite{chhetri_whole-animal_2015}
 
-  \begin{figure}[htb]
-    \centering
-    \includegraphics[width=\textwidth]{PSF}
-    \bcaption[Simulated and measured PSF of Dual Mouse-SPIM]{Top row: axial sections of simulated and measured point spread funcitons. Middle row: lateral intensity profile and Gaussian fit. Bottom row: Axial intensity profile and Gaussian fit. Simulations were performed based on the Gibson-Lanni model. Immersion medium  and sample refractive index: 1.330, coverslip (FEP foil) refractive index: 1.344, coverslip distance: \SI{1900}{\micro m}, coverslip thickness: \SI{50}{\micro m}. Scale bar: \SI{500}{nm}.}
-  \end{figure}
+  After the design phase, all custom parts were manufactured the the EMBL workshop, and I assembled the microscope on a NewPort X by X optical table (Fig. \ref{fig:frontView}).
+
+  \subsection{Characterizing illumination profile}
+    Since a Gaussian beam is used for illumination, it's intensity profile is dependent on the axial position (Eq. \ref{eq:gaussian}). Although the total intensity at any cross section of the beam is constant, because of the divergent properties, the peak intensity varies. To assess any non-uniformities in the illumination pattern, I measured the illumination beam intensity for each view.
+
+    To visualize the beam, the chamber was filled with a fluorescent solution (methylene blue solution in distilled water). In order to increase the signal to noise ratio of these images, a long exposure time of ??? were used, and 50 images of each beam was averaged (Fig. \ref{fig:beamProfiles}).
+
+    \begin{figure}[htb]
+      \centering
+      \includegraphics[width=\textwidth]{beamProfiles2}
+      \bcaption[Illumination beam profile]{Average of 50 stationary beam images for both left and right objectives (top left). Beam intensity profile along the center of each beam is plotted (top right). To simulate scanned beam illumination intensity, each beam image was averaged along the vertical axis (bottom left). Intensity profile of the projections are plotted (bottom right).}
+      \label{fig:beamProfiles}
+    \end{figure}
+
+  \subsection{Resolution and point spread function measurement}
+    To measure the resolution of the microscope, and characterize its optical performance I performed point spread function measurement using fluorescently labeled beads (TetraSpeck \SI{500}{nm}, ThermoFisher). The beads were sonicated, and mixed with 0.8\% GelRite solution at a final dilution of 1:1000. The gel was loaded in glass capillaries and allowed to cool. After the gel solidified, a $\sim \SI{1}{mm}$ piece was cut off and placed in the microscope sample holder.
+
+    In order to establish an ideal, reference PSF, we simulated the theoretical PSF of the microscope with the Gibson-Lanni model \cite{gibson_experimental_1992}, using the MicroscPSF Matlab implementation \cite{li_fast_2017}. The advantage of this model is that is accounts for any differences between the experimental conditions and the design parameters of the objective, and thus it can simulate any possible aberrations that should arise. The adjustable parameters are the following (Fig. \ref{fig:gibson-lanni}): 
+
+    \begin{figure}[htb]
+      \centering
+      \includegraphics[width=\textwidth]{PSF}
+      \bcaption[Simulated and measured PSF of Dual Mouse-SPIM]{Top row: axial sections of simulated and measured point spread funcitons. Middle row: lateral intensity profile and Gaussian fit. Bottom row: Axial intensity profile and Gaussian fit. Simulations were performed based on the Gibson-Lanni model. Immersion medium  and sample refractive index: 1.330, coverslip (FEP foil) refractive index: 1.344, coverslip distance: \SI{1900}{\micro m}, coverslip thickness: \SI{50}{\micro m}. Scale bar: \SI{500}{nm}.}
+      \label{fig:measuredPSF}
+    \end{figure}

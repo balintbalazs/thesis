@@ -1,6 +1,6 @@
 %%
 clear variables;
-params.size = [387 387 387];
+params.size = [387 387 321];
 params.NA = 1.1;
 params.lambda = 510e-9;
 params.resLateral = 25e-9;
@@ -34,7 +34,7 @@ disp(['Running time = ' num2str(t) 's']);
 % imagesc(squeeze(PSF(:,80,:))',[0, 0.11]), axis image
 %%
 offset = 66;
-p = squeeze(PSF(:,194,:))';
+p = squeeze(PSF(:,161,:))';
 p = p(1:end-offset,:);
 pIllu = squeeze(mean(PSFillu,2));
 pIllu = pIllu(1+round(offset/2):end-round(offset/2),:);
@@ -62,7 +62,7 @@ hold on
 % [C,h] = contour(t(p1), 8,'Color', 'black');
 % [C,h] = contour(t(p2), 8,'Color', 'black');
 axis image
-w = 321;
+w = 199;
 s=size(p);
 xlim([(s(2)-w)/2, (s(2)-w)/2+w+1]);
 ylim([(s(1)-w)/2, (s(1)-w)/2+w+1]);

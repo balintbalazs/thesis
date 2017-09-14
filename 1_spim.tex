@@ -176,12 +176,12 @@ Light microscopy is one of the oldest methods that is still widely used today to
     To determine the lateral resolution of the system, let's substitute $u=0$ as the axial optical coordinate, and evaluate Eq. (\ref{eq:psf}) which will give the intensity distribution inn the focal plane:
     \begin{equation}
       H(0,v) = C_0 \left| \int_0^1 J_0(vr)rdr \right|^2 = \left(2\frac{J_1(v)}{v} \right) ^2,
-      \label{eq:airy}
+      \label{eq:airy}==
     \end{equation}
     \begin{figure}
       \centering
       \includegraphics[width=0.7\textwidth]{airy}
-      \bcaption[Airy pattern]{Airy pattern calculated in Matlab based on Equation (\ref{eq:airy})}
+      \bcaption[Airy pattern]{Airy pattern calculated in Matlab based on Eq. (\ref{eq:airy})}
       \label{fig:airy}
     \end{figure}
 
@@ -247,7 +247,7 @@ Light microscopy is one of the oldest methods that is still widely used today to
     \label{fig:resolution}
   \end{figure}
 
-  Evaluating Equations (\ref{eq:lateralRes}) and (\ref{eq:axialRes}) for a range of possible numerical apertures reveals the significant differences in lateral and axial resolution for any objective (Fig.~\ref{fig:resolution}). Especially for low NAs, this can be significant, a factor of \textasciitilde20 difference. For higher (>0.8) NAs the axial resolution increases faster than the lateral, however they will only be equal when $\alpha=\SI{180}{\degree}$. This means that isotropic resolution with a single lens is only possible, is the lens is collecting all light emitting from the sample, which seems hardly possible, and would be highly impractical. For commonly use high NA objectives the lateral to axial ratio will still be around 3--6. 
+  Evaluating Equations (\ref{eq:lateralRes}) and (\ref{eq:axialRes}) for a range of possible numerical apertures reveals the significant differences in lateral and axial resolution for any objective (Fig.~\ref{fig:resolution}). Especially for low NAs, this can be significant, a factor of $\sim$20 difference. For higher (>0.8) NAs the axial resolution increases faster than the lateral, however they will only be equal when $\alpha=\SI{180}{\degree}$. This means that isotropic resolution with a single lens is only possible, is the lens is collecting all light emitting from the sample, which seems hardly possible, and would be highly impractical. For commonly use high NA objectives the lateral to axial ratio will still be around 3--6. 
 
   Instead of using a single lens to achieve isotropic resolution, it's more practical to image the sample from multiple directions to complement the missing information from different views. When rotating the sample \SI{90}{\degree} for example, the lateral direction of the second view will correspond to the axial direction of the first view. If rotation is not possible, using multiple objectives can also achieve similar result, such as in the case of Multi-Imaging Axis Microscopy (MIAM) \cite{swoger_multiple_2003,swoger_multi-view_2007}. This microscope consisted of 4 identical objectives arranged in a tetrahedral fashion to collect as much light as possible from multiple directions, and provide isotropic 3D resolution, albeit at the expense of extremely difficult sample handling, since the sample was completely surrounded by objectives from all directions. 
 
@@ -473,7 +473,7 @@ Light microscopy is one of the oldest methods that is still widely used today to
       Light-sheet height is determined by the profile of the beam along the vertical axis (Figure \ref{fig:height}). Since this is a Gaussian function (see Equation \ref{eq:gaussian}), only a small part in the middle can be used for imaging, because towards the sides the intensity dramatically drops. To allow a maximum 80\% drop of intensity at the edges, the light-sheet height is $h_{fov}=2\cdot 0.472\cdot W_{x,0}$
       
 
-    \subsection{DIgitally scanned light-sheet illumination}
+    \subsection{Digitally scanned light-sheet illumination}
       \begin{figure}[bt!]
         \centering
         \includegraphics[page=2,width=0.8\textwidth]{spim_cyl}
@@ -482,7 +482,7 @@ Light microscopy is one of the oldest methods that is still widely used today to
           \label{fig:dslm}
       \end{figure}
 
-      Since using cylindrical lenses it's not possible to generate a homogeneous light-sheet, moreover at higher magnification the Rayleigh range would be too small, we also consider using focused beam scanning to generate the light-sheet (digital scanned light-sheet microscopy, DSLM). To generate a scanning beam, a galvanometer controlled mirror is used to alter the beam path. This can quickly turn around its axis which will result in an angular sweep with the laser beam. To change the angular movement to translation, a scan lens is used to generate an intermediate scanning plane. This plane is then imaged to the specimen by the tube lens and the illumination objective, resulting in a scanned focused beam.
+      Since using cylindrical lenses it's not possible to generate a homogeneous light-sheet, moreover at higher magnification the Rayleigh range would be too small, we also consider using focused beam scanning to generate the light-sheet (digital scanned light-sheet microscopy, DSLM \cite{keller_reconstruction_2008}). To generate a scanning beam, a galvanometer controlled mirror is used to alter the beam path. This can quickly turn around its axis which will result in an angular sweep with the laser beam. To change the angular movement to translation, a scan lens is used to generate an intermediate scanning plane. This plane is then imaged to the specimen by the tube lens and the illumination objective, resulting in a scanned focused beam.
 
       This method to generate the light-sheet has several advantages compared to a static light-sheet. The height of this sheet is not determined by the cylindrical lens, but it can be dynamically modified. Also, the intensity is uniform through the whole height of the light-sheet.
 
@@ -505,6 +505,6 @@ Light microscopy is one of the oldest methods that is still widely used today to
   \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{spim_zoo}
-    \bcaption[Different optical arrangement for light-sheet microscopy]{\textbf{(a)} Original SPIM design with a single lens for detection and illuminaiton. \cite{huisken_optical_2004} \textbf{(b)} Upright SPIM to allow for easier sample mounting such as using a petri dish (iSPIM, \cite{wu_inverted_2011, hoyer_breaking_2016}). \textbf{(c)} Inverted SPIM, where the objectives are below the sample, which is held by a thin foil \cite{strnad_inverted_2016}. \textbf{(d)} Dual-view version of the upright configuration, where both objective can be used for illumination and detection (diSPIM, \cite{kumar_dual-view_2014}). \textbf{(e)} Multidirectional-SPIM (mSPIM) for even illumination of the sample with two objectives for illumination \cite{huisken_even_2007}. \textbf{(f)} Multi-view SPIM with two illumination and detection objectives for \textit{in toto} imaging of whole embryos (MuVI-SPIM \cite{krzic_multiview_2012}, SimView \cite{tomer_quantitative_2012}, Four-lens SPIM \cite{schmid_high-speed_2013}). \textbf{(g)} A combination of (d) and (f), using 4 identical objectives, where both can illuminate and detect in a sequential manner, to achieve isotropic resolution without sample rotation (IsoView \cite{chhetri_whole-animal_2015}).}
+    \bcaption[Different optical arrangements for light-sheet microscopy]{\textbf{(a)} Original SPIM design with a single lens for detection and illuminaiton. \cite{huisken_optical_2004} \textbf{(b)} Upright SPIM to allow for easier sample mounting such as using a petri dish (iSPIM, \cite{wu_inverted_2011, hoyer_breaking_2016}). \textbf{(c)} Inverted SPIM, where the objectives are below the sample, which is held by a thin foil \cite{strnad_inverted_2016}. \textbf{(d)} Dual-view version of the upright configuration, where both objective can be used for illumination and detection (diSPIM, \cite{kumar_dual-view_2014}). \textbf{(e)} Multidirectional-SPIM (mSPIM) for even illumination of the sample with two objectives for illumination \cite{huisken_even_2007}. \textbf{(f)} Multi-view SPIM with two illumination and detection objectives for \textit{in toto} imaging of whole embryos (MuVI-SPIM \cite{krzic_multiview_2012}, SimView \cite{tomer_quantitative_2012}, Four-lens SPIM \cite{schmid_high-speed_2013}). \textbf{(g)} A combination of (d) and (f), using 4 identical objectives, where both can illuminate and detect in a sequential manner, to achieve isotropic resolution without sample rotation (IsoView \cite{chhetri_whole-animal_2015}).}
     \label{fig:spim_zoo}
   \end{figure}

@@ -20,6 +20,8 @@
 %\date{2012 november}
 \begin{document}
 
+\pagestyle{plain}
+
 \maketitle
 \pagenumbering{roman}
 
@@ -40,7 +42,6 @@
 %\end{nyilatkozat}
 
 
-%% spellcheck-language en-US
 \chapter*{Abstract}
 \addcontentsline{toc}{chapter}{Abstract}
 Abstract in English.
@@ -50,7 +51,12 @@ Abstract in English.
 \addcontentsline{toc}{chapter}{Tartlami kivonat}
 Absztrakt magyarul.
 
+
+%% spellcheck-language en-US
+
 \tableofcontents
+\pagestyle{fancy}
+\markboth{\MakeUppercase{Contents}}{}
 
 \listoffigures
 \addcontentsline{toc}{chapter}{List of Figures}
@@ -67,6 +73,7 @@ Absztrakt magyarul.
 \chapter*{Introduction}
 \setcounter{page}{1}
 \pagenumbering{arabic}
+\markboth{\MakeUppercase{Introduction}}{}
 \addcontentsline{toc}{chapter}{Introduction}
 
 
@@ -93,12 +100,14 @@ Absztrakt magyarul.
 \input{newResults}
 
 
-
+\cleardoublepage
 \chapter*{Acknowledgements}
+\markboth{\MakeUppercase{Acknowledgements}}{}
 \addcontentsline{toc}{chapter}{Acknowledgements}
 
 
 
+\input{appendix_a}
 \input{6_references}
 
 
