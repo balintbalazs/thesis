@@ -152,14 +152,28 @@ Light microscopy is one of the oldest methods that is still widely used today to
   \subsection{Resolution of a wide-field microscope}
     The resolution of an optical systems is defined by the size of the smallest distinguishable feature on the image. Practically this means the minimum distance between two point like objects so that the two objects can still be resolved. This mainly depends on two factors: the NA of the objective, and the pixel size of the imaging sensor.
 
-    Even if the imaging sensor would have infinitely fine resolution, it is not possible to reach arbitrary high resolutions due to the wave nature of light and diffraction effects that occur at the aperture of the objective. This means that depending on the wavelength of the light, any point source will have a finite size on the image that will limit the resolution. The shape of this image is called the \textit{point spread function}, or PSF, as this function describes the behavior of the optical system when imaging a point like source. This property of lenses was already discovered by Abbe in 1873 \cite{abbe_beitrage_1873}, when he constructed his famous formula for resolution:
+    Even if the imaging sensor would have infinitely fine resolution, it is not possible to reach arbitrary high resolutions due to the wave nature of light and diffraction effects that occur at the aperture of the objective. This means that depending on the wavelength of the light, any point source will have a finite size on the image, it will be spread out, that will limit the resolution. The shape of this image is called the \textit{point spread function}, or PSF (Fig. \ref{fig:psf-wf}), as this function describes the behavior of the optical system when imaging a point like source. This property of lenses was already discovered by Abbe in 1873 \cite{abbe_beitrage_1873}, when he constructed his famous formula for resolution:
     \begin{equation}
       \delta = \frac{\lambda}{2 \cdot NA}.
       \label{eq:abbe}
     \end{equation}
     where $d$ is the smallest distance between two distinguishable features.
 
-    This equation can be also derived from the scalar theory of diffraction using a paraxial approximation (Fraunhofer diffraction, \cite{born_principles_2013}) that describes the intensity of the electric field in the focus of a lens \cite{sheppard_imaging_1987}:
+    Another representation of the optical performance, is the \textit{optical transfer function}, or OTF (Fig. \ref{fig:psf-wf}), which is the Fourier transform of the PSF:
+    \begin{equation}
+      \text{OTF} = F(\text{PSF}).
+    \end{equation}
+    As this function operates in the frequency space, it describes how the different frequencies are affected by the system. The resolution can also be defined as the support of the OTF, since this describes the highest frequency that is still transmitted through the optical system. Any pattern with higher frequency will be lost, thus beyond the resolution limit. For circularly symmetric PSFs, the OTF will be real valued, however if this is not the case, the Fourier transform also introduces complex components.
+
+    \begin{figure}
+      \centering
+      \includegraphics[width=1\textwidth]{psfs/WF.pdf}
+      \bcaption[Axial cross section of the PSF and OTF of a wide-field microscope]{Simulated PSF and OTF for a wide-field microscope with a water immersion objective ($n=1.33$). $NA=1.1$, $\lambda = \SI{510}{nm}$}
+      \label{fig:psf-wf}
+    \end{figure}
+
+
+    Abbe's formula can be derived from the scalar theory of diffraction using a paraxial approximation (Fraunhofer diffraction, \cite{born_principles_2013}) that describes the intensity of the electric field in the focus of a lens \cite{sheppard_imaging_1987}:
 
     \begin{equation}
       H(u,v) = C_0 \left| \int_0^1 J_0 (vr)e^{-i\frac{1}{2}\cdot ur^2} rdr \right|^2,
@@ -176,7 +190,7 @@ Light microscopy is one of the oldest methods that is still widely used today to
     To determine the lateral resolution of the system, let's substitute $u=0$ as the axial optical coordinate, and evaluate Eq. (\ref{eq:psf}) which will give the intensity distribution inn the focal plane:
     \begin{equation}
       H(0,v) = C_0 \left| \int_0^1 J_0(vr)rdr \right|^2 = \left(2\frac{J_1(v)}{v} \right) ^2,
-      \label{eq:airy}==
+      \label{eq:airy}
     \end{equation}
     \begin{figure}
       \centering
@@ -186,12 +200,7 @@ Light microscopy is one of the oldest methods that is still widely used today to
     \end{figure}
 
 
-    \begin{figure}
-      \centering
-      \includegraphics[width=1\textwidth]{psfs/WF.pdf}
-      \bcaption[Axial cross section of the PSF and OTF of a wide-field microscope]{Simulated PSF and OTF for a wide-field microscope with a water immersion objective ($n=1.33$). $NA=1.1$, $\lambda = \SI{510}{nm}$}
-      \label{fig:psf-wf}
-    \end{figure}
+    
 
     where $J_1$ is the first order Bessel function of the first kind. This equation describes the famous Airy pattern (Fig. \ref{fig:airy}) which will be the shape of the PSF in the focal plane. The width of this pattern is the resolution, and although there are multiple definitions for this, the most commonly accepted is the Rayleigh criterion \cite{rayleigh} which defines the resolution as the distance between the central peak and the first local minimum. As this lies at $v=3.38$, the resolution can be expressed by substituting this value to Eq. (\ref{eq:substitutions}) and calculating the real distance ($r$):
     \begin{equation}
@@ -200,7 +209,7 @@ Light microscopy is one of the oldest methods that is still widely used today to
     \end{equation}
     which is equivalent to Abbe's original formula (Eq. (\ref{eq:abbe})). The only difference is the scaling factor which is due to the slightly different interpretations of width of the Airy disk as mentioned earlier.
 
-    Similarly, to calculate the intensity distribution along the axial axis, let's substitute $v=0$ to Eq. (\ref{eq:psf}):
+    Similarly, to calculate the intensity distribution along the axial direction, let's substitute $v=0$ to Eq. (\ref{eq:psf}):
     \begin{equation}
       H(u,0)=C_0\left( \frac{\sin \frac{u}{4}}{\frac{u}{4}}\right) ^2 . 
     \end{equation} 
@@ -210,7 +219,7 @@ Light microscopy is one of the oldest methods that is still widely used today to
       \label{eq:axialRes}
     \end{equation}
 
-    Up till here, we only considered a single, point-like emitter. In a more realistic scenario, however the emitters are neither point-like, nor single. Effectively, however, for every emitter the PSF would be imaged on the sensor, and this creates the final image. In mathematical terms, this can be expressed as a convolution operation between the underlying fluorophore distribution of the object ($O$) and the PSF ($H$):
+    Up till here, we only considered a single, point-like emitter. As the intensity function describes how an optical system "spreads out" the image of a point, it is allso called the Point Spread Function (PSF, Fig. \ref{fig:psf-wf}). In a more realistic scenario, however the emitters are neither point-like, nor single. Effectively, however, for every emitter the PSF would be imaged on the sensor, and this creates the final image. In mathematical terms, this can be expressed as a convolution operation between the underlying fluorophore distribution of the object ($O$) and the PSF ($H$):
     \begin{equation}
       I(u,v) = O(u,v) * H(u,v).
     \end{equation}
@@ -223,6 +232,7 @@ Light microscopy is one of the oldest methods that is still widely used today to
       \label{eq:systemPSF}
     \end{equation}
     where $H_{ill}$ is the point spread function of the illumination, and $H_{det}$ is the point spread function of the detection.
+
 
 
 \section{Imaging in three dimensions}
@@ -332,20 +342,20 @@ Light microscopy is one of the oldest methods that is still widely used today to
     \label{fig:spim_concept}
   \end{figure}
 
-  A selective-plane illumination microscope (SPIM) uses a light-sheet to illuminate only a thin section of the sample (Figure~\ref{fig:spim_concept}). This illumination plane is perpendicular to the imaging axis of the detection objective and coincides with the focal plane. This way, only the section in focus will be illuminated, thus providing much better signal to noise ratio. In case of conventional wide-field fluorescent microscopy, where the whole specimen is illuminated, light scattering from different regions contribute to a significant background noise. With selective-plane illumination, this problem is intrinsically solved, and it also provides a true sectioning capability. This makes SPIM especially suitable for 3D imaging.
+  A selective-plane illumination microscope (SPIM) uses a light-sheet to illuminate only a thin section of the sample (Figure~\ref{fig:spim_concept}). This illumination plane is perpendicular to the imaging axis of the detection objective and coincides with the focal plane. This way, only the section in focus will be illuminated, thus providing much better signal to noise ratio. In case of conventional wide-field fluorescence microscopy, where the whole specimen is illuminated, light scattering from different regions contribute to a significant background noise. With selective-plane illumination, this problem is intrinsically solved, and it also provides a true sectioning capability. This makes SPIM especially suitable for 3D imaging.
 
   
 
   The main principle behind single plane illumination microscopy, that is illuminating the sample from the side by a very thin light-sheet, dates back to the early 20\textsuperscript{th} century, when Siedentopf and Zsigmondy first described the ultramicroscope \cite{siedentopf_uber_1902}. This microscope used sunlight as an illumination source, that was guided through a precision slit to generate a thin light-sheet. This allowed Zsigmondy to visualize gold nanoparticles floating in and out of the light-sheet. Since these particles are much smaller than the wavelength of the light, the device was called an ultramicroscope. His studies with colloids together with the development of the ultramicroscope led Zsigmondy to win the Nobel Prize in 1925.
 
   previous to SPIM:
-  Voie et al. fixed guinea pig cochlea, rotating and reconstruction in 3D \cite{voie_orthogonal-plane_1993}, called Orthogonal-plane Fluorescent Optical Sectioning. Lateral resolution around \SI{10}{\micro m} and axial resolution of \SI{26}{\micro m}, with very large, \SI{1.5}{mm} field of view. Since the specimens they imaged contained calcium rich bone tissue, optical imaging was only possible by using an optical clearing method. In this work, they used EDTA (ethylenediaminetetraacetic acid) dehydrated in ethyl alcohol, then it was cleared, finally immersed in a fluorescent dye bath. TO acquire 3D images, the specimen was rotated, and translated to compensate for the off-axis rotation.
+  "Voie et al. fixed guinea pig cochlea, rotating and reconstruction in 3D \cite{voie_orthogonal-plane_1993}, called Orthogonal-plane Fluorescent Optical Sectioning. Lateral resolution around \SI{10}{\micro m} and axial resolution of \SI{26}{\micro m}, with very large, \SI{1.5}{mm} field of view. Since the specimens they imaged contained calcium rich bone tissue, optical imaging was only possible by using an optical clearing method. In this work, they used EDTA (ethylenediaminetetraacetic acid) dehydrated in ethyl alcohol, then it was cleared, finally immersed in a fluorescent dye bath. TO acquire 3D images, the specimen was rotated, and translated to compensate for the off-axis rotation."
 
   follow-up to Voie and Spelman: \cite{voie_three-dimensional_1995} 3D reconstruction of the cochlea for the images
 
   Similar to SPIM but not fluorescent: light scanning photomicrography \cite{huber_3d_2001}
 
-  Then, in 2002, Fuchs et al. introduces Thin  Light-Sheet Microscopy \cite{fuchs_thin_2002} who use this technique to investigate the microbial life in seawater samples without disturbing their natural environment (by e.g. placing them on a coverslip). Using TSLM allowed the to image the bacteria directly in the staining solution containing SYBR Green I without having to deal with background illumination from the dye, which would have been an issue with confocal microscopy for example. Their light-sheet was similar to the one utilized in OPFOS, being \SI{23}{\micro m} thin, and providing a \SI{1}{mm} \ \SI{1}{mm} field of view.
+  Then, in 2002, Fuchs et al. introduces Thin  Light-Sheet Microscopy \cite{fuchs_thin_2002} who use this technique to investigate the microbial life in seawater samples without disturbing their natural environment (by e.g. placing them on a coverslip). Using TSLM allowed the to image the bacteria directly in the staining solution containing SYBR Green I without having to deal with background illumination from the dye, which would have been an issue with confocal microscopy for example. Their light-sheet was similar to the one utilized in OPFOS, being \SI{23}{\micro m} thin, and providing a $\SI{1}{mm} \times \SI{1}{mm}$ field of view.
 
   The real breakthrough happened when light-sheet microscopy was combined with 
   endogenous fluorescent labels: fluorescent proteins
@@ -353,7 +363,7 @@ Light microscopy is one of the oldest methods that is still widely used today to
   and light-sheet
   these techniques were all combined in the 2004 Science paper from Huisken et al. that marks a landmark in light-sheet microscopy, and since then a widespread adoption started  in biological research, with multiple groups implementing their own setups.
 
-  Since then however, light-sheet microscopy was seldom used, but in the last decade it was reinvented and combined with fluorescent microscopy. The first notable light-sheet fluorescent microscope (LSFM) was developed at EMBL in 2004 \cite{huisken_optical_2004}, that demonstrated the benefits of using a light-sheet in imaging developmental processes in three dimension.
+  "Since then however, light-sheet microscopy was seldom used, but in the last decade it was reinvented and combined with fluorescent microscopy. The first notable light-sheet fluorescent microscope (LSFM) was developed at EMBL in 2004 \cite{huisken_optical_2004}, that demonstrated the benefits of using a light-sheet in imaging developmental processes in three dimension."
 
   Since then, light-sheet based imaging has gained more and more popularity, as it can be adapted and applied to a wide variety of problems. It was numerously proven to be a better choice than confocal microscopy \cite{reynaud_light_2008,huisken_selective_2009} especially in developmental biological applications \cite{weber_light_2011}. It can also be used with a wide variety of specimens of different sizes, such as zebrafish embryo \cite{keller_reconstruction_2008,kaufmann_multilayer_2012,mickoleit_high-resolution_2014}, mouse brain \cite{dodt_ultramicroscopy:_2007,} or drosophila embryo \cite{krzic_multiview_2012}. It is also possible to use light-sheet microscopy in super-resolution, allowing for individual molecule localization \cite{cella_zanacchi_live-cell_2011}.
 
@@ -369,32 +379,32 @@ Light microscopy is one of the oldest methods that is still widely used today to
     \begin{figure}[htpb]
         \centering
         \includegraphics[page=1,width=0.8\textwidth]{spim_cyl}
-        \bcaption[Basic optical components of a SPIM]{A selective plane illumination microscope uses two objectives orthogonally aligned. One objective is used to generate a thin light-sheet that illuminates the sample from the side, while the other is used for detection. To generate an image of the specimen, a suitable tube lens is used to focus the light on the sensor of a detection unit (e.g. sCMOS camera). The light-sheet is generated by the illumination objective, using a beam that is previously shaped by a cylindrical lens.}
+        \bcaption[Basic optical components of a SPIM]{ "A selective plane illumination microscope uses two objectives orthogonally aligned. One objective is used to generate a thin light-sheet that illuminates the sample from the side, while the other is used for detection. To generate an image of the specimen, a suitable tube lens is used to focus the light on the sensor of a detection unit (e.g. sCMOS camera). The light-sheet is generated by the illumination objective, using a beam that is previously shaped by a cylindrical lens."}
         \label{fig:light-sheet}
     \end{figure}
 
     \begin{figure}
         \centering
-        \includegraphics[width=1\textwidth]{psfs/SPIM.pdf}
-        \bcaption[Axial cross section of the PSF and OTF of a single plane illumination microscope]{Simulated PSF and OTF for a single plane illumination microscope with a water immersion objectives ($n=1.33$). Detection: $NA=1.1$, $\lambda = \SI{510}{nm}$, Illumination: $NA=0.1$, $\lambda = \SI{488}{nm}$}
+        \includegraphics[width=1\textwidth]{psfs/psf_spim.pdf}
+        \bcaption[Axial cross section of the PSF in a light-sheet microscope]{Simulated PSFs for illumination (left, NA = 0.1, $\lambda = \SI{488}{nm}$) and detection (center, NA=1.1, $\lambda = \SI{510}{nm}$). The system PSF is the multiplication of these PSFs (right).($n=1.33$). Because of the illumination scheme, the light-sheet microscope has a better axial resolution than a conventional wide-field setup.}
         \label{fig:psf-spim}
     \end{figure}
 
 
   % \subsection{Detection}
-    Since illumination and detection for lght-sheet microscopy are decoupled, two independent optical paths are implemented.
+    Since illumination and detection for light-sheet microscopy are decoupled, two independent optical paths are implemented.
 
     The detection unit of a SPIM is basically equivalent to a detection unit of a wide-field microscope, without a dichroic mirror (Figure \ref{fig:light-sheet}). Most important components are the objective together with the tube lens, filter wheel, and a sensor, typically a CCD or sCMOS camera.
 
-    One of the most important aspects that determine the resolution of the microscope is the detection objective. Since in developmental biology specimens require a water-based solution, these objectives are usually water dipping objectives directly submerged in the medium. Since the refraction index of water ($n=1.33$) is greater than the refraction index of air, these objectives tend to have a higher $NA$, which results in higher resolution. This, however, also depends on the sensor used, mainly on the pixel size ($d_{sensor}$).
+    One of the most important aspects that determine the resolution of the microscope is the detection objective. Since in biological specimens require a water-based solution, these objectives are usually water dipping objectives directly submerged in the medium. Since the refraction index of water ($n=1.33$) is greater than the refraction index of air, these objectives tend to have a higher \textit{NA}, which results in higher resolution. This, however, also depends on the pixel size of the sensor which determines the spatial sampling rate of the image.
 
-    The magnification is typically $10\times$, $20\times$, $40\times$ or $100\times$ but these values are sound only when the objective is used together with the prescribed tube lens. These lenses are specially made to be used with the specific objectives, and are corrected for any aberrations. They typically have a focal length of 160--200mm.
+    "The magnification is typically $10\times$, $20\times$, $40\times$ or $100\times$ but these values are sound only when the objective is used together with the prescribed tube lens. These lenses are specially made to be used with the specific objectives, and are corrected for any aberrations. They typically have a focal length of 160--200mm."
 
 
   % \subsection{Illumination}
 
     \subsection{Static light-sheet illumination}
-      The light-sheet can be generated using a cylindrical lens, which focuses the laser beam in only one direction, and creating a thin sheet in the proximity of the focal point. However, to achieve light-sheets that are thin enough, one would need to use cylindrical lens with low focal lengths, but these are hardly accessible in well corrected formats. For this reason, its more common to use a longer focal length cylindrical lens in conjunction with a microscope objective, which is well corrected for chromatic and spherical aberrations \cite{greger_basic_2007}. This way, the light-sheet length, thickness and width can be adjusted for the specific imaging tasks.
+      The light-sheet can be generated using a cylindrical lens, which focuses the laser beam in only one direction, creating a thin sheet in the proximity of the focal point. However, to achieve light-sheets that are thin enough, one would need to use cylindrical lens with a short focal length, but these are hardly accessible in well corrected formats. For this reason, its more common to use a longer focal length cylindrical lens in conjunction with a microscope objective, which is well corrected for chromatic and spherical aberrations \cite{greger_basic_2007}. This way, the light-sheet length, thickness and width can be adjusted for the specific imaging tasks.
 
       For paraxial waves, i.e. waves with nearly parallel wave front normals, a general wave equation can be approximated with the paraxial Helmholz equation \cite{krzic_multiple-view_2009, saleh_fundamentals_2007}
       \begin{equation}
@@ -474,6 +484,7 @@ Light microscopy is one of the oldest methods that is still widely used today to
       
 
     \subsection{Digitally scanned light-sheet illumination}
+
       \begin{figure}[bt!]
         \centering
         \includegraphics[page=2,width=0.8\textwidth]{spim_cyl}
@@ -501,10 +512,28 @@ Light microscopy is one of the oldest methods that is still widely used today to
   axial resolution relative to lateral
   complete view
   reduce scattering
+ 
+  implementations to this end:
+  To mSPIM \cite{huisken_even_2007} Fig. \ref{fig:spim_zoo}e, Ultramicroscope from Dodt \textit{et al.} \cite{dodt_ultramicroscopy:_2007}
+  
+  upright imaging in petri dish: iSPIM from Wu \textit{et al.} \cite{wu_inverted_2011}, SPIM-FCS Capoulade \textit{et al.} \cite{capoulade_quantitative_2011}, RESOLFT-SPIM Hoyer \textit{et al.} \cite{hoyer_breaking_2016}; Fig. \ref{fig:spim_zoo}b
+
+  dual-view inverted SPIM, or diSPIM \cite{kumar_dual-view_2014} Fig. \ref{fig:spim_zoo}d
+
+  inverted SPIM for mouse imaging Strnad \textit{et al.} \cite{strnad_inverted_2016}, Fig. \ref{fig:spim_zoo}c
+
+  MuVi-SPIM \cite{krzic_multiview_2012}, SimView \cite{tomer_quantitative_2012}, Four-lens SPIM \cite{schmid_high-speed_2013}, Fig. \ref{fig:spim_zoo}f
+
+  IsoView \cite{chhetri_whole-animal_2015} Fig. \ref{fig:spim_zoo}g
+  
+  Bessle beam ilumination \cite{fahrbach_line_2010,fahrbach_propagation_2012,fahrbach_light-sheet_2013}, Betzig'a Bessel \cite{gao_3d_2014} 2P Bessle Beam from Betzig\cite{planchon_rapid_2011}
+
+
+
 
   \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{spim_zoo}
-    \bcaption[Different optical arrangements for light-sheet microscopy]{\textbf{(a)} Original SPIM design with a single lens for detection and illuminaiton. \cite{huisken_optical_2004} \textbf{(b)} Upright SPIM to allow for easier sample mounting such as using a petri dish (iSPIM, \cite{wu_inverted_2011, hoyer_breaking_2016}). \textbf{(c)} Inverted SPIM, where the objectives are below the sample, which is held by a thin foil \cite{strnad_inverted_2016}. \textbf{(d)} Dual-view version of the upright configuration, where both objective can be used for illumination and detection (diSPIM, \cite{kumar_dual-view_2014}). \textbf{(e)} Multidirectional-SPIM (mSPIM) for even illumination of the sample with two objectives for illumination \cite{huisken_even_2007}. \textbf{(f)} Multi-view SPIM with two illumination and detection objectives for \textit{in toto} imaging of whole embryos (MuVi-SPIM \cite{krzic_multiview_2012}, SimView \cite{tomer_quantitative_2012}, Four-lens SPIM \cite{schmid_high-speed_2013}). \textbf{(g)} A combination of (d) and (f), using 4 identical objectives, where both can illuminate and detect in a sequential manner, to achieve isotropic resolution without sample rotation (IsoView \cite{chhetri_whole-animal_2015}).}
+    \bcaption[Different optical arrangements for light-sheet microscopy]{\textbf{(a)} Original SPIM design with a single lens for detection and illuminaiton. \cite{huisken_optical_2004} \textbf{(b)} Upright SPIM to allow for easier sample mounting such as using a petri dish (iSPIM, \cite{capoulade_quantitative_2011, wu_inverted_2011, hoyer_breaking_2016}). \textbf{(c)} Inverted SPIM, where the objectives are below the sample, which is held by a thin foil \cite{strnad_inverted_2016}. \textbf{(d)} Dual-view version of the upright configuration, where both objective can be used for illumination and detection (diSPIM, \cite{kumar_dual-view_2014}). \textbf{(e)} Multidirectional-SPIM (mSPIM) for even illumination of the sample with two objectives for illumination \cite{huisken_even_2007}. \textbf{(f)} Multi-view SPIM with two illumination and detection objectives for \textit{in toto} imaging of whole embryos (MuVi-SPIM \cite{krzic_multiview_2012}, SimView \cite{tomer_quantitative_2012}, Four-lens SPIM \cite{schmid_high-speed_2013}). \textbf{(g)} A combination of (d) and (f), using 4 identical objectives, where both can illuminate and detect in a sequential manner, to achieve isotropic resolution without sample rotation (IsoView \cite{chhetri_whole-animal_2015}).}
     \label{fig:spim_zoo}
   \end{figure}
