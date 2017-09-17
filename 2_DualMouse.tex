@@ -115,6 +115,15 @@
     \label{fig:fullSchematics}
   \end{figure}
 
+  \subsection{Illumination}
+    \subsubsection{Beam splitter unit}
+      \label{sec:splitter}
+
+  \subsection{Detection}
+    \subsubsection{Light combining unit}
+      \label{sec:dualMirror}
+
+
 \section{Optical alignment}
   Precise alignment of the illumination and detection paths are crucial for high quality imaging, and has a pronounced  importance for high magnification and high resolution optical systems. The DualMouse SPIM contains two illumination and detection paths that share many common elements, which makes alignment a *important?* process. The final aim for the alignment is to perfectly overlap the light-sheets with the detection focal planes, and to optimize ... 
 
@@ -260,7 +269,18 @@
 
     \begin{figure}[htb]
       \centering
+      \includegraphics[width=0.7\textwidth]{gibson-lanni}
+      \bcaption[Schematics for the Gibson-Lanni model]{The model is based on the differences in light propagation between the experimental (red) and design conditions (blue). The optical path length difference is calculated as follows: $OPD = [ABCD] - [PQRS]$. System properties are represented by vectors $\mathbf{n} = (n_i, n_i^*, n_g, n_g^*, n_s)$ and $\mathbf{t} = (t_i, t_i^*, t_g, t_g^*, t_s)$ for the refractive inices and path lengths respectively. Adapted from \cite{li_fast_2017}.}
+      \label{fig:gibson-lanni}
+    \end{figure}
+
+    \begin{figure}[htb]
+      \centering
       \includegraphics[width=\textwidth]{PSF}
       \bcaption[Simulated and measured PSF of Dual Mouse-SPIM]{Top row: axial sections of simulated and measured point spread funcitons. Middle row: lateral intensity profile and Gaussian fit. Bottom row: Axial intensity profile and Gaussian fit. Simulations were performed based on the Gibson-Lanni model. Immersion medium  and sample refractive index: 1.330, coverslip (FEP foil) refractive index: 1.344, coverslip distance: \SI{1900}{\micro m}, coverslip thickness: \SI{50}{\micro m}. Scale bar: \SI{500}{nm}.}
       \label{fig:measuredPSF}
     \end{figure}
+
+
+  \subsection{Stability of view switcher unit}
+    \label{sec:mirrorStability}
