@@ -38,6 +38,8 @@
 \usepackage{setspace}
 \usepackage{media9}
 \usepackage{titletoc}
+\usepackage{enumitem}
+\setlist{noitemsep} % or \setlist{noitemsep} to leave space around whole list
 % \titlecontents*{chapter}% <section-type>
 %   [0pt]% <left>
 %   {\addvspace{1em}}% <above-code>

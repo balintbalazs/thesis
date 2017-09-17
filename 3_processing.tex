@@ -7,7 +7,7 @@
 %      #
 %  ####
 
-\section{Image processing for multi-view microscopy}
+\chapter{Image processing for multi-view microscopy}
   \graphicspath{{./figures/3_processing/}}
 
   When using any kind of microscopy in research, image processing is a crucial part of the workflow. This is especially true for light-sheet microscopy, since it's capable imaging the same specimen for multiple days, producing immense amounts of data. A single overnight experiment of \textit{Drosophila} development (which is a very typical use-case for light-sheet) can produce multiple terabytes of data. To see the real scales, let's consider the following imaging conditions:
@@ -25,7 +25,7 @@
   As it is apparent from this table, 
   % proportional to the symbol frequencies. A string of symbols can be encoded by applying this process recursively: The sub-interval from the previous step is subdivided again using the same proportions. Figure4.2. shows an example of arithmetic coding using
 
-      
+\section{Multi-view image fusion}
   \subsection{Registration}
     \subsubsection{Image based registration}
     \subsubsection{Bead based registration}
@@ -54,9 +54,9 @@
 
   \subsection{Entropy coding}
     \subsubsection{Information and Entropy}
-      For the purpose of data compression it is useful to quantify the amount of \textit{information} contained within a piece of data. The first rigorous definition of information was presented in an extremely influential paper by Shannon, published in two parts in 1948 \cite{shannon_mathematical_1948, shannon_mathematical_1948-1}.
+      "For the purpose of data compression it is useful to quantify the amount of \textit{information} contained within a piece of data. The first rigorous definition of information was presented in an extremely influential paper by Shannon, published in two parts in 1948 \cite{shannon_mathematical_1948, shannon_mathematical_1948-1}."
 
-      First, let's define the amount of self-information contained in the outcome of a random experiment:
+      "First, let's define the amount of self-information contained in the outcome of a random experiment:"
       \begin{equation}
         I(A) = \log_b \frac{1}{P(A)} = - \log_b P(A)
       \end{equation}
@@ -112,7 +112,7 @@
 
       From these statements the first is trivial to see that is correct. If the more frequent letters would have longer codewords then the less frequent letters, the average codeword length (weighted by the probabilities) would be larger than in the opposite case. Thus, more frequent letters must not have longer codewords than less frequent letter.
 
-      The second statement at first glance might be so intuitive, so let's consider the following situation. The two least frequent codewords do not have the same lengths, that is the least frequent is longer. However, because this is a prefix code, the second longest codeword is not a prefix of the longest codeword. This means, if we truncate the longest codeword to the same length as the second longest, they will still be distinct codes and uniquely decodable. This way we have a new coding scheme which requires less space on average to code the same sequence as the original code, from which we can conclude the original code was not optimal. Therefore, for an optimal code, statement 2 must be true.
+      The second statement at first glance might not be so intuitive, so let's consider the following situation. The two least frequent codewords do not have the same lengths, that is the least frequent is longer. However, because this is a prefix code, the second longest codeword is not a prefix of the longest codeword. This means, if we truncate the longest codeword to the same length as the second longest, they will still be distinct codes and uniquely decodable. This way we have a new coding scheme which requires less space on average to code the same sequence as the original code, from which we can conclude the original code was not optimal. Therefore, for an optimal code, statement 2 must be true.
 
       \begin{table}
         \bcaption[Huffman code table]{}
@@ -138,19 +138,17 @@
         \label{fig:huffman}
       \end{figure}
 
-      To construct such a code, the following iterative procedure can be used. Let's consider an alphabet with five letters $A = [a_1,a_2,a_3,a_4,a_5]$ with $P(a_1)=P(a_3)=0.2$, $P(a_2)=0.4$ and $P(a_4)=P(a_5)=0.1$ (Table \ref{tab:huffman1}). The entropy for this source is 2.122 bits/symbol. Let's order the letters by probability, and consider the two least frequent. Since the codewords assigned to these should have the same lengths, we can assign their codewords as
+      To construct such a code, the following iterative procedure can be used. Let's consider an alphabet with five letters $A = [a_1,a_2,a_3,a_4,a_5]$ with $P(a_1)=P(a_3)=0.2$, $P(a_2)=0.4$ and $P(a_4)=P(a_5)=0.1$ (Table \ref{tab:huffman1}). "The entropy for this source is 2.122 bits/symbol." Let's order the letters by probability, and consider the two least frequent. Since the codewords assigned to these should have the same lengths, "we can assign their codewords as"
       \begin{align*}
         c(a_4) &= \alpha_1 * 0 \\
         c(a_5) &= \alpha_1 *1
       \end{align*}
 
-      where $c(a_i)$ is the assigned codeword for letter $a_i$ and $*$ denotes concatenation. Now we define a new alphabet $A'$ with only four letters $a_1, a_2, a_3, a'_4$, where $a'_4$ is a merged letter for $a_4$ and $a_5$ with the probability $P(a'_4) = P(a_4) + P(a_5) = 0.2$. We can continue this process of merging the letters until all of them are merged and we have only one letter left. Since this contains all of the original letter, its probability is 1. We can represent the end result in a binary tree (see Figure \ref{fig:huffman}), where the leaves are the letter of the alphabet, nodes are the merged letters, and the codewords are represented by the path from the root node to each leaf (compare with Table \ref{tab:huffman2}). The average length of this code is
+      where $c(a_i)$ is the assigned codeword for letter $a_i$ and $*$ denotes concatenation. Now we define a new alphabet $A'$ with only four letters $a_1, a_2, a_3, a'_4$, where $a'_4$ is a merged letter for $a_4$ and $a_5$ with the probability $P(a'_4) = P(a_4) + P(a_5) = 0.2$. We can continue this process of merging the letters until all of them are merged and we have only one letter left. Since this contains all of the original letters, its probability is 1. We can represent the end result in a binary tree (see Figure \ref{fig:huffman}), where the leaves are the letter of the alphabet, nodes are the merged letters, and the codewords are represented by the path from the root node to each leaf (compare with Table \ref{tab:huffman2}). "The average length of this code is"
       \begin{equation}
         l = 0.4\times 1 + 0.2 \times 2 + 0.2 \times 3 + 0.1 \times 4 + 0.1 \times 4 = 2.2 \text{ bits/symbol}
       \end{equation}
-      A measure of the efficiency of this code is its redundancy—the difference between the entropy
-      and the average length. In this case, the redundancy is 0.078 bits/symbol. The redundancy is
-      zero when the probabilities are negative powers of two.
+      "A measure of the efficiency of this code is its redundancy—the difference between the entropy and the average length. In this case, the redundancy is 0.078 bits/symbol. The redundancy is zero when the probabilities are negative powers of two."
 
       \begin{table}
         \bcaption[Huffman code table]{}
@@ -177,19 +175,9 @@
 
       To get around this fundamental limitation, a coding scheme must be used which does not use discrete codewords at all. Arithmetic coding is the most well-known example of such a scheme. The idea is due to Peter Elias. He developed it during the same course on information theory in which Huffman developed his coding method, but he never published it.
 
-      In order to distinguish a sequence of symbols from another sequence of symbols we need to
-      tag it with a unique identifier. One possible set of tags for representing sequences of symbols
-      are the numbers in the unit interval [0,1). Because the number of numbers in the unit interval
-      is infinite, it should be possible to assign a unique tag to each distinct sequence of symbols. In
-      order to do this, we need a function that will map sequences of symbols into the unit interval.
+      "In order to distinguish a sequence of symbols from another sequence of symbols we need to tag it with a unique identifier. One possible set of tags for representing sequences of symbols are the numbers in the unit interval [0,1). Because the number of numbers in the unit interval is infinite, it should be possible to assign a unique tag to each distinct sequence of symbols. In order to do this, we need a function that will map sequences of symbols into the unit interval."
 
-      A straightforward algorithm to arithmetically encode a given input string is the
-      following: Partition the unit interval [0, 1) into sub-intervals and assign one subinterval
-      to each symbol in the input alphabet. The sizes of the sub-intervals are
-      chosen to be proportional to the symbol frequencies. A string of symbols can be
-      encoded by applying this process recursively: The sub-interval from the previous
-      step is subdivided again using the same proportions. Figure \ref{fig:arithmetic}. shows an example of
-      arithmetic coding using the symbol frequencies given in Table \ref{tab:arithmetic}.
+      "A straightforward algorithm to arithmetically encode a given input string is the following: Partition the unit interval [0, 1) into sub-intervals and assign one subinterval to each symbol in the input alphabet. The sizes of the sub-intervals are chosen to be proportional to the symbol frequencies. A string of symbols can be encoded by applying this process recursively: The sub-interval from the previous step is subdivided again using the same proportions. Figure \ref{fig:arithmetic}. shows an example of arithmetic coding using the symbol frequencies given in Table \ref{tab:arithmetic}."
 
       \begin{table}
         \bcaption[Example alphabet for arithmetic coding]{}
@@ -220,12 +208,12 @@
       The decoding process is analogous to encoding. The decoder keeps track of the current lower and upper bounds. It mimics the rescaling operations of the encoder based on the bits of the encoded binary number.
 
   \subsection{Transform coding}
-    The methods outlined in the previous section are effective at compressing the data in an optimal way and reaching the first order entropy, however the assume nothing about the structure of the data. For image compression it's important to also consider this, since most images have a relatively high level of autocorrelation, meaning that neighboring values have a high chance of being similar, although not necessarily equal. Transform coding is a technique that by itself does not compress the data, however by exploiting some knowledge of the structure it transforms the data effectively reducing it's first order entropy. When regular entropy coding is then preformed on the transformed data, because of the reduced first-order entropy, these techniques can achieve a higher rate of compression. At decompression, after decoding the entropy coder, the reverse transformation is applied to reveal the original data. In this section I will introduce two of the most important algorithms for transform coding, Discrete Cosine Transform and Wavelet Transform.
+    The methods outlined in the previous section are effective at compressing the data in an optimal way and reaching the first order entropy, however the assume nothing about the structure of the data. For image compression it's important to also consider this, since most images have a relatively high level of autocorrelation, meaning that neighboring values have a high chance of being similar, although not necessarily equal. Transform coding is a technique that by itself does not compress the data, however by exploiting some knowledge of the structure it transforms the data effectively reducing it's first order entropy. When regular entropy coding is then preformed on the transformed data, because of the reduced first-order entropy, these techniques can achieve a higher rate of compression. At decompression, after decoding the entropy coder, the reverse transformation is applied to reveal the original data. This section will introduce two of the most important algorithms for transform coding, Discrete Cosine Transform and Discrete Wavelet Transform.
 
     \subsubsection{Discrete Cosine Transform}
       Discrete Cosine Transform \cite{ahmed_discrete_1974} is closely related to the well known Fourier transform. The main idea behind this is to represent a function by a weighted sum of different sine and cosine functions. This provides a different view, instead of looking at the data in the time domain, we gain information about the frequencies that compose the signal. 
 
-      Discrete Cosine Transform is a variant of the discrete Fourier transformation, however instead of making the signal periodic which can introduce large jumps at the edges, the signal is extended in a symmetric way. Since this will give a smooth transition even at the boundaries, the transform does not have to include so many high frequency components. Also, because of the symmetric extension, it's possible to represent the functions only by using the cosine bases, resulting in fewer coefficients. Overall, the DCT is much better suited for compression, than DFT.
+      "Discrete Cosine Transform is a variant of the discrete Fourier transformation", however instead of making the signal periodic which can introduce large jumps at the edges, the signal is extended in a symmetric way. Since this will give a smooth transition even at the boundaries, the transform does not have to include so many high frequency components. Also, because of the symmetric extension, it's possible to represent the functions only by using the cosine bases, resulting in fewer coefficients. Overall, the DCT is much better suited for compression, than DFT.
 
       The DCT base functions are defined in the following way:
       \begin{equation}
@@ -235,9 +223,7 @@
             \sqrt{\frac{2}{n}} & \text{otherwise}
           \end{cases}
       \end{equation}
-      The scaling factors is are chosen so that the $L_2$ norm of each basis vector is 1 and
-      so the transform is orthonormal. The inverse transform can therefore be found by
-      simply transposing the transform matrix.
+      "The scaling factors is are chosen so that the $L_2$ norm of each basis vector is 1 and so the transform is orthonormal. The inverse transform can therefore be found by simply transposing the transform matrix."
 
       \begin{figure}
         \centering
@@ -246,25 +232,28 @@
         \label{fig:DCT_bases}
       \end{figure}
 
-      Applying the DCT to two dimensional functions, i.e. images is very similar to the two dimensional Fourier transform. The base functions are the outer products oft the 1D base functions (Figure \ref{fig:DCT_bases}.), and the transform can actually be performed separately for each dimension.
+      Applying the DCT to two dimensional functions, i.e. images is very similar to the two dimensional Fourier transform. The base functions are the outer products of the 1D base functions (Figure \ref{fig:DCT_bases}.), and the transform can actually be performed separately for each dimension.
 
       Computation effort in a naive implementation is $O(n^2)$ but since DCT is based on the Fourier transform, an $O(n \log n)$ algorithm is also possible, analogous to the fast Fourier transform. This is still larger than a linear scaling with the data size, which can be very inconvenient. Therefore, in practice the DCT is usually applied to smaller blocks of the image, such as $4\times4$, $8\time8$ or $16\times16$. 
 
       Although DCT is an effective way of reducing the first-order entropy, it has a potential shortcoming by its use of floating point arithmetic. Because of the finite machine precision inherent rounding errors will occur, which means the reverse transformation can not generate the exact original data. For many application, such as photography, this still can be acceptable, but for scientific image data lossy compression is generally not accepted.
 
+      DCT-like integer-based variants in JPEG-XR, and H.264
+
 
     \subsubsection{Discrete Wavelet Transform}
-      Methods based on Fourier analysis, such as the DCT introduced in the previous section, give excellent localization in frequency space: They tell us exactly which frequencies occur in the data, which is very useful for data compression. However, they give no spatial localization: They do not tell us where in the signal these frequencies occur. Every DCT base function affect the whole image domain, which means distinct local structures can have a global effect on the final outcome. In case of an edge for example, it's necessary to include a high frequency component with a large coefficient, but since every DCT base function has an impact on the whole domain, this will have to be compensated on smoother regions by also increasing the coefficients of other factors. This can negatively impact compression performance.
+      "!!CHANGE THIS!!Methods based on Fourier analysis, such as the DCT introduced in the previous section, give excellent localization in frequency space: They tell us exactly which frequencies occur in the data, which is very useful for data compression. However, they give no spatial localization: They do not tell us where in the signal these frequencies occur. Every DCT base function affect the whole image domain!!UNTIL HERE!!"
+      , which means distinct local structures can have a global effect on the final outcome. In case of an edge for example, it's necessary to include a high frequency component with a large coefficient, but since every DCT base function has an impact on the whole domain, this will have to be compensated on smoother regions by also increasing the coefficients of other factors. This can negatively impact compression performance.
 
       A solution for this is to use different base functions, namely ones with finite support. This way we will not only be able to get information about the frequency, but also about the localization of that frequency in some extent.
 
-      One option for such a set of local basis functions, and certainly the most popular one, is the multi-resolution analysis based on wavelets. The term “multi-resolution analysis” in the context of wavelets was introduced in the late 1980s by Stéphane Mallat \cite{mallat_theory_1989}, though research on wavelets had been ongoing for several years before that.
+      "!!!!One option for such a set of local basis functions, and certainly the most popular one, is the multi-resolution analysis based on wavelets. The term “multi-resolution analysis” in the context of wavelets was introduced in the late 1980s by Stéphane Mallat \cite{mallat_theory_1989}, though research on wavelets had been ongoing for several years before that.!!!!"
 
-      The idea behind the wavelet multi-resolution analysis is to build a basis out of translated and scaled versions of one underlying function called the \textit{mother wavelet} $\psi$. The mother wavelet is non-zero only in a small region, leading to the locality properties. It is translated to cover the whole domain. It also covers only a small frequency band, and is scaled to cover higher or lower frequencies. The family of translated and scaled functions $\psi_{l,i}$ is generated from   according to
+      "The idea behind the wavelet multi-resolution analysis is to build a basis out of translated and scaled versions of one underlying function called the \textit{mother wavelet} $\psi$. The mother wavelet is non-zero only in a small region, leading to the locality properties. It is translated to cover the whole domain. It also covers only a small frequency band, and is scaled to cover higher or lower frequencies. The family of translated and scaled functions $\psi_{l,i}$ is generated from   according to"
       \begin{equation}
         \psi_{l,i}(t) = \sqrt{2^l} \psi \left(2^l t-i\right), \qquad l, i \in \mathbb{Z}
       \end{equation}
-      Incrementing $l$ halves the width of the resulting function, which thus corresponds to a higher frequency band. Changing $i$ moves the function along the x axis. The size of each step scales with the width of the function, defined by $l$. The normalization factor $\sqrt{2^l}$ is chosen so that the $L_2$ norm stays constant. The mother wavelet can be chosen so that the $\psi_{l,i}$ are pairwise orthogonal and thus form a basis of some function space. However, representing a function in this basis will generally require an infinite number of basis functions $\psi_{l,i}$: To represent a constant component, i.e. content of frequency zero, the wavelet must be infinitely scaled. To address this, it is necessary to introduce an additional scaling function $\phi$ which complements the wavelet. It is scaled and translated the same way as the mother wavelet.
+      "Incrementing $l$ halves the width of the resulting function, which thus corresponds to a higher frequency band. Changing $i$ moves the function along the x axis. The size of each step scales with the width of the function, defined by $l$. The normalization factor $\sqrt{2^l}$ is chosen so that the $L_2$ norm stays constant. The mother wavelet can be chosen so that the $\psi_{l,i}$ are pairwise orthogonal and thus form a basis of some function space. However, representing a function in this basis will generally require an infinite number of basis functions $\psi_{l,i}$: To represent a constant component, i.e. content of frequency zero, the wavelet must be infinitely scaled. To address this, it is necessary to introduce an additional scaling function $\phi$ which complements the wavelet. It is scaled and translated the same way as the mother wavelet."
 
       The oldest wavelets are the Haar wavelets, and because of their simplicity, they provide a good example on how wavelet transformation works. The Haar wavelet scaling $\phi$ and wavelet $\psi$ functions are the following:
       \begin{equation}
@@ -285,14 +274,14 @@
         \end{cases}
         \label{eq:wavelet}
       \end{equation}
-      Clearly, all wavelet functions $\psi_{l,i}$ are orthogonal. Additionally, the scaling functions $\phi_{l,i}$ at a fixed level $i$ are orthogonal. The scaling functions $\phi_{l,i}$ are also orthogonal to the wavelet functions $\psi_{k,i}$, $k \geq l$ at the same and all finer levels.
+      "Clearly, all wavelet functions $\psi_{l,i}$ are orthogonal. Additionally, the scaling functions $\phi_{l,i}$ at a fixed level $i$ are orthogonal. The scaling functions $\phi_{l,i}$ are also orthogonal to the wavelet functions $\psi_{k,i}$, $k \geq l$ at the same and all finer levels."
 
-      Figure \ref{fig:wavelet}. (left) schematically shows the decomposition of a signal into low-pass components corresponding to the scaling function, and high-pass components corresponding to the wavelet. The signal $s_0$ can be represented by the translated scaling function at a finer scale $l_0$, which can be decomposed to the sum of a coarser approximation $s_1$ corresponding to the scaling function and the detail part $d_1$ corresponding to the wavelet functions. This decomposition to a sum of coarser approximation and detail can be continued multiple times, thus resulting in the previously mentioned multi-resolution analysis.
+      "Figure \ref{fig:wavelet}. (left) schematically shows the decomposition of a signal into low-pass components corresponding to the scaling function, and high-pass components corresponding to the wavelet. The signal $s_0$ can be represented by the translated scaling function at a finer scale $l_0$, "which can be decomposed to the sum of a coarser approximation $s_1$ corresponding to the scaling function and the detail part $d_1$ corresponding to the wavelet functions. This decomposition to a sum of coarser approximation and detail can be continued multiple times, thus resulting in the previously mentioned multi-resolution analysis.
 
 
       \begin{figure}
         \centering
-        \includegraphics[width=0.6\textwidth]{wavelet}
+        "\includegraphics[width=0.6\textwidth]{wavelet}"
         \bcaption[Multi-resolution wavelet decomposition, using the Haar wavelets as an example]{Left: decomposition to multiple levels of low pass and high pass coefficients corresponding to the scaling and the wavelet functions respectively. Right: some of the base wavelet functions used for the decomposition.}
         \label{fig:wavelet}
       \end{figure}
@@ -308,4 +297,12 @@
 
   % \section{Conclusion}
   % In this paper I have introduced some of the most important techniques for image compression. Many of these are used in different image compression algorithms, such as . The common point for each of these formats is that they first transform the images to effectively reduce first order entropy, either by predicting the pixel values and coding only the differences (JPEG-LS), or by using either Discrete Cosine Transform (JPEG) or Discrete Wavelet Transform (JPEG2000). In the case of lossy standards after this transformation step a quantization is also performed depending on the desired quality setting for the coder. Finally as the last step the transformed and quantized coefficients are compressed by an arithmetic coder, such as Huffman coding in JPEG of arithmetic coding in JPEG2000. The end result in each case is a highly optimized compression that greatly reduces the file size.
+
+\section{Noise in light microscopy images}
+  \subsection{Photon shot noise}
+  \subsection{Camera noise}
+    \subsubsection{CCD}
+    \subsubsection{EM-CCD}
+    \subsubsection{sCMOS}
+  \subsection{Variance stabilization}
 
