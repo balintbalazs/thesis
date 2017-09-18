@@ -17,6 +17,7 @@
 \usepackage{upgreek}
 \usepackage{siunitx}
 \usepackage{fancyhdr} % for better header layout
+\usepackage{xspace}
 
 \usepackage[ plainpages = false, pdfpagelabels,
                  %pdftex,
