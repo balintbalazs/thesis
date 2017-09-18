@@ -14,7 +14,12 @@
 Unraveling the secrets of mammalian development has been a long standing challenge for developmental biologists and medical professionals alike. Understanding early embryonic development allows to shed light on questions such as human infertility and congenital diseases. 
 This phase of early life is an incredibly complex and dynamic process spanning through large scales in space and time. Subcellular processes at the nanoscale are happening in the range of milliseconds or faster, while whole embryo reorganizations and tissue migration events take place over the course of hours \cite{gilbert_developmental_2013}. Resolving these processes presents a true challenge, since to also understand the underlying mechanisms molecular specificity is just as crucial as high spatial and temporal resolution.
 
-
+\begin{figure}
+  \centering
+  \includegraphics[width=0.6\textwidth]{tradeoffs}
+  \bcaption[Tradeoffs in fluorescence microscopy for live imaging]{When optimizing the imaging conditions (red dot), a tradeoff has to be made between resolution, field of view, imaging speed, and photodamage. One can only be improved at the expense of the others due to the limited photon budget of the fluorescent molecules. Adapted from Eric Betzig's presentations.}
+  \label{fig:tradeoffs}
+\end{figure}
 
 The most commonly used model organism for these kind of questions is the mouse embryo, that exhibits several common features to human development.
 % , and allows to study it 
@@ -35,34 +40,26 @@ Marvin Minsky confocal microscope, no laser, moving sample \cite{minsky_microsco
 first laser scanning confocal: sample stationary, objective is moved Davidovits and Egger 
 first application of laser scanning confocal in "observation of endothelial cells lining the inside of the cornea" \cite{davidovits_photomicrography_1973}
 
-mostly wide-field, Oct4 - self renewal of pluripotent stem cells in ICM/epiblast \cite{nichols_formation_1998}
+% mostly wide-field, Oct4 - self renewal of pluripotent stem cells in ICM/epiblast \cite{nichols_formation_1998}
 
-Sox2 in ICM, also maternal proteins important, similar role as Oct4 Both Oct4 and Sox2 are necessary for ICM formation, without cells become trophoectoderm. Furthermore, for extraembryonic endoderm (ExEn) only Oct4 is required, while for extraembryonic ectoderm (ExE) only Sox2 is required. No time lapse, but confocal used to locate proteins in embryo \cite{avilion_multipotent_2003}
+% Sox2 in ICM, also maternal proteins important, similar role as Oct4 Both Oct4 and Sox2 are necessary for ICM formation, without cells become trophoectoderm. Furthermore, for extraembryonic endoderm (ExEn) only Oct4 is required, while for extraembryonic ectoderm (ExE) only Sox2 is required. No time lapse, but confocal used to locate proteins in embryo \cite{avilion_multipotent_2003}
 
-inactivation of X chromosome and histone macroH2A1
-mouse liver in confocal - fixed samples \cite{costanzi_histone_1998}
+% inactivation of X chromosome and histone macroH2A1
+% mouse liver in confocal - fixed samples \cite{costanzi_histone_1998}
 
-antibodies against amyloid $\upbeta$-peptide reduce Alzheimer in mouse, cryostat sections of mouse brain imaged in confocal\cite{bard_peripherally_2000}
+% antibodies against amyloid $\upbeta$-peptide reduce Alzheimer in mouse, cryostat sections of mouse brain imaged in confocal\cite{bard_peripherally_2000}
 
 
-aorta imaging in embryo slices, confocal, live stem cells from aorta endothelium? \cite{boisset_vivo_2010}
+% aorta imaging in embryo slices, confocal, live stem cells from aorta endothelium? \cite{boisset_vivo_2010}
 
-fixed embryos, maintaining pluripotency in embryonic stem cells\cite{sato_maintenance_2004}
+% fixed embryos, maintaining pluripotency in embryonic stem cells\cite{sato_maintenance_2004}
 
-imaging thrombus formation in real time with intravital high-speed confocal microscopy\cite{falati_real-time_2002}
+% imaging thrombus formation in real time with intravital high-speed confocal microscopy\cite{falati_real-time_2002}
 
-turning blood into brain hematopoietic stem cells migrate to brain and express neuron-specific antigens \cite{mezey_turning_2000}
+% turning blood into brain hematopoietic stem cells migrate to brain and express neuron-specific antigens \cite{mezey_turning_2000}
 
-papers from Takashi:
-apical domain for symmetry breaking \cite{korotkevich_apical_2017}
 
-Asymmetric division of contractile domains couples cell positioning and fate specification, Jean-Léon + Hervé \cite{maitre_asymmetric_2016}
 
-specification of first embryonic lineage, venus trap \cite{dietrich_venus_2015}
-
-surface tension and compaction \cite{maitre_pulsatile_2015}
-
-self organization framework for symmetry breaking (review)
 
 
 uj regi cikk Keller \cite{keller_life_2006}
@@ -73,7 +70,7 @@ uj regi cikk Keller \cite{keller_life_2006}
 %\section{Light-sheet microscopy}
 
 \section{Wide-field fluorescence microscopy}
-  Fluorescence microscopy \cite{lichtman_fluorescence_2005,diaspro_optical_2011}, as a subset of light microscopy is one of the few methods that allow subcellular imaging of live specimens. As the name of the technique suggests, this method collects fluorescent light from the specimens which has numerous advantages, but also some drawbacks. Since biological tissue is usually not fluorescent, except for some autofluorescence at shorter wavelengths, fluorescent dyes or proteins have to be introduced to the system in order to be able to collect the necessary information.
+  Fluorescence microscopy \cite{lichtman_fluorescence_2005,diaspro_optical_2011}, as a subset of light microscopy is one of the few methods that allow subcellular imaging of live specimens. The first use of the term fluorescence is credited to  George Gabriel Stokes \cite{stokes_change_1852}, and is the phenomenon when a molecule emits light after absorbing light or other electromagnetic radiation. As the name of the technique suggests, this method collects fluorescent light from the specimens which has numerous advantages, but also some drawbacks. Since biological tissue is usually not fluorescent, except for some autofluorescence at shorter wavelengths, fluorescent dyes or proteins have to be introduced to the system in order to be able to collect the necessary information. The advantage of this, is that the signal for the labeled structures will be of very high ratio compared to the background.
 
   A fluorescent molecule is capable of absorbing photons in a given range (excitation spectrum) and temporarily store its energy by having an electron in  a higher energy orbital, \textit{i.e.} in an excited state. This excited state, however is not stable, and the electron quickly jumps back to the ground state while emitting a photon with equal energy to the energy difference between the excited and ground states. The energy of the absorbed and emitted photons are not the same, however. Energy loss occurs due to internal relaxation events, and the emitted photon has lower energy than the excitation photon. This phenomenon is called the Stokes shift, or red shift \cite{stokes}, and can be exploited in microscopy to drastically increase the signal to noise ratio by filtering out the illumination light (Fig. \ref{fig:spectrum}).
 
@@ -150,6 +147,13 @@ uj regi cikk Keller \cite{keller_life_2006}
     % \end{equation}
 
 
+    % ########  ########  ######  
+    % ##     ## ##       ##    ## 
+    % ##     ## ##       ##       
+    % ########  ######    ######  
+    % ##   ##   ##             ## 
+    % ##    ##  ##       ##    ## 
+    % ##     ## ########  ######  
 
   \subsection{Resolution of a wide-field microscope}
     The resolution of an optical systems is defined by the size of the smallest distinguishable feature on the image. Practically this means the minimum distance between two point like objects so that the two objects can still be resolved. This mainly depends on two factors: the NA of the objective, and the pixel size of the imaging sensor.
@@ -237,11 +241,11 @@ uj regi cikk Keller \cite{keller_life_2006}
 
 
 
-\section{Imaging in three dimensions}
+\section{Point scanning methods}
   In most cases, a wide-filed microscope is used to image a section of a tissue, thus axial resolution is not a concern. Imaging live specimens, however is not so straightforward, as these samples are usually much thicker than a typical section. For these samples 3-dimensional (3D) imaging is highly beneficial, which necessitates some kind of optical sectioning technique to be able to discriminate the features at different depths.
 
 
-  Due to the design of the wide-field microscope, any photons emitted from outside the focal plane will also be detected by the sensor, however as these are not originating from the focus, only a blur will be visible. This blur potentially degrades image quality and signal to noise ratio to such extent that makes imaging thick sample very difficult if not impossible in a wide-field microscope \cite{!!!}. 
+  Due to the design of the wide-field microscope, any photons emitted from outside the focal plane will also be detected by the sensor, however as these are not originating from the focus, only a blur will be visible. This blur potentially degrades image quality and signal to noise ratio to such extent that makes imaging thick sample very difficult if not impossible in a wide-field microscope. 
 
   % In the previous section we defined optical resolution, and derived the formulas to calculate the lateral and axial resolutions. These formulas, however are not completely accurate for high NA imaging, since the derivation itself depended on a paraxial approximation of the Kirchhoff diffraction equation. A more robust, and generally accepted method to calculate the resolution for high-NA objectives is the Stelzer-Grill-Heisenberg (SGH) theory
   % \cite{grill_method_1999, stelzer_uncertainty_2000}:
@@ -267,6 +271,15 @@ uj regi cikk Keller \cite{keller_life_2006}
 
 
 
+
+
+%  ####    ####   #    #  ######   ####    ####     ##    #      
+% #    #  #    #  ##   #  #       #    #  #    #   #  #   #      
+% #       #    #  # #  #  #####   #    #  #       #    #  #      
+% #       #    #  #  # #  #       #    #  #       ######  #      
+% #    #  #    #  #   ##  #       #    #  #    #  #    #  #      
+%  ####    ####   #    #  #        ####    ####   #    #  ###### 
+                                                              
 
   \subsection{Laser scanning confocal microscopy}
     Laser scanning confocal microscopy \cite{minsky_microscopy_1961,davidovits_scanning_1969} addresses most of the problems of wide-field microscopy we mentioned in the previous section. It is capable of optical sectioning by rejecting out of focus light, which makes it  true 3D imaging technique. Furthermore, the light rejection also massively reduces out of focus background, and increases contrast.
@@ -315,7 +328,7 @@ uj regi cikk Keller \cite{keller_life_2006}
   \subsection{Confocal-theta microscopy}
 
     % Although confocal microscopy already provides a better resolution in all dimensions, the ratio of the axial and lateral resolution is still very high, due to the single objective illumination and detection. This seriously limits the microscope's 3D imaging capabilities, since in the $z$ direction (i.e. along the imaging axis) the resolution would be significantly worse than in the other directions.
-    Although confocal microscopy already has 3D capabilities, it's axial resolution is still limited compared to the lateral, since it uses only one objective. An alternative realization of the confocal microscope, the confocal theta microscope \cite{stelzer_fundamental_1994} introduces a second objective to the system, that is used to illuminate the sample (Figure \ref{fig:conf-theta}). Since this decouples the illumination and detection, using a filter cube is no longer necessary. The second objective is rotated by $\vartheta$ around the focus, this is the where the name of this setup originates from.
+    Although confocal microscopy already has 3D capabilities, it's axial resolution is still limited compared to the lateral, since it uses only one objective. An alternative realization of the confocal microscope, the confocal theta microscope \cite{stelzer_fundamental_1994} introduces a second objective to the system, that is used to illuminate the sample (Figure \ref{fig:conf-theta}). Since this decouples the illumination and detection, using a filter cube is no longer necessary. The second objective is rotated by $\theta$ around the focus, this is the where the name of this setup originates from.
 
     As in the case of standard confocal microscopy, the system PSF is improved by the illumination pattern. Here, however, the axial direction of the detection coincides with the lateral direction of the illumination, which results in a dramatic improvement of axial resolution compared to standard confocal microscopy. Lateral resolution will also be increased, but by a smaller extent, resulting in an almost isotropic PSF, and equal axial and lateral resolution (Fig. \ref{fig:psf-theta}). 
 
@@ -323,7 +336,16 @@ uj regi cikk Keller \cite{keller_life_2006}
 
     Imaging live specimens for an extended period of time with confocal microscopy although possible \cite{aldaz_live_2010, maitre_asymmetric_2016}, is not ideal. For each voxel imaged, a large portion of the specimen has to be illuminated, which results in a very high dose of radiation on the samples. This can be as much as 30--100 times larger, than the dose used for the actual imaging \cite{reynaud_light_2008}. Illumination with high power of laser for an extended time frame can result in bleaching the fluorophores, which in turn will lower the signal at later times. Furthermore, any absorbed photon has the possibility to disrupt the chemical bonds inside the specimen, which can lead to phototoxic effects. Furthermore, the usage of the pinhole although increases resolution, also decreases the detectable signal intensity, thus has a negative impact on image contrast \cite{stelzer_contrast_1998}.
 
+  \subsection{Mammalian imaging with confocal microscopy}
+    Because of its optical sectioning capabilities, combined with the high specificity of fluorescent labels, confocal microscopy has been the go-to technique for decades in biological research. Even though it has some drawbacks, important discoveries have been made using this technique, as live imaging is not always necessary.
+    % \cite{nichols_formation_1998,costanzi_histone_1998,bard_peripherally_2000,falati_real-time_2002,avilion_multipotent_2003,sato_maintenance_2004,boisset_vivo_2010}.
+    Especially using cell cultures, or fixed specimens, it has been used to investigate X chromosome inactivation \cite{costanzi_histone_1998}, the role of amyloid $\upbeta$-peptide in Alzheimer's disease \cite{bard_peripherally_2000}, the role of Oct4 \cite{nichols_formation_1998} and Sox2 \cite{avilion_multipotent_2003} in the self-renewal of pluripotent stem cells, just to highlight a few.
 
+    Live imaging capabilities of confocal microscopy, are however limited. This is mostly due to the illumination scheme: to collect information from a single point, almost the whole embryo has to be illuminated. This unwanted illumination can easily lead to bleaching of the fluorophores, and also to phototoxic effects that can prevent further embryonic development. The point scanning nature of image acquisition also implies an inherent constraint to the maximum imaging speed, as it can be only increased at the expense of reducing signal intensity (Fig. \ref{fig:photonBudget}).
+
+    One improvement to address both of these drawbacks is the use of a spinning disk with a specific pattern (also called Nipkow disk \cite{!!!}) of holes. to generate multiple confocal spots at the same time \cite{,graf_live_2005}. If these spots are far enough from each other, confocal rejection of out-of-focus light can still occur. As the disk is spinning, the hole pattern will sweep the entire field of view, eventually covering all points \cite{pawley_handbook_1995}. The image is recorded by an area detector, such as a CCD or EM-CCD, which speeds up image acquisition \cite{nakano_spinning-disk_2002}.
+
+    Although out-of-focus illumination is still an issue, spinning disk confocal microscopy was successfully used to investigate the mechanisms of symmetry breaking in early mouse embryonic development \cite{korotkevich_apical_2017}, and the mechanisms leading to the first cell fate specification that will differentiate extraembryonic tissue form the embryo proper \cite{maitre_pulsatile_2015,dietrich_venus_2015,maitre_asymmetric_2016}. Even though these studies were carried out with live embryos, only a few hours of continuous imaging is possible before the accumulation of phototoxic effects arrests development \cite{strnad_inverted_2016}. Compared to this, just the pre-implantation phase of mouse embryonic development spans 3 days, and the full development is 18 days \cite{wolpert_principles_2011}.
 
 
 %  ######  ########  #### ##     ## 
@@ -380,8 +402,8 @@ uj regi cikk Keller \cite{keller_life_2006}
     
     \begin{figure}[htpb]
         \centering
-        \includegraphics[page=1,width=0.8\textwidth]{spim_cyl}
-        \bcaption[Basic optical components of a SPIM]{ "A selective plane illumination microscope uses two objectives orthogonally aligned. One objective is used to generate a thin light-sheet that illuminates the sample from the side, while the other is used for detection. To generate an image of the specimen, a suitable tube lens is used to focus the light on the sensor of a detection unit (e.g. sCMOS camera). The light-sheet is generated by the illumination objective, using a beam that is previously shaped by a cylindrical lens."}
+        \includegraphics[page=1,width=0.7\textwidth]{spim_cyl}
+        \bcaption[Basic optical components of a SPIM]{A dedicated illumination objective is used to generate the light sheet, which is an astigmatic Gaussian beam, focues along one direction. Astigmatism is introduced by placing a cylindrical lens focusing on the back folcal plane of the objective. Detection is preformed at a right angle, with a second, detection objective. Scatterd laser light is filtered, and a tube lens forms the image on az are sensor, such as an sCMOS camera.}
         \label{fig:light-sheet}
     \end{figure}
 
@@ -456,21 +478,21 @@ uj regi cikk Keller \cite{keller_life_2006}
       W_x(z) = W_{x,0}\sqrt{1+\left( \frac{z}{z_{x,0}} \right)^2}\mathrm{\quad and \quad } W_y(z) = W_{y,0}\sqrt{1+\left( \frac{z}{z_{y,0}} \right)^2}
     \end{align}
     
-    \begin{figure}[b!]
+    \begin{figure}
       \centering
-      \begin{subfigure}[b]{0.7\textwidth}
+      \begin{subfigure}[b]{0.39\textwidth}
           \centering
           \includegraphics[width=\textwidth]{FOV}
           \caption{}
           \label{fig:fov}
       \end{subfigure}
-      \begin{subfigure}[b]{0.49\textwidth}
+      \begin{subfigure}[b]{0.29\textwidth}
           \centering
           \includegraphics[width=\textwidth]{width}
           \caption{}
           \label{fig:width}
       \end{subfigure}
-      \begin{subfigure}[b]{0.49\textwidth}
+      \begin{subfigure}[b]{0.29\textwidth}
           \centering
           \includegraphics[width=\textwidth]{height}
           \caption{}
@@ -489,7 +511,7 @@ uj regi cikk Keller \cite{keller_life_2006}
 
     \begin{figure}[bt!]
       \centering
-      \includegraphics[page=2,width=0.8\textwidth]{spim_cyl}
+      \includegraphics[page=2,width=0.7\textwidth]{spim_cyl}
       \bcaption[DSLM illumination]{DSLM illuminates a specimen by a circularly-symmetric beam that is scanned over the field of view. This creates a virtual light-sheet, which illuminates a section of a specimen just like the SPIM. Light-sheet in DSLM is uniform over the whole field of view and its height can be dynamically altered by changing the beam scan range.
     }
         \label{fig:dslm}
@@ -499,39 +521,14 @@ uj regi cikk Keller \cite{keller_life_2006}
 
     This method to generate the light-sheet has several advantages compared to a static light-sheet. The height of this sheet is not determined by the cylindrical lens, but it can be dynamically modified. Also, the intensity is uniform through the whole height of the light-sheet.
 
-
-\section{Imaging mouse embryonic development}
-
-  \subsection{Pre-implantation}
-
-    \begin{figure}
-      \centering
-      \includegraphics[width=0.9\textwidth]{mammals/Figure2}
-      \bcaption[Inverted light-sheet microscope for multiple early mouse embryo imaging.]{(i) A sample holder (SH), containing a transparent FEP membrane (M) allows multiple embryo samples (S) to be placed in line for multisample imaging. (ii) Inverted objective orientation with side view of the sample holder. One possible configuration is to use a 10× 0.3 NA illumination objective (IL) and another 100× 1.1 NA detection objective placed at a right angle to the illumination. (iii) Close up on side view of sample on FEP membrane with both objectives. Since the FEP membrane is transparent on water, it provides no hindrance to the illumination beam in penetrating the sample or for the emitted fluorescence on reaching the detection objective. (B) Still images of one particular timelapse experiment, and (C) corresponding segmented nuclei. The star depicts the polar body. Adapted from Strnad \textit{et al.} \cite{strnad_inverted_2016}}
-      \label{fig:preMouse}
-    \end{figure}
-
-  \subsection{Post-implantation}
-  
-      \begin{figure}
-        \centering
-        \includegraphics[width=0.9\textwidth]{mammals/Figure3}
-        \bcaption[Imaging mouse post-implantation development]{(A) (i, ii) Mounting technique for E5.5 to E6.5 embryos. A tip-truncated \SI{1}{mL} syringe holds an acrylic rod, cut and drilled with holes of different size in order to best fit the mouse embryo by its Reichert's membrane, leaving the embryo free inside the medium. (iii) Maximum intensity projection of a \SI{13}{\micro m} slice at \SI{78}{\micro m} from distal end of an E6.5 mouse embryo. The different tissues corresponding to the rudimentary body plan are annotated. Scale bar: \SI{20}{\micro m}. (B) For stages ranging between E6.5 and E8.5, mounting using a hollow agarose cylinder has also successfully been proposed. Optimal sizes for the corresponding embryonic stage to be imaged can be produced, so that the embryo can grow with least hindrance. (C–F) Steps for mounting the mouse embryo inside the agarose cylinder. The inner volume of the cylinder can be filled with optimal medium, allowing the much larger chamber volume to have less expensive medium. (G–H) Example images of a \SI{9.8}{h} timelapse with the mounting shown in (B) where the expansion of the yolk sac can be observed in direction of the blue arrows. (I) In order to aid multiview light-sheet setups in overcoming the higher scattering properties of embryos at this stage, and to allow faster and easier data recording, electronic confocal slit detection allows better quality images to be taken at shorter acquisition times. Scale bar: \SI{20}{\micro m}. Adapted from Ichikawa \textit{et al.} \cite{ichikawa_live_2013}, Udan \textit{et al.} \cite{udan_quantitative_2014} and de Medeiros and Norlin \textit{et al.} \cite{de_medeiros_confocal_2015}.}
-        \label{fig:postMouse}
-      \end{figure}
-
-  \subsection{Adult}
-  
-      \begin{figure}
-        \centering
-        \includegraphics[width=0.9\textwidth]{mammals/Figure4}
-        \bcaption[Imaging adult mouse brain with light-sheet microscopy.]{(A) Schematics of the ultramicroscope for brain imaging. The specimen is embedded in clearing medium to ensure necessary imaging depth. Illumination is applied from two sides to achieve even illumination for the whole field of view. Light-sheet is generated by a slit aperture flowed by a cylindrical lens. The specimen is imaged from the top using wide-field detection method. (B) Photograph of the imaging chamber with a mounted cleared specimen and light-sheet illumination. (C) Surface rendering of a whole mouse brain, reconstructed from 550 optical sections. GFP and autofluorescence signal was imaged. Hippocampal pyramidal and granule cell layers are visible in the digital section. Scale bar: \SI{1}{mm}. Objective: Planapochromat 0.5×. (D) Reconstruction of an excised hippocampus from 410 sections. Note that single cell bodies are visible. Scale bar: \SI{500}{\micro m}. Objective: Fluar 2.5×. (E) 3D reconstruction of a smaller region of an excised hippocampus from 132 sections. Scale bar: \SI{200}{\micro m}. Objective: Fluar 5×. (F) 3D reconstruction of CA1 pyramidal cells imaged with a higher resolution objective (LD-Plan Neofluar 20× NA 0.4) in a whole hippocampus (430 sections). Dendritic spines are also visible, even though usually a higher NA objective (>1.2) is required to visualize these. Scale bar: \SI{5}{\micro m}. Adapted from Dodt \textit{et al.} \cite{dodt_ultramicroscopy:_2007}.}
-        \label{fig:adultMouse}
-      \end{figure}
-
-    
-
 \section{Further applications of light-sheet microscopy}
+  \begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{spim_zoo}
+    \bcaption[Different optical arrangements for light-sheet microscopy]{\textbf{(a)} Original SPIM design with a single lens for detection and illuminaiton. \cite{huisken_optical_2004} \textbf{(b)} Upright SPIM to allow for easier sample mounting such as using a petri dish (iSPIM, \cite{capoulade_quantitative_2011, wu_inverted_2011, hoyer_breaking_2016}). \textbf{(c)} Inverted SPIM, where the objectives are below the sample, which is held by a thin foil \cite{strnad_inverted_2016}. \textbf{(d)} Dual-view version of the upright configuration, where both objective can be used for illumination and detection (diSPIM, \cite{kumar_dual-view_2014}). \textbf{(e)} Multidirectional-SPIM (mSPIM) for even illumination of the sample with two objectives for illumination \cite{huisken_even_2007}. \textbf{(f)} Multi-view SPIM with two illumination and detection objectives for \textit{in toto} imaging of whole embryos (MuVi-SPIM \cite{krzic_multiview_2012}, SimView \cite{tomer_quantitative_2012}, Four-lens SPIM \cite{schmid_high-speed_2013}). \textbf{(g)} A combination of (d) and (f), using 4 identical objectives, where both can illuminate and detect in a sequential manner, to achieve isotropic resolution without sample rotation (IsoView \cite{chhetri_whole-animal_2015}).}
+    \label{fig:spim_zoo}
+  \end{figure}
+
   already in 1989 multi-view to increase axial resolution in conventional optical microscope. They imaged \textit{Drosohpila} metaphase plate in Zeiss Axiomat microscope using a 63x 1.2 NA water immersion objective lens. To increase the axial resolution, a special rotation stage was constructed, that allowed rotation around the object of interest to image it from a 90\si{\degree} tilted view. Using a fusion method in the Fourier space, the resolution increased to \SI{0.25}{\micro\meter} in lateral and \SI{0.4}{\micro\meter} in the axial direction for real samples.
 
   Multiple imaging axis microscopy (MIAM) \cite{swoger_multiple_2003}
@@ -543,7 +540,7 @@ uj regi cikk Keller \cite{keller_life_2006}
   axial resolution relative to lateral
   complete view
   reduce scattering
- 
+  
   implementations to this end:
   To mSPIM \cite{huisken_even_2007} Fig. \ref{fig:spim_zoo}e, Ultramicroscope from Dodt \textit{et al.} \cite{dodt_ultramicroscopy:_2007}
   
@@ -562,9 +559,60 @@ uj regi cikk Keller \cite{keller_life_2006}
 
 
 
-  \begin{figure}
-    \centering
-    \includegraphics[width=\textwidth]{spim_zoo}
-    \bcaption[Different optical arrangements for light-sheet microscopy]{\textbf{(a)} Original SPIM design with a single lens for detection and illuminaiton. \cite{huisken_optical_2004} \textbf{(b)} Upright SPIM to allow for easier sample mounting such as using a petri dish (iSPIM, \cite{capoulade_quantitative_2011, wu_inverted_2011, hoyer_breaking_2016}). \textbf{(c)} Inverted SPIM, where the objectives are below the sample, which is held by a thin foil \cite{strnad_inverted_2016}. \textbf{(d)} Dual-view version of the upright configuration, where both objective can be used for illumination and detection (diSPIM, \cite{kumar_dual-view_2014}). \textbf{(e)} Multidirectional-SPIM (mSPIM) for even illumination of the sample with two objectives for illumination \cite{huisken_even_2007}. \textbf{(f)} Multi-view SPIM with two illumination and detection objectives for \textit{in toto} imaging of whole embryos (MuVi-SPIM \cite{krzic_multiview_2012}, SimView \cite{tomer_quantitative_2012}, Four-lens SPIM \cite{schmid_high-speed_2013}). \textbf{(g)} A combination of (d) and (f), using 4 identical objectives, where both can illuminate and detect in a sequential manner, to achieve isotropic resolution without sample rotation (IsoView \cite{chhetri_whole-animal_2015}).}
-    \label{fig:spim_zoo}
-  \end{figure}
+  
+
+
+
+% ##     ##  #######  ##     ##  ######  ######## 
+% ###   ### ##     ## ##     ## ##    ## ##       
+% #### #### ##     ## ##     ## ##       ##       
+% ## ### ## ##     ## ##     ##  ######  ######   
+% ##     ## ##     ## ##     ##       ## ##       
+% ##     ## ##     ## ##     ## ##    ## ##       
+% ##     ##  #######   #######   ######  ######## 
+\section{Imaging mouse embryonic development}
+
+  \subsection{Pre-implantation}
+
+    Pre-implantation is the first phase of mouse embryonic development, that starts right after fertilization. The embryo in this phase is still in the oviduct, travelling towards the uterus, where it will implant to the uterine wall. The developmental stage between fertilization and the implantation is called the pre-implantation stage. Here the embryo divides, and already the first cell fate specifications start when forming the trophoectoderm (TE) and the inner cell mass (ICM) at the blastocyst stage. ICM cells will form the embryo proper, while TE cell will contribute to the formation of the extraembryonic tissues.
+    
+    During this process the embryo is still self-sufficient, which makes it possible to image this stage in an \textit{ex vivo} embryo culture by providing the proper conditions \cite{doherty_culture_2000}. Long term imaging, however is extremely challengeing due to the very high light sensitivity of the specimens. Imaging these embryos in a confocal microscope will lead to incomplete development, even if the imaging frequency is minimized to every \SI{15}{mins} \cite{strnad_inverted_2016}.
+
+    Imaging for just a few hours is already enough to investigate important processes, such as cell fate patterning \cite{dietrich_stochastic_2007}. Other approaches aim to lower the phototoxicity by either using 2-photon illumination which operates at longer wavelenghts \cite{denk_two-photon_1990,squirrell_long-term_1999,mcdole_lineage_2011}, or by lowering imaging frequecy as a compromise \cite{yamagata_long-term_2009}. These approaches, however either require highly specialized equpment, such as an ultra short pulsed laser, or is compromising on the time resolution.
+
+    Light-sheet microscopy, on the other hand, drastically lowers phototoxic effect by using a much more efficient illumination scheme (see Sec. \ref{sec:light-sheet}), and thus makes a better use of the photon budget. Thus, using this technique, it is possible to image the full pre-implantation development at high spatial and temporal resolution without any negative impact on the developmental process. Such a microscope was developed by Strnad \textit{et al.} at EMBL \cite{strnad_inverted_2016}, who used it to understand when exactly is the first cell fate specification is decided in the embryonic cells.
+
+    \begin{figure}[tb]
+      \centering
+      \includegraphics[width=0.9\textwidth]{mammals/Figure2}
+      \bcaption[Inverted light-sheet microscope for multiple early mouse embryo imaging.]{(i) A sample holder (SH), containing a transparent FEP membrane (M) allows multiple embryo samples (S) to be placed in line for multisample imaging. (ii) Inverted objective orientation with side view of the sample holder. One possible configuration is to use a 10× 0.3 NA illumination objective (IL) and another 100× 1.1 NA detection objective placed at a right angle to the illumination. (iii) Close up on side view of sample on FEP membrane with both objectives. Since the FEP membrane is transparent on water, it provides no hindrance to the illumination beam in penetrating the sample or for the emitted fluorescence on reaching the detection objective. (B) Still images of one particular timelapse experiment, and (C) corresponding segmented nuclei. The star depicts the polar body. Adapted from Strnad \textit{et al.} \cite{strnad_inverted_2016}}
+      \label{fig:preMouse}
+    \end{figure}
+
+    As a mouse embryo culture is not compatible with the standard agarose-based sample mounting techniques, a completely new appoach was taken, which resulted in a microscope designed around the sample. The sample holder forming a V-shape was built with a bottom window, and it is lined with a thin FEP (fluorinated ethylene propylene) foil that supports the embryos (Fig. \ref{fig:preMouse}A, i). This arrangement allows the utilization of the standard microdrop embryo culture, while providing proper viewing access for the objectives. As the embryos are realtively small (\SI{100}{\micro m}) and transparent, a single illumination and single detecion objective arrangement is enough for high quality imaging. A low resolution (NA=0.3) objective is used to generate the scanned light-sheet, and a high resolution (NA=1.1) objective is detecting the fluorescence at 50\texttimes magnification (Fig \ref{fig:preMouse}A, ii). As the foil is curved, it allows unrestriced access to the embryo, while separating the imaging medium from the immersion liquid (Fig. \ref{fig:preMouse}A, iii). Furthermore, it's refractive index is matching the refractive index of water, so optical aberrations are minimized.
+
+    Using this setup, Strnad \textit{et al.} were able to pinpoint the exact timing of the first cell fate decision that leads either to ICM or TE cells. More than 100 embryos expressing nuclear (H2B-mCherry) and membrane (mG) markers were imaged for the entire 3 days of pre-implantation development (Fig. \ref{fig:preMouse}B). The image quality was good enough to segment all nuclei in the embryos (Fig. \ref{fig:preMouse}C), and track them from 1 to 64 cell stage, building the complete lineage tree. Based on the lineage trees, and the final cell fate assignments, it was determined that at the 16 cell stage the final specification is already decided, while earlier than this it is still random.
+    
+
+  \subsection{Post-implantation}
+  
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.9\textwidth]{mammals/Figure3}
+      \bcaption[Imaging mouse post-implantation development]{(A) (i, ii) Mounting technique for E5.5 to E6.5 embryos. A tip-truncated \SI{1}{mL} syringe holds an acrylic rod, cut and drilled with holes of different size in order to best fit the mouse embryo by its Reichert's membrane, leaving the embryo free inside the medium. (iii) Maximum intensity projection of a \SI{13}{\micro m} slice at \SI{78}{\micro m} from distal end of an E6.5 mouse embryo. The different tissues corresponding to the rudimentary body plan are annotated. Scale bar: \SI{20}{\micro m}. (B) For stages ranging between E6.5 and E8.5, mounting using a hollow agarose cylinder has also successfully been proposed. Optimal sizes for the corresponding embryonic stage to be imaged can be produced, so that the embryo can grow with least hindrance. (C–F) Steps for mounting the mouse embryo inside the agarose cylinder. The inner volume of the cylinder can be filled with optimal medium, allowing the much larger chamber volume to have less expensive medium. (G–H) Example images of a \SI{9.8}{h} timelapse with the mounting shown in (B) where the expansion of the yolk sac can be observed in direction of the blue arrows. (I) In order to aid multiview light-sheet setups in overcoming the higher scattering properties of embryos at this stage, and to allow faster and easier data recording, electronic confocal slit detection allows better quality images to be taken at shorter acquisition times. Scale bar: \SI{20}{\micro m}. Adapted from Ichikawa \textit{et al.} \cite{ichikawa_live_2013}, Udan \textit{et al.} \cite{udan_quantitative_2014} and de Medeiros and Norlin \textit{et al.} \cite{de_medeiros_confocal_2015}.}
+      \label{fig:postMouse}
+    \end{figure}
+
+    
+
+  \subsection{Adult}
+  
+      \begin{figure}
+        \centering
+        \includegraphics[width=0.9\textwidth]{mammals/Figure4}
+        \bcaption[Imaging adult mouse brain with light-sheet microscopy.]{(A) Schematics of the ultramicroscope for brain imaging. The specimen is embedded in clearing medium to ensure necessary imaging depth. Illumination is applied from two sides to achieve even illumination for the whole field of view. Light-sheet is generated by a slit aperture flowed by a cylindrical lens. The specimen is imaged from the top using wide-field detection method. (B) Photograph of the imaging chamber with a mounted cleared specimen and light-sheet illumination. (C) Surface rendering of a whole mouse brain, reconstructed from 550 optical sections. GFP and autofluorescence signal was imaged. Hippocampal pyramidal and granule cell layers are visible in the digital section. Scale bar: \SI{1}{mm}. Objective: Planapochromat 0.5×. (D) Reconstruction of an excised hippocampus from 410 sections. Note that single cell bodies are visible. Scale bar: \SI{500}{\micro m}. Objective: Fluar 2.5×. (E) 3D reconstruction of a smaller region of an excised hippocampus from 132 sections. Scale bar: \SI{200}{\micro m}. Objective: Fluar 5×. (F) 3D reconstruction of CA1 pyramidal cells imaged with a higher resolution objective (LD-Plan Neofluar 20× NA 0.4) in a whole hippocampus (430 sections). Dendritic spines are also visible, even though usually a higher NA objective (>1.2) is required to visualize these. Scale bar: \SI{5}{\micro m}. Adapted from Dodt \textit{et al.} \cite{dodt_ultramicroscopy:_2007}.}
+        \label{fig:adultMouse}
+      \end{figure}
+
+    
+
