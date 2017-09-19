@@ -61,10 +61,6 @@ first application of laser scanning confocal in "observation of endothelial cell
 
 
 
-
-uj regi cikk Keller \cite{keller_life_2006}
-
-
 % Light microscopy is one of the oldest methods that is still widely used today to investigate the inner workings of microscopic life. An especially important branch is fluorescence microscopy \cite{diaspro_optical_2011}, that relies on using fluorescent labels to mark specific regions inside the specimens. Light-sheet microscopy is a relatively new addition to the arsenal of tools that comprise light microscopy methods, and is especially suitable for live imaging of embryonic samples over extended periods of time \cite{krzic_multiview_2012,tomer_quantitative_2012}. It is also easily adapted to the sample, allowing to image a large variety of specimens, from entire organs, such as cleared mouse brains \cite{dodt_ultramicroscopy:_2007}, to the subcellular processes occurring inside cultured cells \cite{capoulade_quantitative_2011}.
 
 %\section{Light-sheet microscopy}
@@ -89,19 +85,6 @@ uj regi cikk Keller \cite{keller_life_2006}
     Traditionally synthetic fluorescent dyes were used to label certain structures in the specimens. Some of these directly bind to their target, such s DAPI to DNA, and others can be used when conjugated to an antibody specific to the structure of interest. The drawback of these methods is that the fluorescent label has to be added to the sample from an external source, and in many cases this also necessitates sample preparation techniques incompatible with live imaging, such as fixation \cite{!!!}.
 
     The discovery of fluorescent proteins have revolutionized fluorescence microscopy. Since these molecules are proteins, they can be produced directly by the organism if the proper genetic modifications are performed. Even though this was a hurdle at the time of discovering the green fluorescent protein (GFP) \cite{shimomura_extraction_1962}, the first of its kind, genetic engineering techniques evolved since then \cite{prasher_primary_1992}, and not only has it been successfully integrated in the genome of nematodes \cite{chalfie_green_1994}, zebrafish \cite{amsterdam_aequorea_1995}, and mice \cite{okabe_green_1997}, but many variants have been also engineered by introducing mutations to increase fluorescence intensity, and to change the fluorescent spectrum to allow multicolor imaging \cite{heim_wavelength_1994,heim_engineering_1996,cormack_facs-optimized_1996,okabe_green_1997}. The usefulness and impact of these proteins are so profound, that in 2008 the Nobel Prize in chemistry was awarded to Osamu Shimomura, Martin Chalfie, and Roger Tsien ``for the discovery and development of the green fluorescent protein, GFP" \cite{service_three_2008}.
-    
-    % Discovery and purification of green fluorescent protein from \textit{Aequorea victoria} 
-    % cloning of GFP  cDNA 
-    % first GFP applications as in vivo cell markers: nematodes , zebrafish , mouse 
-
-    % good for live, naturally fluorescent structures
-
-    % autofluorescence not specific
-    % fluorescent dyes
-    % fluorescent proteins
-    % lot of fluorescent proteins since then \cite{shaner_guide_2005}. 
-    % benefits: cell is producing
-    % using genetic techniques possible to bind to other proteins, and specifically label structures of interest
 
 
   \subsection{Wide-field image formation}
@@ -351,7 +334,7 @@ uj regi cikk Keller \cite{keller_life_2006}
 
 \section{Light-sheet microscopy}
   \label{sec:light-sheet}
-  \begin{figure}[b!]
+  \begin{figure}[bt]
     \centering
     \includegraphics[width=0.6\textwidth]{spim_concept}
     \bcaption[Basic concept of single-plane illumination microscopy]{The sample is illuminated from the side by laser light shaped to a light-sheet (blue). This illuminates the focal plane of the detection lens, that collects light in a wide-field mode (yellow). The image is recorded, and the sample is translated through the light-sheet to acquire an entire 3D stack.}
@@ -364,30 +347,55 @@ uj regi cikk Keller \cite{keller_life_2006}
 
   The main principle behind single plane illumination microscopy, that is illuminating the sample from the side by a very thin light-sheet, dates back to the early 20\textsuperscript{th} century, when Siedentopf and Zsigmondy first described the ultramicroscope \cite{siedentopf_uber_1902}. This microscope used sunlight as an illumination source, that was guided through a precision slit to generate a thin light-sheet. This allowed Zsigmondy to visualize gold nanoparticles floating in and out of the light-sheet. Since these particles are much smaller than the wavelength of the light, the device was called an ultramicroscope. His studies with colloids together with the development of the ultramicroscope led Zsigmondy to win the Nobel Prize in 1925.
 
-  previous to SPIM:
-  "Voie et al. fixed guinea pig cochlea, rotating and reconstruction in 3D \cite{voie_orthogonal-plane_1993}, called Orthogonal-plane Fluorescent Optical Sectioning. Lateral resolution around \SI{10}{\micro m} and axial resolution of \SI{26}{\micro m}, with very large, \SI{1.5}{mm} field of view. Since the specimens they imaged contained calcium rich bone tissue, optical imaging was only possible by using an optical clearing method. In this work, they used EDTA (ethylenediaminetetraacetic acid) dehydrated in ethyl alcohol, then it was cleared, finally immersed in a fluorescent dye bath. TO acquire 3D images, the specimen was rotated, and translated to compensate for the off-axis rotation."
+  After Zsigmondy, this method was forgotten until rediscovered in the nineties,when Voie \etal constructed their Orthogonal-plane Fluorescent Optical Sectioning (OPFOS) microscope \cite{voie_orthogonal-plane_1993}. They used it to image a fixed, optically cleared and fluorescently labeled guinea pig cochlea. In order to acquire a 3D dataset, the sample was illuminated from the side with a light-sheet generated by a cylindrical lens, then rotated around the center axis to obtain multiple views. Although they onlye reached a ateral resolution around \SI{10}{\micro m} and axial resolution of \SI{26}{\micro m}, this method allowed them to generate a 3D reconstruction of the cohlea \cite{voie_three-dimensional_1995}.
 
-  follow-up to Voie and Spelman: \cite{voie_three-dimensional_1995} 3D reconstruction of the cochlea for the images
+  Later, in 2002, Fuchs et al. developed Thin Light-Sheet Microscopy (TLSM) \cite{fuchs_thin_2002} and used this technique to investigate the microbial life in seawater samples without disturbing their natural environment (by e.g. placing them on a coverslip). Their light-sheet was similar to the one utilized in OPFOS, being \SI{23}{\micro m} thin, and providing a $\SI{1}{mm} \times \SI{1}{mm}$ field of view.
 
-  Similar to SPIM but not fluorescent: light scanning photomicrography \cite{huber_3d_2001}
+  Despite these early efforts, the method did not gain larger momentum. The real breakthrough in light-sheet imaging happened at EMBL in 2004, where Huisken \etal \cite{huisken_optical_2004} combined the advantages of endogenous fluorescent proteins and the optical sectioning capability of light-sheet illumination to image Medaka fish embryos, and the complete embryonic development of a \textit{Drosopila melanogaster} embryo. They called this Selective-Plane Illumination Microscopy (SPIM), and it quickly became popular to investigate developmental biological questions.
 
-  Then, in 2002, Fuchs et al. introduces Thin  Light-Sheet Microscopy \cite{fuchs_thin_2002} who use this technique to investigate the microbial life in seawater samples without disturbing their natural environment (by e.g. placing them on a coverslip). Using TSLM allowed the to image the bacteria directly in the staining solution containing SYBR Green I without having to deal with background illumination from the dye, which would have been an issue with confocal microscopy for example. Their light-sheet was similar to the one utilized in OPFOS, being \SI{23}{\micro m} thin, and providing a $\SI{1}{mm} \times \SI{1}{mm}$ field of view.
+  \label{sec:multiview}
+  \begin{figure}[tb]
+    \centering
+    \includegraphics[width=\textwidth]{spim_zoo}
+    \bcaption[Different optical arrangements for light-sheet microscopy]{\textbf{(a)} Original SPIM design with a single lens for detection and illuminaiton. \cite{huisken_optical_2004} \textbf{(b)} Upright SPIM to allow for easier sample mounting such as using a petri dish (iSPIM, \cite{capoulade_quantitative_2011, wu_inverted_2011, hoyer_breaking_2016}). \textbf{(c)} Inverted SPIM, where the objectives are below the sample, which is held by a thin foil \cite{strnad_inverted_2016}. \textbf{(d)} Dual-view version of the upright configuration, where both objective can be used for illumination and detection (diSPIM, \cite{kumar_dual-view_2014}). \textbf{(e)} Multidirectional-SPIM (mSPIM) for even illumination of the sample with two objectives for illumination \cite{huisken_even_2007}. \textbf{(f)} Multi-view SPIM with two illumination and detection objectives for \textit{in toto} imaging of whole embryos (MuVi-SPIM \cite{krzic_multiview_2012}, SimView \cite{tomer_quantitative_2012}, Four-lens SPIM \cite{schmid_high-speed_2013}). \textbf{(g)} A combination of (d) and (f), using 4 identical objectives, where both can illuminate and detect in a sequential manner, to achieve isotropic resolution without sample rotation (IsoView \cite{chhetri_whole-animal_2015}).}
+    \label{fig:spim_zoo}
+  \end{figure}
+  
+  Since then, light-sheet based imaging has gained more and more popularity, as it can be adapted and applied to a wide variety of problems. Although sample mounting can be challenging because of the objective arrangement, this can also be an advantage, since new microscopes can be designed with the sample in mind \cite{huisken_selective_2009, de_medeiros_light-sheet_2016} (Fig. \ref{fig:spim_zoo}). This made it possible to adapt the technique for numerous other specimens, such as zebrafish larvae \cite{keller_reconstruction_2008}, \textit{C. elegans} embryos \cite{wu_inverted_2011}, mouse brain \cite{dodt_ultramicroscopy:_2007}, and even mouse embryos \cite{ichikawa_live_2013, udan_quantitative_2014, strnad_inverted_2016}.
 
-  The real breakthrough happened when light-sheet microscopy was combined with 
-  endogenous fluorescent labels: fluorescent proteins
-  live imaging for long time
-  and light-sheet
-  these techniques were all combined in the 2004 Science paper from Huisken \textit{et al.} that marks a landmark in light-sheet microscopy, and since then a widespread adoption started  in biological research, with multiple groups implementing their own setups.
+  As many of these specimens require very different conditions and mounting techniques, these microscopes have been adapted to best accommodate them. An upright objective arrangement for example (Fig \ref{fig:spim_zoo}b) allows imaging samples on a coverslip, while its inverted version is well suited for mouse embryos, where a foil is separating them from the immersion medium (Fig. \ref{fig:spim_zoo}c). A modified version of the upright arrangement allows for multi-view imaging using both objectives for illumination and detection in a sequential manner (Fig. \ref{fig:spim_zoo}d) \cite{kumar_dual-view_2014}.
 
-  "Since then however, light-sheet microscopy was seldom used, but in the last decade it was reinvented and combined with fluorescent microscopy. The first notable light-sheet fluorescent microscope (LSFM) was developed at EMBL in 2004 \cite{huisken_optical_2004}, that demonstrated the benefits of using a light-sheet in imaging developmental processes in three dimension."
+  For larger samples, to achieve a more even illumination, two objectives can be used from opposing directions to generate two light-sheets (Fig. \ref{fig:spim_zoo}e) \cite{huisken_even_2007}. This arrangement can further be complemented by a second detection objective, to achieve parallelized multi-view imaging (Fig. \ref{fig:spim_zoo}f) \cite{krzic_multiview_2012,tomer_quantitative_2012, schmid_high-speed_2013}. For ultimate speed, 4 identical objectives can be used to achieve almost instantaneous views from 4 different directions by using all objectives for illumination and detection (Fig \ref{fig:spim_zoo}g) \cite{chhetri_whole-animal_2015}. 
 
-  Since then, light-sheet based imaging has gained more and more popularity, as it can be adapted and applied to a wide variety of problems. It was numerously proven to be a better choice than confocal microscopy \cite{reynaud_light_2008,huisken_selective_2009} especially in developmental biological applications \cite{weber_light_2011}. It can also be used with a wide variety of specimens of different sizes, such as zebrafish embryo \cite{keller_reconstruction_2008,kaufmann_multilayer_2012,mickoleit_high-resolution_2014}, mouse brain \cite{dodt_ultramicroscopy:_2007,} or drosophila embryo \cite{krzic_multiview_2012}. It is also possible to use light-sheet microscopy in super-resolution, allowing for individual molecule localization \cite{cella_zanacchi_live-cell_2011}.
+  Furthermore, because of the wide-field detection scheme it is possible to combine SPIM with many superresolution techniques, such as single molecule localization \cite{cella_zanacchi_live-cell_2011}, STED \cite{friedrich_sted-spim:_2011}, RESOLFT \cite{hoyer_breaking_2016}, or structured illumination \cite{keller_fast_2010,chen_lattice_2014,chang_csilsfm_2017}.
+
+
+  % things to improve: resolution
+  % axial resolution relative to lateral
+  % complete view
+  % reduce scattering
+  
+  % implementations to this end:
+  % To mSPIM \cite{huisken_even_2007} Fig. \ref{fig:spim_zoo}e, Ultramicroscope from Dodt \textit{et al.} \cite{dodt_ultramicroscopy:_2007}
+  
+  % upright imaging in petri dish: iSPIM from Wu \textit{et al.} \cite{wu_inverted_2011}, SPIM-FCS Capoulade \textit{et al.} \cite{capoulade_quantitative_2011}, RESOLFT-SPIM Hoyer \textit{et al.} \cite{hoyer_breaking_2016}; Fig. \ref{fig:spim_zoo}b
+
+  % dual-view inverted SPIM, or diSPIM \cite{kumar_dual-view_2014} Fig. \ref{fig:spim_zoo}d
+
+  % inverted SPIM for mouse imaging Strnad \textit{et al.} \cite{strnad_inverted_2016}, Fig. \ref{fig:spim_zoo}c
+
+  % MuVi-SPIM \cite{krzic_multiview_2012}, SimView \cite{tomer_quantitative_2012}, Four-lens SPIM \cite{schmid_high-speed_2013}, Fig. \ref{fig:spim_zoo}f
+
+  % IsoView \cite{chhetri_whole-animal_2015} Fig. \ref{fig:spim_zoo}g
+  
+  % Bessel beam illumination \cite{fahrbach_line_2010,fahrbach_propagation_2012,fahrbach_light-sheet_2013}, Betzig'a Bessel \cite{gao_3d_2014} 2P Bessel Beam from Betzig \cite{planchon_rapid_2011}
 
   %\begin{itemize}	
   %	\item mSPIM, pivoting light-sheet \cite{huisken_even_2007}
   %	\item omnidirectional microscopy (review) \cite{weber_omnidirectional_2012}
   %	\item SiMView \cite{tomer_quantitative_2012}
   %\end{itemize}
+
 
   \subsection{Optics of light-sheet microscopy}
 
@@ -399,12 +407,12 @@ uj regi cikk Keller \cite{keller_life_2006}
         \label{fig:light-sheet}
     \end{figure}
 
-    \begin{figure}
-        \centering
-        \includegraphics[width=1\textwidth]{psfs/psf_spim.pdf}
-        \bcaption[Axial cross section of the PSF in a light-sheet microscope]{Simulated PSFs for illumination (left, NA = 0.1, $\lambda = \SI{488}{nm}$) and detection (center, NA=1.1, $\lambda = \SI{510}{nm}$). The system PSF is the multiplication of these PSFs (right).($n=1.33$). Because of the illumination scheme, the light-sheet microscope has a better axial resolution than a conventional wide-field setup.}
-        \label{fig:psf-spim}
-    \end{figure}
+    % \begin{figure}
+    %     \centering
+    %     \includegraphics[width=1\textwidth]{psfs/psf_spim.pdf}
+    %     \bcaption[Axial cross section of the PSF in a light-sheet microscope]{Simulated PSFs for illumination (left, NA = 0.1, $\lambda = \SI{488}{nm}$) and detection (center, NA=1.1, $\lambda = \SI{510}{nm}$). The system PSF is the multiplication of these PSFs (right).($n=1.33$). Because of the illumination scheme, the light-sheet microscope has a better axial resolution than a conventional wide-field setup.}
+    %     \label{fig:psf-spim}
+    % \end{figure}
 
 
   % \subsection{Detection}
@@ -426,7 +434,35 @@ uj regi cikk Keller \cite{keller_life_2006}
     
     However, to achieve light-sheets that are thin enough, one would need to use cylindrical lens with a very short focal length, and these are hardly accessible in well corrected formats. For this reason, its more common to use a longer focal length cylindrical lens in conjunction with a microscope objective, which is well corrected for chromatic and spherical aberrations \cite{greger_basic_2007}. This way, the light-sheet length, thickness and width can be adjusted for the specific imaging tasks.
 
-    For paraxial waves, i.e. waves with nearly parallel wave front normals, a general wave equation can be approximated with the paraxial Helmholtz equation \cite{krzic_multiple-view_2009, saleh_fundamentals_2007}
+    \subsubsection{Light-sheet dimensions}
+
+    \begin{figure}
+      \centering
+      \begin{subfigure}[b]{0.29\textwidth}
+          \centering
+          \includegraphics[width=\textwidth]{width}
+          \caption{}
+          \label{fig:width}
+      \end{subfigure}
+      \begin{subfigure}[b]{0.29\textwidth}
+          \centering
+          \includegraphics[width=\textwidth]{height}
+          \caption{}
+          \label{fig:height}
+      \end{subfigure}
+      \begin{subfigure}[b]{0.39\textwidth}
+          \centering
+          \includegraphics[width=\textwidth]{FOV}
+          \caption{}
+          \label{fig:fov}
+      \end{subfigure}
+      \bcaption[Light-sheet dimensions]{ \ref{fig:width} The width and thickness of the field of view depends on the Rayleigh length of the beam ($z_{R,y}$) and the beam waist ($W_0$). \ref{fig:height} Height of the field of view is determined by the Gaussian profile of the astigmatic beam. \ref{fig:fov} shows a light sheet, with the field of view indicated. Since the light-sheet intensity is uneven, the field of view has to be confined to a smaller region. }
+      \label{fig:ls_dim}
+    \end{figure}
+
+    The shape of the illumination light determines the optical sectioning capability and the filed of view of the microscope, so it is important to be able to quantify these measures. To this end, let's a laser beams properties described by Gaussian beam optics.
+
+    For paraxial waves, i.e. waves with nearly parallel wave front normals, a general wave equation can be approximated with the paraxial Helmholtz equation \cite{saleh_fundamentals_2007}
     \begin{equation}
       \nabla_T^2 + i 2k \frac{\partial U}{\partial z} = 0
       \label{eq:helmholtz}
@@ -474,29 +510,7 @@ uj regi cikk Keller \cite{keller_life_2006}
       W_x(z) = W_{x,0}\sqrt{1+\left( \frac{z}{z_{x,0}} \right)^2}\mathrm{\quad and \quad } W_y(z) = W_{y,0}\sqrt{1+\left( \frac{z}{z_{y,0}} \right)^2}
     \end{align}
     
-    \begin{figure}
-      \centering
-      \begin{subfigure}[b]{0.39\textwidth}
-          \centering
-          \includegraphics[width=\textwidth]{FOV}
-          \caption{}
-          \label{fig:fov}
-      \end{subfigure}
-      \begin{subfigure}[b]{0.29\textwidth}
-          \centering
-          \includegraphics[width=\textwidth]{width}
-          \caption{}
-          \label{fig:width}
-      \end{subfigure}
-      \begin{subfigure}[b]{0.29\textwidth}
-          \centering
-          \includegraphics[width=\textwidth]{height}
-          \caption{}
-          \label{fig:height}
-      \end{subfigure}
-      \bcaption[Light-sheet dimensions]{ \ref{fig:fov} shows a light sheet, with the field of view indicated. Since the light-sheet intensity is uneven, the field of view has to be confined to a smaller region. \ref{fig:width} The width and thickness of the field of view depends on the Rayleigh length of the beam ($z_{y,0}$). \ref{fig:height} Height of the field of view is determined by the Gaussian profile of the elliptical beam.}
-      \label{fig:ls_dim}
-    \end{figure}
+    
 
     Since the illumination is uneven, the usable field of view is smaller than the actual illuminated region (Figure \ref{fig:fov}). The width of the field of view $w_{fov}$ is determined by the Rayleigh length, since this is in a direct relation with the beam divergence. To stay in the optimal region, the light-sheet should only be used in the range of 1 Rayleigh length on both sides of the beam waist (Figure \ref{fig:width}). In this range, the ratio between the thickest (at $z=z_0$) and the thinnest (at $z=0$) part of the beam $W(z)$ will be $\sqrt{2}\approx 1.4142$ which is still acceptable.
 
@@ -513,45 +527,13 @@ uj regi cikk Keller \cite{keller_life_2006}
         \label{fig:dslm}
     \end{figure}
 
-    Since using cylindrical lenses it's not possible to generate a homogeneous light-sheet, moreover at higher magnification the Rayleigh range would be too small, we also consider using focused beam scanning to generate the light-sheet (digital scanned light-sheet microscopy, DSLM \cite{keller_reconstruction_2008}). To generate a scanning beam, a galvanometer controlled mirror is used to alter the beam path. This can quickly turn around its axis which will result in an angular sweep with the laser beam. To change the angular movement to translation, a scan lens is used to generate an intermediate scanning plane. This plane is then imaged to the specimen by the tube lens and the illumination objective, resulting in a scanned focused beam.
+    Although generating a static light-sheet is relatively straightforward, with the simple addition of a cylindrical lens to the light path, it has some drawbacks. As already mentioned in the previous section, the light intensity distribution along the field of view is not constant, as the light-sheet is shaped from a Gaussian beam. Furthermore, along the lateral direction of the light-sheet the illumination NA is extremely low, resulting in effectively collimated light. Because of this, shadowing artifacts can deteriorate the image quality \cite{huisken_even_2007}.
 
-    This method to generate the light-sheet has several advantages compared to a static light-sheet. The height of this sheet is not determined by the cylindrical lens, but it can be dynamically modified. Also, the intensity is uniform through the whole height of the light-sheet.
+    A more flexible way of creating a light-sheet is by scanning a focused beam in the focal plane to generate a virtual light-sheet (digital scanned light-sheet microscopy, DSLM \cite{keller_reconstruction_2008}). Although this method might require higher peak intensities, it solves both drawbacks of the cylindrical lens illumination. By scanning the beam, the light-sheet height can be freely chosen, and a homogenous illumination will be provided. Focusing the beam in all directions evenly introduces more angles in the lateral direction as well, which shortens the length of the shadows.
+    
+    The basic optical layout of a DSLM is shown on Fig. \ref{fig:dslm}. A galvanometer controlled mirror is used to alter the beam path that can quickly turn around its axis which will result in an angular sweep of the laser beam. To change the angular movement to translation, a scan lens is used to generate an intermediate scanning plane. This plane is then imaged to the specimen by the tube lens and the illumination objective, resulting in a scanned focused beam at the detection focal plane. The detection unit is identical to the wide-field detection scheme, similarly to the static light-sheet illumination. By scanning the beam at a high frequency, a virtual light-sheet is generated, and the fluorescent signal is captured by a single exposure on the camera, resulting in an evenly illuminated field of view.
 
-\section{Further applications of light-sheet microscopy}
-  \label{sec:multiview}
-  \begin{figure}
-    \centering
-    \includegraphics[width=\textwidth]{spim_zoo}
-    \bcaption[Different optical arrangements for light-sheet microscopy]{\textbf{(a)} Original SPIM design with a single lens for detection and illuminaiton. \cite{huisken_optical_2004} \textbf{(b)} Upright SPIM to allow for easier sample mounting such as using a petri dish (iSPIM, \cite{capoulade_quantitative_2011, wu_inverted_2011, hoyer_breaking_2016}). \textbf{(c)} Inverted SPIM, where the objectives are below the sample, which is held by a thin foil \cite{strnad_inverted_2016}. \textbf{(d)} Dual-view version of the upright configuration, where both objective can be used for illumination and detection (diSPIM, \cite{kumar_dual-view_2014}). \textbf{(e)} Multidirectional-SPIM (mSPIM) for even illumination of the sample with two objectives for illumination \cite{huisken_even_2007}. \textbf{(f)} Multi-view SPIM with two illumination and detection objectives for \textit{in toto} imaging of whole embryos (MuVi-SPIM \cite{krzic_multiview_2012}, SimView \cite{tomer_quantitative_2012}, Four-lens SPIM \cite{schmid_high-speed_2013}). \textbf{(g)} A combination of (d) and (f), using 4 identical objectives, where both can illuminate and detect in a sequential manner, to achieve isotropic resolution without sample rotation (IsoView \cite{chhetri_whole-animal_2015}).}
-    \label{fig:spim_zoo}
-  \end{figure}
-
-  "already in 1989 multi-view to increase axial resolution in conventional optical microscope. They imaged \textit{Drosohpila} metaphase plate in Zeiss Axiomat microscope using a 63x 1.2 NA water immersion objective lens. To increase the axial resolution, a special rotation stage was constructed, that allowed rotation around the object of interest to image it from a 90\si{\degree} tilted view. Using a fusion method in the Fourier space, the resolution increased to \SI{0.25}{\micro\meter} in lateral and \SI{0.4}{\micro\meter} in the axial direction for real samples."
-
-  "Multiple imaging axis microscopy (MIAM) \cite{swoger_multiple_2003}to image specimens from 4 directions in a tetrahedral objective configuration,could reach a 5.8 fold increase in axial resolution by combining the four views as a weighted average."
-  "Follow up for this: sample manipulation with optical tweezers / optical levitation in 3D \cite{huisken_three-dimensional_2007}(because of the lack of space for mechanical translation stage)"
-  "positioning of a \SI{20}{\micro m} latex bead in a \SI{100}{\micro m} diameter volume by changing the intensity of 4 laser beams."
-
-  things to improve: resolution
-  axial resolution relative to lateral
-  complete view
-  reduce scattering
   
-  implementations to this end:
-  To mSPIM \cite{huisken_even_2007} Fig. \ref{fig:spim_zoo}e, Ultramicroscope from Dodt \textit{et al.} \cite{dodt_ultramicroscopy:_2007}
-  
-  upright imaging in petri dish: iSPIM from Wu \textit{et al.} \cite{wu_inverted_2011}, SPIM-FCS Capoulade \textit{et al.} \cite{capoulade_quantitative_2011}, RESOLFT-SPIM Hoyer \textit{et al.} \cite{hoyer_breaking_2016}; Fig. \ref{fig:spim_zoo}b
-
-  dual-view inverted SPIM, or diSPIM \cite{kumar_dual-view_2014} Fig. \ref{fig:spim_zoo}d
-
-  inverted SPIM for mouse imaging Strnad \textit{et al.} \cite{strnad_inverted_2016}, Fig. \ref{fig:spim_zoo}c
-
-  MuVi-SPIM \cite{krzic_multiview_2012}, SimView \cite{tomer_quantitative_2012}, Four-lens SPIM \cite{schmid_high-speed_2013}, Fig. \ref{fig:spim_zoo}f
-
-  IsoView \cite{chhetri_whole-animal_2015} Fig. \ref{fig:spim_zoo}g
-  
-  Bessel beam illumination \cite{fahrbach_line_2010,fahrbach_propagation_2012,fahrbach_light-sheet_2013}, Betzig'a Bessel \cite{gao_3d_2014} 2P Bessel Beam from Betzig \cite{planchon_rapid_2011}
-
 
 
 
