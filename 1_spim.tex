@@ -11,6 +11,8 @@
 
 \graphicspath{{./figures/1_spim/}}
 
+Light microscopy is one of the oldest methods that is still widely used today to investigate the inner workings of microscopic life. An especially important branch is fluorescence microscopy \cite{diaspro_optical_2011}, that relies on using fluorescent labels to mark specific regions inside the specimens. Light-sheet microscopy is a relatively new addition to the arsenal of tools that comprise light microscopy methods, and is especially suitable for live imaging of embryonic samples over extended periods of time \cite{krzic_multiview_2012,tomer_quantitative_2012}. It is also easily adapted to the sample, allowing to image a large variety of specimens, from entire organs, such as cleared mouse brains \cite{dodt_ultramicroscopy:_2007}, to the subcellular processes occurring inside cultured cells \cite{capoulade_quantitative_2011}.
+
 Unraveling the secrets of mammalian development has been a long standing challenge for developmental biologists and medical professionals alike. Understanding early embryonic development allows to shed light on questions such as human infertility and congenital diseases. 
 This phase of early life is an incredibly complex and dynamic process spanning through large scales in space and time. Subcellular processes at the nanoscale are happening in the range of milliseconds or faster, while whole embryo reorganizations and tissue migration events take place over the course of hours \cite{gilbert_developmental_2013}. Resolving these processes presents a true challenge, since to also understand the underlying mechanisms molecular specificity is just as crucial as high spatial and temporal resolution.
 
@@ -21,59 +23,37 @@ This phase of early life is an incredibly complex and dynamic process spanning t
   \label{fig:tradeoffs}
 \end{figure}
 
-The most commonly used model organism for these kind of questions is the mouse embryo, that exhibits several common features to human development.
-% , and allows to study it 
-It has several advantages: full genome is sequenced \cite{mouse_genome_sequencing_consortium_initial_2002}, relatively fast reproduction rate facilitating genetic modifications, already extensively developed tools for genetics \cite{capecchi_new_1989,silver_mouse_1995}. All of these make the mouse embryo the primary model organism when investigating biological processes in mammalians.
+% The most commonly used model organism for these kind of questions is the mouse embryo, that exhibits several common features to human development.
+% % , and allows to study it 
+% It has several advantages: full genome is sequenced \cite{mouse_genome_sequencing_consortium_initial_2002}, relatively fast reproduction rate facilitating genetic modifications, already extensively developed tools for genetics \cite{capecchi_new_1989,silver_mouse_1995}. All of these make the mouse embryo the primary model organism when investigating biological processes in mammalians.
 
-Fluorescence microscopy is currently the only imaging technique that not only offers live imaging with high spatial and temporal resolution, it also allows for molecular specificity by the use of fluorescent labeling molecules.
+% Fluorescence microscopy is currently the only imaging technique that not only offers live imaging with high spatial and temporal resolution, it also allows for molecular specificity by the use of fluorescent labeling molecules.
 
-Imaging mouse embryonic development is an extremely challenging task, due to the intrauterine development of embryos \cite{wolpert_principles_2011}. Although this prevents direct access to the embryos, for some developmental stages it is possible to culture them in an \textit{ex vivo} environment using special media and carefully controlled environmental conditions \cite{garcia_live_2011,doherty_culture_2000}. A second hurdle, aside from \textit{in vitro} culturing, arises from the extreme light sensitivity \cite{nowotschin_chapter_2010} of these embryos, hindering the possibility of long term time-lapse experiments in standard confocal microscopes. Even a few hours of imaging every \SI{15}{mins} can impair or arrest normal development \cite{strnad_inverted_2016}.
-
-
+% Imaging mouse embryonic development is an extremely challenging task, due to the intrauterine development of embryos \cite{wolpert_principles_2011}. Although this prevents direct access to the embryos, for some developmental stages it is possible to culture them in an \textit{ex vivo} environment using special media and carefully controlled environmental conditions \cite{garcia_live_2011,doherty_culture_2000}. A second hurdle, aside from \textit{in vitro} culturing, arises from the extreme light sensitivity \cite{nowotschin_chapter_2010} of these embryos, hindering the possibility of long term time-lapse experiments in standard confocal microscopes. Even a few hours of imaging every \SI{15}{mins} can impair or arrest normal development \cite{strnad_inverted_2016}.
 
 "Despite these difficulties, numerous studies successfully used confocal microscopy to \cite{minsky_microscopy_1961} image live embryos in an \textit{ex vivo} environment, although these studies typically only last for a few hours."
 
 "fixed samples, histology, immunofluorescence -> no time lapse"
 
-
 Marvin Minsky confocal microscope, no laser, moving sample \cite{minsky_microscopy_1961}
 first laser scanning confocal: sample stationary, objective is moved Davidovits and Egger 
 first application of laser scanning confocal in "observation of endothelial cells lining the inside of the cornea" \cite{davidovits_photomicrography_1973}
 
-% mostly wide-field, Oct4 - self renewal of pluripotent stem cells in ICM/epiblast \cite{nichols_formation_1998}
-
-% Sox2 in ICM, also maternal proteins important, similar role as Oct4 Both Oct4 and Sox2 are necessary for ICM formation, without cells become trophoectoderm. Furthermore, for extraembryonic endoderm (ExEn) only Oct4 is required, while for extraembryonic ectoderm (ExE) only Sox2 is required. No time lapse, but confocal used to locate proteins in embryo \cite{avilion_multipotent_2003}
-
-% inactivation of X chromosome and histone macroH2A1
-% mouse liver in confocal - fixed samples \cite{costanzi_histone_1998}
-
-% antibodies against amyloid $\upbeta$-peptide reduce Alzheimer in mouse, cryostat sections of mouse brain imaged in confocal\cite{bard_peripherally_2000}
-
-
-% aorta imaging in embryo slices, confocal, live stem cells from aorta endothelium? \cite{boisset_vivo_2010}
-
-% fixed embryos, maintaining pluripotency in embryonic stem cells\cite{sato_maintenance_2004}
-
-% imaging thrombus formation in real time with intravital high-speed confocal microscopy\cite{falati_real-time_2002}
-
-% turning blood into brain hematopoietic stem cells migrate to brain and express neuron-specific antigens \cite{mezey_turning_2000}
 
 
 
-
-% Light microscopy is one of the oldest methods that is still widely used today to investigate the inner workings of microscopic life. An especially important branch is fluorescence microscopy \cite{diaspro_optical_2011}, that relies on using fluorescent labels to mark specific regions inside the specimens. Light-sheet microscopy is a relatively new addition to the arsenal of tools that comprise light microscopy methods, and is especially suitable for live imaging of embryonic samples over extended periods of time \cite{krzic_multiview_2012,tomer_quantitative_2012}. It is also easily adapted to the sample, allowing to image a large variety of specimens, from entire organs, such as cleared mouse brains \cite{dodt_ultramicroscopy:_2007}, to the subcellular processes occurring inside cultured cells \cite{capoulade_quantitative_2011}.
 
 %\section{Light-sheet microscopy}
 
 \section{Wide-field fluorescence microscopy}
-  Fluorescence microscopy \cite{lichtman_fluorescence_2005,diaspro_optical_2011}, as a subset of light microscopy is one of the few methods that allow subcellular imaging of live specimens. The first use of the term fluorescence is credited to  George Gabriel Stokes \cite{stokes_change_1852}, "and is the phenomenon when a molecule emits light after absorbing light or other" electromagnetic radiation. As the name of the technique suggests, this method collects fluorescent light from the specimens which has numerous advantages, but also some drawbacks. Since biological tissue is usually not fluorescent, except for some autofluorescence at shorter wavelengths, fluorescent dyes or proteins have to be introduced to the system in order to be able to collect the necessary information. The advantage of this, is that the signal for the labeled structures will be of very high ratio compared to the background.
+  Fluorescence microscopy \cite{lichtman_fluorescence_2005,diaspro_optical_2011}, as a subset of light microscopy is one of the few methods that allow subcellular imaging of live specimens. The first use of the term fluorescence is credited to  George Gabriel Stokes \cite{stokes_change_1852}, and it refers to the phenomenon when a molecule emits light after absorbing light or other electromagnetic radiation. As the name of the technique suggests, this method collects fluorescent light from the specimens which has numerous advantages, but also some drawbacks. Since biological tissue is usually not fluorescent, except for some autofluorescence at shorter wavelengths, fluorescent dyes or proteins have to be introduced to the system in order to be able to collect the necessary information. The advantage of this, is that the signal of the labeled structures will be of very high ratio compared to the background.
 
   A fluorescent molecule is capable of absorbing photons in a given range (excitation spectrum) and temporarily store its energy by having an electron in  a higher energy orbital, \textit{i.e.} in an excited state. This excited state, however is not stable, and the electron quickly jumps back to the ground state while emitting a photon with equal energy to the energy difference between the excited and ground states. The energy of the absorbed and emitted photons are not the same, however. Energy loss occurs due to internal relaxation events, and the emitted photon has lower energy than the excitation photon. This phenomenon is called the Stokes shift, or red shift \cite{stokes}, and can be exploited in microscopy to drastically increase the signal to noise ratio by filtering out the illumination light (Fig. \ref{fig:spectrum}).
 
   \begin{figure}
     \centering
     \includegraphics[width=0.6\textwidth]{spectrum/egfp}
-    \bcaption[Excitation and emittion spectrum of enchanced green fluorescent protein (EGFP)]{Excitation spectrum in blue, emission spectrum in yellow. The separeation between the two spectra is due to the Stokes shift, which is 19 nm for EGFP. Emitted and excitation light can be separated by a long-pass filter at \SI{500}{nm}. Data from \cite{noauthor_spectra_nodate}.}
+    \bcaption[Excitation and emission spectrum of enhanced green fluorescent protein (EGFP)]{Excitation spectrum in blue, emission spectrum in yellow. The separation between the two spectra is due to the Stokes shift, which is 19 nm for EGFP. Emitted and excitation light can be separated by a long-pass filter at \SI{500}{nm}. Data from \cite{noauthor_spectra_nodate}.}
     \label{fig:spectrum}
   \end{figure}
 
@@ -347,7 +327,7 @@ first application of laser scanning confocal in "observation of endothelial cell
 
   The main principle behind single plane illumination microscopy, that is illuminating the sample from the side by a very thin light-sheet, dates back to the early 20\textsuperscript{th} century, when Siedentopf and Zsigmondy first described the ultramicroscope \cite{siedentopf_uber_1902}. This microscope used sunlight as an illumination source, that was guided through a precision slit to generate a thin light-sheet. This allowed Zsigmondy to visualize gold nanoparticles floating in and out of the light-sheet. Since these particles are much smaller than the wavelength of the light, the device was called an ultramicroscope. His studies with colloids together with the development of the ultramicroscope led Zsigmondy to win the Nobel Prize in 1925.
 
-  After Zsigmondy, this method was forgotten until rediscovered in the nineties,when Voie \etal constructed their Orthogonal-plane Fluorescent Optical Sectioning (OPFOS) microscope \cite{voie_orthogonal-plane_1993}. They used it to image a fixed, optically cleared and fluorescently labeled guinea pig cochlea. In order to acquire a 3D dataset, the sample was illuminated from the side with a light-sheet generated by a cylindrical lens, then rotated around the center axis to obtain multiple views. Although they onlye reached a ateral resolution around \SI{10}{\micro m} and axial resolution of \SI{26}{\micro m}, this method allowed them to generate a 3D reconstruction of the cohlea \cite{voie_three-dimensional_1995}.
+  After Zsigmondy, this method was forgotten until rediscovered in the nineties,when Voie \etal constructed their Orthogonal-plane Fluorescent Optical Sectioning (OPFOS) microscope \cite{voie_orthogonal-plane_1993}. They used it to image a fixed, optically cleared and fluorescently labeled guinea pig cochlea. In order to acquire a 3D dataset, the sample was illuminated from the side with a light-sheet generated by a cylindrical lens, then rotated around the center axis to obtain multiple views. Although they only reached a lateral resolution around \SI{10}{\micro m} and axial resolution of \SI{26}{\micro m}, this method allowed them to generate a 3D reconstruction of the cochlea \cite{voie_three-dimensional_1995}.
 
   Later, in 2002, Fuchs et al. developed Thin Light-Sheet Microscopy (TLSM) \cite{fuchs_thin_2002} and used this technique to investigate the microbial life in seawater samples without disturbing their natural environment (by e.g. placing them on a coverslip). Their light-sheet was similar to the one utilized in OPFOS, being \SI{23}{\micro m} thin, and providing a $\SI{1}{mm} \times \SI{1}{mm}$ field of view.
 
@@ -357,7 +337,7 @@ first application of laser scanning confocal in "observation of endothelial cell
   \begin{figure}[tb]
     \centering
     \includegraphics[width=\textwidth]{spim_zoo}
-    \bcaption[Different optical arrangements for light-sheet microscopy]{\textbf{(a)} Original SPIM design with a single lens for detection and illuminaiton. \cite{huisken_optical_2004} \textbf{(b)} Upright SPIM to allow for easier sample mounting such as using a petri dish (iSPIM, \cite{capoulade_quantitative_2011, wu_inverted_2011, hoyer_breaking_2016}). \textbf{(c)} Inverted SPIM, where the objectives are below the sample, which is held by a thin foil \cite{strnad_inverted_2016}. \textbf{(d)} Dual-view version of the upright configuration, where both objective can be used for illumination and detection (diSPIM, \cite{kumar_dual-view_2014}). \textbf{(e)} Multidirectional-SPIM (mSPIM) for even illumination of the sample with two objectives for illumination \cite{huisken_even_2007}. \textbf{(f)} Multi-view SPIM with two illumination and detection objectives for \textit{in toto} imaging of whole embryos (MuVi-SPIM \cite{krzic_multiview_2012}, SimView \cite{tomer_quantitative_2012}, Four-lens SPIM \cite{schmid_high-speed_2013}). \textbf{(g)} A combination of (d) and (f), using 4 identical objectives, where both can illuminate and detect in a sequential manner, to achieve isotropic resolution without sample rotation (IsoView \cite{chhetri_whole-animal_2015}).}
+    \bcaption[Different optical arrangements for light-sheet microscopy]{\textbf{(a)} Original SPIM design with a single lens for detection and illumination. \cite{huisken_optical_2004} \textbf{(b)} Upright SPIM to allow for easier sample mounting such as using a petri dish (iSPIM, \cite{capoulade_quantitative_2011, wu_inverted_2011, hoyer_breaking_2016}). \textbf{(c)} Inverted SPIM, where the objectives are below the sample, which is held by a thin foil \cite{strnad_inverted_2016}. \textbf{(d)} Dual-view version of the upright configuration, where both objective can be used for illumination and detection (diSPIM, \cite{kumar_dual-view_2014}). \textbf{(e)} Multidirectional-SPIM (mSPIM) for even illumination of the sample with two objectives for illumination \cite{huisken_even_2007}. \textbf{(f)} Multi-view SPIM with two illumination and detection objectives for \textit{in toto} imaging of whole embryos (MuVi-SPIM \cite{krzic_multiview_2012}, SimView \cite{tomer_quantitative_2012}, Four-lens SPIM \cite{schmid_high-speed_2013}). \textbf{(g)} A combination of (d) and (f), using 4 identical objectives, where both can illuminate and detect in a sequential manner, to achieve isotropic resolution without sample rotation (IsoView \cite{chhetri_whole-animal_2015}).}
     \label{fig:spim_zoo}
   \end{figure}
   
@@ -388,7 +368,7 @@ first application of laser scanning confocal in "observation of endothelial cell
 
   % IsoView \cite{chhetri_whole-animal_2015} Fig. \ref{fig:spim_zoo}g
   
-  % Bessel beam illumination \cite{fahrbach_line_2010,fahrbach_propagation_2012,fahrbach_light-sheet_2013}, Betzig'a Bessel \cite{gao_3d_2014} 2P Bessel Beam from Betzig \cite{planchon_rapid_2011}
+  % Bessel beam illumination \cite{fahrbach_line_2010,fahrbach_propagation_2012,fahrbach_light-sheet_2013}, Betzig's Bessel \cite{gao_3d_2014} 2P Bessel Beam from Betzig \cite{planchon_rapid_2011}
 
   %\begin{itemize}	
   %	\item mSPIM, pivoting light-sheet \cite{huisken_even_2007}
@@ -400,10 +380,10 @@ first application of laser scanning confocal in "observation of endothelial cell
   \subsection{Optics of light-sheet microscopy}
 
     
-    \begin{figure}[htpb]
+    \begin{figure}[htb]
         \centering
         \includegraphics[page=1,width=0.7\textwidth]{spim_cyl}
-        \bcaption[Basic optical components of a SPIM]{A dedicated illumination objective is used to generate the light sheet, which is an astigmatic Gaussian beam, focues along one direction. Astigmatism is introduced by placing a cylindrical lens focusing on the back folcal plane of the objective. Detection is preformed at a right angle, with a second, detection objective. Scatterd laser light is filtered, and a tube lens forms the image on az are sensor, such as an sCMOS camera.}
+        \bcaption[Basic optical components of a SPIM]{A dedicated illumination objective is used to generate the light sheet, which is an astigmatic Gaussian beam, focuses along one direction. Astigmatism is introduced by placing a cylindrical lens focusing on the back focal plane of the objective. Detection is preformed at a right angle, with a second, detection objective. Scattered laser light is filtered, and a tube lens forms the image on az are sensor, such as an sCMOS camera.}
         \label{fig:light-sheet}
     \end{figure}
 

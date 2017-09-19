@@ -85,7 +85,7 @@
   \begin{figure}
     \centering
     \includegraphics[width=1\textwidth]{psfs/SPIMx120.pdf}
-    \bcaption[Axial cross section of the PSF and OTF of a multi-view single plane illumination microscope]{Simulated PSF and OTF for a single plane illumination microscope with a water immersion objectives ($n=1.33$). Muti-view image acquisition at \SI{120}{\degree} was simulated. Detection: $NA=1.1$, $\lambda = \SI{510}{nm}$, Illumination: $NA=0.1$, $\lambda = \SI{488}{nm}$}
+    \bcaption[Axial cross section of the PSF and OTF of a multi-view single plane illumination microscope]{Simulated PSF and OTF for a single plane illumination microscope with a water immersion objectives ($n=1.33$). Multi-view image acquisition at \SI{120}{\degree} was simulated. Detection: $NA=1.1$, $\lambda = \SI{510}{nm}$, Illumination: $NA=0.1$, $\lambda = \SI{488}{nm}$}
     \label{fig:psf-spimx120}
   \end{figure}
       
@@ -95,7 +95,7 @@
   design principles:
   highest isotropic resolution, highest light collection efficiency possible
   2x0.8 NA water dipping in 90$\circ$ multi-view deconvolve Gaussian fit $\sigma_{xyz}=135$
-  2x1.1 NA water dipping in 120$\circ$ multi-view deconvolced Gaussian fit $\sigma_z = 135$, and $\sigma_{xy} = 82.2$
+  2x1.1 NA water dipping in 120$\circ$ multi-view deconvolved Gaussian fit $\sigma_z = 135$, and $\sigma_{xy} = 82.2$
   simulations from PSF generator! put here
 
   \begin{figure}[bth]
@@ -127,9 +127,9 @@
 \section{Optical alignment}
   Precise alignment of the illumination and detection paths are crucial for high quality imaging, and has a pronounced  importance for high magnification and high resolution optical systems. The DualMouse SPIM contains two illumination and detection paths that share many common elements, which makes alignment a *important?* process. The final aim for the alignment is to perfectly overlap the light-sheets with the detection focal planes, and to optimize ... 
 
-  \subsection{Alignment of illuminaiton branches}
+  \subsection{Alignment of illumination branches}
 
-    The two illumination braches start with a common light source, a single mode fiber coupled to laser combiner, and they also share a galvanometric mirror that performs the beam scanning to generate the virtual light-sheet. Likewise shared is a scan lens focusing on the galvo mirror (GM), and the illumination splitter unit (PM, see Section \ref{sec:splitter}).
+    The two illumination branches start with a common light source, a single mode fiber coupled to laser combiner, and they also share a galvanometric mirror that performs the beam scanning to generate the virtual light-sheet. Likewise shared is a scan lens focusing on the galvo mirror (GM), and the illumination splitter unit (PM, see Section \ref{sec:splitter}).
 
     Alignment for the illumination arms are done in three steps. First the laser beam is aligned on the first rail that holds the galvo, lens L1, and the splitter unit PM. This is performed by two kinematic mirrors placed between the fiber output and the galvo mirror. Using these two mirrors it's possible to freely align the beam along all 4 degrees of freedom: translation in two orthogonal directions, and rotation around two orthogonal axes. Beam alignment on the rail is tested by two irises at the two ends of the rail, if the beam passes through both of them we consider it centered and straight on the optical axis.
 
@@ -166,7 +166,7 @@
       Our tube lens is a compound, achromatic lens with a center thickness of \SI{12.5}{mm}, and edge thickness of \SI{11.3}{mm}. Its effective focal length is \SI{400}{mm} which will produce a 50x magnified image. Back focal length is \SI{394.33}{mm} which we measured form the camera chip, and the lens was positioned at this theoretically optimal position.
 
     \paragraph{Adjusting correction collar.}
-      The Nikon 25x objectives used for this setup have a built in correcction ring that can be used to correct spherical aberrations resulting from refractive index differences when imaging samples behind a coverslip. This can be also effectively used to correct for any spherical aberrations occurring from imaging through the FEP foil. Although these aberrations are expected to be extremely low, due to the relatively thin, \SI{50}{\micro m} foil thickness, and the close matching of refractive index ($n_{FEP} = 1.344$, $n_{H_2O}=1.333$), for optimal, aberration free image quality it can't be neglected.
+      The Nikon 25x objectives used for this setup have a built in correction ring that can be used to correct spherical aberrations resulting from refractive index differences when imaging samples behind a coverslip. This can be also effectively used to correct for any spherical aberrations occurring from imaging through the FEP foil. Although these aberrations are expected to be extremely low, due to the relatively thin, \SI{50}{\micro m} foil thickness, and the close matching of refractive index ($n_{FEP} = 1.344$, $n_{H_2O}=1.333$), for optimal, aberration free image quality it can't be neglected.
 
       The correction collars are adjusted by inspecting a gel suspended fluorescent bead specimen with the microscope, where the beads can act as a reporter of the point spread function of the microscope. The alignment can be performed "live" by inspecting the bead image quality for any aberrations. By gradually changing the correction collar, the ring are minimized on out of focus beads, and the peak intensity is maximized for in focus beads. By moving the correction ring, the focal plane is also slightly shifted, which has to be compensated by shifting the light-sheet correspondingly to coincide with the correct imaging plane.
 
@@ -270,14 +270,14 @@
     \begin{figure}[htb]
       \centering
       \includegraphics[width=0.7\textwidth]{gibson-lanni}
-      \bcaption[Schematics for the Gibson-Lanni model]{The model is based on the differences in light propagation between the experimental (red) and design conditions (blue). The optical path length difference is calculated as follows: $OPD = [ABCD] - [PQRS]$. System properties are represented by vectors $\mathbf{n} = (n_i, n_i^*, n_g, n_g^*, n_s)$ and $\mathbf{t} = (t_i, t_i^*, t_g, t_g^*, t_s)$ for the refractive inices and path lengths respectively. Adapted from \cite{li_fast_2017}.}
+      \bcaption[Schematics for the Gibson-Lanni model]{The model is based on the differences in light propagation between the experimental (red) and design conditions (blue). The optical path length difference is calculated as follows: $OPD = [ABCD] - [PQRS]$. System properties are represented by vectors $\mathbf{n} = (n_i, n_i^*, n_g, n_g^*, n_s)$ and $\mathbf{t} = (t_i, t_i^*, t_g, t_g^*, t_s)$ for the refractive indices and path lengths respectively. Adapted from \cite{li_fast_2017}.}
       \label{fig:gibson-lanni}
     \end{figure}
 
     \begin{figure}[htb]
       \centering
       \includegraphics[width=\textwidth]{PSF}
-      \bcaption[Simulated and measured PSF of Dual Mouse-SPIM]{Top row: axial sections of simulated and measured point spread funcitons. Middle row: lateral intensity profile and Gaussian fit. Bottom row: Axial intensity profile and Gaussian fit. Simulations were performed based on the Gibson-Lanni model. Immersion medium  and sample refractive index: 1.330, coverslip (FEP foil) refractive index: 1.344, coverslip distance: \SI{1900}{\micro m}, coverslip thickness: \SI{50}{\micro m}. Scale bar: \SI{500}{nm}.}
+      \bcaption[Simulated and measured PSF of Dual Mouse-SPIM]{Top row: axial sections of simulated and measured point spread functions. Middle row: lateral intensity profile and Gaussian fit. Bottom row: Axial intensity profile and Gaussian fit. Simulations were performed based on the Gibson-Lanni model. Immersion medium  and sample refractive index: 1.330, coverslip (FEP foil) refractive index: 1.344, coverslip distance: \SI{1900}{\micro m}, coverslip thickness: \SI{50}{\micro m}. Scale bar: \SI{500}{nm}.}
       \label{fig:measuredPSF}
     \end{figure}
 
