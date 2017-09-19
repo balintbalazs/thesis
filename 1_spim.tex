@@ -460,21 +460,21 @@ first application of laser scanning confocal in "observation of endothelial cell
       \label{fig:ls_dim}
     \end{figure}
 
-    The shape of the illumination light determines the optical sectioning capability and the filed of view of the microscope, so it is important to be able to quantify these measures. To this end, let's a laser beams properties described by Gaussian beam optics.
+    The shape of the illumination light determines the optical sectioning capability and the field of view of the microscope, so it is important to be able to quantify these measures. To this end, let's a laser beams properties described by Gaussian beam optics.
 
     For paraxial waves, i.e. waves with nearly parallel wave front normals, a general wave equation can be approximated with the paraxial Helmholtz equation \cite{saleh_fundamentals_2007}
     \begin{equation}
-      \nabla_T^2 + i 2k \frac{\partial U}{\partial z} = 0
+      \nabla_T^2 U + i 2k \frac{\partial U}{\partial z} = 0
       \label{eq:helmholtz}
     \end{equation}
-    where $\nabla_T^2 = \frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2}$, $U(\vec{r})$ is the wave-function, $k=\frac{2\pi}{\lambda}$ is the wavenumber and we assume, that the light spreads in $z$ direction.
+    where $\nabla_T^2 = \frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2}$, $U(\vec{r})$ is the wave-function, $k=\frac{2\pi}{\lambda}$ is the wavenumber and $z$ is in the direction of the light propagation.
     
     A simple solution to this differential equation is the Gaussian beam:
     \begin{equation}
       U(r,z) = A_0 \cdot \frac{W_0}{W(z)} \cdot e^{-\frac{r^2}{W^2(z)}}\cdot e^{-i\cdot \phi(r,z)}
     \label{eq:gaussian}
     \end{equation}
-    where $A_0$ is the amplitude of the wave, $W_0$ is the radius of the beam waist (the thinnest location on the beam), $r=\sqrt{x^2+y^2}$ is the distance from the center of the beam, $W(z)$ is the radius of the beam $z$ distance from the waist, and $\phi(r,z)$ is the combined phase part of the wave-function. Furthermore:
+    where $A_0$ is the amplitude of the wave, $W_0$ is the radius of the beam waist (the thinnest location on the beam), $r=\sqrt{x^2+y^2}$ is the distance from the center of the beam, $W(z)$ is the radius of the beam $z$ distance from the waist, and $\phi(r,z)$ is the combined phase part of the wave-function (Fig. \ref{fig:width}). Furthermore:
 
     \begin{equation}
       W(z) = W_0\sqrt{1+\left( \frac{z}{z_R} \right)^2}
@@ -482,39 +482,40 @@ first application of laser scanning confocal in "observation of endothelial cell
     where the parameter $z_R$ is called the Rayleigh-range, and is defined the following way:
 
     \begin{equation}
-      z_R = \frac{\pi W_0^2}{\lambda}
+      z_R = \frac{\pi W_0^2}{\lambda}.
     \end{equation}
-    Which means, the thinner the beam waist, the shorter the Rayleigh-range, that is the beam divergence is faster for more focused beams.
-
-    The intensity of the emitted fluorescence is based on the intensity of the excitation light. In case of a Gaussian beam:
-    \begin{equation}
-      I(r,z) = U(r,z)\cdot U^*(r,z) = |A_0|^2 \cdot \left( \frac{W_0}{W(z)}\right)^2 \cdot e^{-\frac{2r^2}{W^2(z)}}
-    \end{equation}
-
-    Apart from the circular Gaussian beam, the elliptical Gaussian beam is also an eigenfunction of Helmholtz equation (\ref{eq:helmholtz}):
-    \begin{equation}
-      U(x,y,z) = A_0 \cdot \sqrt{\frac{W_{x,0}}{W_x(z)}} \sqrt{\frac{W_{y,0}}{W_y(z)}} \cdot e^{-\frac{x^2}{W_x^2(z)}} \cdot e^{-\frac{y^2}{W_y^2(z)}} \cdot e^{-i\cdot \phi(x,y,z)}
-    \end{equation}
-
-    This beam still has a Gaussian profile along the $x$ and $y$ axes, but the radii are uncoupled, which results in an elliptical beam. Since the beam waist is different along the two axes, the Rayleigh range is also different:
-    \begin{align}
-      z_{x,0} = \frac{\pi W_{x,0}^2}{\lambda} \\
-      z_{y,0} = \frac{\pi W_{y,0}^2}{\lambda}
-    \end{align}
-    Intensity of the beam is the following:
-    \begin{equation}
-      I(x,y,z) = U(x,y,z)\cdot U^*(x,y,z) = |A_0|^2 \cdot \frac{W_{x,0}}{W_x(z)} \cdot \frac{W_{y,0}}{W_y(z)} \cdot e^{-\frac{2x^2}{W_x^2(z)}} \cdot e^{-\frac{2y^2}{W_y^2(z)}}
-    \end{equation}
-    where
-    \begin{align}
-      W_x(z) = W_{x,0}\sqrt{1+\left( \frac{z}{z_{x,0}} \right)^2}\mathrm{\quad and \quad } W_y(z) = W_{y,0}\sqrt{1+\left( \frac{z}{z_{y,0}} \right)^2}
-    \end{align}
-    
     
 
-    Since the illumination is uneven, the usable field of view is smaller than the actual illuminated region (Figure \ref{fig:fov}). The width of the field of view $w_{fov}$ is determined by the Rayleigh length, since this is in a direct relation with the beam divergence. To stay in the optimal region, the light-sheet should only be used in the range of 1 Rayleigh length on both sides of the beam waist (Figure \ref{fig:width}). In this range, the ratio between the thickest (at $z=z_0$) and the thinnest (at $z=0$) part of the beam $W(z)$ will be $\sqrt{2}\approx 1.4142$ which is still acceptable.
+    % The available height of the field of view depends on the uniformity of the illumination. The intensity of the emitted fluorescence is based on the intensity of the excitation light. In case of a Gaussian beam:
+    % \begin{equation}
+    %   I(r,z) = U(r,z)\cdot U^*(r,z) = |A_0|^2 \cdot \left( \frac{W_0}{W(z)}\right)^2 \cdot e^{-\frac{2r^2}{W^2(z)}},
+    % \end{equation}
 
-    Light-sheet height is determined by the profile of the beam along the vertical axis (Figure \ref{fig:height}). Since this is a Gaussian function (see Equation \ref{eq:gaussian}), only a small part in the middle can be used for imaging, because towards the sides the intensity dramatically drops. To allow a maximum 80\% drop of intensity at the edges, the light-sheet height is $h_{fov}=2\cdot 0.472\cdot W_{x,0}$
+    Apart from the circular Gaussian beam, the elliptical Gaussian beam is also an eigenfunction of Helmholtz equation (\ref{eq:helmholtz}) which describes the beam shape after a cylindrical lens:
+    \begin{equation}
+      U(x,y,z) = A_0 \cdot \sqrt{\frac{W_{0,x}}{W_x(z-z_{0,x})}} \sqrt{\frac{W_{0,y}}{W_y(z-z_{0,y})}} \cdot e^{-\frac{x^2}{W_x^2(z-z_{0,x})}} \cdot e^{-\frac{y^2}{W_y^2(z-z_{0,y})}} \cdot e^{-i\cdot \phi(x,y,z)}
+    \end{equation}
+    This beam still has a Gaussian profile along the $x$ and $y$ axes, but the radii ($W_{0,x}$ and $W_{0,y}$), and the beam waist positions ($z_{0,x}$ and $z_{0,y}$) are uncoupled, which results in an elliptical and astigmatic beam. The beam width can be now described by two independent equations for the two orthogonal directions:
+    \begin{align}
+      W_x(z) = W_{0,x}\sqrt{1+\left( \frac{z}{z_{R,x}} \right)^2}\mathrm{\quad and \quad } W_y(z) = W_{0,y}\sqrt{1+\left( \frac{z}{z_{R,y}} \right)^2}.
+    \end{align}
+    Since the beam waist is different along the two axes, the Rayleigh range is also different:
+    \begin{align}
+      z_{R,x} = \frac{\pi W_{x,0}^2}{\lambda}, \quad
+      z_{R,y} = \frac{\pi W_{y,0}^2}{\lambda}.
+      \label{eq:rayleigh}
+    \end{align}
+    % Intensity of the beam is the following:
+    % \begin{equation}
+    %   I(x,y,z) = U(x,y,z)\cdot U^*(x,y,z) = |A_0|^2 \cdot \frac{W_{x,0}}{W_x(z)} \cdot \frac{W_{y,0}}{W_y(z)} \cdot e^{-\frac{2x^2}{W_x^2(z)}} \cdot e^{-\frac{2y^2}{W_y^2(z)}}
+    % \end{equation}
+    
+    
+    Based on these equations, the light-sheet dimensions and usable field of view (fov) can be specified (Fig \ref{fig:fov}). The light-sheet thickness will depend on the beam waist, $W_{0,y}$ (if we assume the cylindrical lens is focusing along $y$), and the length of the light-sheet can be defined as twice the Rayleigh range, $2 \cdot z_{R,y}$. As these are coupled (see Eq. (\ref{eq:rayleigh})), having a thin light-sheet for better sectioning also means the length of it will be relatively short. Fortunately, because of the quadratic relation, to increase the field of view by a factor of two, the light-sheet thickness only needs to increase by a factor of $\sqrt{2}$.
+
+    % Since the illumination is uneven, the usable height of the field of view is smaller than the actual illuminated region (Figure \ref{fig:fov}). The width of the field of view $w_{fov}$ is determined by the Rayleigh length, since this is in a direct relation with the beam divergence. To stay in the optimal region, the light-sheet should only be used in the range of 1 Rayleigh length on both sides of the beam waist (Figure \ref{fig:width}). In this range, the ratio between the thickest (at $z=z_0$) and the thinnest (at $z=0$) part of the beam $W(z)$ will be $\sqrt{2}\approx 1.4142$ which is still acceptable.
+
+    Light-sheet height is determined by the intensity profile of the beam along the vertical axis (Figure \ref{fig:height}). Since this is a Gaussian function (see Equation \ref{eq:gaussian}), only a small part in the middle can be used for imaging, because towards the sides the intensity dramatically drops. To allow a maximum 20\% drop of intensity at the edges, the light-sheet height is $h_{fov}=2\cdot 0.472\cdot W_{x,0}$.
     
 
   \subsection{Digitally scanned light-sheet illumination}
