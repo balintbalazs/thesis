@@ -18,8 +18,8 @@
 \usepackage{siunitx}
 \usepackage{fancyhdr} % for better header layout
 \usepackage{xspace}
-\usepackage[pagewise]{lineno}
-\linenumbers
+% \usepackage[pagewise]{lineno}
+% \linenumbers
 
 \usepackage[ plainpages = false, pdfpagelabels,
                  %pdftex,
