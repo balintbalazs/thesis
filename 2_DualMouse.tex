@@ -96,10 +96,24 @@
   \subsection{Multi-view resolution}
     here a figure with rotating 2 psfs
       
-    \begin{figure}
+    % \begin{figure}
+    %   \centering
+    %   \includegraphics[width=1\textwidth,height=0.3\textwidth]{placeholder.pdf}
+    %   \bcaption[Lateral and axial resolution of a multi-view optical system.]{a) Simulated PSF for a single view. b)--d) Simulated compound PSF of two views aligned in b) 30, c) 60 and d) 90 degrees to each other. e) Axial and lateral resolution of a dual-view setup depending on the angle difference. Detection: $NA=1.1$, $\lambda = \SI{510}{nm}$, Illumination: $NA=0.1$, $\lambda = \SI{488}{nm}$}
+    %   \label{fig:psf-rot}
+    % \end{figure}
+
+    \begin{figure}[bt]
       \centering
-      \includegraphics[width=1\textwidth,height=0.3\textwidth]{placeholder.pdf}
-      \bcaption[Lateral and axial resolution of a multi-view optical system.]{a) Simulated PSF for a single view. b)--d) Simulated compound PSF of two views aligned in b) 30, c) 60 and d) 90 degrees to each other. e) Axial and lateral resolution of a dual-view setup depending on the angle difference. Detection: $NA=1.1$, $\lambda = \SI{510}{nm}$, Illumination: $NA=0.1$, $\lambda = \SI{488}{nm}$}
+      \begin{subfigure}[t]{0.45\textwidth}
+        \includegraphics[width=\columnwidth]{simu/psf}
+      \end{subfigure}	
+      \begin{subfigure}[b]{0.5\textwidth}
+      \qquad e
+      
+        \includegraphics[width=\columnwidth]{simu/resolution}
+      \end{subfigure}
+      \bcaption[Lateral and axial resolution of a multi-view optical system.]{a) Simulated PSF for a single view. b)--d) Simulated compound PSF of two views aligned in b) 30, c) 60 and d) 90 degrees to each other. e) Axial and lateral resolution of a dual-view setup depending on the rotation angle of the two objectives. Parameters used for calculations: NA=1.1, $\lambda_{ex}=488$nm, $\lambda_{det}=510$nm, $n=1.333$ for water immersion.}
       \label{fig:psf-rot}
     \end{figure}
       
