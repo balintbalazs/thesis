@@ -212,21 +212,31 @@
 
       \begin{figure}[htb]
         \centering
-        \includegraphics[width=0.6\textwidth]{SW/splitterFigure}
-      \bcaption[Illumination branch splitting block]{3D model of the custom designed splitter block used in the illumination branch. Depending on the horizontal beam position at the lower port, the beam will be reflected either to the right or to the left. Because of the mirror alignment, the beam is rotated 90 degrees.}
-      \label{fig:splitter}
+        \includegraphics[width=0.8\textwidth]{SW/splitterFigure}
+        \bcaption[Illumination branch splitting unit]{To divert the beam to either side, a right angle prism mirror is used in conjunction with a galvanometric scanning mirror. L1 acts as a scan lens, thus the beam is translated on mirror M. Depending on the galvo angle, the beam will be reflected either to the left (\textbf{a}) or to the right (\textbf{b}). L2 and L2' act as relay lenses, and will image the galvo movement to intermediate planes.}
+        \label{fig:splitter}
       \end{figure}
+
+      
 
   \subsection{Detection}
     \subsubsection{Light combining unit}
+
       \label{sec:dualMirror}
-        \begin{figure}[bt!]
-          \centering
-          \includegraphics[page=1,width=1\textwidth]{fullSchematics}
-          \bcaption[Dual Mouse SPIM optical layout]{The microscope consists of two main parts, the illumination branches (blue) and detection branches (yellow). For both illumination and detection there are two identical paths implemented. Illumination direction can be changed by applying a different offset to the galvo mirror, which in turn will direct the beam to the opposite face of the prism mirror. L1 and L2 will then image the galvo on M1. Using L3 as a scan lens, and L4 as a tube lens, the scanned beam is coupled to the objective path by quad band dichroic mirror (DM)
-          CAM -- camera, DM -- dichroic mirror, F -- filter wheel, L -- lens, M -- mirror, O -- objective, PM -- prism mirror, S -- sample, SU -- switcher unit}
-          \label{fig:fullSchematics}
-        \end{figure}
+      \begin{figure}[htb]
+        \centering
+        \includegraphics[width=0.8\textwidth]{SW/dualMirrorFigure}
+        \bcaption[Detection branch merging unit]{To be able to image both views on the same camera, a moveable mirror unit is introduced. Depending on the imaging direction, the mirror block is either moved backward (\textbf{a}) or forward (\textbf{b}) to reflect the light up to the camera. Since the movement is parallel to the mirrors' surface, the image position on the sensor is not dependent on the exact position of the mirrors.}
+        \label{fig:dualMirror}
+      \end{figure}
+        
+      \begin{figure}[bt!]
+        \centering
+        \includegraphics[page=1,width=1\textwidth]{fullSchematics}
+        \bcaption[Dual Mouse SPIM optical layout]{The microscope consists of two main parts, the illumination branches (blue) and detection branches (yellow). For both illumination and detection there are two identical paths implemented. Illumination direction can be changed by applying a different offset to the galvo mirror, which in turn will direct the beam to the opposite face of the prism mirror. L1 and L2 will then image the galvo on M1. Using L3 as a scan lens, and L4 as a tube lens, the scanned beam is coupled to the objective path by quad band dichroic mirror (DM)
+        CAM -- camera, DM -- dichroic mirror, F -- filter wheel, L -- lens, M -- mirror, O -- objective, PM -- prism mirror, S -- sample, SU -- switcher unit}
+        \label{fig:fullSchematics}
+      \end{figure}
 
 
   %    ###    ##       ####  ######   ##    ## 
