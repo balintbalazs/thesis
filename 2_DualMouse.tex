@@ -210,27 +210,6 @@
     \subsubsection{Beam splitter unit}
       \label{sec:splitter}
 
-      % \begin{figure}[htb]
-      %   \centering
-      %   \includemedia[
-      %   width=0.8\linewidth,height=0.6\linewidth,
-      %   %add3Djscript=asylabels.js, %upright text labels
-      %   %add3Djscript=3Dspintool.js, %let scene rotate about z-axis
-      %   % 3Dcoo, 3Droo values found with `Generate Default View' from
-      %   % context menu
-      %   3Dmenu,
-      %   playbutton=plain,
-      %   3Droll=124.45821807473328,
-      %   3Dc2c=0.5729350447654724 0.4988637864589691 0.6502924561500549,
-      %   3Dcoo=6.723448276519775 -30.282148361206055 -11.914359092712402,
-      %   3Droo=162.71372963736036,
-      %   3Dlights=Headlamp,
-      %   3Drender=ShadedIllustration,
-      %   ]{\includegraphics{Splitter.png}}{Splitter.prc}
-      % \bcaption[Illumination branch splitting block]{3D model of the custom designed splitter block used in the illumination branch. Depending on the horizontal beam position at the lower port, the beam will be reflected either to the right or to the left. Because of the mirror alignment, the beam is rotated 90 degrees.}
-      % \label{fig:splitter}
-      % \end{figure}
-
       \begin{figure}[htb]
         \centering
         \includegraphics[width=0.6\textwidth]{SW/splitterFigure}
@@ -241,30 +220,6 @@
   \subsection{Detection}
     \subsubsection{Light combining unit}
       \label{sec:dualMirror}
-      
-      % \begin{figure}[htb]
-      %   \centering
-      %     \includemedia[
-      %     width=1.0\linewidth,height=0.6\linewidth,
-      %     %add3Djscript=asylabels.js, %upright text labels
-      %     %add3Djscript=3Dspintool.js, %let scene rotate about z-axis
-      %     % 3Dcoo, 3Droo values found with `Generate Default View' from
-      %     % context menu
-      %     3Dmenu,
-      %     playbutton=plain,
-      %     % default view start
-      %     3Droll=104,
-      %     3Dc2c=0.7466059923171997 0.4799830913543701 0.4606471359729767,
-      %     3Dcoo=-5.2039947509765625 -5.257904529571533 23.018417358398438,
-      %     3Droo=353,
-      %     3Dlights=Headlamp,
-      %     3Drender=ShadedIllustration,
-      %     % default view end
-      %     ]{\includegraphics{DualMirror.png}}{DualMirror.prc}
-      %     \caption[Detection branch merging unit]{3D model of the custom designed unit to enable quick switching between the two detection paths. A high precision stainless steel stage holds two mirror blocks facing opposite directions, and bouncing the light upwards, towards the camera. The units are translated by  pneumatic cylinder to ensure high speed an reproducibility.}
-      %     \label{fig:DualMirror}
-      %   \end{figure}
-
         \begin{figure}[bt!]
           \centering
           \includegraphics[page=1,width=1\textwidth]{fullSchematics}
@@ -288,12 +243,12 @@
 
     The two illumination branches start with a common light source, a single mode fiber coupled to laser combiner, and they also share a galvanometric mirror that performs the beam scanning to generate the virtual light-sheet. Likewise shared is a scan lens focusing on the galvo mirror (GM), and the illumination splitter unit (PM, see Section \ref{sec:splitter}).
 
-    Alignment for the illumination arms are done in three steps. First the laser beam is aligned on the first rail that holds the galvo, lens L1, and the splitter unit PM. This is performed by two kinematic mirrors placed between the fiber output and the galvo mirror. Using these two mirrors it's possible to freely align the beam along all 4 degrees of freedom: translation in two orthogonal directions, and rotation around two orthogonal axes. Beam alignment on the rail is tested by two irises at the two ends of the rail, if the beam passes through both of them we consider it centered and straight on the optical axis.
+    Alignment for the illumination arms are done in three steps. First the laser beam is aligned on the first rail that holds the galvo, lens L1, and the splitter unit PM. This is performed by two kinematic mirrors placed between the fiber output and the galvo mirror (not shown on figure). Using these two mirrors it's possible to freely align the beam along all 4 degrees of freedom: translation in two orthogonal directions, and rotation around two orthogonal axes. Beam alignment on the rail is tested by two irises at the two ends of the rail, if the beam passes through both of them we consider it centered and straight on the optical axis.
 
     After the beam is aligned on the first rail, lens L1 and the splitter unit PM are placed in the measured positions to image the galvo mirror on mirror M1 using lenses L1 and L2. Correct positioning of the splitter unit along the rail is crucial, since this will affect the lateral position and tilt of the beam exiting the unit. To some extent, this can also be compensated by adjusting the two mirrors before the galvo mirror, but is avoided if possible as this will also displace the beam from the center of the galvo mirror.
 
     \subsubsection{Adjusting beam position.}
-      Beam position can be adjusted by either translating the beam in a conjugated image plane, or by rotating the beam in a conjugated back focal plane. The setup was designed in a way, that BFP' coincides with mirror M2. This mirror is mounted in a gimbal mirror mount, allowing to rotate the mirror exactly around its center, which avoids unwanted translational movements, and results in pure rotation of the beam. Lens L3 is positioned exactly 1 focal length from the mirror, thus acting as a scan lens, and transforming the rotational movements to translation. This translation is further imaged and demagnified by the tube lens L4 and the objective O.
+      Beam position can be adjusted by either translating the beam in a conjugated image plane (I'), or by rotating the beam in a conjugated back focal plane (BFP'). The setup was designed in a way, that BFP' coincides with mirror M2. This mirror is mounted in a gimbal mirror mount, allowing to rotate the mirror exactly around its center, which avoids unwanted translational movements, and results in pure rotation of the beam. Lens L3 is positioned exactly 1 focal length from the mirror, thus acting as a scan lens, and transforming the rotational movements to translation. This translation is further imaged and demagnified by the tube lens L4 and the objective O.
 
 
     \paragraph{Adjusting beam tilt}
