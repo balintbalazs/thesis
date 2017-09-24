@@ -11,7 +11,7 @@
 
 \graphicspath{{./figures/2_DualMouse/}}
 
-\section{Challenges in imaging mouse pre-implantation development}
+% \section{Challenges in imaging mouse pre-implantation development}
   mammalian development
   chromosome segregation
   cell specification
@@ -21,6 +21,10 @@
   congenital diseases 
 
   current mouse-SPIM \cite{strnad_inverted_2016} already is very good for answering many of these questions
+  resolution from beads: 
+  diSPIM \cite{wu_spatially_2013}
+  combine these two
+  plus also \cite{balazs_development_2013}
 
   advantages:
     immersion liquid and culture medium separated
@@ -95,14 +99,6 @@
 
   \subsection{Multi-view resolution}
     here a figure with rotating 2 psfs
-      
-    % \begin{figure}
-    %   \centering
-    %   \includegraphics[width=1\textwidth,height=0.3\textwidth]{placeholder.pdf}
-    %   \bcaption[Lateral and axial resolution of a multi-view optical system.]{a) Simulated PSF for a single view. b)--d) Simulated compound PSF of two views aligned in b) 30, c) 60 and d) 90 degrees to each other. e) Axial and lateral resolution of a dual-view setup depending on the angle difference. Detection: $NA=1.1$, $\lambda = \SI{510}{nm}$, Illumination: $NA=0.1$, $\lambda = \SI{488}{nm}$}
-    %   \label{fig:psf-rot}
-    % \end{figure}
-
     \begin{figure}[bt]
       \centering
       \begin{subfigure}[t]{0.45\textwidth}
@@ -127,9 +123,61 @@
         \centering
         \includegraphics[page=2,width=0.8\textwidth]{objectiveCloseup}
       \end{subfigure}
-      \bcaption[Dual view concept with high NA objectives]{To achieve multi-view detection while maximizing resolution and light collection efficiency, two high NA objectives are placed in \SI{120}{\degree} arrangement. To be able to overlap the light-sheet with the focal plane, the light-sheet is tilted \SI{30}{\degree}. Because of the high NA objectives, this tilt does not effect the illumination quality.}
+      \bcaption[Dual view concept with high NA objectives]{To achieve multi-view detection while maximizing resolution and light collection efficiency, two high NA objectives are placed in \SI{120}{\degree} arrangement. To be able to overlap the light-sheet with the focal plane, the light-sheet is tilted \SI{30}{\degree}. Because of the high NA objectives, this tilt does not effect the illumination quality. The objectives are used in an alternating sequence for illumination and detection.}
       \label{fig:objectiveCloseup}
     \end{figure}
+
+    In order to maximize light-collection efficiency and resolution, we opted for a high-NA water dipping objective, the Nikon CFI75 Apo LWD 25x/1.1w model. Two of these arranged in \SI{120}{\degree} allows for twice improved light collection efficiency compared to the 0.8 NA configuration in \SI{90}{\degree} alignment, with further improved lateral resolution along 2 axes (\autoref{fig:psf-rot}). In the next section I will describe the design considerations for illumination and detection optics to achieve optimal sample illumination.
+
+  \subsection{Light-sheet design}
+    To allow for flexibility in the field of view height, even illumination, reduced stripes, and potential for confocal line detection, we opted to use the beam scanning technique to generate a virtual light-sheet. The effective focal length of the Nikon 25x objective, given the \SI{200}{mm} focal length tube lens is
+    \begin{equation}
+    f_{o} = \frac{f_{tl}}{M} = \frac{200\text{  mm}}{25} = 8 \text{  mm},
+    \end{equation}
+    and the back aperture diameter is \SI{17.6}{mm}.
+    
+    To generate the tilted light-sheet as shown on Fig. \ref{fig:objectiveCloseup}, the illumination beam will need to be displaced by
+    \begin{equation}
+      \delta = f_o \cdot \tan \SI{30}{\degree} = \SI{4.62}{mm}
+    \end{equation}
+    
+    Since the Gaussian beam is not uniform, only a smaller portion of it can be used to maintain even illumination (\autoref{fig:fov}). Because the size of an early mouse embryo is around \SI{80}{\micro m}, we require the length and the height of the light-sheet to be at least \SI{100}{\micro m}.
+    
+
+    \subsubsection{The length and thickness of the light-sheet}
+    
+      As we saw in \autoref{sec:dimensions}, the length of the light-sheet is determined by the Rayleigh-range of the beam in the $zy$ plane. Since $l_{fov}=2\cdot z_{R}=\SI{100}{\micro m}$
+      \begin{equation}
+        z_{R}=\SI{50}{\micro m}
+      \end{equation}
+      Since the Rayleigh range and the diameter of the beam waist are coupled, the light-sheet thickness can be calculated after rearranging \autoref{eq:rayleigh}
+      \begin{equation}
+        2\cdot W_{0} = 2\cdot \sqrt{\frac{z_R \cdot \lambda}{\pi}} = \SI{5.57}{\micro m}
+      \end{equation}
+      when $\lambda=\SI{488}{nm}$ for GFP excitation. As the beam width for these calculations is defined as $1/e^2$ of the peak intensity, we also calculate the more commonly used FWHM:
+      \begin{equation}
+        \mathrm{FWHM} = W_0 \cdot \sqrt{2 \ln 2} = \SI{3.28}{\micro m}.
+      \end{equation}
+      
+      From this, the divergence angle of the beam is
+      \begin{equation}
+        \theta_0 = \frac{\lambda}{\pi W_0,y} = \SI{55.74}{mrad}
+      \end{equation}
+      This means, the numerical aperture needed to produce this light-sheet is:
+      \begin{equation}
+        \NA_{ls} = n\cdot \sin(\theta _0) = 0.0743
+      \end{equation}
+      Since $\NA=1.1$, and the diameter of the back aperture is $d=\SI{17.6}{mm}$ and the divergence angle $\theta_0 \ll 1$, using paraxial approximation, the necessary beam width at the back focal plane in the $y$ direction is
+      \begin{equation}
+        b_y = d \cdot \frac{\NA_{ls}}{\NA} = \SI{1.19}{mm}
+      \end{equation}
+      Thus, to generate a light-sheet with appropriate length to cover a whole mouse pre-implantation embryo, the laser beam diameter should be $b=\SI{1.19}{mm}$. Larger than this will result in a more focused beam, and a shorter light-sheet, while a smaller diameter beam will have worse optical sectioning capabilities.
+
+    \subsubsection{The height of the light-sheet}
+    
+    The height can be adjusted by changing the beam scanning amplitude with the galvo mirror. To scan the entire field of view of $\sim \SI{270}{\micro m}$, the scanning angle range at the back focal plane of the objective will need to be $ \theta = \tan^{-1}(270/2/f_o) = \pm \SI{0.967}{\degree}$.
+
+
       
 
 %  #######  ########  ######## ####  ######   ######  
@@ -143,8 +191,8 @@
 \section{Optical layout}
   design principles:
   highest isotropic resolution, highest light collection efficiency possible
-  2x0.8 NA water dipping in 90$\circ$ multi-view deconvolve Gaussian fit $\sigma_{xyz}=135$
-  2x1.1 NA water dipping in 120$\circ$ multi-view deconvolved Gaussian fit $\sigma_z = 135$, and $\sigma_{xy} = 82.2$
+  2x0.8 NA water dipping in \SI{90}{\degree} multi-view deconvolve Gaussian fit $\sigma_{xyz}=135$
+  2x1.1 NA water dipping in \SI{120}{\degree} multi-view deconvolved Gaussian fit $\sigma_z = 135$, and $\sigma_{xy} = 82.2$
   simulations from PSF generator! put here
 
   \begin{figure}[bth]
@@ -156,34 +204,36 @@
 
   When designing the optical layout of the setup, we had two principles in mind: simplicity and efficiency. Because of the symmetrical design it is possible that
 
-  \begin{figure}[bt!]
-    \centering
-    \includegraphics[page=1,width=1\textwidth]{fullSchematics}
-    \bcaption[Dual Mouse SPIM optical layout]{The microscope consists of two main parts, the illumination branches (blue) and detection branches (yellow). For both illumination and detection there are two identical paths implemented. Illumination direction can be changed by applying a different offset to the galvo mirror, which in turn will direct the beam to the opposite face of the prism mirror. L1 and L2 will then image the galvo on M1. Using L3 as a scan lens, and L4 as a tube lens, the scanned beam is coupled to the objective path by quad band dichroic mirror (DM)
-    CAM -- camera, DM -- dichroic mirror, F -- filter wheel, L -- lens, M -- mirror, O -- objective, PM -- prism mirror, S -- sample, SU -- switcher unit}
-    \label{fig:fullSchematics}
-  \end{figure}
+  
 
   \subsection{Illumination}
     \subsubsection{Beam splitter unit}
       \label{sec:splitter}
+
+      % \begin{figure}[htb]
+      %   \centering
+      %   \includemedia[
+      %   width=0.8\linewidth,height=0.6\linewidth,
+      %   %add3Djscript=asylabels.js, %upright text labels
+      %   %add3Djscript=3Dspintool.js, %let scene rotate about z-axis
+      %   % 3Dcoo, 3Droo values found with `Generate Default View' from
+      %   % context menu
+      %   3Dmenu,
+      %   playbutton=plain,
+      %   3Droll=124.45821807473328,
+      %   3Dc2c=0.5729350447654724 0.4988637864589691 0.6502924561500549,
+      %   3Dcoo=6.723448276519775 -30.282148361206055 -11.914359092712402,
+      %   3Droo=162.71372963736036,
+      %   3Dlights=Headlamp,
+      %   3Drender=ShadedIllustration,
+      %   ]{\includegraphics{Splitter.png}}{Splitter.prc}
+      % \bcaption[Illumination branch splitting block]{3D model of the custom designed splitter block used in the illumination branch. Depending on the horizontal beam position at the lower port, the beam will be reflected either to the right or to the left. Because of the mirror alignment, the beam is rotated 90 degrees.}
+      % \label{fig:splitter}
+      % \end{figure}
+
       \begin{figure}[htb]
         \centering
-        \includemedia[
-        width=0.8\linewidth,height=0.6\linewidth,
-        %add3Djscript=asylabels.js, %upright text labels
-        %add3Djscript=3Dspintool.js, %let scene rotate about z-axis
-        % 3Dcoo, 3Droo values found with `Generate Default View' from
-        % context menu
-        3Dmenu,
-        playbutton=plain,
-        3Droll=124.45821807473328,
-        3Dc2c=0.5729350447654724 0.4988637864589691 0.6502924561500549,
-        3Dcoo=6.723448276519775 -30.282148361206055 -11.914359092712402,
-        3Droo=162.71372963736036,
-        3Dlights=Headlamp,
-        3Drender=ShadedIllustration,
-        ]{\includegraphics{Splitter.png}}{Splitter.prc}
+        \includegraphics[width=0.6\textwidth]{SW/splitterFigure}
       \bcaption[Illumination branch splitting block]{3D model of the custom designed splitter block used in the illumination branch. Depending on the horizontal beam position at the lower port, the beam will be reflected either to the right or to the left. Because of the mirror alignment, the beam is rotated 90 degrees.}
       \label{fig:splitter}
       \end{figure}
@@ -192,27 +242,35 @@
     \subsubsection{Light combining unit}
       \label{sec:dualMirror}
       
-      \begin{figure}[htb]
-        \centering
-          \includemedia[
-          width=1.0\linewidth,height=0.6\linewidth,
-          %add3Djscript=asylabels.js, %upright text labels
-          %add3Djscript=3Dspintool.js, %let scene rotate about z-axis
-          % 3Dcoo, 3Droo values found with `Generate Default View' from
-          % context menu
-          3Dmenu,
-          playbutton=plain,
-          % default view start
-          3Droll=104,
-          3Dc2c=0.7466059923171997 0.4799830913543701 0.4606471359729767,
-          3Dcoo=-5.2039947509765625 -5.257904529571533 23.018417358398438,
-          3Droo=353,
-          3Dlights=Headlamp,
-          3Drender=ShadedIllustration,
-          % default view end
-          ]{\includegraphics{DualMirror.png}}{DualMirror.prc}
-          \caption[Detection branch merging unit]{3D model of the custom designed unit to enable quick switching between the two detection paths. A high precision stainless steel stage holds two mirror blocks facing opposite directions, and bouncing the light upwards, towards the camera. The units are translated by  pneumatic cylinder to ensure high speed an reproducibility.}
-          \label{fig:DualMirror}
+      % \begin{figure}[htb]
+      %   \centering
+      %     \includemedia[
+      %     width=1.0\linewidth,height=0.6\linewidth,
+      %     %add3Djscript=asylabels.js, %upright text labels
+      %     %add3Djscript=3Dspintool.js, %let scene rotate about z-axis
+      %     % 3Dcoo, 3Droo values found with `Generate Default View' from
+      %     % context menu
+      %     3Dmenu,
+      %     playbutton=plain,
+      %     % default view start
+      %     3Droll=104,
+      %     3Dc2c=0.7466059923171997 0.4799830913543701 0.4606471359729767,
+      %     3Dcoo=-5.2039947509765625 -5.257904529571533 23.018417358398438,
+      %     3Droo=353,
+      %     3Dlights=Headlamp,
+      %     3Drender=ShadedIllustration,
+      %     % default view end
+      %     ]{\includegraphics{DualMirror.png}}{DualMirror.prc}
+      %     \caption[Detection branch merging unit]{3D model of the custom designed unit to enable quick switching between the two detection paths. A high precision stainless steel stage holds two mirror blocks facing opposite directions, and bouncing the light upwards, towards the camera. The units are translated by  pneumatic cylinder to ensure high speed an reproducibility.}
+      %     \label{fig:DualMirror}
+      %   \end{figure}
+
+        \begin{figure}[bt!]
+          \centering
+          \includegraphics[page=1,width=1\textwidth]{fullSchematics}
+          \bcaption[Dual Mouse SPIM optical layout]{The microscope consists of two main parts, the illumination branches (blue) and detection branches (yellow). For both illumination and detection there are two identical paths implemented. Illumination direction can be changed by applying a different offset to the galvo mirror, which in turn will direct the beam to the opposite face of the prism mirror. L1 and L2 will then image the galvo on M1. Using L3 as a scan lens, and L4 as a tube lens, the scanned beam is coupled to the objective path by quad band dichroic mirror (DM)
+          CAM -- camera, DM -- dichroic mirror, F -- filter wheel, L -- lens, M -- mirror, O -- objective, PM -- prism mirror, S -- sample, SU -- switcher unit}
+          \label{fig:fullSchematics}
         \end{figure}
 
 
@@ -276,7 +334,32 @@
 
       After the horizontal direction is centered, vertical centering is performed. This, however can't be centered the same way as the horizontal direction, since for that we would have to misalign the already aligned horizontal position. To determine the center, we move the field of view from the topmost position to the bottom. During this process the number of  turns of the adjustment screw is counted (this can be done accurately by using a hex key). After reaching the far end of the field of view, the mirror movement is reversed, and the screw is turned halfway to reach the middle.
 
+
+
+
+
+
+
+\section{Control unit}
+
+  Apart from the optics design, automation hardware and software is also a custom design. To be able to conduct high speed experiments and time-lapse recordings, a high level of automation, hardware and software integration is necessary. Our system comprises of two main components: a National Instruments embedded system (cRIO 9068), and a high performance workstation.
+
+  \subsection{Hardware}
+    Various components need to be properly synchronized to operate the microscope. Illumination is performed with a multi-line laser combiner, light-sheet is generated by a galvo scanner
+    For more details, see Appendix \autoref{sec:BOM}.
+
+    \autoref{eq:abbe}
+
+    \autoref{fig:adultMouse}
+
+    \autoref{sec:dualMirror}
+
+    \autoref{tab:arithmetic}
     
+  
+  \subsection{Software}
+
+
 % ########  ########  ######  ##     ## ##       ########  ######  
 % ##     ## ##       ##    ## ##     ## ##          ##    ##    ## 
 % ##     ## ##       ##       ##     ## ##          ##    ##       

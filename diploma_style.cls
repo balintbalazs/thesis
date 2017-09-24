@@ -18,6 +18,7 @@
 \usepackage{siunitx}
 \usepackage{fancyhdr} % for better header layout
 \usepackage{xspace}
+\usepackage[titletoc]{appendix}
 % \usepackage[pagewise]{lineno}
 % \linenumbers
 

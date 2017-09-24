@@ -13,14 +13,40 @@
 
 
 \section{GPU architecture}
+  CUDA \cite{nickolls_scalable_2008}
 
 \section{Live fusion}
   \subsection{MuVi-SPIM}
   \subsection{Bead based registration}
 
+
+
+  
 \section{B³D image compression}
   \b3d image compression
-  B³D image compression
+  high content screening \cite{carpenter_systematic_2004,echeverri_high-throughput_2006,pepperkok_high-throughput_2006}
+  light-sheet (Sec. \ref{sec:light-sheet})
+  single molecule localization microscopy \cite{betzig_imaging_2006,hess_ultra-high_2006,rust_sub-diffraction-limit_2006}
+  data handling is bottleneck \cite{wollman_high_2007,reynaud_guide_2015,perkel_struggle_2016}
+  lossy compression not recommended for microscopy  \cite{cromey_digital_2013}
+  KLB \cite{amat_efficient_2015}
+  jpeg compression so loss is not perceptible \cite{sayood_introduction_2012}
+  big data viewer \cite{pietzsch_bigdataviewer:_2015}
+  Fiji \cite{schindelin_fiji:_2012}
+
+  FLIC \cite{wang_fast_2012}
+  SFALIC \cite{starosolski_simple_2007}
+  FELICS \cite{howard_fast_1993}
+  Treib terrain editing \cite{treib_interactive_2012}
+  Treib turbulence \cite{treib_turbulence_2012}
+  square root compression \cite{gowen_square_2003}
+  noise and bias in square root compression \cite{bernstein_noise_2010}
+  quantization \cite{gray_quantization_1998}
+  Anscombe \cite{anscombe_transformation_1948}
+  optimal inverse Anscombe \cite{makitalo_optimal_2011,makitalo_closed-form_2011}
+  optimal inverse generalized Anscombe \cite{makitalo_optimal_2013}
+
+
 
   \subsection{Data sizes in microscopy}
 
@@ -121,3 +147,32 @@
 \section{Noise dependent lossy compression}
 
 \section{Methods}
+  
+\subsubsection{Compression benchmarking}
+For all presented benchmarks, TIFF and JPEG2000 performance was measured through MATLAB's imwrite and imread functions, while KLB and \b3d performance was measured in C++. All benchmarks were run on a computer featuring 32 processing cores (2×Intel Xeon E5-2620 v4), \SI{128}{GB} RAM and an NVIDIA GeForce GTX 970 graphics processing unit. Read and write measurements were performed in RAM to minimize I/O overhead, and are an average of 5 runs.
+
+\subsubsection{Light-sheet imaging}
+\textit{Drosophila} embryos were imaged in our MuVi-SPIM setup \cite{krzic_multiview_2012} using the electronic confocal slit detection (eCSD) \cite{de_medeiros_confocal_2015}. Embryos were collected on an agar juice plate, and dechorionated in 50\% bleach solution for \SI{1}{min}. The embryos were then mounted in a shortened glass capillary (Brand \SI{100}{\micro l}) filled with 0.8\% GelRite (Sigma-Aldrich), and pushed out of the capillary to be supported only by the gel.
+
+\subsubsection{3D nucleus segmentation}
+3D nucleus segmentation of \textit{Drosophila} embryos was performed using Ilastik \cite{sommer_ilastik:_2011}. The original dataset was compressed at different quantization levels, then upscaled in z to obtain isotropic resolution. To identify the nuclei, we used the pixel classification workflow, and trained it on the uncompressed dataset. This training was then used to segment the compressed datasets as well. Segmentation overlap was calculated in Matlab ( "Supplementary Code") using the Sørensen–Dice index \cite{sorensen_method_1948,dice_measures_1945}:
+\begin{equation}
+  QS = 2 \left| A \cap B \right| / \left( |A| + |B| \right)
+\end{equation}
+where the sets $A$ and $B$ represent the pixels included in two different segmentations.
+
+\subsubsection{3D membrane segmentation}
+Raw MuVi-SPIM recordings of \textit{Phallusia mammillata} embryos expressing PH-citrine membrane marker were kindly provided by Ulla-Maj Fiuza (EMBL, Heidelberg). Each recording consisted of 4 views at 90 degree rotations. The views were fused using an image based registration algorithm followed by a sigmoidal blending of the 4 views. The fused stack was then segmented using the MARS algorithm \cite{fernandez_imaging_2010} with an hmin parameter of 10. The raw data (all 4 views) was compressed at different levels, and segmented using the same pipeline. Segmentation results were then processed in Matlab to calculate the overlap score for the membranes using the Sørensen–Dice index ( "Supplementary Code").
+
+\subsubsection{Single-molecule localization imaging}
+In order to visualize microtubules, U2OS cells were treated as in \cite{deschamps_3d_2014} and imaged in a dSTORM buffer \cite{heilemann_subdiffraction-resolution_2008}. In brief, the cells were permeabilized and fixed with glutaraldehyde, washed, then incubated with primary tubulin antibodies and finally stained with Alexa Fluor 647 coupled secondary antibodies. The images were recorded on a home-built microscope previously described \cite{deschamps_3d_2014}, in its 2D single-channel mode.
+
+\subsubsection{Single-molecule localization data analysis}
+Analysis of single-molecule localization data was performed on a custom-written MATLAB software as in \cite{deschamps_efficient_2016}. Pixel values were converted to photon counts according to measured offset and calibrated gain of the camera (EMCCD iXon, Andor). The background was estimated with a wavelet filter \cite{izeddin_wavelet_2012}, background-subtracted images were thresholded and local maxima were detected on the same images. 7-pixel ROIs around the detected local maxima were extracted from the raw images and fitted with a GPU based MLE fitter \cite{smith_fast_2010}. Drift correction was performed based on cross-correlation. Finally, images were
+reconstructed by filtering out localizations with a high uncertainty (>\SI{30}{nm} and large PSF (>\SI{150}{nm}) and Gaussian rendering.
+
+\subsubsection{Simulation of single-molecule localization data}
+Single molecule localization data was simulated in Matlab ( "Supplementary Code") by generating a grid of pixelated Gaussian spots with standard deviation of 1 pixel. With a pixel size of a 100 nm, this corresponds to a FWHM of 235.48 nm. The center of each spot was slightly offset from the pixel grid at 0.1 pixel increments in both x and y directions. To this ground truth image a constant value was added for illumination background, and finally Poisson noise was applied to the image. This process was repeated 10000 times to obtain enough images for adequate accuracy.
+
+\subsubsection{Code availability}
+Code used for analyzing data, \b3d source code and compiled binaries, including a filter plugin for HDF5, is available for download at https://git.embl.de/balazs/B3D.
