@@ -356,7 +356,7 @@
   \subsection{Characterizing illumination profile}
     Since a Gaussian beam is used for illumination, it's intensity profile is dependent on the axial position (Eq. \ref{eq:gaussian}). Although the total intensity at any cross section of the beam is constant, because of the divergent properties, the peak intensity varies. To assess any non-uniformities in the illumination pattern, I measured the illumination beam intensity for each view.
 
-    To visualize the beam, the chamber was filled with a fluorescent solution (methylene blue solution in distilled water). In order to increase the signal to noise ratio of these images, a long exposure time of \SI{200}{ms} were used, and 500 images of each beam was averaged (Fig. \ref{fig:beamProfiles}).
+    To visualize the beam, the chamber was filled with a fluorescent solution (methylene blue solution in distilled water). In order to increase the signal to noise ratio of these images, a long exposure time of \SI{200}{ms} were used, and 500 images of each beam was averaged (Fig. \ref{fig:beamProfiles}). The measure Rayleigh range of the left and right beams respectively: "\SI{666}{\micro m}" ans "\SI{666}{\micro m}". The width of the beam, \textit{i.e.} the thickness of the light-sheet are "\SI{666}{\micro m}" and "\SI{666}{\micro m}" for the left and right beams respectively (\autoref{fig:beamProfiles}).
 
     \begin{figure}[htb]
       \centering
@@ -365,17 +365,23 @@
       \label{fig:beamProfiles}
     \end{figure}
 
+
+  \subsection{Stability of view switcher unit}
+    \label{sec:mirrorStability}
+    To assess the reproducibility in the movement of the detection merging unit, a long term stability test was conducted. To exclude all other factors (such as sample drift), we replaced lenses L5 and L5' with a short focal length achromatic lenses, and used these to image a closed aperture placed on the rail. The apertures were imaged from both views every 10 seconds, for \SI{4}{h}. The center of the aperture was segmented on all images, and tracked ot assess any drift occurring during the \SI{4}{h} time lapse (\autoref{fig:stability}). Although there was a small shift in the first 10 minutes, the system stabilized afterwards, and no further drift was detected (\autoref{fig:stability}).
+
+
   \subsection{Resolution and point spread function measurement}
     To measure the resolution of the microscope, and characterize its optical performance I performed point spread function measurement using fluorescently labeled beads (TetraSpeck \SI{500}{nm}, ThermoFisher). The beads were sonicated, and mixed with 0.8\% GelRite solution at a final dilution of 1:1000. The gel was loaded in glass capillaries and allowed to cool. After the gel solidified, a $\sim$\SI{1}{mm} piece was cut off and placed in the microscope sample holder.
 
-    In order to establish an ideal, reference PSF, we simulated the theoretical PSF of the microscope with the Gibson-Lanni model \cite{gibson_experimental_1992}, using the MicroscPSF Matlab implementation \cite{li_fast_2017}. The advantage of this model is that is accounts for any differences between the experimental conditions and the design parameters of the objective, and thus it can simulate any possible aberrations that should arise. The adjustable parameters are the following (Fig. \ref{fig:gibson-lanni}): 
+    In order to establish an ideal, reference PSF, we simulated the theoretical PSF of the microscope with the Gibson-Lanni model \cite{gibson_experimental_1992}, using the MicroscPSF Matlab implementation \cite{li_fast_2017}. The advantage of this model is that is accounts for any differences between the experimental conditions and the design parameters of the objective, and thus it can simulate any possible aberrations that should arise. The adjustable parameters are the thicknesses and refractive indices of the immersion medium, coverslip, and sample. 
 
-    \begin{figure}[htb]
-      \centering
-      \includegraphics[width=0.7\textwidth]{gibson-lanni}
-      \bcaption[Schematics for the Gibson-Lanni model]{The model is based on the differences in light propagation between the experimental (red) and design conditions (blue). The optical path length difference is calculated as follows: $OPD = [ABCD] - [PQRS]$. System properties are represented by vectors $\mathbf{n} = (n_i, n_i^*, n_g, n_g^*, n_s)$ and $\mathbf{t} = (t_i, t_i^*, t_g, t_g^*, t_s)$ for the refractive indices and path lengths respectively. Adapted from \cite{li_fast_2017}.}
-      \label{fig:gibson-lanni}
-    \end{figure}
+    % \begin{figure}[htb]
+    %   \centering
+    %   \includegraphics[width=0.7\textwidth]{gibson-lanni}
+    %   \bcaption[Schematics for the Gibson-Lanni model]{The model is based on the differences in light propagation between the experimental (red) and design conditions (blue). The optical path length difference is calculated as follows: $OPD = [ABCD] - [PQRS]$. System properties are represented by vectors $\mathbf{n} = (n_i, n_i^*, n_g, n_g^*, n_s)$ and $\mathbf{t} = (t_i, t_i^*, t_g, t_g^*, t_s)$ for the refractive indices and path lengths respectively. Adapted from \cite{li_fast_2017}.}
+    %   \label{fig:gibson-lanni}
+    % \end{figure}
 
     \begin{figure}[htb]
       \centering
@@ -384,6 +390,25 @@
       \label{fig:measuredPSF}
     \end{figure}
 
+  \subsection{Multi-view imaging of a mouse zygote}
+    \begin{figure}[htb]
+      \centering
+      \includegraphics[width=.75\textwidth]{zygoteMontage}
+      \bcaption[Multi-view recording of a mouse zygote]{Dual-view imaging was performed on a fixed mouse zygote. Microtubules wre stained with Alexa Fluor 488. Top row: view of Left objective. Bottom row: view of Right objective. (a) Raw image from left objective. (b) Rotated view of Right objective. (c) Multi-view deconvolution of stacks (a) and (b). (d) Rotated slice from left objective. (e) Raw image from right objective. (f) Multi-view deconvolution of stacks (d) and (e). Scale bar: \SI{50}{\micro m}.}
+      \label{fig:zygoteMontage}
+    \end{figure}
 
-  \subsection{Stability of view switcher unit}
-    \label{sec:mirrorStability}
+
+\section{Methods}
+
+  \subsection{Bead imaging}
+    For registration and resolution measurements we used TetraSpeck (ThermoFisher, T7279 and T7281) \SI{0.1}{\micro m} and \SI{0.5}{\micro m} diameter beads. The bead solutions were thoroughly vortexed and sonicated for \SI{5}{mins} before diluting them 1:100 in distilled water. Gelrite (Sigma-Aldrich, G1910) gel was prepared in distilled water at 0.8\% concentration with 0.1\% $\mathrm{MgSO_4\cdot 7 H_2O}$ and kept at \SI{70}{\degree C} until use. 
+
+  \subsection{Mouse zygote imaging}
+    Fixed mouse zygotes labeled with Alexa-488 (microtubules) and Alexa-647 (kinetochores) were kindly provided by Judith Reichmann. Zygotes were transferred to the sample holder, and imaged in PBS. To allow for multi-view reconstruction, a fluorescent beads (TetraSpeck \SI{0.5}{\micro m} suspended in GelRite wre placed nex to the zygote in the sample holder. After imaging the zygote from both views, the beads were also recorded using the same stack definitions. After data acquisition, the multi-view datasets were registered and deconvolved in Fiji \cite{schindelin_fiji:_2012} using the Multiview Reconstruction Plugin \cite{preibisch_software_2010,preibisch_efficient_2014}. The deconvolution was based on a simulated PSF generated in Fiji using the PSF Generator plugin \cite{kirshner_3d_2011} using the Born-Wolf PSF model. $\mathrm{NA_{ex}}=0.1$, $\mathrm{NA_{em}}=1.1$, n=1.33, $\lambda_{ex} = \SI{488}{nm}$, $\lambda_{em} = \SI{510}{nm}$.
+
+  \subsection{Drosophila embryo imaging}
+    \textit{Drosophila melanogaster} embryos expressing fluorescent nuclear (H2A-mCherry) and centriole (ASL-YFP) markers were collected on an agar juice plate and dechorionated in 50\% bleach solution for \SI{1}{min}. After rinsing the bleach with deionized water, the embryos were placed in the sample holder under PBS solution. A small piece of gel containing fluorescent beads were also placed next to the samples to aid in multi-view registration.
+
+  \subsection{Drosophila salivary gland imaging}
+    Salivary glands from third instar larvae expressing fluorescent nuclear (H2A-mCherry) and centriole (ASL-YFP) markers were kindly provided by Ulla-Maj Fiuza. The salivary glands were imaged in PBS, together with a small piece of gel with fluorescent beads.
