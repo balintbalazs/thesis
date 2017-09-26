@@ -137,6 +137,7 @@
     In order to maximize light-collection efficiency and resolution, we opted for a high-NA water dipping objective, the Nikon CFI75 Apo LWD 25x/1.1w model. Two of these arranged in \SI{120}{\degree} allows for twice improved light collection efficiency compared to the 0.8 NA configuration in \SI{90}{\degree} alignment, with further improved lateral resolution along 2 axes (\autoref{fig:psf-rot}). In the next section I will describe the design considerations for illumination and detection optics to achieve optimal sample illumination.
 
   \subsection{Light-sheet design}
+    \label{sec:ls-design}
     To allow for flexibility in the field of view height, even illumination, reduced stripes, and potential for confocal line detection, we opted to use the beam scanning technique to generate a virtual light-sheet. The effective focal length of the Nikon 25x objective, given the \SI{200}{mm} focal length tube lens is
     \begin{equation}
     f_{o} = \frac{f_{tl}}{M} = \frac{200\text{  mm}}{25} = 8 \text{  mm},
@@ -168,7 +169,7 @@
       
       From this, the divergence angle of the beam is
       \begin{equation}
-        \theta_0 = \frac{\lambda}{\pi W_0,y} = \SI{55.74}{mrad}
+        \theta_0 = \frac{\lambda}{\pi W_0,y} = \SI{55.74}{mrad} = \SI{3.196}{\degree}
       \end{equation}
       This means, the numerical aperture needed to produce this light-sheet is:
       \begin{equation}
@@ -182,7 +183,7 @@
 
     \subsubsection{The height of the light-sheet}
     
-    The height can be adjusted by changing the beam scanning amplitude with the galvo mirror. To scan the entire field of view of $\sim \SI{270}{\micro m}$, the scanning angle range at the back focal plane of the objective will need to be $ \theta = \tan^{-1}(270/2/f_o) = \pm \SI{0.967}{\degree}$.
+    The height can be adjusted by changing the beam scanning amplitude with the galvo mirror. To scan the entire field of view of $h_{fov} \SI{270}{\micro m}$, the scanning angle range at the back focal plane of the objective will need to be $ \theta = \tan^{-1}(h_{fov}/2/f_o) = \pm \SI{0.967}{\degree}$.
 
 
       
@@ -221,49 +222,78 @@
     \subsubsection{Chamber}
     The chamber serves two purposes: it holds the immersion liquid necessary for imaging, and it also keeps the objectives in the \SI{120}{\degree} position. The objectives are held by their necks as opposed to the standard mounting method from the back by the threads. The advantage of this is that any axial movements due to thermal expansion are greatly reduced, thus the focal plane position is more stable even when changing the imaging conditions.
 
-    The chamber is machined form a high performance plastic, PEEK (poly(ether-ether-ketone)). This material has many beneficial properties: it is food safe, and chemically extremely inert, resisting to most solvents used in a biology laboratory. It can also be autoclaved. Compared to other plastics its mechanical properties are also superior. It has high tensile and compressive strength, comparable to aluminium, low thermal expansion and low thermal conductivity. This can be beneficial when implementing temperature control, as thermal loss is reduced.
+    The chamber is machined form a high performance plastic, poly(ether-ether-ketone) (PEEK). This material has many beneficial properties: it is food safe, and chemically extremely inert, resisting to most solvents used in a biology laboratory. It can also be autoclaved. Compared to other plastics its mechanical properties are also superior. It has high tensile and compressive strength, comparable to aluminium, low thermal expansion and low thermal conductivity. This can be beneficial when implementing temperature control, as thermal loss is reduced.
 
     The objectives are kept in place by two custom designed rings (\autoref{fig:Core} 1, 2). The first ring has a cross sectional shape of a wedge, and sits tightly against both the objective and the wall of the chamber. The second ring can freely slide on the objective, and has threads matching the chamber. When turned in, the threaded ring pushes the wedge ring further in, which in turn presses against the objective and the chamber wall uniformly, thus preventing the objective from moving, and sealing the chamber at the same time. As the wedge ring is made from a soft plastic (delrin), it will press evenly against the objective preventing any damage. Because of the conical shape of the ring, it will also automatically center the objective, ensuring correct positioning.
 
     To relieve any rotational stresses from the objective, the back of the objective is also supported  by the mirror block, this is not fixed, however. A third ring, made of PEEK is screwed on the thread of the objective, and slides in the opening of the mirror block. This reduces the torque on the objectives, while still allowing for some movements that might occur due to thermal expansion.
 
     \subsubsection{Mirror blocks}
-    
+    \label{sec:mirrors}
+    Apart from supporting the objectives from te back, the mirror blocks are housing two broadband dielectric mirrors to direct the light in and out from the objectives on a standard \SI{65}{mm} height, compatible with the Owis SYS65 rail system. The combination of two mirrors have two benefits compared to using just one. With a single mirror directly reflecting the light to tha back, the entire assembly would need to be much higher to reach the desired \SI{65}{mm} height. This could result in stability problems. Furthermore, due to the \SI{60}{\degree} rotation angle of the objective, the image of the objective would also be rotated if using only a single mirror. With two mirrors the reflection planes can be kept orthogonal to the optical table, which will result in a straight image after the mirror block. This is not only beneficial when recording the images, but also when aligning the illumination arm. With the use of two mirrors, a convenient vertical scanning is required to produce the light-sheet; with a single mirror, however the scanning direction would need to be rotated by \SI{60}{\degree}.
+
 
   \subsection{Illumination}
-    
-    \subsubsection{Beam splitter unit}
-      \label{sec:splitter}
-      
-
-
-      \begin{figure}[htb]
+    \begin{figure}[bt!]
+      \centering
+      \begin{subfigure}{\textwidth}
         \centering
-        \includegraphics[width=0.8\textwidth]{SW/splitterFigure}
-        \bcaption[Illumination branch splitting unit]{To divert the beam to either side, a right angle prism mirror is used in conjunction with a galvanometric scanning mirror. L1 acts as a scan lens, thus the beam is translated on mirror M. Depending on the galvo angle, the beam will be reflected either to the left (\textbf{a}) or to the right (\textbf{b}). L2 and L2' act as relay lenses, and will image the galvo movement to intermediate planes.}
-        \label{fig:splitter}
-      \end{figure}
-
+        \includegraphics[page=1,width=0.9\textwidth]{fullSchematics}
+      \end{subfigure}
+      \begin{subfigure}{\textwidth}
+        \centering
+        \includegraphics[page=1,width=1\textwidth]{schematicsLinear}
+      \end{subfigure}
       
+      \bcaption[Dual Mouse SPIM optical layout]{The microscope consists of two main parts, the illumination branches (blue) and detection branches (yellow). For both illumination and detection there are two identical paths implemented. Illumination direction can be changed by applying a different offset to the galvo mirror, which in turn will direct the beam to the opposite face of the prism mirror. L1 and L2 will then image the galvo on M1. Using L3 as a scan lens, and L4 as a tube lens, the scanned beam is coupled to the objective path by quad band dichroic mirror (DM)
+      CAM -- camera, DM -- dichroic mirror, F -- filter wheel, L -- lens, M -- mirror, O -- objective, PM -- prism mirror, S -- sample}
+      \label{fig:fullSchematics}
+    \end{figure}
+
+    The illumination arm of the microscope directs and shapes the laser beam to generate the proper light-sheet dimension at the sample. As was calculated in \autoref{sec:ls-design}, a beam diameter of \SI{1.2}{mm} is ideal for this setup.
+
+    The illumination arm has 3 main roles:
+    \begin{enumerate}
+      \item expands the laser beam to the calculated \SI{1.2}{mm} size.
+      \item images the galvo scanner to the back focal plane of the objective
+      \item switches the laser light between the two objectives during imaging
+    \end{enumerate}
+
+    To achieve the desired beam diameter, a 1:2 beam expander is used in the reversed direction. As the output of the laser fiber produces a \SI{3}{mm} diameter beam, this will reduce it to \SI{1.5}{mm}. As this is already the required beam diameter, the lenses further in the illumination path will not introduce any magnification.
+    
+    % \subsubsection{Beam splitter unit}
+    \label{sec:splitter}
+
+    Switching between the two illumination arms is performed by a custom designed beam splitter unit (\autoref{fig:splitter}). Instead of utilizing a 50/50 beam splitter cube and mechanical shutters, we exploit the fact that a galvo scanner is needed to generate the light-sheet. As this galvo scanner has a relatively large movement range (\SI{20}{\degree}) it is also suitable for diverting the beam from one illumination arm to the other.
+
+    \begin{figure}[h]
+      \centering
+      \includegraphics[width=0.8\textwidth]{SW/splitterFigure}
+      \bcaption[Illumination branch splitting unit]{To divert the beam to either side, a right angle prism mirror is used in conjunction with a galvanometric scanning mirror. L1 acts as a scan lens, thus the beam is translated on mirror M. Depending on the galvo angle, the beam will be reflected either to the left (\textbf{a}) or to the right (\textbf{b}). L2 and L2' act as relay lenses, and will image the galvo movement to intermediate planes.}
+      \label{fig:splitter}
+    \end{figure}
+
+    Switching illumination side is done the following way. As the galvo is positioned at the focus of the first lens (L1, $f_1 = \SI{75}{mm}$), the rotational movement will result in a linear scanning movement on mirror M and the prism mirror PM. Depending on the lateral position of the beam, it will hit either the left or the right leg of the prism, and will be reflected to either direction. As the galvo mirror can be precisely controlled through our custom software, we can set and save the position when the beam is centered on the left lens L2 ($f_2 = \SI{75}{mm}$) (\autoref{fig:splitter}a) and the position when the beam is centered on the right lens L2' (\autoref{fig:splitter}b). Lenses L1 and L2(L2') form a 4f system, and are imaging the galvo scanner on mirror M1(M1') (\autoref{fig:fullSchematics}). This way we can use the same galvo to generate the light-sheet for both directions, depending on the initial offset position. This not only has the advantage of electronically switching the illumination arms, but only requires a single galvo scanner instead of one for each arm.
+    
+    Due to the arrangement of the bottom mirror and the prism mirror, the scanning direction will be rotated by \SI{90}{\degree}. This will result in a vertical scanning plane, which is exactly what we need to generate the light-sheet on the sample (see \autoref{sec:mirrors}).
+
+    % \subsubsection{the rest of illumination}
+    Further following the illumination path, two lenses L3 and L4 ($f_3 = f_4 = \SI{200}{mm}$), again in a 4f configuration relay the scanning axis to the back focal plane (BFP) of the objective. To couple in the laser with the imaging path, a quad-band dichroic mirror (DM) is used, matching the wavelengths of the laser combiner (Semrock, Di03-R405/488/561/635-t3-25x36).
 
   \subsection{Detection}
-    \subsubsection{Light combining unit}
+    As the emitted light exits the objective and the mirror block, it is decoupled from the illumination path by the dichroic mirror. The light is then focused by a \SI{400}{mm} achromatic lens (L5) onto the camera (Andor Zyla 4.2 sCMOS) sensor. Just before the camera, a motorized filter wheel is placed to filter out any unwanted wavelength from the emission light.
+
+    Similarly to the common galvo in the illumination path, the two detection arms also share the same camera. Although two cameras could also be used, due to the operating principle of the microscope the two objective are not used for imaging at the same time. Thus
 
       \label{sec:dualMirror}
-      \begin{figure}[htb]
+      \begin{figure}[tb]
         \centering
         \includegraphics[width=0.8\textwidth]{SW/dualMirrorFigure}
         \bcaption[Detection branch merging unit]{To be able to image both views on the same camera, a moveable mirror unit is introduced. Depending on the imaging direction, the mirror block is either moved backward (\textbf{a}) or forward (\textbf{b}) to reflect the light up to the camera. Since the movement is parallel to the mirrors' surface, the image position on the sensor is not dependent on the exact position of the mirrors.}
         \label{fig:dualMirror}
       \end{figure}
         
-      \begin{figure}[bt!]
-        \centering
-        \includegraphics[page=1,width=1\textwidth]{fullSchematics}
-        \bcaption[Dual Mouse SPIM optical layout]{The microscope consists of two main parts, the illumination branches (blue) and detection branches (yellow). For both illumination and detection there are two identical paths implemented. Illumination direction can be changed by applying a different offset to the galvo mirror, which in turn will direct the beam to the opposite face of the prism mirror. L1 and L2 will then image the galvo on M1. Using L3 as a scan lens, and L4 as a tube lens, the scanned beam is coupled to the objective path by quad band dichroic mirror (DM)
-        CAM -- camera, DM -- dichroic mirror, F -- filter wheel, L -- lens, M -- mirror, O -- objective, PM -- prism mirror, S -- sample, SU -- switcher unit}
-        \label{fig:fullSchematics}
-      \end{figure}
+      
 
 
   %    ###    ##       ####  ######   ##    ## 
