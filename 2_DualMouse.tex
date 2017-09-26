@@ -281,15 +281,19 @@
     Further following the illumination path, two lenses L3 and L4 ($f_3 = f_4 = \SI{200}{mm}$), again in a 4f configuration relay the scanning axis to the back focal plane (BFP) of the objective. To couple in the laser with the imaging path, a quad-band dichroic mirror (DM) is used, matching the wavelengths of the laser combiner (Semrock, Di03-R405/488/561/635-t3-25x36).
 
   \subsection{Detection}
-    As the emitted light exits the objective and the mirror block, it is decoupled from the illumination path by the dichroic mirror. The light is then focused by a \SI{400}{mm} achromatic lens (L5) onto the camera (Andor Zyla 4.2 sCMOS) sensor. Just before the camera, a motorized filter wheel is placed to filter out any unwanted wavelength from the emission light.
+    As the emitted light exits the objective and the mirror block, it is decoupled from the illumination path by the dichroic mirror. The light is then focused by a \SI{400}{mm} achromatic lens (L5, Edmunds Optics) onto the camera (Andor Zyla 4.2 sCMOS) sensor. Just before the camera, a motorized filter wheel is placed to filter out any unwanted wavelength from the emission light. Although this is not in the infinity space, due to the very small angles after the \SI{400}{mm} tube lens, the maximum axial focal shift is $\sim \SI{50}{nm}$ only, which is negligible compared to the axial resolution of $\sim \SI{1.1}{\micro m}$.
 
-    Similarly to the common galvo in the illumination path, the two detection arms also share the same camera. Although two cameras could also be used, due to the operating principle of the microscope the two objective are not used for imaging at the same time. Thus
+    Similarly to the common galvo in the illumination path, the two detection arms share the same camera. Although two cameras could also be used, due to the operating principle of the microscope the two objective are not used for imaging at the same time. This means a single camera is capable of acquiring all the images, however the two distinct detection arm need to be merged to be able to use a single camera.
+    
+    Our solution to this problem is a custom designed view switching unit comprised of two broadband dielectric elliptical mirrors (Thorlabs,BBE1-E03) ) facing opposite directions, mounted on a high precision linear rail (OptoSigma, IPWS-F3090). Depending on the rail position either the left (\autoref{fig:dualMirror}a) or the right (\autoref{fig:dualMirror}b) detection path will be reflected up, towards the camera. 
+
+    Moving the switcher unit is performed by a small, \SI{10}{mm} diameter pneumatic cylinder (Airtac, HM-10-040) that is actuated by an electronically switchable 5/2 way solenoid valve (Airtac, M-20-510-HN). This solution offers a very fast switching between views, up to \SI{5}{Hz}, depending on the pressure, and it is extremely simple to control, as only a digital signal is necessary to switch the valve. 
 
       \label{sec:dualMirror}
       \begin{figure}[tb]
         \centering
         \includegraphics[width=0.8\textwidth]{SW/dualMirrorFigure}
-        \bcaption[Detection branch merging unit]{To be able to image both views on the same camera, a moveable mirror unit is introduced. Depending on the imaging direction, the mirror block is either moved backward (\textbf{a}) or forward (\textbf{b}) to reflect the light up to the camera. Since the movement is parallel to the mirrors' surface, the image position on the sensor is not dependent on the exact position of the mirrors.}
+        \bcaption[Detection branch switching unit]{To be able to image both views on the same camera, a moveable mirror unit is introduced. Depending on the imaging direction, the mirror block is either moved backward (\textbf{a}) or forward (\textbf{b}) to reflect the light up to the camera. Since the movement is parallel to the mirrors' surface, the image position on the sensor is not dependent on the exact position of the mirrors.}
         \label{fig:dualMirror}
       \end{figure}
         
