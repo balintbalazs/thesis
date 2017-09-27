@@ -19,8 +19,8 @@
 \usepackage{fancyhdr} % for better header layout
 \usepackage{xspace}
 \usepackage[titletoc]{appendix}
-% \usepackage[pagewise]{lineno}
-% \linenumbers
+\usepackage[pagewise]{lineno}
+\linenumbers
 
 \usepackage[ plainpages = false, pdfpagelabels,
                  %pdftex,
