@@ -134,7 +134,7 @@
 
     
 
-    In order to maximize light-collection efficiency and resolution, we opted for a high-NA water dipping objective, the Nikon CFI75 Apo LWD 25x/1.1w model. Two of these arranged in \SI{120}{\degree} allows for twice improved light collection efficiency compared to the 0.8 NA configuration in \SI{90}{\degree} alignment, with further improved lateral resolution along 2 axes (\autoref{fig:psf-rot}). In the next section I will describe the design considerations for illumination and detection optics to achieve optimal sample illumination.
+    In order to maximize light-collection efficiency and resolution, we opted for a high-NA water dipping objective, the Nikon CFI75 Apo LWD 25x/1.1w model. Two of these arranged in \SI{120}{\degree} allows for twice improved light collection efficiency compared to the 0.8 NA configuration in \SI{90}{\degree} alignment, with further improved lateral resolution along 2 axes (\autoref{fig:psf-rot}). In the next section we will describe the design considerations for illumination and detection optics to achieve optimal sample illumination.
 
   \subsection{Light-sheet design}
     \label{sec:ls-design}
@@ -308,7 +308,8 @@
   % ##     ## ##        ##  ##    ##  ##   ### 
   % ##     ## ######## ####  ######   ##    ## 
 \section{Optical alignment}
-  Precise alignment of the illumination and detection paths are crucial for high quality imaging, and has a pronounced  importance for high magnification and high resolution optical systems. The DualMouse SPIM contains two illumination and detection paths that share many common elements, which makes alignment a *important?* process. The final aim for the alignment is to perfectly overlap the light-sheets with the detection focal planes, and to optimize ... 
+  Precise alignment of the illumination and detection paths are crucial for high quality imaging, and has a pronounced  importance for high magnification and high resolution optical systems. The DualMouse SPIM contains two illumination and detection paths 
+  Due to the symmetrical setup of the microscope, we will only describe the alignment of one side, as the same procedure is also applicable to the other side.
 
   \subsection{Alignment of illumination branches}
 
@@ -318,13 +319,14 @@
 
     After the beam is aligned on the first rail, lens L1 and the splitter unit PM are placed in the measured positions to image the galvo mirror on mirror M1 using lenses L1 and L2. Correct positioning of the splitter unit along the rail is crucial, since this will affect the lateral position and tilt of the beam exiting the unit. To some extent, this can also be compensated by adjusting the two mirrors before the galvo mirror, but is avoided if possible as this will also displace the beam from the center of the galvo mirror.
 
-    \subsubsection{Adjusting beam position.}
-      Beam position can be adjusted by either translating the beam in a conjugated image plane (I'), or by rotating the beam in a conjugated back focal plane (BFP'). The setup was designed in a way, that BFP' coincides with mirror M2. This mirror is mounted in a gimbal mirror mount, allowing to rotate the mirror exactly around its center, which avoids unwanted translational movements, and results in pure rotation of the beam. Lens L3 is positioned exactly 1 focal length from the mirror, thus acting as a scan lens, and transforming the rotational movements to translation. This translation is further imaged and demagnified by the tube lens L4 and the objective O.
+    After rough alignment of the illumination arms, when the laser is already coupled in the objective, the fine adjustments are performed based on the image of the beam through the other objective. The beam is visualized by filling the chamber with a 0.1\% methylene blue solution. As this solution is fluorescent, and can be excited in a very large range, it is well suited to visualize the beam during adjustment.
+
+    \subsubsection{Adjusting beam position}
+      Beam position can be adjusted by either translating the beam in a conjugated image plane (I'), or by rotating the beam in a conjugated back focal plane (BFP'). The setup was designed in a way, that BFP' coincides with mirror M1. This mirror is mounted in a gimbal mirror mount, allowing to rotate the mirror exactly around its center, which avoids unwanted translational movements, and results in pure rotation of the beam. Lens L3 is positioned exactly 1 focal length from the mirror, thus acting as a scan lens, and transforming the rotational movements to translation. This translation is further imaged and demagnified by the tube lens L4 and the objective O onto the sample.
 
 
     \paragraph{Adjusting beam tilt}
-      Beam tilt can be adjusted by 
-
+      Beam tilt can be adjusted by either rotating the beam in an intermediate image plane (I'), or translating it at the back focal plane (BFP). As mirror M2 is relatively far from the back focal plane, adjusting this will mostly result in translation that will rotate the beam. This movement, however will also introduce translations, and has to be compensated by adjusting mirror M1. The light-sheet, however needs to be tilted by \SI{30}{\degree} to coincide with the focal plane of the other objective, and this degree of adjustment is not possible with M2. In order to allow for a pure rotation of the light-sheet, we mounted the dichroic mirrors on a linear stage (OptoSigma, TSDH-251C). By translating the dichroic mirror, the illumination laser beam gets translated at the back focal plane, which will result in a pure rotational movement at the sample. Rough alignment of the light-sheet is performed by adjusting the dichroic position while inspecting the light-sheet through a glass window in the chamber. Precise alignment is then done based on the image of the beam visualized in a fluorescent medium.
 
 
     \paragraph{Adjusting beam axial position.}
@@ -336,9 +338,8 @@
 
 
 
-
   \subsection{Alignment of detection branches}
-    Since the detection path is equivalent to a wide-field detection scheme, its alignment is much simpler than that of the illumination branches. The only difference is the detection branch merging unit (see Sec. \ref{sec:dualMirror}.) that features two moving mirrors. This, however doesn't effect the alignment procedure, since the movement direction is parallel to both mirror's surface, meaning that the exact position of the mirrors will not affect the image quality, as long as the mirrors are not clipping the image itself. Stability test were performed to confirm the consistent switching performance of the mirror unit before the final alignment took place (see Sec. \ref{sec:mirrorStability}).
+    Since the detection path is equivalent to a wide-field detection scheme, its alignment is much simpler than that of the illumination branches. The only difference is the detection branch merging unit (see \autoref{sec:dualMirror}.) that features two moving mirrors. This, however doesn't effect the alignment procedure, since the movement direction is parallel to both mirror's surface, meaning that the exact position of the mirrors will not affect the image quality, as long as the mirrors are not clipping the image itself. Stability test were performed to confirm the consistent switching performance of the mirror unit before the final alignment took place (see Sec. \ref{sec:mirrorStability}).
 
     % TODO: complete paragraph
     The final alignment procedure 
@@ -371,17 +372,20 @@
   Apart from the optics design, automation hardware and software is also a custom design. To be able to conduct high speed experiments and time-lapse recordings, a high level of automation, hardware and software integration is necessary. Our system comprises of two main components: a National Instruments embedded system (cRIO 9068), and a high performance workstation.
 
   \subsection{Hardware}
-    Various components need to be properly synchronized to operate the microscope. Illumination is performed with a multi-line laser combiner, light-sheet is generated by a galvo scanner. To discriminate fluorescent light from th excitation lihgt, a motorized filter wheel is used with appropriate long pass and band pass filters (see Appendix \ref{sec:BOM}).
+    Various components need to be properly synchronized to operate the microscope. Illumination is performed with a multi-line laser combiner, light-sheet is generated by a galvo scanner. To discriminate fluorescent light from th excitation light, a motorized filter wheel is used with appropriate long pass and band pass filters (see Appendix \ref{sec:BOM}).
     For more details, see Appendix \autoref{sec:BOM}.
 
-    \autoref{eq:abbe}
+    The different devices require different signals to control them. We can split them into three main categories:
 
-    \autoref{fig:adultMouse}
+    \begin{center}
+      \begin{tabular}{lll}      
+        \textbf{digital input} & \textbf{analog input}   & \textbf{serial communication} \\ \hline
+        camera exposure    & galvo position & filter wheel         \\
+        laser on/off (\texttimes 3) & laser intensity (\texttimes 3) & stages (\texttimes 2)
+      \end{tabular}
+    \end{center}
 
-    \autoref{sec:dualMirror}
-
-    \autoref{tab:arithmetic}
-    
+    All devices are connected to the NI cRIO 9068 embedded system, either to the built in RS232 serial port, or to the digital and analog outputs of the FPGA card.
   
   \subsection{Software}
 
@@ -412,10 +416,10 @@
   Resolution for Lattice light-sheet \cite{chen_lattice_2014}: \SI{230}{nm} in x and \SI{370}{nm} in z
   \cite{chhetri_whole-animal_2015}
 
-  After the design phase, all custom parts were manufactured the the EMBL workshop, and I assembled the microscope on a NewPort X by X optical table (Fig. \ref{fig:frontView}).
+  After the design phase, all custom parts were manufactured the the EMBL workshop, and microscope was assembled on a NewPort X by X optical table (Fig. \ref{fig:frontView}).
 
   \subsection{Characterizing illumination profile}
-    Since a Gaussian beam is used for illumination, it's intensity profile is dependent on the axial position (Eq. \ref{eq:gaussian}). Although the total intensity at any cross section of the beam is constant, because of the divergent properties, the peak intensity varies. To assess any non-uniformities in the illumination pattern, I measured the illumination beam intensity for each view.
+    Since a Gaussian beam is used for illumination, it's intensity profile is dependent on the axial position (Eq. \ref{eq:gaussian}). Although the total intensity at any cross section of the beam is constant, because of the divergent properties, the peak intensity varies. To assess any non-uniformities in the illumination pattern, we measured the illumination beam intensity for each view.
 
     To visualize the beam, the chamber was filled with a fluorescent solution (methylene blue solution in distilled water). In order to increase the signal to noise ratio of these images, a long exposure time of \SI{200}{ms} were used, and 500 images of each beam was averaged (Fig. \ref{fig:beamProfiles}). The measure Rayleigh range of the left and right beams respectively: "\SI{666}{\micro m}" ans "\SI{666}{\micro m}". The width of the beam, \textit{i.e.} the thickness of the light-sheet are "\SI{666}{\micro m}" and "\SI{666}{\micro m}" for the left and right beams respectively (\autoref{fig:beamProfiles}).
 
@@ -433,7 +437,7 @@
 
 
   \subsection{Resolution and point spread function measurement}
-    To measure the resolution of the microscope, and characterize its optical performance I performed point spread function measurement using fluorescently labeled beads (TetraSpeck \SI{500}{nm}, ThermoFisher). The beads were sonicated, and mixed with 0.8\% GelRite solution at a final dilution of 1:1000. The gel was loaded in glass capillaries and allowed to cool. After the gel solidified, a $\sim$\SI{1}{mm} piece was cut off and placed in the microscope sample holder.
+    To measure the resolution of the microscope, and characterize its optical performance we performed point spread function measurement using fluorescently labeled beads (TetraSpeck \SI{500}{nm}, ThermoFisher). The beads were sonicated, and mixed with 0.8\% GelRite solution at a final dilution of 1:1000. The gel was loaded in glass capillaries and allowed to cool. After the gel solidified, a $\sim$\SI{1}{mm} piece was cut off and placed in the microscope sample holder.
 
     In order to establish an ideal, reference PSF, we simulated the theoretical PSF of the microscope with the Gibson-Lanni model \cite{gibson_experimental_1992}, using the MicroscPSF Matlab implementation \cite{li_fast_2017}. The advantage of this model is that is accounts for any differences between the experimental conditions and the design parameters of the objective, and thus it can simulate any possible aberrations that should arise. The adjustable parameters are the thicknesses and refractive indices of the immersion medium, coverslip, and sample. 
 
