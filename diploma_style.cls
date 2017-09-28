@@ -180,7 +180,7 @@
 
 \setcounter{secnumdepth}{2}
 
-\setcounter{tocdepth}{2}
+\setcounter{tocdepth}{1}
 
 
 %\addtolength{\textwidth}{-1cm}
