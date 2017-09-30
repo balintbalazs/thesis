@@ -452,7 +452,7 @@
     \begin{figure}[htb]
       \centering
       \includegraphics[width=\textwidth]{beamPlots.pdf}
-      \bcaption[Illumination beam profile]{Average of 50 stationary beam images for both left (top left) and right objectives (bottom left). Beam intensity profile along the waist of each beam is plotted in the center column. The right column shows the beam width profile of each beam ($1/e^2$).}
+      \bcaption[Illumination beam profile]{Average of 500 stationary beam images for both left (top left) and right objectives (bottom left). Beam intensity profile along the waist of each beam is plotted in the center column. The right column shows the beam width profile of each beam ($1/e^2$).}
       \label{fig:beamProfiles}
     \end{figure}
 
@@ -461,8 +461,16 @@
     \label{sec:mirrorStability}
     To assess the reproducibility in the movement of the detection merging unit, a long term stability test was conducted. To exclude all other factors (such as sample drift), we replaced lenses L5 and L5' with a short focal length achromatic lenses, and used these to image a closed aperture placed on the rail. The apertures were imaged from both views every 10 seconds, for \SI{4}{h}. The center of the aperture was segmented on all images, and tracked ot assess any drift occurring during the \SI{4}{h} time lapse (\autoref{fig:stability}). Although there was a small shift in the first 10 minutes, the system stabilized afterwards, and no further drift was detected (\autoref{fig:stability}).
 
+    \begin{figure}
+      \centering
+      \includegraphics[width=\textwidth]{trackCenter}
+      \bcaption[Stability measurements of view switcher unit] {A closed aperture was imaged on the camera from both views, every \SI{10}{s}, for \SI{4}{h}. The dot represent the center of each frame, color coded with the time. The red ellipse represents the 95\% confidence interval of the measured positions based on principal component analysis. Standard deviations for right view: $\sigma_1 = \SI{4.37}{px}$, $\sigma_2 = \SI{2.26}{px}$; for left view: $\sigma_1 = \SI{0.07}{px}$, $\sigma_2 = \SI{0.04}{px}$.}
+      \label{fig:stability}
+    \end{figure}
+
 
   \subsection{Resolution and point spread function measurement}
+
     To measure the resolution of the microscope, and characterize its optical performance we performed point spread function measurement using fluorescently labeled beads (TetraSpeck \SI{500}{nm}, ThermoFisher). The beads were sonicated, and mixed with 0.8\% GelRite solution at a final dilution of 1:1000. The gel was loaded in glass capillaries and allowed to cool. After the gel solidified, a $\sim$\SI{1}{mm} piece was cut off and placed in the microscope sample holder.
 
     In order to establish an ideal, reference PSF, we simulated the theoretical PSF of the microscope with the Gibson-Lanni model \cite{gibson_experimental_1992}, using the MicroscPSF Matlab implementation \cite{li_fast_2017}. The advantage of this model is that is accounts for any differences between the experimental conditions and the design parameters of the objective, and thus it can simulate any possible aberrations that should arise. The adjustable parameters are the thicknesses and refractive indices of the immersion medium, coverslip, and sample. 
@@ -481,7 +489,18 @@
       \label{fig:measuredPSF}
     \end{figure}
 
+
+  \subsection{Resolution inside a \textit{Drosphila melanogaster} embryo}
+
+    \begin{figure}[htb]
+      \centering
+      \includegraphics[width=.75\textwidth]{drosoEmbryo}
+      \bcaption[Maximum intensity projection of a \textit{Drosophila melanogaster} embryo recording]{Maximum intensity projection of a \SI{30}{\micro m} thick substack. Orange: nuclei (H2A-mCherry), blue: centrioles (ASL-YFP). 50x magnification. (\textbf{a}) Overview of the embryo. (\textbf{b}) Zoomed in view to the region marked in (\textbf{a}).}
+      \label{fig:drosoEmbryo}
+    \end{figure}
+
   \subsection{Multi-view imaging of a mouse zygote}
+
     \begin{figure}[htb]
       \centering
       \includegraphics[width=.75\textwidth]{zygoteMontage}
@@ -489,6 +508,15 @@
       \label{fig:zygoteMontage}
     \end{figure}
 
+
+
+    %#     ## ######## ######## ##     ## 
+    %##   ### ##          ##    ##     ## 
+    %### #### ##          ##    ##     ## 
+    %# ### ## ######      ##    ######### 
+    %#     ## ##          ##    ##     ## 
+    %#     ## ##          ##    ##     ## 
+    %#     ## ########    ##    ##     ## 
 
 \section{Methods}
 
