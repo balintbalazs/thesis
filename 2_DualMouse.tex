@@ -466,10 +466,11 @@
       \label{fig:stability}
     \end{figure}
 
-  \subsection{Characterizing illumination profile}
+  \subsection{Characterizing the illumination profile}
     Since a Gaussian beam is used for illumination, it's intensity profile is dependent on the axial position (\autoref{eq:gaussian}). Although the total intensity at any cross section of the beam is constant, because of the divergent properties, the peak intensity varies. To assess any non-uniformities in the illumination pattern, we measured the illumination beam intensity for each view.
 
-    To visualize the beam, the chamber was filled with a fluorescent solution (methylene blue solution in distilled water). In order to increase the signal to noise ratio of these images, a long exposure time of \SI{200}{ms} were used, and 500 images of each beam was averaged (\autoref{fig:beamProfiles}). The measure Rayleigh range of the left and right beams respectively: \SI{95.42}{\micro m} and \SI{90.35}{\micro m}. The width (FWHM) of the beams, \textit{i.e.} the thickness of the light-sheet at the beam waist are \SI{3.70}{\micro m} and \SI{3.58}{\micro m} for the left and right beams respectively (\autoref{fig:beamProfiles}).
+    To visualize the beam, the chamber was filled with a fluorescent solution (methylene blue solution in distilled water). In order to increase the signal to noise ratio of these images, a long exposure time of \SI{200}{ms} were used, and 500 images of each beam was averaged, and the background subtracted (\autoref{fig:beamProfiles}).
+    To determine the beam waist position, we measured the beam thickness (FWHM) for each column of the averaged images, and located the position of the minimal width. The beam width at the waist position for the left view was   \SI{3.70}{\micro m}, and for the right view it was \SI{3.58}{\micro m} (\autoref{fig:beamProfiles}). We also measured the usable length of the beams (\ref{sec:dimensions}). The distance between the points where the beam has expanded by a factor of $\sqrt2$ relative to the waist is \SI{95.42}{\micro m} for the left view, and \SI{90.35}{\micro m} for the right view. This corresponds well to the original requirement of a minimal field of view of \SI{100}{\micro m}. Depending on the sample however, the practical field of view can be larger than this, as the camera sensor allows for a field of view of \SI{266}{\micro m}.  
 
     \begin{figure}[htb]
       \centering
@@ -484,9 +485,9 @@
 
   \subsection{Resolution and point spread function measurement}
 
-    To measure the resolution of the microscope, and characterize its optical performance we performed point spread function measurement using fluorescently labeled beads (TetraSpeck \SI{500}{nm}, ThermoFisher). The beads were sonicated, and mixed with 0.8\% GelRite solution at a final dilution of 1:1000. The gel was loaded in glass capillaries and allowed to cool. After the gel solidified, a $\sim$\SI{1}{mm} piece was cut off and placed in the microscope sample holder.
+    To measure the resolution of the microscope, and characterize its optical performance we measured the point spread function using fluorescently labeled beads (TetraSpeck \SI{500}{nm}, ThermoFisher). The beads were sonicated, and mixed with 0.8\% GelRite solution at a final dilution of 1:1000. The gel was loaded in glass capillaries and allowed to cool. After the gel solidified, a $\sim$\SI{1}{mm} piece was cut off and placed in the microscope sample holder.
 
-    In order to establish an ideal, reference PSF, we simulated the theoretical PSF of the microscope with the Gibson-Lanni model \cite{gibson_experimental_1992}, using the MicroscPSF Matlab implementation \cite{li_fast_2017}. The advantage of this model is that is accounts for any differences between the experimental conditions and the design parameters of the objective, and thus it can simulate any possible aberrations that should arise. The adjustable parameters are the thicknesses and refractive indices of the immersion medium, coverslip, and sample. 
+    In order to establish an ideal, reference PSF, we simulated the theoretical PSF of the microscope with the Gibson-Lanni model \cite{gibson_experimental_1992}, using the MicroscPSF Matlab implementation \cite{li_fast_2017}. The advantage of this model is that is accounts for any differences between the experimental conditions and the design parameters of the objective, and thus it can simulate any possible aberrations that should arise. The adjustable parameters are the thicknesses ($t$) and refractive indices ($n$) of the immersion medium ($i$), coverslip ($g$), and sample ($s$). To simulate the reference PSF, we accounted for the slight mismatch in refractive index between the FEP foil ($n_g = 1.344$) and water ($n_i = 1.33$). The working distance of the objective is \SI{2}{mm}, while the thickness of the foil is \SI{50}{micro m}. 
 
     % \begin{figure}[htb]
     %   \centering
