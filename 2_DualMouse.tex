@@ -509,15 +509,21 @@
       \label{fig:fusedPSF}
     \end{figure}
     
-    To estimate the achievable multi-view resolution of the system, we combined the two measured PSFs. First, the PSFs were rotated by $\pm \SI{60}{\degree}$ to correspond to the objective orientations. The PSF images were then normalized by scaling the maximum to 1, and the two rotated and normalized PSFs were multiplied (\autoref{fig:fusedPSF}). Resolution of the combined PSF is much improved in all directions, along it's shortest axis the FWHM is \SI{314}{nm}, and along the longest axis the FWHM is \SI{496}{nm} (\autoref{fig:fusedPSF}). Both are better than the corresponding resolutions for th single view, especially along the long axis, the resolution is 2.67 times better. This is almost perfectly matching the theoretically expected increase in the axial direction (compare with \autoref{sec:120concept}).
+    To estimate the achievable multi-view resolution of the system, we combined the two measured PSFs. First, the PSFs were rotated by $\pm \SI{60}{\degree}$ to correspond to the objective orientations. The PSF images were then normalized by scaling the maximum to 1, and the two rotated and normalized PSFs were multiplied (\autoref{fig:fusedPSF}). Resolution of the combined PSF is much improved in all directions, along it's shortest axis the FWHM is \SI{314}{nm}, and along the longest axis the FWHM is \SI{496}{nm} (\autoref{fig:fusedPSF}). Both are better than the corresponding resolutions for th single view, especially along the long axis, where the resolution is 2.67 times better. This is almost perfectly matching the theoretically expected increase in the axial direction (compare with \autoref{sec:120concept}).
 
 
   \subsection{Resolution inside a \textit{Drosphila melanogaster} embryo}
 
+    Apart from measuring the point spread function and resolution in an ideal bead sample, we also wanted to know the resolution inside a biological sample, as the tissues usually introduce some aberrations to the light path. Although these aberrations highly depend on the sample, as a worst case scenario, we measured the point spread function inside a \textit{Drosophila melanogater} embryo. As this specimen is highly opaque and scattering, it gives a good estimate for the upper bound of the resolution.
+
+    Instead of the fluorescent beads, we imaged a \textit{Drosophila} embryo expressing H2A-mCherry marking the nuclei, and ASL-YFP marking the centrosomes (\autoref{fig:drosoEmbryo}a). As the centrosomal protein ASL is diffraction limited in size \cite{gonczy_towards_2012}, its image gives a good estimate for the point spread function inside the specimen.
+
+    Similarly to the bead recordings, 15 centriole images were averaged with the 3D PSF tool of the MOSAIC plugin in Fiji (\autoref{fig:drosoEmbryo}c). On the averaged image we measured the resolution by fitting a Gaussian function on the lateral and axial intensity profiles (\autoref{fig:drosoEmbryo}d,e), and calculating the FWHM of the fitted Gaussian. The size of the averaged centrioles was \SI{654}{nm} in the lateral, and \SI{2739}{nm} in the axial direction.
+
     \begin{figure}[htb]
       \centering
       \includegraphics[width=.9\textwidth]{droso/drosoEmbryo}
-      \bcaption[Maximum intensity projection of a \textit{Drosophila melanogaster} embryo recording]{Maximum intensity projection of a \SI{30}{\micro m} thick substack. Orange: nuclei (H2A-mCherry), blue: centrioles (ASL-YFP). 50x magnification. (\textbf{a}) Overview of the embryo. (\textbf{b}) Zoomed in view to the region marked in (\textbf{a}).}
+      \bcaption[Maximum intensity projection of a \textit{Drosophila melanogaster} embryo recording]{Maximum intensity projection of a \SI{30}{\micro m} thick substack. Orange: nuclei (H2A-mCherry), blue: centrioles (ASL-YFP). 50x magnification. (\textbf{a}) Overview of the embryo. (\textbf{b}) Zoomed in view to the region marked in (\textbf{a}). (\textbf{c}) Average image of 15 centrioles distributed evenly in the embryo. (d) Gaussian fit on the lateral intensity profile of the averaged centrioles; FWHM=\SI{654}{nm}. (d) Gaussian fit on the axial intensity profile of the averaged centrioles; FWHM=\SI{2739}{nm}.}
       \label{fig:drosoEmbryo}
     \end{figure}
 
