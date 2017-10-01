@@ -424,7 +424,7 @@
 % ##    ##  ##       ##    ## ##     ## ##          ##    ##    ## 
 % ##     ## ########  ######   #######  ########    ##     ######  
 \section{Results}
-  \begin{figure}[htb]
+  \begin{figure}
     \begin{subfigure}[t]{0.5\textwidth}
       \centering
       \includegraphics[width=\textwidth]{photos/front_solidworks_overlay}
@@ -432,7 +432,7 @@
     \end{subfigure}
     \begin{subfigure}[t]{0.5\textwidth}
       \centering
-      \includegraphics[width=\textwidth]{photos/front_photo_overlay}
+      \includegraphics[width=\textwidth]{photos/front_photo_overlay.jpg}
       \caption{Front view of the microscope.}
     \end{subfigure}
     \\
@@ -448,15 +448,16 @@
   % Resolution for Lattice light-sheet \cite{chen_lattice_2014}: \SI{230}{nm} in x and \SI{370}{nm} in z
   % \cite{chhetri_whole-animal_2015}
 
-  After the design phase, all custom parts were manufactured the EMBL workshop, and microscope was assembled on a NewPort X by X optical table (Fig. \ref{fig:frontView}). To evaluate the performance of the microscope, we conducted various measurements, concerning the stability and the resolution of the system. The methods and results of these measurements will be presented in this section.
+  After the design phase, all custom parts were manufactured the EMBL workshop, and microscope was assembled on a NewPort "!!!type!!!" optical table (Fig. \ref{fig:frontView}). To evaluate the performance of the microscope, we conducted various measurements, concerning the stability and the resolution of the system. The methods and results of these measurements will be presented in this section.
 
 
   \subsection{Stability of view switcher unit}
     \label{sec:mirrorStability}
-    To assess the reproducibility in the movement of the detection branch switching unit, a long term stability test was conducted. To exclude all other factors (such as sample drift), we imaged the opening of two closed irises that were mounted on the detection optical rail. Image formation was done by two achromatic lenses ($f=\SI{75}{mm}$) positioned directly after mirror M5 nad M5'.
-    replaced lenses L5 and L5' with short focal length achromatic lenses, and used these to image a closed aperture placed on the rail. 
+    As the view switcher unit is a custom designed solution for this microscope, it is necessary to evaluate the effect of the switching on the field of view. Because this is a moving unit, many mechanical imprecisions can introduce a drift in the final image. 
+
+    To assess the reproducibility in the movement of the detection branch switching unit, a long term stability test was conducted. To exclude all other factors (such as sample drift), we imaged the opening of two closed irises that were mounted on the detection optical rail. Image formation was done by two achromatic lenses ($f=\SI{75}{mm}$) positioned directly after mirrors M5 nad M5'.
     
-    The apertures were imaged from both views every 10 seconds, for \SI{4}{h}. The center of the aperture was segmented on all images, and tracked ot assess any drift occurring during the \SI{4}{h} time lapse (\autoref{fig:stability}). Although there was a small shift in the first 10 minutes, the system stabilized afterwards, and no further drift was detected (\autoref{fig:stability}).
+    The apertures were imaged from both views every 10 seconds, for \SI{4}{h}, for a total of 1440 images per view, and 2880 switches. The center of the aperture was segmented on all images using Matlab, and tracked to assess any drift occurring during the \SI{4}{h} time lapse (\autoref{fig:stability}). To visualize the uncertainty of the aperture's position, we performed principal component analysis (PCA) on the positions and visualized the results by plotting the 95\% confidence ellipse on the images. Although the right view had a significant spread with a standard deviation of \SI{4.37}{px} and \SI{2.26}px along the long ans short axes respectively, the left view was extremely stable, and the standard deviation was only \SI{0.07}{px} and \SI{0.04}{px} for the long and short axes respectively. This result implies that there is no conceptual limitation in reaching sub-pixel reproducibility with the view switching unit, although some optimization is still needed for the right view to reach the same stability as the left view. 
 
     \begin{figure}
       \centering
@@ -466,9 +467,9 @@
     \end{figure}
 
   \subsection{Characterizing illumination profile}
-    Since a Gaussian beam is used for illumination, it's intensity profile is dependent on the axial position (Eq. \ref{eq:gaussian}). Although the total intensity at any cross section of the beam is constant, because of the divergent properties, the peak intensity varies. To assess any non-uniformities in the illumination pattern, we measured the illumination beam intensity for each view.
+    Since a Gaussian beam is used for illumination, it's intensity profile is dependent on the axial position (\autoref{eq:gaussian}). Although the total intensity at any cross section of the beam is constant, because of the divergent properties, the peak intensity varies. To assess any non-uniformities in the illumination pattern, we measured the illumination beam intensity for each view.
 
-    To visualize the beam, the chamber was filled with a fluorescent solution (methylene blue solution in distilled water). In order to increase the signal to noise ratio of these images, a long exposure time of \SI{200}{ms} were used, and 500 images of each beam was averaged (Fig. \ref{fig:beamProfiles}). The measure Rayleigh range of the left and right beams respectively: \SI{95.42}{\micro m} and \SI{90.35}{\micro m}. The width (FWHM) of the beams, \textit{i.e.} the thickness of the light-sheet at the beam waist are \SI{3.70}{\micro m} and \SI{3.58}{\micro m} for the left and right beams respectively (\autoref{fig:beamProfiles}).
+    To visualize the beam, the chamber was filled with a fluorescent solution (methylene blue solution in distilled water). In order to increase the signal to noise ratio of these images, a long exposure time of \SI{200}{ms} were used, and 500 images of each beam was averaged (\autoref{fig:beamProfiles}). The measure Rayleigh range of the left and right beams respectively: \SI{95.42}{\micro m} and \SI{90.35}{\micro m}. The width (FWHM) of the beams, \textit{i.e.} the thickness of the light-sheet at the beam waist are \SI{3.70}{\micro m} and \SI{3.58}{\micro m} for the left and right beams respectively (\autoref{fig:beamProfiles}).
 
     \begin{figure}[htb]
       \centering
