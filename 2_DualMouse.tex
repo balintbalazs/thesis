@@ -60,47 +60,12 @@
   2x1.1 NA water dipping in \SI{120}{\degree} multi-view deconvolved Gaussian fit $\sigma_z = 135$, and $\sigma_{xy} = 82.2$
   simulations from PSF generator! put here
 
-  \subsection{Light collection efficiency of an objective}
-    Resolution is not the only parameter of concern when designing a new microscope setup. We also have to consider light collection efficiency, since many application, especially live imaging applications require a tight photon budget. This means a single fluorophore can only emit so many times before it undergoes an irreversible chemical reaction, i.e. it bleaches. The more we can collect of these photons, the more information we gain, and altogether the efficiency is higher.
+  
+  Resolution is not the only parameter of concern when designing a new microscope setup. We also have to consider light collection efficiency, since many application, especially live imaging applications require a tight photon budget. This means a single fluorophore can only emit so many times before it undergoes an irreversible chemical reaction, i.e. it bleaches. The more we can collect of these photons, the more information we gain, and altogether the efficiency is higher.
+  
+  Photon collection efficiency also defines single molecule localization accuracy, since the signal to noise ratio will depend on the square of the number of collected photons. This is why it's important to also maximize light collection efficiency.
 
-    Photon collection efficiency also defines single molecule localization accuracy, since the signal to noise ratio will depend on the square of the number of collected photons. This is why it's important to also maximize light collection efficiency.
-
-    Let's define light collection efficiency $\eta$ as the ratio of collected photons and all emitted photons:
-    \[
-    \eta = \frac{N_{collected}}{N_{emitted}}
-    \]
-    Since we can assume that the direction of photons emitted from a fluorescent molecule are random, the light collection efficiency will correspond to the solid angle subtended by the objective front lens at the focal point. To calculate this, let's consider the unit sphere centered at the focal point, and calculate the surface area of the spherical cap corresponding to the objective acceptance angle $\alpha$ (Fig. \ref{fig:light_effa}). The area of the cap can be expressed as a function of the angle:
-    \[
-    A_{cap} = 2\pi r^2 (1-\cos \alpha)
-    \]
-    The surface area of the full sphere is calculated as:
-    \[
-    A_{sph} = 4 \pi r^2
-    \]
-    For both equations $r$ is the radius of the sphere. From here, the light collection efficiency can be calculated as:
-    \[
-    \eta = \frac{N_{collected}}{N_{emitted}} = \frac{A_{cap}}{A_{sph}} = \frac{1-\cos \alpha}{2}
-    \]
-
-    Some more calculations: (Fig. \ref{fig:light_effb}).
-
-    \begin{figure}[tpb]
-      \centering
-    \begin{subfigure}[t]{0.39\textwidth}
-      \centering
-      \includegraphics[page=1,width=0.8\textwidth]{efficiency/sphere}
-      \caption{\textbf{}}
-      \label{fig:light_effa}
-    \end{subfigure}
-    \begin{subfigure}[t]{0.39\textwidth}
-      \centering
-      \includegraphics[page=1,width=1\textwidth]{efficiency/light_eff}
-      \caption{\textbf{}}
-      \label{fig:light_effb}
-    \end{subfigure} 
-    \bcaption[Light collection efficiency of an objective]{\textbf{(a)} Light collection efficiency is the ratio of photons collected by the objective and all emitted photons. If the fluorophores are emitted randomly in all directions, it will be the surface ratio of the conical section (blue) to the whole sphere. \textbf{(b)} Light collection efficiency ($\eta$) as a function of the numerical aperture (NA)}
-    \label{fig:light_eff}
-    \end{figure}
+  The light collection efficiency of a 1.1 NA objective is a factor of 2 better, than the light collection of a 0.8 NA objective (see Appendix \autoref{app:lightEff}).
 
 
   \subsection{Multi-view resolution}
@@ -450,7 +415,9 @@
   % Resolution for Lattice light-sheet \cite{chen_lattice_2014}: \SI{230}{nm} in x and \SI{370}{nm} in z
   % \cite{chhetri_whole-animal_2015}
 
-  After the design phase, all custom parts were manufactured the EMBL workshop, and microscope was assembled on a NewPort "!!!type!!!" optical table (Fig. \ref{fig:frontView}). To evaluate the performance of the microscope, we conducted various measurements, concerning the stability and the resolution of the system. The methods and results of these measurements will be presented in this section.
+  After the design phase, all custom parts were manufactured by the EMBL mechanical workshop, and microscope was assembled on a NewPort "!!!type!!!" optical table (Fig. \ref{fig:frontView}). The microscope was equipped with an Andor Zyla 4.2 sCMOS camera, that offers a large field of view of 2048\texttimes 2048 pixels with a pixel pitch of \SI{6.5}{\micro m}. It offers a high dynamic range of 1:30,000, and high frame rate at 100 frames per second (fps), while readout noise is minimal (0.9 e$^-$).
+  
+  To evaluate the performance of the microscope, we conducted various measurements, concerning the stability and the resolution of the system. The methods and results of these measurements will be presented in this section.
 
 
   \subsection{Stability of view switcher unit}
@@ -528,6 +495,10 @@
     \end{figure}
 
   \subsection{Multi-view imaging of a mouse zygote}
+
+    To demonstrate the multi-view capabilities and improved image quality of the microscope, we performed dual-view imaging of a fixed mouse zygote and combined the images using the Multiview Reconstruction \cite{preibisch_efficient_2014} plugin of Fiji (\autoref{fig:zygoteMontage}). The microtubules were stained with Alexa Fluor 488, and the zygote was imaged from both views with \SI{0.5}{\micro m} inter-plane distance.
+
+    Anisotropy in the resolution becomes apparent in the single-view recordings, when the stacks are resliced from a different direction than the imaging plane. Even though the native view of each objective (\autoref{fig:zygoteMontage}a,d) shows good contrast, and easy to recognize features, when rotated and sliced corresponding to the view of the other objective, the contrast is almost completely gone, and resolution decreased (\autoref{fig:zygoteMontage}b,e). The fused stack, after the multi-view deconvolution contains the high resolution information form both views, and thus both directions show good quality and high contrast (\autoref{fig:zygoteMontage}c,f).
 
     \begin{figure}[htb]
       \centering
