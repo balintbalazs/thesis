@@ -102,7 +102,9 @@
     \label{fig:light_eff}
     \end{figure}
 
+
   \subsection{Multi-view resolution}
+    \label{sec:120concept}
     here a figure with rotating 2 psfs
     \begin{figure}[bt]
       \centering
@@ -455,7 +457,7 @@
     \label{sec:mirrorStability}
     As the view switcher unit is a custom designed solution for this microscope, it is necessary to evaluate the effect of the switching on the field of view. Because this is a moving unit, many mechanical imprecisions can introduce a drift in the final image. 
 
-    To assess the reproducibility in the movement of the detection branch switching unit, a long term stability test was conducted. To exclude all other factors (such as sample drift), we imaged the opening of two closed irises that were mounted on the detection optical rail. Image formation was done by two achromatic lenses ($f=\SI{75}{mm}$) positioned directly after mirrors M5 nad M5'.
+    To assess the reproducibility in the movement of the detection branch switching unit, a long term stability test was conducted. To exclude all other factors (such as sample drift), we imaged the opening of two closed irises that were mounted on the detection optical rail. Image formation was done by two achromatic lenses ($f=\SI{75}{mm}$) positioned directly after mirrors M5 and M5'.
     
     The apertures were imaged from both views every 10 seconds, for \SI{4}{h}, for a total of 1440 images per view, and 2880 switches. The center of the aperture was segmented on all images using Matlab, and tracked to assess any drift occurring during the \SI{4}{h} time lapse (\autoref{fig:stability}). To visualize the uncertainty of the aperture's position, we performed principal component analysis (PCA) on the positions and visualized the results by plotting the 95\% confidence ellipse on the images. Although the right view had a significant spread with a standard deviation of \SI{4.37}{px} and \SI{2.26}px along the long ans short axes respectively, the left view was extremely stable, and the standard deviation was only \SI{0.07}{px} and \SI{0.04}{px} for the long and short axes respectively. This result implies that there is no conceptual limitation in reaching sub-pixel reproducibility with the view switching unit, although some optimization is still needed for the right view to reach the same stability as the left view. 
 
@@ -485,23 +487,29 @@
 
   \subsection{Resolution and point spread function measurement}
 
-    To measure the resolution of the microscope, and characterize its optical performance we measured the point spread function using fluorescently labeled beads (TetraSpeck \SI{500}{nm}, ThermoFisher). The beads were sonicated, and mixed with 0.8\% GelRite solution at a final dilution of 1:1000. The gel was loaded in glass capillaries and allowed to cool. After the gel solidified, a $\sim$\SI{1}{mm} piece was cut off and placed in the microscope sample holder.
-
     In order to establish an ideal, reference PSF, we simulated the theoretical PSF of the microscope with the Gibson-Lanni model \cite{gibson_experimental_1992}, using the MicroscPSF Matlab implementation \cite{li_fast_2017}. The advantage of this model is that is accounts for any differences between the experimental conditions and the design parameters of the objective, and thus it can simulate any possible aberrations that should arise. The adjustable parameters are the thicknesses ($t$) and refractive indices ($n$) of the immersion medium ($i$), coverslip ($g$), and sample ($s$). To simulate the reference PSF, we accounted for the slight mismatch in refractive index between the FEP foil ($n_g = 1.344$) and water ($n_i = 1.33$). The working distance of the objective is \SI{2}{mm}, while the thickness of the foil is \SI{50}{micro m}. 
-
-    % \begin{figure}[htb]
-    %   \centering
-    %   \includegraphics[width=0.7\textwidth]{gibson-lanni}
-    %   \bcaption[Schematics for the Gibson-Lanni model]{The model is based on the differences in light propagation between the experimental (red) and design conditions (blue). The optical path length difference is calculated as follows: $OPD = [ABCD] - [PQRS]$. System properties are represented by vectors $\mathbf{n} = (n_i, n_i^*, n_g, n_g^*, n_s)$ and $\mathbf{t} = (t_i, t_i^*, t_g, t_g^*, t_s)$ for the refractive indices and path lengths respectively. Adapted from \cite{li_fast_2017}.}
-    %   \label{fig:gibson-lanni}
-    % \end{figure}
 
     \begin{figure}[htb]
       \centering
       \includegraphics[width=\textwidth]{PSF}
-      \bcaption[Simulated and measured PSF of Dual Mouse-SPIM]{Top row: axial sections of simulated and measured point spread functions. Middle row: lateral intensity profile and Gaussian fit. Bottom row: Axial intensity profile and Gaussian fit. Simulations were performed based on the Gibson-Lanni model. Immersion medium  and sample refractive index: 1.330, coverslip (FEP foil) refractive index: 1.344, coverslip distance: \SI{1900}{\micro m}, coverslip thickness: \SI{50}{\micro m}. Scale bar: \SI{1}{\micro m}.}
+      \bcaption[Simulated and measured PSF of Dual Mouse-SPIM]{Top row: axial sections of simulated and measured point spread functions. Middle row: lateral intensity profile and Gaussian fit. Bottom row: Axial intensity profile and Gaussian fit. Simulations were performed based on the Gibson-Lanni model. Immersion medium  and sample refractive index: 1.330, coverslip (FEP foil) refractive index: 1.344, coverslip distance: \SI{1900}{\micro m}, coverslip thickness: \SI{50}{\micro m}. Excitation wavelength: $\lambda_{ex} = \SI{561}{nm}$. Emission wavelength: $\lambda_{em} = \SI{600}{nm}$. Scale bar: \SI{1}{\micro m}.}
       \label{fig:measuredPSF}
     \end{figure}
+
+    It is apparent from the simulations that even though the FEP refractive index is almost identical to the refractive index of water, a slight spherical aberration is still present even for the ideal case (\autoref{fig:measuredPSF}, left). The resolution measured as the FWHM of the intensity profile through the lateral and axial cross sections is \SI{271}{nm} and \SI{866}{nm} respectively.
+
+    To experimentally measure the resolution of the microscope, and characterize its optical performance, we measured the point spread function using fluorescently labeled beads (TetraSpeck \SI{500}{nm}, ThermoFisher) suspended in 0.8\% GelRite. The gel was loaded in glass capillaries and allowed to cool. After the gel solidified, a $\sim$\SI{1}{mm} piece was cut off and placed in the microscope sample holder. The beads were imaged from both views using the \SI{561}{nm} laser line with the 561 long-pass filter.
+
+    From both views 12 beads were averaged using Fiji and the 3D PSF estimator of the MOSAICsuite. In order to acquire a more accurate PSF, the averaged bead images were deconvolved with the ideal image of the bead. The results of the deconvolution are shown on \autoref{fig:measuredPSF}. Similarly to the simulation, we measured the axial and lateral resolutions on the experimental PSFs. For the left view, the measured resolutions were \SI{386}{nm} in the lateral direction, and \SI{1350}{nm} in the axial direction. For the right view the lateral resolution was \SI{326}{nm}, and the axial was \SI{1297}{nm}.
+
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.9\textwidth]{beads/fusedPSF}
+      \bcaption[Combined PSF of 2 views]{(\textbf{a}) The measured PSFs (\autoref{fig:measuredPSF}) were rotated to their corresponding orientations and multiplied. (\textbf{b}) Gaussian fit along the short axis of the combined PSF; FWHM=\SI{314}{nm}. (\textbf{c}) Gaussian fit along the long axis of the combined PSF; FWHM=\SI{496}{nm}.}
+      \label{fig:fusedPSF}
+    \end{figure}
+    
+    To estimate the achievable multi-view resolution of the system, we combined the two measured PSFs. First, the PSFs were rotated by $\pm \SI{60}{\degree}$ to correspond to the objective orientations. The PSF images were then normalized by scaling the maximum to 1, and the two rotated and normalized PSFs were multiplied (\autoref{fig:fusedPSF}). Resolution of the combined PSF is much improved in all directions, along it's shortest axis the FWHM is \SI{314}{nm}, and along the longest axis the FWHM is \SI{496}{nm} (\autoref{fig:fusedPSF}). Both are better than the corresponding resolutions for th single view, especially along the long axis, the resolution is 2.67 times better. This is almost perfectly matching the theoretically expected increase in the axial direction (compare with \autoref{sec:120concept}).
 
 
   \subsection{Resolution inside a \textit{Drosphila melanogaster} embryo}
