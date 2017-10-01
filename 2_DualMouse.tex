@@ -427,22 +427,43 @@
   \begin{figure}[htb]
     \begin{subfigure}[t]{0.5\textwidth}
       \centering
-      \includegraphics[width=\textwidth]{front_solidworks_overlay}
-      \caption{Rendering of SolidWorks design.}
+      \includegraphics[width=\textwidth]{photos/front_solidworks_overlay}
+      \caption{Front view of the SolidWorks design.}
     \end{subfigure}
     \begin{subfigure}[t]{0.5\textwidth}
       \centering
-      \includegraphics[width=\textwidth]{front_photo_overlay}
-      \caption{Photo of constructed microscope.}
+      \includegraphics[width=\textwidth]{photos/front_photo_overlay}
+      \caption{Front view of the microscope.}
     \end{subfigure}
-    \bcaption[Front view of the Dual Mouse-SPIM]{}
+    \\
+    \begin{subfigure}[t]{1\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{photos/top+light}
+      \caption{Top view of the microscope.}
+    \end{subfigure}
+    \bcaption[Completed DualMouse-SPIM]{The excitation and emission light paths are depicted with blue and yellow lines respectively. Component numbering corresponds to \autoref{fig:fullSchematics}. Detection branch merging unit, and mirrors M6 and M6' are underneath the camera and filter wheel. BE -- beam expander, CAM -- camera, DM -- dichroic mirror, F -- fiber, FW -- filter wheel, L -- lens, M -- mirror, O -- objective, PM -- prism mirror, S -- stage}
     \label{fig:frontView}
   \end{figure}
 
-  Resolution for Lattice light-sheet \cite{chen_lattice_2014}: \SI{230}{nm} in x and \SI{370}{nm} in z
-  \cite{chhetri_whole-animal_2015}
+  % Resolution for Lattice light-sheet \cite{chen_lattice_2014}: \SI{230}{nm} in x and \SI{370}{nm} in z
+  % \cite{chhetri_whole-animal_2015}
 
-  After the design phase, all custom parts were manufactured the the EMBL workshop, and microscope was assembled on a NewPort X by X optical table (Fig. \ref{fig:frontView}).
+  After the design phase, all custom parts were manufactured the EMBL workshop, and microscope was assembled on a NewPort X by X optical table (Fig. \ref{fig:frontView}). To evaluate the performance of the microscope, we conducted various measurements, concerning the stability and the resolution of the system. The methods and results of these measurements will be presented in this section.
+
+
+  \subsection{Stability of view switcher unit}
+    \label{sec:mirrorStability}
+    To assess the reproducibility in the movement of the detection branch switching unit, a long term stability test was conducted. To exclude all other factors (such as sample drift), we imaged the opening of two closed irises that were mounted on the detection optical rail. Image formation was done by two achromatic lenses ($f=\SI{75}{mm}$) positioned directly after mirror M5 nad M5'.
+    replaced lenses L5 and L5' with short focal length achromatic lenses, and used these to image a closed aperture placed on the rail. 
+    
+    The apertures were imaged from both views every 10 seconds, for \SI{4}{h}. The center of the aperture was segmented on all images, and tracked ot assess any drift occurring during the \SI{4}{h} time lapse (\autoref{fig:stability}). Although there was a small shift in the first 10 minutes, the system stabilized afterwards, and no further drift was detected (\autoref{fig:stability}).
+
+    \begin{figure}
+      \centering
+      \includegraphics[width=\textwidth]{trackCenter}
+      \bcaption[Stability measurements of view switcher unit] {A closed aperture was imaged on the camera from both views, every \SI{10}{s}, for \SI{4}{h}. The dot represent the center of each frame, color coded with the time. The red ellipse represents the 95\% confidence interval of the measured positions based on principal component analysis. Standard deviations for right view: $\sigma_1 = \SI{4.37}{px}$, $\sigma_2 = \SI{2.26}{px}$; for left view: $\sigma_1 = \SI{0.07}{px}$, $\sigma_2 = \SI{0.04}{px}$.}
+      \label{fig:stability}
+    \end{figure}
 
   \subsection{Characterizing illumination profile}
     Since a Gaussian beam is used for illumination, it's intensity profile is dependent on the axial position (Eq. \ref{eq:gaussian}). Although the total intensity at any cross section of the beam is constant, because of the divergent properties, the peak intensity varies. To assess any non-uniformities in the illumination pattern, we measured the illumination beam intensity for each view.
@@ -457,16 +478,7 @@
     \end{figure}
 
 
-  \subsection{Stability of view switcher unit}
-    \label{sec:mirrorStability}
-    To assess the reproducibility in the movement of the detection merging unit, a long term stability test was conducted. To exclude all other factors (such as sample drift), we replaced lenses L5 and L5' with a short focal length achromatic lenses, and used these to image a closed aperture placed on the rail. The apertures were imaged from both views every 10 seconds, for \SI{4}{h}. The center of the aperture was segmented on all images, and tracked ot assess any drift occurring during the \SI{4}{h} time lapse (\autoref{fig:stability}). Although there was a small shift in the first 10 minutes, the system stabilized afterwards, and no further drift was detected (\autoref{fig:stability}).
-
-    \begin{figure}
-      \centering
-      \includegraphics[width=\textwidth]{trackCenter}
-      \bcaption[Stability measurements of view switcher unit] {A closed aperture was imaged on the camera from both views, every \SI{10}{s}, for \SI{4}{h}. The dot represent the center of each frame, color coded with the time. The red ellipse represents the 95\% confidence interval of the measured positions based on principal component analysis. Standard deviations for right view: $\sigma_1 = \SI{4.37}{px}$, $\sigma_2 = \SI{2.26}{px}$; for left view: $\sigma_1 = \SI{0.07}{px}$, $\sigma_2 = \SI{0.04}{px}$.}
-      \label{fig:stability}
-    \end{figure}
+  
 
 
   \subsection{Resolution and point spread function measurement}
@@ -485,7 +497,7 @@
     \begin{figure}[htb]
       \centering
       \includegraphics[width=\textwidth]{PSF}
-      \bcaption[Simulated and measured PSF of Dual Mouse-SPIM]{Top row: axial sections of simulated and measured point spread functions. Middle row: lateral intensity profile and Gaussian fit. Bottom row: Axial intensity profile and Gaussian fit. Simulations were performed based on the Gibson-Lanni model. Immersion medium  and sample refractive index: 1.330, coverslip (FEP foil) refractive index: 1.344, coverslip distance: \SI{1900}{\micro m}, coverslip thickness: \SI{50}{\micro m}. Scale bar: \SI{500}{nm}.}
+      \bcaption[Simulated and measured PSF of Dual Mouse-SPIM]{Top row: axial sections of simulated and measured point spread functions. Middle row: lateral intensity profile and Gaussian fit. Bottom row: Axial intensity profile and Gaussian fit. Simulations were performed based on the Gibson-Lanni model. Immersion medium  and sample refractive index: 1.330, coverslip (FEP foil) refractive index: 1.344, coverslip distance: \SI{1900}{\micro m}, coverslip thickness: \SI{50}{\micro m}. Scale bar: \SI{1}{\micro m}.}
       \label{fig:measuredPSF}
     \end{figure}
 
