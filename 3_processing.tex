@@ -168,126 +168,126 @@
       \end{table}
 
 
-    \subsubsection{Arithmetic coding}
-      Although in this case the redundancy of the Huffman code is minimal, however in cases where a few symbols have vary high probability compared to the rest, the redundancy increases. This is simply because even for the most frequent letter the shortest codeword the Huffman code can produce is of length 1.
+    % \subsubsection{Arithmetic coding}
+    %   Although in this case the redundancy of the Huffman code is minimal, however in cases where a few symbols have vary high probability compared to the rest, the redundancy increases. This is simply because even for the most frequent letter the shortest codeword the Huffman code can produce is of length 1.
 
-      Let's consider the following example: take alphabet $A=[a_1, a_2]$ with $P(a_1) = 0.95$ and $P(a_2) = 0.05$. The first order entropy for this source is $-0.95 \log 0.95 - 0.05 \log 0.05 = 0.2864$ bits/symbol, however if we assign the Huffman code we will have to use $c(a_1)=0$ and $c(a_2)=1$, which means the average length will be 1 bit/symbol. This means in order to code this sequence using a Huffman code, we will need more than 3 times the number of bits promised by the entropy.
+    %   Let's consider the following example: take alphabet $A=[a_1, a_2]$ with $P(a_1) = 0.95$ and $P(a_2) = 0.05$. The first order entropy for this source is $-0.95 \log 0.95 - 0.05 \log 0.05 = 0.2864$ bits/symbol, however if we assign the Huffman code we will have to use $c(a_1)=0$ and $c(a_2)=1$, which means the average length will be 1 bit/symbol. This means in order to code this sequence using a Huffman code, we will need more than 3 times the number of bits promised by the entropy.
 
-      To get around this fundamental limitation, a coding scheme must be used which does not use discrete codewords at all. Arithmetic coding is the most well-known example of such a scheme. The idea is due to Peter Elias. He developed it during the same course on information theory in which Huffman developed his coding method, but he never published it.
+    %   To get around this fundamental limitation, a coding scheme must be used which does not use discrete codewords at all. Arithmetic coding is the most well-known example of such a scheme. The idea is due to Peter Elias. He developed it during the same course on information theory in which Huffman developed his coding method, but he never published it.
 
-      "In order to distinguish a sequence of symbols from another sequence of symbols we need to tag it with a unique identifier. One possible set of tags for representing sequences of symbols are the numbers in the unit interval [0,1). Because the number of numbers in the unit interval is infinite, it should be possible to assign a unique tag to each distinct sequence of symbols. In order to do this, we need a function that will map sequences of symbols into the unit interval."
+    %   "In order to distinguish a sequence of symbols from another sequence of symbols we need to tag it with a unique identifier. One possible set of tags for representing sequences of symbols are the numbers in the unit interval [0,1). Because the number of numbers in the unit interval is infinite, it should be possible to assign a unique tag to each distinct sequence of symbols. In order to do this, we need a function that will map sequences of symbols into the unit interval."
 
-      "A straightforward algorithm to arithmetically encode a given input string is the following: Partition the unit interval [0, 1) into sub-intervals and assign one subinterval to each symbol in the input alphabet. The sizes of the sub-intervals are chosen to be proportional to the symbol frequencies. A string of symbols can be encoded by applying this process recursively: The sub-interval from the previous step is subdivided again using the same proportions. Figure \ref{fig:arithmetic}. shows an example of arithmetic coding using the symbol frequencies given in Table \ref{tab:arithmetic}."
+    %   "A straightforward algorithm to arithmetically encode a given input string is the following: Partition the unit interval [0, 1) into sub-intervals and assign one subinterval to each symbol in the input alphabet. The sizes of the sub-intervals are chosen to be proportional to the symbol frequencies. A string of symbols can be encoded by applying this process recursively: The sub-interval from the previous step is subdivided again using the same proportions. Figure \ref{fig:arithmetic}. shows an example of arithmetic coding using the symbol frequencies given in Table \ref{tab:arithmetic}."
 
-      \begin{table}
-        \bcaption[Example alphabet for arithmetic coding]{}
-        \centering
-        \begin{tabular}{cc}
-          \toprule
-          Letter & Probability \\
-          \midrule
-          $a_1$ & 0.7 \\
-          $a_2$ & 0.1 \\
-          $a_3$ & 0.2 \\
-          \bottomrule
-        \end{tabular}
-        \label{tab:arithmetic}
-      \end{table}
+    %   \begin{table}
+    %     \bcaption[Example alphabet for arithmetic coding]{}
+    %     \centering
+    %     \begin{tabular}{cc}
+    %       \toprule
+    %       Letter & Probability \\
+    %       \midrule
+    %       $a_1$ & 0.7 \\
+    %       $a_2$ & 0.1 \\
+    %       $a_3$ & 0.2 \\
+    %       \bottomrule
+    %     \end{tabular}
+    %     \label{tab:arithmetic}
+    %   \end{table}
 
-      \begin{figure}
-        \centering
-        \includegraphics[width=0.6\textwidth]{arithmetic}
-        \bcaption[Arithmetic coding scheme in practice with the alphabet from Table \ref{tab:arithmetic} on the sequence $a_1,a_2,a_3$]{}
-        \label{fig:arithmetic}
-      \end{figure}
+    %   \begin{figure}
+    %     \centering
+    %     \includegraphics[width=0.6\textwidth]{arithmetic}
+    %     \bcaption[Arithmetic coding scheme in practice with the alphabet from Table \ref{tab:arithmetic} on the sequence $a_1,a_2,a_3$]{}
+    %     \label{fig:arithmetic}
+    %   \end{figure}
 
-      This kind of coding although easy to understand, it's actually quite cumbersome to directly implement on a computer, where only a certain floating point precision can be achieved. For real life use this precision is often unsatisfactory, so some extra steps are involved in the coding.
+    %   This kind of coding although easy to understand, it's actually quite cumbersome to directly implement on a computer, where only a certain floating point precision can be achieved. For real life use this precision is often unsatisfactory, so some extra steps are involved in the coding.
 
-      Since after each step the next subinterval is a subset of the previous interval, if the coding interval after a certain number of steps is contained in either the upper or lower half of the unit interval it will remain there for the rest of the coding. We can exploit this fact by rescaling that interval to the unit interval and writing either a 0 or 1 bit to the output depending on the position of the subinterval. By continuing this scheme it's possible to reach arbitrary precision even using a computer.
+    %   Since after each step the next subinterval is a subset of the previous interval, if the coding interval after a certain number of steps is contained in either the upper or lower half of the unit interval it will remain there for the rest of the coding. We can exploit this fact by rescaling that interval to the unit interval and writing either a 0 or 1 bit to the output depending on the position of the subinterval. By continuing this scheme it's possible to reach arbitrary precision even using a computer.
 
-      The decoding process is analogous to encoding. The decoder keeps track of the current lower and upper bounds. It mimics the rescaling operations of the encoder based on the bits of the encoded binary number.
+    %   The decoding process is analogous to encoding. The decoder keeps track of the current lower and upper bounds. It mimics the rescaling operations of the encoder based on the bits of the encoded binary number.
 
-  \subsection{Transform coding}
-    The methods outlined in the previous section are effective at compressing the data in an optimal way and reaching the first order entropy, however the assume nothing about the structure of the data. For image compression it's important to also consider this, since most images have a relatively high level of autocorrelation, meaning that neighboring values have a high chance of being similar, although not necessarily equal. Transform coding is a technique that by itself does not compress the data, however by exploiting some knowledge of the structure it transforms the data effectively reducing it's first order entropy. When regular entropy coding is then preformed on the transformed data, because of the reduced first-order entropy, these techniques can achieve a higher rate of compression. At decompression, after decoding the entropy coder, the reverse transformation is applied to reveal the original data. This section will introduce two of the most important algorithms for transform coding, Discrete Cosine Transform and Discrete Wavelet Transform.
+  % \subsection{Transform coding}
+  %   The methods outlined in the previous section are effective at compressing the data in an optimal way and reaching the first order entropy, however the assume nothing about the structure of the data. For image compression it's important to also consider this, since most images have a relatively high level of autocorrelation, meaning that neighboring values have a high chance of being similar, although not necessarily equal. Transform coding is a technique that by itself does not compress the data, however by exploiting some knowledge of the structure it transforms the data effectively reducing it's first order entropy. When regular entropy coding is then preformed on the transformed data, because of the reduced first-order entropy, these techniques can achieve a higher rate of compression. At decompression, after decoding the entropy coder, the reverse transformation is applied to reveal the original data. This section will introduce two of the most important algorithms for transform coding, Discrete Cosine Transform and Discrete Wavelet Transform.
 
-    \subsubsection{Discrete Cosine Transform}
-      Discrete Cosine Transform \cite{ahmed_discrete_1974} is closely related to the well known Fourier transform. The main idea behind this is to represent a function by a weighted sum of different sine and cosine functions. This provides a different view, instead of looking at the data in the time domain, we gain information about the frequencies that compose the signal. 
+  %   \subsubsection{Discrete Cosine Transform}
+  %     Discrete Cosine Transform \cite{ahmed_discrete_1974} is closely related to the well known Fourier transform. The main idea behind this is to represent a function by a weighted sum of different sine and cosine functions. This provides a different view, instead of looking at the data in the time domain, we gain information about the frequencies that compose the signal. 
 
-      "Discrete Cosine Transform is a variant of the discrete Fourier transformation", however instead of making the signal periodic which can introduce large jumps at the edges, the signal is extended in a symmetric way. Since this will give a smooth transition even at the boundaries, the transform does not have to include so many high frequency components. Also, because of the symmetric extension, it's possible to represent the functions only by using the cosine bases, resulting in fewer coefficients. Overall, the DCT is much better suited for compression, than DFT.
+  %     "Discrete Cosine Transform is a variant of the discrete Fourier transformation", however instead of making the signal periodic which can introduce large jumps at the edges, the signal is extended in a symmetric way. Since this will give a smooth transition even at the boundaries, the transform does not have to include so many high frequency components. Also, because of the symmetric extension, it's possible to represent the functions only by using the cosine bases, resulting in fewer coefficients. Overall, the DCT is much better suited for compression, than DFT.
 
-      The DCT base functions are defined in the following way:
-      \begin{equation}
-      c_{i,j} = s_i \cdot \cos \frac{(2j+1)i\pi}{2n} \qquad \text{with } s_i = 
-          \begin{cases}
-            \sqrt{\frac{1}{n}} & \text{if } i=0 \\
-            \sqrt{\frac{2}{n}} & \text{otherwise}
-          \end{cases}
-      \end{equation}
-      "The scaling factors is are chosen so that the $L_2$ norm of each basis vector is 1 and so the transform is orthonormal. The inverse transform can therefore be found by simply transposing the transform matrix."
+  %     The DCT base functions are defined in the following way:
+  %     \begin{equation}
+  %     c_{i,j} = s_i \cdot \cos \frac{(2j+1)i\pi}{2n} \qquad \text{with } s_i = 
+  %         \begin{cases}
+  %           \sqrt{\frac{1}{n}} & \text{if } i=0 \\
+  %           \sqrt{\frac{2}{n}} & \text{otherwise}
+  %         \end{cases}
+  %     \end{equation}
+  %     "The scaling factors is are chosen so that the $L_2$ norm of each basis vector is 1 and so the transform is orthonormal. The inverse transform can therefore be found by simply transposing the transform matrix."
 
-      \begin{figure}
-        \centering
-        \includegraphics[width=0.4\textwidth]{DCT_bases}
-        \bcaption[Basis functions of the $8 \times 8$ 2D DCT, computed as the outer product of the 1D basis vectors.]{}
-        \label{fig:DCT_bases}
-      \end{figure}
+  %     \begin{figure}
+  %       \centering
+  %       \includegraphics[width=0.4\textwidth]{DCT_bases}
+  %       \bcaption[Basis functions of the $8 \times 8$ 2D DCT, computed as the outer product of the 1D basis vectors.]{}
+  %       \label{fig:DCT_bases}
+  %     \end{figure}
 
-      Applying the DCT to two dimensional functions, i.e. images is very similar to the two dimensional Fourier transform. The base functions are the outer products of the 1D base functions (Figure \ref{fig:DCT_bases}.), and the transform can actually be performed separately for each dimension.
+  %     Applying the DCT to two dimensional functions, i.e. images is very similar to the two dimensional Fourier transform. The base functions are the outer products of the 1D base functions (Figure \ref{fig:DCT_bases}.), and the transform can actually be performed separately for each dimension.
 
-      Computation effort in a naive implementation is $O(n^2)$ but since DCT is based on the Fourier transform, an $O(n \log n)$ algorithm is also possible, analogous to the fast Fourier transform. This is still larger than a linear scaling with the data size, which can be very inconvenient. Therefore, in practice the DCT is usually applied to smaller blocks of the image, such as $4\times4$, $8\time8$ or $16\times16$. 
+  %     Computation effort in a naive implementation is $O(n^2)$ but since DCT is based on the Fourier transform, an $O(n \log n)$ algorithm is also possible, analogous to the fast Fourier transform. This is still larger than a linear scaling with the data size, which can be very inconvenient. Therefore, in practice the DCT is usually applied to smaller blocks of the image, such as $4\times4$, $8\time8$ or $16\times16$. 
 
-      Although DCT is an effective way of reducing the first-order entropy, it has a potential shortcoming by its use of floating point arithmetic. Because of the finite machine precision inherent rounding errors will occur, which means the reverse transformation can not generate the exact original data. For many application, such as photography, this still can be acceptable, but for scientific image data lossy compression is generally not accepted.
+  %     Although DCT is an effective way of reducing the first-order entropy, it has a potential shortcoming by its use of floating point arithmetic. Because of the finite machine precision inherent rounding errors will occur, which means the reverse transformation can not generate the exact original data. For many application, such as photography, this still can be acceptable, but for scientific image data lossy compression is generally not accepted.
 
-      DCT-like integer-based variants in JPEG-XR, and H.264
-
-
-    \subsubsection{Discrete Wavelet Transform}
-      "!!CHANGE THIS!!Methods based on Fourier analysis, such as the DCT introduced in the previous section, give excellent localization in frequency space: They tell us exactly which frequencies occur in the data, which is very useful for data compression. However, they give no spatial localization: They do not tell us where in the signal these frequencies occur. Every DCT base function affect the whole image domain!!UNTIL HERE!!"
-      , which means distinct local structures can have a global effect on the final outcome. In case of an edge for example, it's necessary to include a high frequency component with a large coefficient, but since every DCT base function has an impact on the whole domain, this will have to be compensated on smoother regions by also increasing the coefficients of other factors. This can negatively impact compression performance.
-
-      A solution for this is to use different base functions, namely ones with finite support. This way we will not only be able to get information about the frequency, but also about the localization of that frequency in some extent.
-
-      "!!!!One option for such a set of local basis functions, and certainly the most popular one, is the multi-resolution analysis based on wavelets. The term “multi-resolution analysis” in the context of wavelets was introduced in the late 1980s by Stéphane Mallat \cite{mallat_theory_1989}, though research on wavelets had been ongoing for several years before that.!!!!"
-
-      "The idea behind the wavelet multi-resolution analysis is to build a basis out of translated and scaled versions of one underlying function called the \textit{mother wavelet} $\psi$. The mother wavelet is non-zero only in a small region, leading to the locality properties. It is translated to cover the whole domain. It also covers only a small frequency band, and is scaled to cover higher or lower frequencies. The family of translated and scaled functions $\psi_{l,i}$ is generated from   according to"
-      \begin{equation}
-        \psi_{l,i}(t) = \sqrt{2^l} \psi \left(2^l t-i\right), \qquad l, i \in \mathbb{Z}
-      \end{equation}
-      "Incrementing $l$ halves the width of the resulting function, which thus corresponds to a higher frequency band. Changing $i$ moves the function along the x axis. The size of each step scales with the width of the function, defined by $l$. The normalization factor $\sqrt{2^l}$ is chosen so that the $L_2$ norm stays constant. The mother wavelet can be chosen so that the $\psi_{l,i}$ are pairwise orthogonal and thus form a basis of some function space. However, representing a function in this basis will generally require an infinite number of basis functions $\psi_{l,i}$: To represent a constant component, i.e. content of frequency zero, the wavelet must be infinitely scaled. To address this, it is necessary to introduce an additional scaling function $\phi$ which complements the wavelet. It is scaled and translated the same way as the mother wavelet."
-
-      The oldest wavelets are the Haar wavelets, and because of their simplicity, they provide a good example on how wavelet transformation works. The Haar wavelet scaling $\phi$ and wavelet $\psi$ functions are the following:
-      \begin{equation}
-        \phi(t) = 
-        \begin{cases}
-          1 & \text{if } 0 \leq t < 1 \\
-          0 & \text{otherwise}
-        \end{cases}
-        \label{eq:scaling}
-      \end{equation}
-
-      \begin{equation}
-        \psi(t) = 
-        \begin{cases}
-          -1 & \text{if } 0 \leq t < \frac{1}{2} \\
-          1 & \text{if } \frac{1}{2} \leq t < 1 \\
-          0 & \text{otherwise}
-        \end{cases}
-        \label{eq:wavelet}
-      \end{equation}
-      "Clearly, all wavelet functions $\psi_{l,i}$ are orthogonal. Additionally, the scaling functions $\phi_{l,i}$ at a fixed level $i$ are orthogonal. The scaling functions $\phi_{l,i}$ are also orthogonal to the wavelet functions $\psi_{k,i}$, $k \geq l$ at the same and all finer levels."
-
-      "Figure \ref{fig:wavelet}. (left) schematically shows the decomposition of a signal into low-pass components corresponding to the scaling function, and high-pass components corresponding to the wavelet. The signal $s_0$ can be represented by the translated scaling function at a finer scale $l_0$, "which can be decomposed to the sum of a coarser approximation $s_1$ corresponding to the scaling function and the detail part $d_1$ corresponding to the wavelet functions. This decomposition to a sum of coarser approximation and detail can be continued multiple times, thus resulting in the previously mentioned multi-resolution analysis.
+  %     DCT-like integer-based variants in JPEG-XR, and H.264
 
 
-      \begin{figure}
-        \centering
-        "\includegraphics[width=0.6\textwidth]{wavelet}"
-        \bcaption[Multi-resolution wavelet decomposition, using the Haar wavelets as an example]{Left: decomposition to multiple levels of low pass and high pass coefficients corresponding to the scaling and the wavelet functions respectively. Right: some of the base wavelet functions used for the decomposition.}
-        \label{fig:wavelet}
-      \end{figure}
+  %   \subsubsection{Discrete Wavelet Transform}
+  %     "!!CHANGE THIS!!Methods based on Fourier analysis, such as the DCT introduced in the previous section, give excellent localization in frequency space: They tell us exactly which frequencies occur in the data, which is very useful for data compression. However, they give no spatial localization: They do not tell us where in the signal these frequencies occur. Every DCT base function affect the whole image domain!!UNTIL HERE!!"
+  %     , which means distinct local structures can have a global effect on the final outcome. In case of an edge for example, it's necessary to include a high frequency component with a large coefficient, but since every DCT base function has an impact on the whole domain, this will have to be compensated on smoother regions by also increasing the coefficients of other factors. This can negatively impact compression performance.
+
+  %     A solution for this is to use different base functions, namely ones with finite support. This way we will not only be able to get information about the frequency, but also about the localization of that frequency in some extent.
+
+  %     "!!!!One option for such a set of local basis functions, and certainly the most popular one, is the multi-resolution analysis based on wavelets. The term “multi-resolution analysis” in the context of wavelets was introduced in the late 1980s by Stéphane Mallat \cite{mallat_theory_1989}, though research on wavelets had been ongoing for several years before that.!!!!"
+
+  %     "The idea behind the wavelet multi-resolution analysis is to build a basis out of translated and scaled versions of one underlying function called the \textit{mother wavelet} $\psi$. The mother wavelet is non-zero only in a small region, leading to the locality properties. It is translated to cover the whole domain. It also covers only a small frequency band, and is scaled to cover higher or lower frequencies. The family of translated and scaled functions $\psi_{l,i}$ is generated from   according to"
+  %     \begin{equation}
+  %       \psi_{l,i}(t) = \sqrt{2^l} \psi \left(2^l t-i\right), \qquad l, i \in \mathbb{Z}
+  %     \end{equation}
+  %     "Incrementing $l$ halves the width of the resulting function, which thus corresponds to a higher frequency band. Changing $i$ moves the function along the x axis. The size of each step scales with the width of the function, defined by $l$. The normalization factor $\sqrt{2^l}$ is chosen so that the $L_2$ norm stays constant. The mother wavelet can be chosen so that the $\psi_{l,i}$ are pairwise orthogonal and thus form a basis of some function space. However, representing a function in this basis will generally require an infinite number of basis functions $\psi_{l,i}$: To represent a constant component, i.e. content of frequency zero, the wavelet must be infinitely scaled. To address this, it is necessary to introduce an additional scaling function $\phi$ which complements the wavelet. It is scaled and translated the same way as the mother wavelet."
+
+  %     The oldest wavelets are the Haar wavelets, and because of their simplicity, they provide a good example on how wavelet transformation works. The Haar wavelet scaling $\phi$ and wavelet $\psi$ functions are the following:
+  %     \begin{equation}
+  %       \phi(t) = 
+  %       \begin{cases}
+  %         1 & \text{if } 0 \leq t < 1 \\
+  %         0 & \text{otherwise}
+  %       \end{cases}
+  %       \label{eq:scaling}
+  %     \end{equation}
+
+  %     \begin{equation}
+  %       \psi(t) = 
+  %       \begin{cases}
+  %         -1 & \text{if } 0 \leq t < \frac{1}{2} \\
+  %         1 & \text{if } \frac{1}{2} \leq t < 1 \\
+  %         0 & \text{otherwise}
+  %       \end{cases}
+  %       \label{eq:wavelet}
+  %     \end{equation}
+  %     "Clearly, all wavelet functions $\psi_{l,i}$ are orthogonal. Additionally, the scaling functions $\phi_{l,i}$ at a fixed level $i$ are orthogonal. The scaling functions $\phi_{l,i}$ are also orthogonal to the wavelet functions $\psi_{k,i}$, $k \geq l$ at the same and all finer levels."
+
+  %     "Figure \ref{fig:wavelet}. (left) schematically shows the decomposition of a signal into low-pass components corresponding to the scaling function, and high-pass components corresponding to the wavelet. The signal $s_0$ can be represented by the translated scaling function at a finer scale $l_0$, "which can be decomposed to the sum of a coarser approximation $s_1$ corresponding to the scaling function and the detail part $d_1$ corresponding to the wavelet functions. This decomposition to a sum of coarser approximation and detail can be continued multiple times, thus resulting in the previously mentioned multi-resolution analysis.
 
 
-      Of course, for image compression applications, it is desirable to extend this transformation to a 2D version, that can be applied to the images before performing the arithmetic coding. Similarly to the DCT, the wavelet transform is also separable, and can be performed as a sequence of 1D transforms along different directions. Separable in a sense, that it does not matter in which order the individual 1D DWTs are applied to get the same 2D transformation.
+  %     \begin{figure}
+  %       \centering
+  %       "\includegraphics[width=0.6\textwidth]{wavelet}"
+  %       \bcaption[Multi-resolution wavelet decomposition, using the Haar wavelets as an example]{Left: decomposition to multiple levels of low pass and high pass coefficients corresponding to the scaling and the wavelet functions respectively. Right: some of the base wavelet functions used for the decomposition.}
+  %       \label{fig:wavelet}
+  %     \end{figure}
+
+
+  %     Of course, for image compression applications, it is desirable to extend this transformation to a 2D version, that can be applied to the images before performing the arithmetic coding. Similarly to the DCT, the wavelet transform is also separable, and can be performed as a sequence of 1D transforms along different directions. Separable in a sense, that it does not matter in which order the individual 1D DWTs are applied to get the same 2D transformation.
 
       JPEG \cite{pennebaker_jpeg:_1992}, JPEG-LS \cite{weinberger_loco-i_2000} and JPEG2000 \cite{adams_jpeg-2000_2001}
       

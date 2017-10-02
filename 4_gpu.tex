@@ -12,24 +12,176 @@
 \graphicspath{{./figures/4_gpu/}}
 
 
-\section{GPU architecture}
-  CUDA \cite{nickolls_scalable_2008}
+\section{Challenges in data handling for light-sheet microscopy}
+
+
+CUDA \cite{nickolls_scalable_2008}
+
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{pipeline}
+  \bcaption[Real-time image processing pipeline for multi-view light-sheet microscopy]{}
+  \label{fig:pipeline}
+\end{figure}
+
+
 
 \section{Live fusion}
-  \subsection{MuVi-SPIM}
-  \subsection{Bead based registration}
+
+
+\subsection{Multi-view imaging}
+
+Our currently used production microscope, the MuVi-SPIM \cite{krzic_multiview_2012} provides an elegant solution for multi-view imaging. It utilizes two illumination and two detection objectives, to give altogether four different combinations of illumination and detection, \textit{i.e.} four different views. Although this is enough to fully visualize an opaque sample, several image preprocessing steps are necessary before any evaluation can be performed to combine the four stacks to a single, high quality 3D image.
+
+By combining scanned light-sheet \cite{keller_reconstruction_2008} witch confocal slit detection on the camera chip \cite{baumgart_scanned_2012}, it is possible to exclude out of focus, scattered illumination light. This way it's already possible to illuminate simultaneously, which leaves us with only two views, the views of the two opposing cameras.
+
+\begin{figure}[bt]
+\centering
+\includegraphics[width=0.5\columnwidth]{fusion/acquisition}
+\caption{Multi-view fusion methods for light-sheet microscopy. a) Full 3D stacks are acquired from the opposing views (yellow and blue), which are then registered in 3D space using previously acquired affine transformation parameters. Registered stacks are then weighted averaged to create the final fused stack (green). b) Images from opposing views are directly fused plane by plane. Registration takes place in 2D space thus reducing computational effort and memory requirements. The registered planes are then weighted averaged to create the final fused image.}
+\label{fig:acquisition}
+\end{figure}
+
+To perform image fusion of opposing cameras, first image registration is necessary: the coordinate systems of both views have to be properly overlapped. Ideally a single mirroring transformation would be enough to superpose the two camera images, however in practice the microscope can never be aligned with such precision. Other types of transformations are also necessary: translation to account for offsets in the field of view; scaling in case of slightly different magnifications; and also shearing if the detection plane is not perfectly perpendicular to the sample movement direction. To combine all of these effects, a full 3D affine transformation is necessary to properly align the two camera images (Fig. \ref{fig:acquisition} a). This transformation can be represented by a matrix multiplication with 12 different parameters:
+\[
+\begin{pmatrix}
+a & b & c & d \\ 
+e & f & g & h \\ 
+i & j & k & l \\
+0 & 0 & 0 & 1 
+\end{pmatrix}
+\times
+\begin{pmatrix}
+x\\
+y\\
+z\\
+1
+\end{pmatrix}
+=
+\begin{pmatrix}
+a x + b y + c z + d\\ 
+e x + f y + g z + g\\ 
+i x + j y + k z + l\\
+1
+\end{pmatrix}
+\]
+where $x, y, z$ are the coordinates of the original 3D image, and $a, b, c, d, e, f, g, h, i, j, k, l$ are the affine transformation parameters.
+
+These parameters are traditionally acquired by imaging fluorescent beads suspended in a gel cylinder. The bead recordings are segmented, matching beads are automatically detected in each camera view, and using the RANSAC method the affine transformation parameters are determined. For two opposing views these parameters are only dependent on the optical setup itself, and not the sample or the experiment. Because of this, it is sufficient to determine the transformation parameters only after modifying/realigning the microscope.
+
+This method of fusion however is quite cumbersome for the average user. The raw data is made up of two stacks, each of which only has one half with high contrast.
+To evaluate the experiment, the user either has to look at both recordings, or wait for the offline fusion to complete, and examine the result.
+
+It would be much more practical to already fuse the opposing views before displaying or saving the image. Since the two cameras ideally image the same $z$ plane, it should be possible to reduce the alignment problem to a 2D affine transformation:
+\[
+\begin{pmatrix}
+a & b & d\\ 
+e & f & h \\
+0 & 0 & 1
+\end{pmatrix}
+\times
+\begin{pmatrix}
+x\\
+y\\
+1
+\end{pmatrix}
+=
+\begin{pmatrix}
+a x + b y + d\\ 
+e x + f y + g\\
+1
+\end{pmatrix}
+\]
+If this is possible, then fusion can be carried out separately for each image plane (Fig. \ref{fig:acquisition} b), which would greatly facilitate live image fusion. The requirements for this are the following:
+\begin{align}
+\left| c z \right| &< \sigma_{xy} & \forall z \label{eq:req1}\\
+\left| g z \right|  &< \sigma_{xy} & \forall z \label{eq:req2}\\
+\left| i x + j y + (k-1)  z + l \right| &< \sigma_z & \forall x, y, z  \label{eq:req3}
+\end{align}
+where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resolution of the microscope, which are 277 nm and 1099 nm respectively. 
+
+ If these conditions hold (\textit{i.e.} the microscope is properly aligned), then direct plane by plane fusion will not result in any loss of information compared to the full 3D image fusion.
+
+% \subsection{Image preprocessing pipeline}
+
+% \begin{figure}[bth]
+% \centering
+% \includegraphics[width=0.4\columnwidth]{fusion/pipeline}
+% \caption{Image preprocessing pipeline. The pipeline comprises of two parts: processing on CPU (white background) and processing on GPU (green background). Images are first transferred from the CPU to the GPU, where the preprocessing steps take place. These include background subtraction, affine transformation, weighted averaging and optionally thumbnail generation and image compression. After the preprocessing steps the image is transferred back to the CPU, and saved on the hard drive, or streamed to a remote computer. Data sizes after each preprocessing step are shown in the gray bands for planes, stacks and time-lapses.}
+% \label{fig:pipeline}
+% \end{figure}
+
+% To perform the image fusion step as fast as possible, thus enabling it's use for live imaging, we used CUDA (Compute Unified Device Architecture) \cite{_cuda_????-1} to implement the algorithm on a graphics card (NVIDIA, GTX 750). This architecture offers a convenient way to harness the massively parallel computing capabilities of the many streaming multiprocessors residing on a GPU (graphics processing unit). Since each processing step we require is pixel based, they can be inherently parallelized to gain tremendous advantage in computing time.
+
+% To utilize the GPU for the image processing step, the images first have to be transferred from the computer main memory to the graphics card memory. Because of the limited bandwidth of the PCIe 2.0 16x bus, this step is actually the bottleneck, and not the computation itself. To optimize data transfer speed, several techniques can be used.
+
+% First, one has to make sure that the space for the original image data is allocated as paged-lock memory. This is possible with \texttt{cudaMallocHost}. This function will make sure that the memory space allocated on the host will be page-locked \textit{i.e.} it's contents cannot be temporarily swapped to the pagefile on the hard disk, and it is actually mapped to the physical memory. Otherwise, with normal allocation functions this is not guaranteed by the operating system, and the memory is only mapped to the physical memory when it's contents are accessed, which heavily influence read/write speed.
+
+% Second, if the same operation is carried out for many images (as in the case of our live fusion method), the data transfer for the next image can already be carried out while the previous image is being processed, thus masking at least one of the data transfers between the main memory and the graphics card.
+
+% % Even when using both methods, most of the time is still taken by the data transfer. Because of this, we decided to implement additional image preprocessing steps in our pipeline (Fig \ref{fig:pipeline}, thus ...
+
+% %To maximize GPU utilization, and ultimately justify the long data transfer times, in addition to the plane by plane fusion (which is actually an affine transformation followed by weighted average), we also implemented background subtraction, subsampling, LUT conversion from 16 bits to 8 bits, and JPEG compression in our pipeline (Fig \ref{fig:pipeline}). All of these steps either enhance image quality (such as background subtraction), reduce data size (LUT conversion, subsampling, JPEG), or both (fusion).
+
+% Since our microscope control software is implemented in LabVIEW, all the functions in our pipeline were incorporated in a dynamic linked library (DLL) which can be loaded by LabVIEW to use the CUDA functions. Furthermore, to facilitate the integration to existing software, we created a LabVIEW library based on these CUDA functions, to provide a consistent and easy to use interface for further development.
+
+\subsection{Results}
+
+\begin{figure*}[tb]
+\centering
+\includegraphics[width=1\textwidth]{fusion/drosophila_D2}
+\caption{ GPU fused images of a \textit{Drosophila melanogaster} embryo. Two stacks were taken in quick succession first without fusion, then with fusion enabled. Fused images are shown in the middle of each subfigure, while the individual camera images are in the bottom insets. The top-left inset depicts the z-position of the shown images. a) Image from closer to the left camera. b) Image from the center of the embryo. c) Image from closer to the right camera.}
+\label{fig:drosophila}
+\end{figure*}
+
+The image preprocessing pipeline was tested on our previously described Multi-View Single Plane Illumination Microscope (MuVi-SPIM)\cite{krzic_multiview_2012}. For the background subtraction we recorded 1500 dark images with each camera and averaged them, to obtain the camera specific background images. Before image acquisition these were uploaded to the GPU memory, and were readily available for the pipeline.
+
+After careful alignment of the microscope to meet the previously discussed requirements (Eqs. \eqref{eq:req1} -- \eqref{eq:req3}), we imaged fluorescent beads in a gel suspension to obtain the affine transformation parameters. After making sure that these parameters indeed fulfill the previously set requirements, these were also uploaded to the GPU memory for further use in our pipeline.
+
+To validate our hypotheses, that 2D direct image fusion is sufficient instead of the full 3D fusion, we image several samples. First, we imaged the flourescent beads again, now with the live fusion enabled, to make sure our registration parameters are correct. Manual evaluation of the data revealed that the fusion indeed worked, without any artifacts, such as double beads which would indicate an imprecision in alignment or in the transformation parameters.
+
+We also applied the live fusion to a real biological specimen, namely \textit{Drosophila melanogaster} embryos expressing H2Av-mCherry histone marker. The embryos were imaged first without direct fusion enabled, and immediately afterwards with direct fusion enabled (Fig. \ref{fig:drosophila}). Image quality dependency on the depth of the imaging plane is especially apparent in single-view stacks. Planes closer to the camera give a sharp, high contrast image, while planes further then the middle of the embryo are severely degraded due to scattering.
+
+Stacks obtained with the live fusion enabled show a consistently high image quality throughout the entire stack, independent of the depth. This allows us to keep only the already fused data, thus effectively reducing the storage requirement by half, and facilitating further data processing steps. 
+
+
+% \section{Conclusions}
+% In this report I described a universal light-sheet microscope control software that will be used for the symmetric mouse SPIM setup. This software is already used by our other microscopes, including the mouse SPIM developed by Petr Strnad, and the LS-RESOFLT microscope by Patrick Hoyer. Papers on both of these have been submitted to Nature Methods.
+
+% I also developed a direct plane by plane fusion method which was implemented in CUDA, and can be performed live, directly on the microscope. This results in a single, high quality recording, which can be directly used later for further processing or data evaluation. We showed the viability of the method by imaging fluorescent beads, and fluorescently labeled \textit{Drosophila m.} embryos, which showed superior image quality to both of the original views. As a further consequence, data handling became easier, less storage is needed for further experiments, and considerable time is spared by eliminating the need for the 3D fusion step.
+
+% Despite the many advantages, further development is still necessary. A natural next step is to add compression to the pipeline to further reduce data sizes. For several samples orthogonal views are desired, or in some cases the optical setup is already designed with orthogonal detection\cite{wu_spatially_2013}, or close to orthogonal in the case of the symmetric mouse SPIM. In these cases to properly fuse the different directions, multi-view deconvolution is necessary \cite{krzic_multiple-view_2009,temerinac-ott_multiview_2012} to gain maximum information from both views.
 
 
 
+
+
+
+%#######   #######  ########  
+%#     ## ##     ## ##     ## 
+%#     ##        ## ##     ## 
+%#######   #######  ##     ## 
+%#     ##        ## ##     ## 
+%#     ## ##     ## ##     ## 
+%#######   #######  ########  
   
-\section{B³D image compression}
+\section{\b3d image compression}
+
+  The second part of our GPU-based image preprocessing pipeline is a new image compression algorithm that allows for extremely fast image compression to efficiently reduce data sizes already during acquisition. Although light-sheet microscopy is .. many other microscopy modalities are also suffering from this problem. This is especially true for methods such as high content screening \cite{carpenter_systematic_2004,echeverri_high-throughput_2006,pepperkok_high-throughput_2006}, where tens of thousands of different genotypes are imaged generating millions of images; and single molecule localization microscope (SMLM) \cite{betzig_imaging_2006,hess_ultra-high_2006,rust_sub-diffraction-limit_2006}, where just a single plane of a single sample is imaged hundreds of thousands of times to acquire super-resolved images.
+
+  Not only these methods are capable of generating data extremely fast, but with the sustained high data rate a single experiment can easily reach multiples of terabytes (\autoref{fig:sizes}). Handling this amount of data can quickly become the bottleneck for many discoveries, which is a more and more common issue in biological research \cite{wollman_high_2007,reynaud_guide_2015,perkel_struggle_2016}. 
+
+  A straightforward solution to these problems would be to compress the images during acquisition. Although this would not reduce the requirements for image processing power and time, it still has a big impact on the necessary background infrastructure. By reducing the data size, not only the cost for storage can be reduced, but the time it takes to transfer the data during the various steps of data processing. A fast compression method would also greatly improve 3D data browsing possibilities, as more data could be piped to the rendering software.
+
+  Despite these advantages, not many microscopists have implemented real time compression strategies during acquisition, and this is mostly due to the lack of appropriate compression methods suitable for scientific imaging that also offers the high throughput demanded by these applications. Typically used lossless compression methods, such as JPEG2000 \cite{adams_jpeg-2000_2001} although offer good compression ratios, are very slow in processing speed, at least compared to the data rate of a modern microscope ($\sim \SI{1}{GB/s}$). High speed compression methods that could deal with this data rate have been developed for ultra high definition 4K and 8K digital cameras, such as the high efficiency video codec (HEVC) \cite{international_telecommunications_union_h.265_2016}. These methods, however, have been optimized for lossy image compression which is generally not acceptable for scientific data \cite{cromey_digital_2013}, and rarely support compression of high bit rate originals, which is typically the case for modern sCMOS sensors.
+
   \b3d image compression
-  high content screening \cite{carpenter_systematic_2004,echeverri_high-throughput_2006,pepperkok_high-throughput_2006}
   light-sheet (Sec. \ref{sec:light-sheet})
-  single molecule localization microscopy \cite{betzig_imaging_2006,hess_ultra-high_2006,rust_sub-diffraction-limit_2006}
-  data handling is bottleneck \cite{wollman_high_2007,reynaud_guide_2015,perkel_struggle_2016}
-  lossy compression not recommended for microscopy  \cite{cromey_digital_2013}
+  data handling is bottleneck 
+
   KLB \cite{amat_efficient_2015}
+
   jpeg compression so loss is not perceptible \cite{sayood_introduction_2012}
   big data viewer \cite{pietzsch_bigdataviewer:_2015}
   Fiji \cite{schindelin_fiji:_2012}
