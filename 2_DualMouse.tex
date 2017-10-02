@@ -53,6 +53,21 @@
   %#######  ########  ######  ####  ######   ##    ## 
 
 \section{Microscope design principles}
+
+  \begin{figure}
+    \centering
+    \begin{subfigure}{0.49\textwidth}
+      \centering
+      \includegraphics[page=1,width=0.8\textwidth]{objectiveCloseup}
+    \end{subfigure}
+    \begin{subfigure}{0.49\textwidth}
+      \centering
+      \includegraphics[page=2,width=0.8\textwidth]{objectiveCloseup}
+    \end{subfigure}
+    \bcaption[Dual view concept with high NA objectives]{To achieve multi-view detection while maximizing resolution and light collection efficiency, two high NA objectives are placed in \SI{120}{\degree} arrangement. To be able to overlap the light-sheet with the focal plane, the light-sheet is tilted \SI{30}{\degree}. Because of the high NA objectives, this tilt does not effect the illumination quality. The objectives are used in an alternating sequence for illumination and detection.}
+    \label{fig:objectiveCloseup}
+  \end{figure}
+
   In order to address the challenges outlined in the previous section, we propose a new light-sheet microscope design for imaging pre-implantation development at high resolution. The design is guided by the following requirements:
   \begin{enumerate}
     \item subcellular, isotropic resolution
@@ -76,6 +91,7 @@
 
   \subsection{Multi-view resolution}
     \label{sec:120concept}
+
     here a figure with rotating 2 psfs
     \begin{figure}[bt]
       \centering
@@ -91,19 +107,11 @@
       \label{fig:psf-rot}
     \end{figure}
 
-    \begin{figure}[bt]
-      \centering
-      \begin{subfigure}{0.49\textwidth}
-        \centering
-        \includegraphics[page=1,width=0.8\textwidth]{objectiveCloseup}
-      \end{subfigure}
-      \begin{subfigure}{0.49\textwidth}
-        \centering
-        \includegraphics[page=2,width=0.8\textwidth]{objectiveCloseup}
-      \end{subfigure}
-      \bcaption[Dual view concept with high NA objectives]{To achieve multi-view detection while maximizing resolution and light collection efficiency, two high NA objectives are placed in \SI{120}{\degree} arrangement. To be able to overlap the light-sheet with the focal plane, the light-sheet is tilted \SI{30}{\degree}. Because of the high NA objectives, this tilt does not effect the illumination quality. The objectives are used in an alternating sequence for illumination and detection.}
-      \label{fig:objectiveCloseup}
-    \end{figure}
+    To increase the axial resolution, it is a common practice to image a specimen from multiple directions, and fuse the resulting images. This has the benefit, that the high resolution information from the other views can complement the low axial resolution of the first view, thus providing better resolution an all 3 directions.
+
+    As we have seen in the previous chapter, many SPIM implementations allow for recording multiple views either by rotating the sample, or by surrounding the sample with multiple objectives that are used for detection. For our setup, following the sample mounting technique of the original mouse SPIM, we wanted to keep the open-top sample mounting possibility, as this was proven to be highly compatible with mouse embryo imaging. To be able to achieve multi-view detection in this configuration, we designed a setup where both objective can be used for illumination and detection in a sequential manner, inspired by previous symmetrical SPIM designs \cite{balazs_development_2013, wu_spatially_2013}.
+
+
 
     
 
@@ -239,7 +247,7 @@
 
     Switching between the two illumination arms is performed by a custom designed beam splitter unit (\autoref{fig:splitter}). Instead of utilizing a 50/50 beam splitter cube and mechanical shutters, we exploit the fact that a galvo scanner is needed to generate the light-sheet. As this galvo scanner (Cambridge Technology, 6210B) has a relatively large movement range ($\pm \SI{20}{\degree}$) it is also suitable for diverting the beam from one illumination arm to the other.
 
-    \begin{figure}[h]
+    \begin{figure}[htb]
       \centering
       \includegraphics[width=0.8\textwidth]{SW/splitterFigure}
       \bcaption[Illumination branch splitting unit]{To divert the beam to either side, a right angle prism mirror is used in conjunction with a galvanometric scanning mirror. L1 acts as a scan lens, thus the beam is translated on mirror M. Depending on the galvo angle, the beam will be reflected either to the left (\textbf{a}) or to the right (\textbf{b}). L2 and L2' act as relay lenses, and will image the galvo movement to intermediate planes.}
