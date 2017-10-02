@@ -12,39 +12,45 @@
 \graphicspath{{./figures/2_DualMouse/}}
 
 % \section{Challenges in imaging mouse pre-implantation development}
-  mammalian development
-  chromosome segregation
-  cell specification
-  symmetry breaking
-  signaling pathways
-  human infertility
-  congenital diseases 
+  % mammalian development
+  % chromosome segregation
+  % cell specification
+  % symmetry breaking
+  % signaling pathways
+  % human infertility
+  % congenital diseases 
 
-  current mouse-SPIM \cite{strnad_inverted_2016} already is very good for answering many of these questions
-  resolution from beads: 
-  diSPIM \cite{wu_spatially_2013}
-  combine these two
-  plus also \cite{balazs_development_2013}
+  % current mouse-SPIM \cite{strnad_inverted_2016} already is very good for answering many of these questions
+  % resolution from beads: 
+  % diSPIM \cite{wu_spatially_2013}
+  % combine these two
+  % plus also \cite{balazs_development_2013}
 
-  advantages:
-    immersion liquid and culture medium separated
-    open-top sample holder allow standard microdrop \textit{in vitro} embryo culture
-    row of embryos - high throughput
-    dual color imaging
-    environmental chamber allows live imaging for 3 days, every 
+  % advantages:
+  %   immersion liquid and culture medium separated
+  %   open-top sample holder allow standard microdrop \textit{in vitro} embryo culture
+  %   row of embryos - high throughput
+  %   dual color imaging
+  %   environmental chamber allows live imaging for 3 days, every 
 
-  follow chromosomes by tracking kinetochores
+  % follow chromosomes by tracking kinetochores
 
-  from lattice paper: ``because photodamage mechanisms that scale supralinearly with peak intensity have been identified for both visible \cite{donnert_major_2007} and two-photon \cite{ji_high-speed_2008} excitation."
+  % from lattice paper: ``because photodamage mechanisms that scale supralinearly with peak intensity have been identified for both visible \cite{donnert_major_2007} and two-photon \cite{ji_high-speed_2008} excitation."
 
 
-  % ########  ########  ######  ####  ######   ##    ## 
-  % ##     ## ##       ##    ##  ##  ##    ##  ###   ## 
-  % ##     ## ##       ##        ##  ##        ####  ## 
-  % ##     ## ######    ######   ##  ##   #### ## ## ## 
-  % ##     ## ##             ##  ##  ##    ##  ##  #### 
-  % ##     ## ##       ##    ##  ##  ##    ##  ##   ### 
-  % ########  ########  ######  ####  ######   ##    ## 
+  As we have seen in the previous chapter, live imaging of mouse embryonic development is an especially challenging task, but light-sheet microscopy can offer a good solution owing to it's gentle optical sectioning, and fast image acquisition. The mouse SPIM introduced in the previous chapter also solves the issue of live imaging with its inverted design: the embryos are held by a foil that not only allows easy sample handling, but also acts as a barrier, and isolates the embryos from the immersion medium.
+
+  As all microscopes, the mouse SPIM also had to make a compromise: although its design allows long term live imaging, it only has a single detection view, as rotation is not possible with the sample mounting trays. Due to this configuration, its resolution is inherently anisotropic, the axial resolution being more than 3 times worse than the lateral. Although this is sufficient for many applications, such as cell tracking, for detecting subcellular features it might be limiting. One such application is chromosome tracking, which could shed light on chromosome missegregation mechanisms in the early embryonic development, which is the cause of many congenital diseases also affecting humans.
+
+  In this chapter, we describe a novel light-sheet microscope developed to address the above questions by using high NA objectives for subcellular resolution and low-light imaging, and offering multi-view detection without having to rotate the samples. The microscope is designed to be live imaging compatible, offering new perspectives in the research of mouse embryonic development. In the next sections we will describe the design considerations for the microscope, the optical layout, alignment strategies, and the result of various performance measurements, and its multi-view imaging capabilities. 
+
+  %#######  ########  ######  ####  ######   ##    ## 
+  %#     ## ##       ##    ##  ##  ##    ##  ###   ## 
+  %#     ## ##       ##        ##  ##        ####  ## 
+  %#     ## ######    ######   ##  ##   #### ## ## ## 
+  %#     ## ##             ##  ##  ##    ##  ##  #### 
+  %#     ## ##       ##    ##  ##  ##    ##  ##   ### 
+  %#######  ########  ######  ####  ######   ##    ## 
 
 \section{Microscope design principles}
   In order to address the challenges outlined in the previous section, we propose a new light-sheet microscope design for imaging pre-implantation development at high resolution. The design is guided by the following requirements:
@@ -155,13 +161,13 @@
 
       
 
-%  #######  ########  ######## ####  ######   ######  
-% ##     ## ##     ##    ##     ##  ##    ## ##    ## 
-% ##     ## ##     ##    ##     ##  ##       ##       
-% ##     ## ########     ##     ##  ##        ######  
-% ##     ## ##           ##     ##  ##             ## 
-% ##     ## ##           ##     ##  ##    ## ##    ## 
-%  #######  ##           ##    ####  ######   ######  
+ %######  ########  ######## ####  ######   ######  
+%#     ## ##     ##    ##     ##  ##    ## ##    ## 
+%#     ## ##     ##    ##     ##  ##       ##       
+%#     ## ########     ##     ##  ##        ######  
+%#     ## ##           ##     ##  ##             ## 
+%#     ## ##           ##     ##  ##    ## ##    ## 
+ %######  ##           ##    ####  ######   ######  
 
 \section{Optical layout}
   
@@ -267,13 +273,13 @@
       
 
 
-  %    ###    ##       ####  ######   ##    ## 
-  %   ## ##   ##        ##  ##    ##  ###   ## 
-  %  ##   ##  ##        ##  ##        ####  ## 
-  % ##     ## ##        ##  ##   #### ## ## ## 
-  % ######### ##        ##  ##    ##  ##  #### 
-  % ##     ## ##        ##  ##    ##  ##   ### 
-  % ##     ## ######## ####  ######   ##    ## 
+     %##    ##       ####  ######   ##    ## 
+    %# ##   ##        ##  ##    ##  ###   ## 
+   %#   ##  ##        ##  ##        ####  ## 
+  %#     ## ##        ##  ##   #### ## ## ## 
+  %######## ##        ##  ##    ##  ##  #### 
+  %#     ## ##        ##  ##    ##  ##   ### 
+  %#     ## ######## ####  ######   ##    ## 
 \section{Optical alignment}
   Precise alignment of the illumination and detection paths are crucial for high quality imaging, and has a pronounced  importance for high magnification and high resolution optical systems. The DualMouse SPIM contains two illumination and detection paths 
   Due to the symmetrical setup of the microscope, we will only describe the alignment of one side, as the same procedure is also applicable to the other side.
@@ -383,13 +389,13 @@
       The \texttt{type} element contains information on which value should be updated for the current section. Setting the lowest bit high will update the \texttt{value}, setting the second bit high will update the \texttt{dValue}, and setting the third bit high will update the \texttt{ddValue}. This feature allows to define smooth transitions between the sections, and also to define more complex signals, as long as they are periodic in the second derivative.
 
 
-% ########  ########  ######  ##     ## ##       ########  ######  
-% ##     ## ##       ##    ## ##     ## ##          ##    ##    ## 
-% ##     ## ##       ##       ##     ## ##          ##    ##       
-% ########  ######    ######  ##     ## ##          ##     ######  
-% ##   ##   ##             ## ##     ## ##          ##          ## 
-% ##    ##  ##       ##    ## ##     ## ##          ##    ##    ## 
-% ##     ## ########  ######   #######  ########    ##     ######  
+    %#######  ########  ######  ##     ## ##       ########  ######  
+    %#     ## ##       ##    ## ##     ## ##          ##    ##    ## 
+    %#     ## ##       ##       ##     ## ##          ##    ##       
+    %#######  ######    ######  ##     ## ##          ##     ######  
+    %#   ##   ##             ## ##     ## ##          ##          ## 
+    %#    ##  ##       ##    ## ##     ## ##          ##    ##    ## 
+    %#     ## ########  ######   #######  ########    ##     ######  
 \section{Results}
   \begin{figure}
     \begin{subfigure}[t]{0.5\textwidth}
