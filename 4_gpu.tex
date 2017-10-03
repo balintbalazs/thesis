@@ -69,7 +69,7 @@ Similarly to the DualMouse-SPIM, our currently used production microscope, the M
 
 MuVi-SPIM  provides an elegant solution for multi-view imaging. A standard SPIM setup with a single detection and a single illumination lens would rotate the sample to acquire images from multiple directions. MuVi-SPIM, on the other hand, utilizes two opposing objectives for illumination, and two opposing objectives for detection (\autoref{fig:muvi-spim}a). As the sample is held by an aqueous gel inside the imaging chamber, all objectives have unobstructed view of it from multiple directions (\autoref{fig:muvi-spim}b,c).
 
-Data acquisition is done in two steps: the sample is illuminated by Light sheet 1, and fluorescence is collected by both detection objectives at the same time, after which Light sheet 2 is activated, and both cameras record the fluorescence again (\autoref{fig:muvi-spim}d). This process will result in 4 datasets, all with partial information due to scattering effects. The 4 views are later fused to a single, high quality dataset (\autoref{fig:muvi-spim}e). This fusion process is necessary before any further analysis steps can be performed, however due to the sheer size of the data, it takes a considerable amount of time after the acquisition.
+Data acquisition is done in two steps: the sample is illuminated by Light sheet 1, and fluorescence is collected by both detection objectives at the same time, after which Light sheet 2 is activated, and both cameras record the fluorescence again (\autoref{fig:muvi-spim}d). This process will result in 4 datasets, all with partial information due to scattering effects. The 4 views are later fused to a single, high quality dataset (\autoref{fig:muvi-spim}e). This fusion process is necessary before any further analysis steps can be performed, however, due to the sheer size of the data, it takes a considerable amount of time after the acquisition.
 
 By combining scanned light-sheet \cite{keller_reconstruction_2008} with confocal slit detection on the camera chip \cite{baumgart_scanned_2012}, it is possible to exclude out of focus, scattered illumination light. This way it is  possible to illuminate simultaneously with both light-sheets, which leaves us with only two views, the views of the two opposing cameras \cite{de_medeiros_confocal_2015}.
 
@@ -80,16 +80,12 @@ By combining scanned light-sheet \cite{keller_reconstruction_2008} with confocal
   \label{fig:muvi-spim}
 \end{figure}
 
-\begin{figure}
-  \centering
-  \includegraphics[width=1\columnwidth]{fusion/acquisition}
-  \bcaption[Multi-view fusion methods for light-sheet microscopy]{a) Full 3D stacks are acquired from the opposing views (yellow and blue), which are then registered in 3D space using previously acquired affine transformation parameters. Registered stacks are then weighted averaged to create the final fused stack (green). b) Images from opposing views are directly fused plane by plane. Registration takes place in 2D space thus reducing computational effort and memory requirements. The registered planes are then weighted averaged to create the final fused image.}
-  \label{fig:acquisition}
-\end{figure}
+
 
 
 \subsection{Image registration}
-To perform image fusion of multiple views, first image registration is necessary: the coordinate systems of both views have to be properly overlapped. Ideally a single mirroring transformation would be enough to superpose the two camera images, however in practice the microscope can never be aligned with such precision. Other types of transformations are also necessary: translation to account for offsets in the field of view; scaling in case of slightly different magnifications; and also shearing if the detection plane is not perfectly perpendicular to the sample movement direction. To combine all of these effects, a full 3D affine transformation is necessary to properly align the two camera images (Fig. \ref{fig:acquisition} a). This transformation can be represented by a matrix multiplication with 12 different parameters:
+
+To perform image fusion of multiple views, first image registration is necessary: the coordinate systems of both views have to be properly overlapped. Ideally a single mirroring transformation would be enough to superpose the two camera images, however in practice the microscope can never be aligned with such precision. Other types of transformations are also necessary: translation to account for offsets in the field of view; scaling in case of slightly different magnifications; and also shearing if the detection plane is not perfectly perpendicular to the sample movement direction \cite{krzic_multiple-view_2009}. To combine all of these effects, a full, 3D affine transformation is necessary to properly align the two camera images (Fig. \ref{fig:acquisition} a). This transformation can be represented by a matrix multiplication with 12 different parameters:
 \[
 \begin{pmatrix}
 a & b & c & d \\ 
@@ -112,12 +108,23 @@ i x + j y + k z + l\\
 1
 \end{pmatrix}
 \]
-where $x, y, z$ are the coordinates of the original 3D image, and $a, b, c, d, e, f, g, h, i, j, k, l$ are the affine transformation parameters.
+where $x, y, z$ are the coordinates of the original 3D image, and $a, b, ..., l$ are the affine transformation parameters.
 
-These parameters are traditionally acquired by imaging fluorescent beads suspended in a gel cylinder. The bead recordings are segmented, matching beads are automatically detected in each camera view, and using the RANSAC method the affine transformation parameters are determined. For two opposing views these parameters are only dependent on the optical setup itself, and not the sample or the experiment. Because of this, it is sufficient to determine the transformation parameters only after modifying/realigning the microscope.
+These parameters are traditionally acquired by a bead based registration algorithm after imaging fluorescent beads from each view of the microscope \cite{preibisch_bead-based_2009,preibisch_software_2010}. The beads are segmented by using a difference of Gaussian filter, and the registration parameters are acquired by matching the segmented bead coordinates in each view. Identifying the corresponding beads in each view is done by a translation and rotation invariant local geometric descriptor. This matches the beads based on their relative position to their nearest neighbors. After the matching beads are identified, the affine transformation parameters are calculated by minimizing the global displacement for each pair of beads.
 
-This method of fusion however is quite cumbersome for the average user. The raw data is made up of two stacks, each of which only has one half with high contrast.
-To evaluate the experiment, the user either has to look at both recordings, or wait for the offline fusion to complete, and examine the result.
+For the two opposing views of MuVi-SPIM, these parameters are only dependent on the optical setup itself, and not the sample or the experiment. Because of this, it is sufficient to determine the transformation parameters only after modifying the microscope (\textit{e.g.} after realignment).
+
+In our previous fusion pipeline, after the parameters were acquired, the 3D stacks are fused by transforming one of the views to the coordinate system of the other (using the affine transformation parameters from the bead based registration), and fusing the two stack by applying a sigmoidal weighted average. The weights are determined in a way to exclude the parts of a stack that has worse image quality, and complement is from the other view. When using the electronic confocal slit detection (eCSD) weighting is not necessary, as the scattered light is already rejected in these recordings, and a simple sum of the two stacks gives the best results regardless of the sample \cite{de_medeiros_confocal_2015}.
+
+The fusion process itself, however can be very resource intensive, and take a considerable amount of time. This is simply due to the size of the 3D stacks: a single stack is usually between 2 and \SI{4}{GB} in size. Thus, the necessary memory requirement to fuse 2 of these stacks is $3\cdot \SI{4}{GB} = \SI{12}{GB}$, as the result will also take up the same space. Just reading and writing this amount of information to the hard disk takes a considerable amount of time. When using an SSD drive for example, with a \SI{500}{MB/s} read/write speed, just the I/O operations will take around $\frac{\SI{12}{GB}}{\SI{500}{MB/s}} = \SI{24}{s}$.
+
+
+\begin{figure}
+  \centering
+  \includegraphics[width=1\columnwidth]{fusion/acquisition}
+  \bcaption[Multi-view fusion methods for light-sheet microscopy]{a) Full 3D stacks are acquired from the opposing views (yellow and blue), which are then registered in 3D space using previously acquired affine transformation parameters. Registered stacks are then weighted averaged to create the final fused stack (green). b) Images from opposing views are directly fused plane by plane. Registration takes place in 2D space thus reducing computational effort and memory requirements. The registered planes are then weighted averaged to create the final fused image.}
+  \label{fig:acquisition}
+\end{figure}
 
 It would be much more practical to already fuse the opposing views before displaying or saving the image. Since the two cameras ideally image the same $z$ plane, it should be possible to reduce the alignment problem to a 2D affine transformation:
 \[
@@ -172,32 +179,54 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
 
 % Since our microscope control software is implemented in LabVIEW, all the functions in our pipeline were incorporated in a dynamic linked library (DLL) which can be loaded by LabVIEW to use the CUDA functions. Furthermore, to facilitate the integration to existing software, we created a LabVIEW library based on these CUDA functions, to provide a consistent and easy to use interface for further development.
 
+\subsection{CUDA implementation of direct fusion}
+  As our custom microscope control software (\autoref{sec:software}) is implemented in LabVIEW, we implemented the pipeline as a combination of a CUDA and a LabVIEW library. The CUDA library implements all the necessary low level functions, and exposes these in a dynamically linked library (dll). The LabVIEW library, \texttt{LVCUDA.lvlib} implements two high level classes: \texttt{cuArray}, and \texttt{Texture} (\autoref{fig:LVCUDA}). These interface to the CUDA dll, and allow to easily build a flexible CUDA-based image processing pipeline in LabVIEW.
+
+  \begin{figure}
+    \centering
+    \begin{subfigure}[t]{0.49\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{fusion/CuArray}
+      \caption{}
+    \end{subfigure}
+    \begin{subfigure}[t]{0.49\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{fusion/Texture}
+      \caption{}
+    \end{subfigure}
+    \bcaption[Classes of LVCUDA library]{(a) \texttt{CuArray} class, wrapping a 1D or 2D pitched device memory for use in LabVIEW. (b) \texttt{Texture} class, wrapping a CUDA texture object for use in LabVIEW.}
+    \label{fig:LVCUDA}
+  \end{figure}
+
+  \subsubsection{\texttt{cuArray} LabVIEW class}
+
+  \subsubsection{\texttt{Texture} LabVIEW class}
+
 \subsection{Results}
 
-\begin{figure*}[tb]
-\centering
-\includegraphics[width=1\textwidth]{fusion/drosophila_D2}
-\caption{ GPU fused images of a \textit{Drosophila melanogaster} embryo. Two stacks were taken in quick succession first without fusion, then with fusion enabled. Fused images are shown in the middle of each subfigure, while the individual camera images are in the bottom insets. The top-left inset depicts the z-position of the shown images. a) Image from closer to the left camera. b) Image from the center of the embryo. c) Image from closer to the right camera.}
-\label{fig:drosophila}
-\end{figure*}
+  \begin{figure*}[tb]
+    \centering
+    \includegraphics[width=1\textwidth]{fusion/drosophila_D2}
+    \caption{ GPU fused images of a \textit{Drosophila melanogaster} embryo. Two stacks were taken in quick succession first without fusion, then with fusion enabled. Fused images are shown in the middle of each subfigure, while the individual camera images are in the bottom insets. The top-left inset depicts the z-position of the shown images. a) Image from closer to the left camera. b) Image from the center of the embryo. c) Image from closer to the right camera.}
+    \label{fig:drosophila}
+  \end{figure*}
 
-The image preprocessing pipeline was tested on our previously described Multi-View Single Plane Illumination Microscope (MuVi-SPIM)\cite{krzic_multiview_2012}. For the background subtraction we recorded 1500 dark images with each camera and averaged them, to obtain the camera specific background images. Before image acquisition these were uploaded to the GPU memory, and were readily available for the pipeline.
+  The image preprocessing pipeline was tested on our previously described Multi-View Single Plane Illumination Microscope (MuVi-SPIM)\cite{krzic_multiview_2012}. For the background subtraction we recorded 1500 dark images with each camera and averaged them, to obtain the camera specific background images. Before image acquisition these were uploaded to the GPU memory, and were readily available for the pipeline.
 
-After careful alignment of the microscope to meet the previously discussed requirements (Eqs. \eqref{eq:req1} -- \eqref{eq:req3}), we imaged fluorescent beads in a gel suspension to obtain the affine transformation parameters. After making sure that these parameters indeed fulfill the previously set requirements, these were also uploaded to the GPU memory for further use in our pipeline.
+  After careful alignment of the microscope to meet the previously discussed requirements (Eqs. \eqref{eq:req1} -- \eqref{eq:req3}), we imaged fluorescent beads in a gel suspension to obtain the affine transformation parameters. After making sure that these parameters indeed fulfill the previously set requirements, these were also uploaded to the GPU memory for further use in our pipeline.
 
-To validate our hypotheses, that 2D direct image fusion is sufficient instead of the full 3D fusion, we image several samples. First, we imaged the flourescent beads again, now with the live fusion enabled, to make sure our registration parameters are correct. Manual evaluation of the data revealed that the fusion indeed worked, without any artifacts, such as double beads which would indicate an imprecision in alignment or in the transformation parameters.
+  To validate our hypotheses, that 2D direct image fusion is sufficient instead of the full 3D fusion, we image several samples. First, we imaged the flourescent beads again, now with the live fusion enabled, to make sure our registration parameters are correct. Manual evaluation of the data revealed that the fusion indeed worked, without any artifacts, such as double beads which would indicate an imprecision in alignment or in the transformation parameters.
 
-We also applied the live fusion to a real biological specimen, namely \textit{Drosophila melanogaster} embryos expressing H2Av-mCherry histone marker. The embryos were imaged first without direct fusion enabled, and immediately afterwards with direct fusion enabled (Fig. \ref{fig:drosophila}). Image quality dependency on the depth of the imaging plane is especially apparent in single-view stacks. Planes closer to the camera give a sharp, high contrast image, while planes further then the middle of the embryo are severely degraded due to scattering.
+  We also applied the live fusion to a real biological specimen, namely \textit{Drosophila melanogaster} embryos expressing H2Av-mCherry histone marker. The embryos were imaged first without direct fusion enabled, and immediately afterwards with direct fusion enabled (Fig. \ref{fig:drosophila}). Image quality dependency on the depth of the imaging plane is especially apparent in single-view stacks. Planes closer to the camera give a sharp, high contrast image, while planes further then the middle of the embryo are severely degraded due to scattering.
 
-Stacks obtained with the live fusion enabled show a consistently high image quality throughout the entire stack, independent of the depth. This allows us to keep only the already fused data, thus effectively reducing the storage requirement by half, and facilitating further data processing steps. 
+  Stacks obtained with the live fusion enabled show a consistently high image quality throughout the entire stack, independent of the depth. This allows us to keep only the already fused data, thus effectively reducing the storage requirement by half, and facilitating further data processing steps. 
 
 
 % \section{Conclusions}
-% In this report I described a universal light-sheet microscope control software that will be used for the symmetric mouse SPIM setup. This software is already used by our other microscopes, including the mouse SPIM developed by Petr Strnad, and the LS-RESOFLT microscope by Patrick Hoyer. Papers on both of these have been submitted to Nature Methods.
 
-% I also developed a direct plane by plane fusion method which was implemented in CUDA, and can be performed live, directly on the microscope. This results in a single, high quality recording, which can be directly used later for further processing or data evaluation. We showed the viability of the method by imaging fluorescent beads, and fluorescently labeled \textit{Drosophila m.} embryos, which showed superior image quality to both of the original views. As a further consequence, data handling became easier, less storage is needed for further experiments, and considerable time is spared by eliminating the need for the 3D fusion step.
+% I developed a direct plane by plane fusion method which was implemented in CUDA, and can be performed live, directly on the microscope. This results in a single, high quality recording, which can be directly used later for further processing or data evaluation. We showed the viability of the method by imaging fluorescent beads, and fluorescently labeled \textit{Drosophila m.} embryos, which showed superior image quality to both of the original views. As a further consequence, data handling became easier, less storage is needed for further experiments, and considerable time is spared by eliminating the need for the 3D fusion step.
 
-% Despite the many advantages, further development is still necessary. A natural next step is to add compression to the pipeline to further reduce data sizes. For several samples orthogonal views are desired, or in some cases the optical setup is already designed with orthogonal detection\cite{wu_spatially_2013}, or close to orthogonal in the case of the symmetric mouse SPIM. In these cases to properly fuse the different directions, multi-view deconvolution is necessary \cite{krzic_multiple-view_2009,temerinac-ott_multiview_2012} to gain maximum information from both views.
+% For several samples orthogonal views are desired, or in some cases the optical setup is already designed with orthogonal detection\cite{wu_spatially_2013}, or close to orthogonal in the case of the symmetric mouse SPIM. In these cases to properly fuse the different directions, multi-view deconvolution is necessary \cite{krzic_multiple-view_2009,temerinac-ott_multiview_2012} to gain maximum information from both views.
 
 
 
