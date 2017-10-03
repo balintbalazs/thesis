@@ -10,20 +10,7 @@
 \chapter{Image processing for multi-view microscopy}
   \graphicspath{{./figures/3_processing/}}
 
-  When using any kind of microscopy in research, image processing is a crucial part of the workflow. This is especially true for light-sheet microscopy, since it's capable imaging the same specimen for multiple days, producing immense amounts of data. A single overnight experiment of \textit{Drosophila} development (which is a very typical use-case for light-sheet) can produce multiple terabytes of data. To see the real scales, let's consider the following imaging conditions:
-  \begin{center}
-  \begin{tabular}{rl}
-      camera & Hamamastu Orca Flash 4 \\
-      image size & 8 MB \\
-      1 stack = 250 planes & 2 GB \\
-      2 views & 4 GB \\
-      Time-lapse: 16 h @ 2/min & 7.5 TB \\
-      $n$ colors & $n\cdot 7.5$ TB
-  \end{tabular}
-  \end{center}
-
-  As it is apparent from this table, 
-  % proportional to the symbol frequencies. A string of symbols can be encoded by applying this process recursively: The sub-interval from the previous step is subdivided again using the same proportions. Figure4.2. shows an example of arithmetic coding using
+    % proportional to the symbol frequencies. A string of symbols can be encoded by applying this process recursively: The sub-interval from the previous step is subdivided again using the same proportions. Figure4.2. shows an example of arithmetic coding using
 
 \section{Multi-view image fusion}
   \subsection{Registration}
@@ -47,10 +34,10 @@
 
 
 \section{Image compression}
-  Image compression is an important tool for everyday life, however it's rarely used in the context of scientific imaging because of fear of information loss. This preconception is mainly due to the famous blocking artifacts found in many highly compressed JPEG images, however not all image compression algorithms introduce artifacts, and in fact many lossless algorithms exist that would be suitable for such images. Nowadays, when data production is in an exponential growth compression is again in highlight, without it it would be extremely difficult to maintain many scientific projects that produce images at a high data rate. 
+  % Image compression is an important tool for everyday life, however it's rarely used in the context of scientific imaging because of fear of information loss. This preconception is mainly due to the famous blocking artifacts found in many highly compressed JPEG images, however not all image compression algorithms introduce artifacts, and in fact many lossless algorithms exist that would be suitable for such images. Nowadays, when data production is in an exponential growth compression is again in highlight, without it it would be extremely difficult to maintain many scientific projects that produce images at a high data rate. 
 
-  In this paper I will review the basics of image compression based on Sayood's textbook, Introduction to Data Compression \cite{sayood_introduction_2012}. 
-  I will introduce some basics of information theory and entropy, followed by discussing two widely used entropy coding algorithms, Huffman coding and arithmetic coding. Section 3 will be about transform coding, specifically Discrete Cosine Transform (DCT) and wavelet transform while also touching upon techniques based on differential pulse code modulation. Finally I will show how some of the most widely used image compression standards use these methods to achieve effective image compression.
+  % In this paper I will review the basics of image compression based on Sayood's textbook, Introduction to Data Compression \cite{sayood_introduction_2012}. 
+  % I will introduce some basics of information theory and entropy, followed by discussing two widely used entropy coding algorithms, Huffman coding and arithmetic coding. Section 3 will be about transform coding, specifically Discrete Cosine Transform (DCT) and wavelet transform while also touching upon techniques based on differential pulse code modulation. Finally I will show how some of the most widely used image compression standards use these methods to achieve effective image compression.
 
   \subsection{Entropy coding}
     \subsubsection{Information and Entropy}

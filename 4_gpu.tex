@@ -14,36 +14,82 @@
 
 \section{Challenges in data handling for light-sheet microscopy}
 
+  When using any kind of microscopy in research, image processing is a crucial part of the workflow. This is especially true for light-sheet microscopy, since it is capable of imaging the same specimen for multiple days, producing immense amounts of data. A single overnight experiment of \textit{Drosophila} development (which is a very typical use-case for light-sheet) can produce multiple terabytes of data.
 
-CUDA \cite{nickolls_scalable_2008}
+  Apart from light-sheet microscopy, many other microscopy modalities are also suffering from this problem. Methods, such as high content screening \cite{carpenter_systematic_2004,echeverri_high-throughput_2006,pepperkok_high-throughput_2006}, where tens of thousands of different genotypes are imaged generating millions of images; and single molecule localization microscope (SMLM) \cite{betzig_imaging_2006,hess_ultra-high_2006,rust_sub-diffraction-limit_2006}, where just a single plane of a single sample is imaged hundreds of thousands of times to acquire super-resolved images.
 
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{pipeline}
-  \bcaption[Real-time image processing pipeline for multi-view light-sheet microscopy]{}
-  \label{fig:pipeline}
-\end{figure}
+  Not only these methods are capable of generating data extremely fast, but with the sustained high data rate a single experiment can easily reach multiples of terabytes (\autoref{fig:sizes}). Handling this amount of data can quickly become the bottleneck for many discoveries, which is a more and more common issue in biological research \cite{wollman_high_2007,reynaud_guide_2015,perkel_struggle_2016}. 
 
 
+  \begin{figure}[btp]
+    \centering
+    \includegraphics[page=1,width=0.5\textwidth]{comparison_with_pictograms}
+    \bcaption[Experiment sizes and data rate of different imaging modalities]{Comparison of single-plane illumination microscopy (SPIM, red rectangle), high-content screening (light blue), single molecule localization microscopy (SMLM, orange) and confocal microscopy (blue) by typical experiment size and data production rate (see also Table \ref{tab:sizes}).}
+    \label{fig:sizes}
+  \end{figure}
+
+  % To efficiently and quickly process such amounts of information, developing new strategies / innovative approaches is indispensible. As image processing tasks are typically highly parallelizable 
+
+  This chapter will focus on addressing these challenges, by presenting a real-time, GPU-based image preprocessing pipeline consisting of two parts (\autoref{fig:pipeline}).
+  The first part is a fast image fusion method for our workhorse light-sheet microscope, the MuVi-SPIM \cite{krzic_multiview_2012}, that enables live fusion of the images arriving from two opposing cameras.
+  The second part of the pipeline, which can also be used in a standalone way, is a real-time image compression library that allows lossless and within noise level compression of the data already during acquisition.
+
+  \begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{pipeline}
+    \bcaption[Real-time image processing pipeline for multi-view light-sheet microscopy]{}
+    \label{fig:pipeline}
+  \end{figure}
+
+
+
+  \subsection{CUDA architecture}
+
+    CUDA \cite{nickolls_scalable_2008}
+    CUDA programming Guide \cite{nvidia_cuda_2015}
+
+
+
+    % ######## ##     ##  ######  ####  #######  ##    ## 
+    % ##       ##     ## ##    ##  ##  ##     ## ###   ## 
+    % ##       ##     ## ##        ##  ##     ## ####  ## 
+    % ######   ##     ##  ######   ##  ##     ## ## ## ## 
+    % ##       ##     ##       ##  ##  ##     ## ##  #### 
+    % ##       ##     ## ##    ##  ##  ##     ## ##   ### 
+    % ##        #######   ######  ####  #######  ##    ## 
 
 \section{Live fusion}
 
+Similarly to the DualMouse-SPIM, our currently used production microscope, the Multiview-SPIM (MuVi-SPIM) \cite{krzic_multiview_2012} also uses multiple imaging directions to improve the image quality. In this case, however, the aim is completeness rather than increasing the resolution. As the MuVi-SPIM is capable of imaging much larger specimens, such as entire \textit{Drosophila} embryos, the sample size itself can present some challenges, especially for opaques specimens. As light scattering and absorption impacts both the illumination and detection optics, the negative effects for SPIM are more pronounced compared to single-lens systems \cite{de_medeiros_deep_2016}.
 
-\subsection{Multi-view imaging}
 
-Our currently used production microscope, the MuVi-SPIM \cite{krzic_multiview_2012} provides an elegant solution for multi-view imaging. It utilizes two illumination and two detection objectives, to give altogether four different combinations of illumination and detection, \textit{i.e.} four different views. Although this is enough to fully visualize an opaque sample, several image preprocessing steps are necessary before any evaluation can be performed to combine the four stacks to a single, high quality 3D image.
 
-By combining scanned light-sheet \cite{keller_reconstruction_2008} witch confocal slit detection on the camera chip \cite{baumgart_scanned_2012}, it is possible to exclude out of focus, scattered illumination light. This way it's already possible to illuminate simultaneously, which leaves us with only two views, the views of the two opposing cameras.
 
-\begin{figure}[bt]
-\centering
-\includegraphics[width=0.5\columnwidth]{fusion/acquisition}
-\caption{Multi-view fusion methods for light-sheet microscopy. a) Full 3D stacks are acquired from the opposing views (yellow and blue), which are then registered in 3D space using previously acquired affine transformation parameters. Registered stacks are then weighted averaged to create the final fused stack (green). b) Images from opposing views are directly fused plane by plane. Registration takes place in 2D space thus reducing computational effort and memory requirements. The registered planes are then weighted averaged to create the final fused image.}
-\label{fig:acquisition}
+\subsection{Multiview SPIM for \textit{in toto} imaging}
+
+MuVi-SPIM  provides an elegant solution for multi-view imaging. A standard SPIM setup with a single detection and a single illumination lens would rotate the sample to acquire images from multiple directions. MuVi-SPIM, on the other hand, utilizes two opposing objectives for illumination, and two opposing objectives for detection (\autoref{fig:muvi-spim}a). As the sample is held by an aqueous gel inside the imaging chamber, all objectives have unobstructed view of it from multiple directions (\autoref{fig:muvi-spim}b,c).
+
+Data acquisition is done in two steps: the sample is illuminated by Light sheet 1, and fluorescence is collected by both detection objectives at the same time, after which Light sheet 2 is activated, and both cameras record the fluorescence again (\autoref{fig:muvi-spim}d). This process will result in 4 datasets, all with partial information due to scattering effects. The 4 views are later fused to a single, high quality dataset (\autoref{fig:muvi-spim}e). This fusion process is necessary before any further analysis steps can be performed, however due to the sheer size of the data, it takes a considerable amount of time after the acquisition.
+
+By combining scanned light-sheet \cite{keller_reconstruction_2008} with confocal slit detection on the camera chip \cite{baumgart_scanned_2012}, it is possible to exclude out of focus, scattered illumination light. This way it is  possible to illuminate simultaneously with both light-sheets, which leaves us with only two views, the views of the two opposing cameras \cite{de_medeiros_confocal_2015}.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=1\columnwidth]{fusion/muvi-spim}
+  \bcaption[Operating principle of MuVi-SPIM]{(a) The microscope consists of two illumination and two detection arms for simultaneous multi-view illumination and detection. (b) The 4 arms meet in the imaging chamber that is filled with water, and contains the sample. (c) The sample is held by a glass capillary, in  a GelRite cylinder. Optical sectioning is acheived by a virtaul light-sheet. (d) The light-sheets can be generated from two sides (Light sheet 1 and 2), and detection is also double sided (Camera 1 and 2). Adapted from \cite{krzic_multiview_2012}.}
+  \label{fig:muvi-spim}
 \end{figure}
 
-To perform image fusion of opposing cameras, first image registration is necessary: the coordinate systems of both views have to be properly overlapped. Ideally a single mirroring transformation would be enough to superpose the two camera images, however in practice the microscope can never be aligned with such precision. Other types of transformations are also necessary: translation to account for offsets in the field of view; scaling in case of slightly different magnifications; and also shearing if the detection plane is not perfectly perpendicular to the sample movement direction. To combine all of these effects, a full 3D affine transformation is necessary to properly align the two camera images (Fig. \ref{fig:acquisition} a). This transformation can be represented by a matrix multiplication with 12 different parameters:
+\begin{figure}
+  \centering
+  \includegraphics[width=1\columnwidth]{fusion/acquisition}
+  \bcaption[Multi-view fusion methods for light-sheet microscopy]{a) Full 3D stacks are acquired from the opposing views (yellow and blue), which are then registered in 3D space using previously acquired affine transformation parameters. Registered stacks are then weighted averaged to create the final fused stack (green). b) Images from opposing views are directly fused plane by plane. Registration takes place in 2D space thus reducing computational effort and memory requirements. The registered planes are then weighted averaged to create the final fused image.}
+  \label{fig:acquisition}
+\end{figure}
+
+
+\subsection{Image registration}
+To perform image fusion of multiple views, first image registration is necessary: the coordinate systems of both views have to be properly overlapped. Ideally a single mirroring transformation would be enough to superpose the two camera images, however in practice the microscope can never be aligned with such precision. Other types of transformations are also necessary: translation to account for offsets in the field of view; scaling in case of slightly different magnifications; and also shearing if the detection plane is not perfectly perpendicular to the sample movement direction. To combine all of these effects, a full 3D affine transformation is necessary to properly align the two camera images (Fig. \ref{fig:acquisition} a). This transformation can be represented by a matrix multiplication with 12 different parameters:
 \[
 \begin{pmatrix}
 a & b & c & d \\ 
@@ -112,11 +158,11 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
 % \label{fig:pipeline}
 % \end{figure}
 
-% To perform the image fusion step as fast as possible, thus enabling it's use for live imaging, we used CUDA (Compute Unified Device Architecture) \cite{_cuda_????-1} to implement the algorithm on a graphics card (NVIDIA, GTX 750). This architecture offers a convenient way to harness the massively parallel computing capabilities of the many streaming multiprocessors residing on a GPU (graphics processing unit). Since each processing step we require is pixel based, they can be inherently parallelized to gain tremendous advantage in computing time.
+% To perform the image fusion step as fast as possible, thus enabling it is use for live imaging, we used CUDA (Compute Unified Device Architecture) \cite{_cuda_????-1} to implement the algorithm on a graphics card (NVIDIA, GTX 750). This architecture offers a convenient way to harness the massively parallel computing capabilities of the many streaming multiprocessors residing on a GPU (graphics processing unit). Since each processing step we require is pixel based, they can be inherently parallelized to gain tremendous advantage in computing time.
 
 % To utilize the GPU for the image processing step, the images first have to be transferred from the computer main memory to the graphics card memory. Because of the limited bandwidth of the PCIe 2.0 16x bus, this step is actually the bottleneck, and not the computation itself. To optimize data transfer speed, several techniques can be used.
 
-% First, one has to make sure that the space for the original image data is allocated as paged-lock memory. This is possible with \texttt{cudaMallocHost}. This function will make sure that the memory space allocated on the host will be page-locked \textit{i.e.} it's contents cannot be temporarily swapped to the pagefile on the hard disk, and it is actually mapped to the physical memory. Otherwise, with normal allocation functions this is not guaranteed by the operating system, and the memory is only mapped to the physical memory when it's contents are accessed, which heavily influence read/write speed.
+% First, one has to make sure that the space for the original image data is allocated as paged-lock memory. This is possible with \texttt{cudaMallocHost}. This function will make sure that the memory space allocated on the host will be page-locked \textit{i.e.} it is contents cannot be temporarily swapped to the pagefile on the hard disk, and it is actually mapped to the physical memory. Otherwise, with normal allocation functions this is not guaranteed by the operating system, and the memory is only mapped to the physical memory when it is contents are accessed, which heavily influence read/write speed.
 
 % Second, if the same operation is carried out for many images (as in the case of our live fusion method), the data transfer for the next image can already be carried out while the previous image is being processed, thus masking at least one of the data transfers between the main memory and the graphics card.
 
@@ -168,13 +214,17 @@ Stacks obtained with the live fusion enabled show a consistently high image qual
   
 \section{\b3d image compression}
 
-  The second part of our GPU-based image preprocessing pipeline is a new image compression algorithm that allows for extremely fast image compression to efficiently reduce data sizes already during acquisition. Although light-sheet microscopy is .. many other microscopy modalities are also suffering from this problem. This is especially true for methods such as high content screening \cite{carpenter_systematic_2004,echeverri_high-throughput_2006,pepperkok_high-throughput_2006}, where tens of thousands of different genotypes are imaged generating millions of images; and single molecule localization microscope (SMLM) \cite{betzig_imaging_2006,hess_ultra-high_2006,rust_sub-diffraction-limit_2006}, where just a single plane of a single sample is imaged hundreds of thousands of times to acquire super-resolved images.
-
-  Not only these methods are capable of generating data extremely fast, but with the sustained high data rate a single experiment can easily reach multiples of terabytes (\autoref{fig:sizes}). Handling this amount of data can quickly become the bottleneck for many discoveries, which is a more and more common issue in biological research \cite{wollman_high_2007,reynaud_guide_2015,perkel_struggle_2016}. 
+  The second part of our GPU-based image preprocessing pipeline is a new image compression algorithm that allows for extremely fast image compression to efficiently reduce data sizes already during acquisition.
+  
+  
 
   A straightforward solution to these problems would be to compress the images during acquisition. Although this would not reduce the requirements for image processing power and time, it still has a big impact on the necessary background infrastructure. By reducing the data size, not only the cost for storage can be reduced, but the time it takes to transfer the data during the various steps of data processing. A fast compression method would also greatly improve 3D data browsing possibilities, as more data could be piped to the rendering software.
 
-  Despite these advantages, not many microscopists have implemented real time compression strategies during acquisition, and this is mostly due to the lack of appropriate compression methods suitable for scientific imaging that also offers the high throughput demanded by these applications. Typically used lossless compression methods, such as JPEG2000 \cite{adams_jpeg-2000_2001} although offer good compression ratios, are very slow in processing speed, at least compared to the data rate of a modern microscope ($\sim \SI{1}{GB/s}$). High speed compression methods that could deal with this data rate have been developed for ultra high definition 4K and 8K digital cameras, such as the high efficiency video codec (HEVC) \cite{international_telecommunications_union_h.265_2016}. These methods, however, have been optimized for lossy image compression which is generally not acceptable for scientific data \cite{cromey_digital_2013}, and rarely support compression of high bit rate originals, which is typically the case for modern sCMOS sensors.
+  Despite these advantages, not many microscopists have implemented real time compression strategies during acquisition, and this is mostly due to the lack of appropriate compression methods suitable for scientific imaging that also offers the high throughput demanded by these applications. Typically used lossless compression methods, such as JPEG2000 \cite{adams_jpeg-2000_2001} although offer good compression ratios, are very slow in processing speed, at least compared to the data rate of a modern microscope ($\sim \SI{1}{GB/s}$). High speed compression methods that could deal with this data rate have been developed for ultra high definition 4K and 8K digital cameras, such as the high efficiency video codec (HEVC) \cite{international_telecommunications_union_h.265_2016}. These methods, however, have been optimized for lossy image compression which is generally not acceptable for scientific data \cite{cromey_digital_2013}, and rarely support compression of high bit rate originals, which is typically the case for modern sCMOS sensors. Although the HEVC recommendation does specify bit rates up to 16 bits, and lossless compression, we
+
+  To address these issues, we developed \b3d, a GPU based image compression method that is capable of high speed compression of microscopy images during the image acquisition process. By utilizing the massively parallel processing architecture of a GPU, we were not only able to reach a compression and decompression speed of \SI{1}{GB/s}, but our algorithm also keeps the load off the CPU, making it available for other computing tasks related to operating the microscope itself.
+
+  A second feature of our compression library is a novel algorithm for noise dependent lossy compression of scientific images. As mentioned before, lossy compression is not recommended for scientific images, and the reason for this, is all practical lossy compression algorithms are designed with the intent of fooling the human visual system \cite{sayood_introduction_2012}. While the images compressed by these algorithms may appear identical to the eye, any downstream data analysis could be negatively impacted by the compression artifacts. To our knowledge, only a single algorithm allows to set the loss in a deterministic manner: the near-lossless operating mode of JPEG-LS \cite{weinberger_loco-i_2000}. In this mode it is possible to set the maximum allowable error a pixel can have after decompression. Although this can be useful for certain applications, it has not been widely implemented, as the visual quality loss is more severe compared to other algorithms with the same compression ratio \cite{santa-cruz_study_2000}.
 
   \b3d image compression
   light-sheet (Sec. \ref{sec:light-sheet})
@@ -182,37 +232,25 @@ Stacks obtained with the live fusion enabled show a consistently high image qual
 
   KLB \cite{amat_efficient_2015}
 
-  jpeg compression so loss is not perceptible \cite{sayood_introduction_2012}
   big data viewer \cite{pietzsch_bigdataviewer:_2015}
   Fiji \cite{schindelin_fiji:_2012}
 
   FLIC \cite{wang_fast_2012}
   SFALIC \cite{starosolski_simple_2007}
-  FELICS \cite{howard_fast_1993}
+  FELICS \cite{howard_fast_1993} -> this was before JPEG-LS
   Treib terrain editing \cite{treib_interactive_2012}
   Treib turbulence \cite{treib_turbulence_2012}
-  square root compression \cite{gowen_square_2003}
-  noise and bias in square root compression \cite{bernstein_noise_2010}
-  quantization \cite{gray_quantization_1998}
-  Anscombe \cite{anscombe_transformation_1948}
-  optimal inverse Anscombe \cite{makitalo_optimal_2011,makitalo_closed-form_2011}
-  optimal inverse generalized Anscombe \cite{makitalo_optimal_2013}
 
 
 
-  \subsection{Data sizes in microscopy}
-
-    \begin{figure}[tpb]
-      \centering
-      \includegraphics[page=1,width=0.5\textwidth]{comparison_with_pictograms}
-      \bcaption[Experiment sizes and data rate of different imaging modalities]{Comparison of single-plane illumination microscopy (SPIM, red rectangle), high-content screening (light blue), single molecule localization microscopy (SMLM, orange) and confocal microscopy (blue) by typical experiment size and data production rate (see also Table \ref{tab:sizes}).}
-      \label{fig:sizes}
-    \end{figure}
+    
 
 
     
 
   \subsection{Compression algorithm}
+
+    compression scheme: modeling+ coding \cite{rissanen_universal_1981}
 
     \begin{figure}[tpb]
       \centering
@@ -222,19 +260,15 @@ Stacks obtained with the live fusion enabled show a consistently high image qual
     \end{figure}
 
 
-  \subsection{Lossless compression performance}
 
     \begin{figure}[tpb]
       \centering
       \includegraphics[page=1,height=0.5\textwidth]{bubbles}
-      \bcaption[Lossless compression performance]{Performance comparison of our B³D \b3d compression algorithm (red circle) vs. KLB (orange), uncompressed TIFF (light yellow), LZW compressed TIFF (light blue) and JPEG2000 (blue) regarding write speed (horizontal axis), read speed (vertical axis) and file size (circle size). (see also Table \ref{tab:performance}).}
+      \bcaption[Lossless compression performance]{Performance comparison of our \b3d compression algorithm (red circle) vs. KLB (orange), uncompressed TIFF (light yellow), LZW compressed TIFF (light blue) and JPEG2000 (blue) regarding write speed (horizontal axis), read speed (vertical axis) and file size (circle size). (see also Table \ref{tab:performance}).}
       \label{fig:performance}
     \end{figure}
 
     
-
-
-  \subsection{Swapping for WNL}
 
     \begin{figure}[tpb]
       \centering
@@ -296,7 +330,16 @@ Stacks obtained with the live fusion enabled show a consistently high image qual
       \label{fig:SFig6_locprecVsNphotons}
     \end{figure}
 
+
+
 \section{Noise dependent lossy compression}
+  
+  square root compression \cite{gowen_square_2003}
+  noise and bias in square root compression \cite{bernstein_noise_2010}
+  quantization \cite{gray_quantization_1998}
+  Anscombe \cite{anscombe_transformation_1948}
+  optimal inverse Anscombe \cite{makitalo_optimal_2011,makitalo_closed-form_2011}
+  optimal inverse generalized Anscombe \cite{makitalo_optimal_2013}
 
 \section{Methods}
   
