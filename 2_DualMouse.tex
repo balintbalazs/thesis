@@ -20,12 +20,6 @@
   % human infertility
   % congenital diseases 
 
-  % current mouse-SPIM \cite{strnad_inverted_2016} already is very good for answering many of these questions
-  % resolution from beads: 
-  % diSPIM \cite{wu_spatially_2013}
-  % combine these two
-  % plus also \cite{balazs_development_2013}
-
   % advantages:
   %   immersion liquid and culture medium separated
   %   open-top sample holder allow standard microdrop \textit{in vitro} embryo culture
@@ -40,9 +34,9 @@
 
   As we have seen in the previous chapter, live imaging of mouse embryonic development is an especially challenging task, but light-sheet microscopy can offer a good solution owing to its gentle optical sectioning, and fast image acquisition. The mouse SPIM introduced in the previous chapter also solves the issue of live imaging with its inverted design: the embryos are held by a foil that not only allows easy sample handling, but also acts as a barrier, and isolates the embryos from the immersion medium.
 
-  As all microscopes, the mouse SPIM also had to make a compromise: although its design allows long term live imaging, it only has a single detection view, as rotation is not possible with the sample mounting trays. Due to this configuration, its resolution is inherently anisotropic, the axial resolution being more than 3 times worse than the lateral. Although this is sufficient for many applications, such as cell tracking, for detecting subcellular features it might be limiting. One such application is chromosome tracking, which could shed light on chromosome missegregation mechanisms in the early embryonic development, which is the cause of many congenital diseases also affecting humans.
+  As all microscopes, the mouse SPIM also had to make a compromise: although its design allows long term live imaging, it only has a single detection view, as rotation is not possible with the sample mounting trays. Due to this configuration, its resolution is inherently anisotropic, having an axial to lateral resolution ratio of around 3. Although this is sufficient for many applications, such as cell tracking, for detecting subcellular features it might be limiting. One such application is chromosome tracking, which could shed light on chromosome missegregation mechanisms in the early embryonic development, which is the cause of many congenital diseases also affecting humans.
 
-  In this chapter, we describe a novel light-sheet microscope developed to address the above questions by using high NA objectives for subcellular resolution and low-light imaging, and offering multi-view detection without having to rotate the samples. The microscope is designed to be live imaging compatible, offering new perspectives in the research of mouse embryonic development. In the next sections we will describe the design considerations for the microscope, the optical layout, alignment strategies, and the result of various performance measurements, and its multi-view imaging capabilities. 
+  In this chapter, we describe a novel light-sheet microscope developed to address the above challenges by using high NA objectives for subcellular isotropic resolution and low-light imaging, and offering multi-view detection without having to rotate the samples. The microscope is designed to be live imaging compatible, offering new perspectives in the research of mouse embryonic development. This chapter will describe the design considerations for the microscope, the optical layout, alignment strategies, and the result of various performance measurements, and its multi-view imaging capabilities. 
 
   %#######  ########  ######  ####  ######   ##    ## 
   %#     ## ##       ##    ##  ##  ##    ##  ###   ## 
@@ -52,7 +46,8 @@
   %#     ## ##       ##    ##  ##  ##    ##  ##   ### 
   %#######  ########  ######  ####  ######   ##    ## 
 
-\section{Microscope design principles}
+\section{Microscope design concept}
+\label{sec:120concept}
 
   \begin{figure}
     \centering
@@ -64,59 +59,46 @@
       \centering
       \includegraphics[page=2,width=0.8\textwidth]{objectiveCloseup}
     \end{subfigure}
-    \bcaption[Dual view concept with high NA objectives]{To achieve multi-view detection while maximizing resolution and light collection efficiency, two high NA objectives are placed in \SI{120}{\degree} arrangement. To be able to overlap the light-sheet with the focal plane, the light-sheet is tilted \SI{30}{\degree}. Because of the high NA objectives, this tilt does not effect the illumination quality. The objectives are used in an alternating sequence for illumination and detection.}
+    \bcaption[Dual view concept with high NA objectives]{To achieve multi-view detection while maximizing resolution and light collection efficiency, two high NA objectives are placed in \SI{120}{\degree} arrangement. The sample (orange) is held from below by a thin FEP foil. To be able to overlap the light-sheet with the focal plane, the light-sheet is tilted \SI{30}{\degree}. The objectives are used in an alternating sequence for illumination and detection.}
     \label{fig:objectiveCloseup}
   \end{figure}
 
-  In order to address the challenges outlined in the previous section, we propose a new light-sheet microscope design for imaging pre-implantation development at high resolution. The design is guided by the following requirements:
-  \begin{enumerate}
-    \item subcellular, isotropic resolution
-    \item high light collection efficiency
-    \item live embryo compatible
-  \end{enumerate}
+  As the limiting factor for subcellular imaging with the original mouse-SPIM is the poor axial resolution relative to the lateral, our first aim was to increase the axial resolution to ideally reach the lateral resolution. A common way to reach isotropic resolution is to image a specimen from multiple directions, and combine the resulting images by multi-view deconvolution \cite{swoger_multi-view_2007,temerinac-ott_multiview_2012, preibisch_efficient_2014}. This has the benefit that the high resolution information from the other views can complement the low axial resolution of the first view, thus providing better resolution an all 3 directions.
 
-  multi-view deconvolution \cite{swoger_multi-view_2007,temerinac-ott_multiview_2012, preibisch_efficient_2014}
+  As we have seen in the previous chapter, many SPIM implementations allow for recording multiple views either by rotating the sample, or by surrounding the sample with multiple objectives that are used for detection (\autoref{fig:spim_zoo}). For our setup, following the sample mounting technique of the original mouse SPIM, we wanted to keep the open-top sample mounting possibility, as this was proven to be highly compatible with mouse embryo imaging. To be able to achieve multi-view detection in this configuration, we designed a setup where both objectives can be used for illumination and detection in a sequential manner, inspired by previous symmetrical SPIM designs \cite{balazs_development_2013, wu_spatially_2013}.
 
-  design principles:
-  highest isotropic resolution, highest light collection efficiency possible
-  2x0.8 NA water dipping in \SI{90}{\degree} multi-view deconvolve Gaussian fit $\sigma_{xyz}=135$
-  2x1.1 NA water dipping in \SI{120}{\degree} multi-view deconvolved Gaussian fit $\sigma_z = 135$, and $\sigma_{xy} = 82.2$
-  simulations from PSF generator! put here
+  To achieve the highest possible resolution from two views, the core of our design is based on the symmetric arrangement of two Nikon CFI75 Apo LWD 25x water dipping objectives, with a numerical aperture of 1.1. Due to the large light collection angle of these objectives, we arrange them in \SI{120}{\degree} instead of the conventional \SI{90}{\degree} used for light-sheet imaging. As the light-sheet still needs to coincide with the imaging focal plane of the objectives, we tilt the light-sheets by \SI{30}{\degree} (\autoref{fig:objectiveCloseup}). Due to the low NA of the light-sheet, this is possible without affecting illumination quality.
 
+  This \SI{120}{\degree} arrangement has several benefits when compared to the traditional \SI{90}{\degree} configuration. When placing the objectives in \SI{90}{\degree}, the largest possible light collection half-angle for an objective can be $\alpha_{max,90} =\SI{45}{\degree}$, and the corresponding NA is $\na_{max,90} = n \cdot \sin \alpha_{max,90} = 0.94$, where $n=1.33$ the refractive index of water. The closest to this from the commercially available objectives offers a numerical aperture of 0.8. For a \SI{120}{\degree} arrangement, the theoretical maximum is $\na_{max,120} = n \cdot \sin (\SI{120}{\degree} /2) = 1.15$.
+
+  Although the resolution won't be completely isotropic when combining the images from two \SI{120}{\degree} views (\autoref{fig:psf-rot}), as it is for \SI{90}{degree} views, due to the higher maximum NA possible, the resolution can be higher in the \SI{120}{\degree} case. When simulating the combined multi-view PSFs (\autoref{fig:psf-rot}), for NA=0.8 objectives in \SI{90}{degree} the axial and lateral resolutions are both \SI{317}{nm}; while for two NA=1.1 objectives in \SI{120}{\degree} the axial resolution will be identical, \SI{317}{nm}, and the lateral will be better, at \SI{193}{nm}.
   
-  Resolution is not the only parameter of concern when designing a new microscope setup. We also have to consider light collection efficiency, since many application, especially live imaging applications require a tight photon budget. This means a single fluorophore can only emit so many times before it undergoes an irreversible chemical reaction, i.e. it bleaches. The more we can collect of these photons, the more information we gain, and altogether the efficiency is higher.
-  
-  Photon collection efficiency also defines single molecule localization accuracy, since the signal to noise ratio will depend on the square of the number of collected photons. This is why it is important to also maximize light collection efficiency.
+  Although this difference in resolution may seem marginal, the \SI{120}{\degree} configuration has a another advantage in light collection efficiency. Collecting as much of the fluorescence signal as possible is crucial in live imaging applications, due to the limited available photon budget (see \autoref{fig:tradeoffs} and \cite{laissue_assessing_2017}). Collecting more light from the sample allows to image faster with the same contrast, or to reduce the illumination power and maintaining the imaging speed. As light collection efficiency depends on the solid angle subtended by the detection lens, (see Appendix \autoref{app:lightEff}), a 1.1 NA objective can collect twice as many photons as a 0.8 NA objective, which gives the \SI{120}{\degree} setup a clear edge in low-light imaging.
 
-  The light collection efficiency of a 1.1 NA objective is a factor of 2 better, than the light collection of a 0.8 NA objective (see Appendix \autoref{app:lightEff}).
-
-
-  \subsection{Multi-view resolution}
-    \label{sec:120concept}
-
-    \begin{figure}[bt]
-      \centering
-      \begin{subfigure}[t]{0.45\textwidth}
-        \includegraphics[width=\columnwidth]{simu/psf}
-      \end{subfigure}	
-      \begin{subfigure}[b]{0.5\textwidth}
-      \qquad e
-      
-        \includegraphics[width=\columnwidth]{simu/resolution}
-      \end{subfigure}
-      \bcaption[Lateral and axial resolution of a multi-view optical system.]{a) Simulated PSF for a single view. b)--d) Simulated compound PSF of two views aligned in b) 30, c) 60 and d) 90 degrees to each other. e) Axial and lateral resolution of a dual-view setup depending on the rotation angle of the two objectives. Parameters used for calculations: NA=1.1, $\lambda_{ex}=488$nm, $\lambda_{det}=510$nm, $n=1.333$ for water immersion.}
-      \label{fig:psf-rot}
-    \end{figure}
-
-    To increase the axial resolution, it is a common practice to image a specimen from multiple directions, and fuse the resulting images. This has the benefit, that the high resolution information from the other views can complement the low axial resolution of the first view, thus providing better resolution an all 3 directions.
-
-    As we have seen in the previous chapter, many SPIM implementations allow for recording multiple views either by rotating the sample, or by surrounding the sample with multiple objectives that are used for detection. For our setup, following the sample mounting technique of the original mouse SPIM, we wanted to keep the open-top sample mounting possibility, as this was proven to be highly compatible with mouse embryo imaging. To be able to achieve multi-view detection in this configuration, we designed a setup where both objective can be used for illumination and detection in a sequential manner, inspired by previous symmetrical SPIM designs \cite{balazs_development_2013, wu_spatially_2013}.
-
-
-
+  \begin{figure}
+    \centering
+    \begin{subfigure}[t]{0.45\textwidth}
+      \includegraphics[width=\columnwidth]{simu/psf}
+    \end{subfigure}	
+    \begin{subfigure}[b]{0.5\textwidth}
+    \qquad e
     
+      \includegraphics[width=\columnwidth]{simu/resolution}
+    \end{subfigure}
+    \bcaption[Lateral and axial resolution of a multi-view optical system.]{a) Simulated PSF for a single view. b)--d) Simulated compound PSF of two views aligned in b) 30, c) 60 and d) 90 degrees to each other. e) Axial and lateral resolution of a dual-view setup depending on the rotation angle of the two objectives. Parameters used for calculations: NA=1.1, $\lambda_{ex}=488$nm, $\lambda_{det}=510$nm, $n=1.333$ for water immersion.}
+    \label{fig:psf-rot}
+  \end{figure}
 
-    In order to maximize light-collection efficiency and resolution, we opted for a high-NA water dipping objective, the Nikon CFI75 Apo LWD 25x/1.1w model. Two of these arranged in \SI{120}{\degree} allows for twice improved light collection efficiency compared to the 0.8 NA configuration in \SI{90}{\degree} alignment, with further improved lateral resolution along 2 axes (\autoref{fig:psf-rot}). In the next section we will describe the design considerations for illumination and detection optics to achieve optimal sample illumination.
+
+  % Due to the sample mounting constraints (\autoref{fig:preMouse}) when imaging mouse embryos, it is not feasible to surround the sample with objectives, as it can be done with other specimens, such as a \textit{Drosphila} embryo. Rotation is also not possible, since the sample holder is open on the top. To still allow for multi-view imaging, one possibility is to use two identical objectives, both capable of illumination and detection, in a symmetrical configuration \cite{balazs_development_2013,wu_spatially_2013}
+
+  % In order to address the challenges outlined in the previous section, we propose a new light-sheet microscope design for imaging pre-implantation development at high resolution. The design is guided by the following requirements:
+  % \begin{enumerate}
+  %   \item subcellular, isotropic resolution
+  %   \item high light collection efficiency
+  %   \item live embryo compatible
+  % \end{enumerate}
+    
 
   \subsection{Light-sheet design}
     \label{sec:ls-design}
@@ -303,7 +285,7 @@
 
     After rough alignment of the illumination arms, when the laser is already coupled in the objective, the fine adjustments are performed based on the image of the beam through the other objective. The beam is visualized by filling the chamber with a 0.1\% methylene blue solution. As this solution is fluorescent, and can be excited in a very large range, it is well suited to visualize the beam during adjustment.
 
-    \subsubsection{Adjusting beam position}
+    \paragraph{Adjusting beam position}
       Beam position can be adjusted by either translating the beam in a conjugated image plane (I'), or by rotating the beam in a conjugated back focal plane (BFP'). The setup was designed in a way, that BFP' coincides with mirror M1. This mirror is mounted in a gimbal mirror mount, allowing to rotate the mirror exactly around its center, which avoids unwanted translational movements, and results in pure rotation of the beam. Lens L3 is positioned exactly 1 focal length from the mirror, thus acting as a scan lens, and transforming the rotational movements to translation. This translation is further imaged and demagnified by the tube lens L4 and the objective O onto the sample.
 
 
@@ -314,7 +296,7 @@
     % \paragraph{Adjusting beam axial position.}
 
 
-    \paragraph{Adjusting scanning plane angle.}
+    \paragraph{Adjusting scanning plane angle}
       After the beam is properly aligned, i.e. it is in focus, and in the center of filed of view, it is still necessary to check if the scanning direction is parallel to the imaging plane. It is possible that the beam is in focus in the center position, but when moved up or down it drifts out of focus due to a tilted scanning angle. This tilt can be compensated by mirror M1, that is placed at the conjugated back focal plane BFP'. Between lenses L3 and L4 a magnified version of the light-sheet will be visible, and the tilt can be checked by placing an alignment target in the optical path while scanning the beam. By tilting mirror M1 up or down, the scanning pattern not only moves up or down, but is also rotated if the mirror surface is not exactly vertical. Since M1 and GM are in conjugated planes, the tilt and offset can be performed independently. The tilt is first fixed by M1 while inspecting the target, and the beam is re-centered by changing the offset on the galvo mirror. Moving the galvo mirror will not introduce tilt, since in this case rotation axis is perpendicular to the reflection plane.
 
 
@@ -326,17 +308,17 @@
     % TODO: complete paragraph
     The final alignment procedure 
 
-    \paragraph{Positioning the tube lens.}
+    \paragraph{Positioning the tube lens}
       The position of the tube lens determines the focal plane the is being imaged on the camera sensor. Ideally, the tube lens' distance from the camera sensor is exactly the tube lens focal length, which will ensure the best imaging performance. If the tube lens distance is not correct, the focal plane will be slightly shifted in the axial direction. Although small shifts will not necessarily have detrimental effect on the image quality, because the light sheet can also be shifted accordingly. Because of the shifted focal and image planes, however, the magnification of the system will be affected, and will change depending on the amount of defocus. For this reason we aim for positioning the tube lens as close to the theoretical position as possible.
 
       Our tube lens is a compound, achromatic lens with a center thickness of \SI{12.5}{mm}, and edge thickness of \SI{11.3}{mm}. Its effective focal length is \SI{400}{mm} which will produce a 50x magnified image. Back focal length is \SI{394.33}{mm} which we measured form the camera chip, and the lens was positioned at this theoretically optimal position.
 
-    \paragraph{Adjusting correction collar.}
+    \paragraph{Adjusting correction collar}
       The Nikon 25x objectives used for this setup have a built in correction ring that can be used to correct spherical aberrations resulting from refractive index differences when imaging samples behind a coverslip. This can be also effectively used to correct for any spherical aberrations occurring from imaging through the FEP foil. Although these aberrations are expected to be extremely low, due to the relatively thin, \SI{50}{\micro m} foil thickness, and the close matching of refractive index ($n_{FEP} = 1.344$, $n_{H_2O}=1.333$), for optimal, aberration free image quality it can't be neglected.
 
       The correction collars are adjusted by inspecting a gel suspended fluorescent bead specimen with the microscope, where the beads can act as a reporter of the point spread function of the microscope. The alignment can be performed ``live" by inspecting the bead image quality for any aberrations. By gradually changing the correction collar, the ring are minimized on out of focus beads, and the peak intensity is maximized for in focus beads. By moving the correction ring, the focal plane is also slightly shifted, which has to be compensated by shifting the light-sheet correspondingly to coincide with the correct imaging plane.
 
-    \paragraph{Adjusting field of view.}
+    \paragraph{Adjusting field of view}
       To allow for proper sampling of the image, we use 50x magnification, which, combined with the \SI{6.5}{\micro m} pixel pitch of our sCMOS camera will result in a \SI{0.13}{\micro m} pixel size. The full field of view with this magnification is $2048 \times 0.13 = \SI{266.24}{\micro m}$. The full field of view the objective provide, are larger than this, at \SI{800}{\micro m}. To ensure the best image quality, we align the center of the objective field of view on the camera sensor, since this region has the best optical properties in term of numerical aperture, aberration correction and field flatness.
 
       Field of view alignment can be performed using mirror M4 just before the detection merging unit. To identify the center region of the field of view, diffuse white light is used to illuminate the entire sample chamber, and is imaged on the camera. Then, mirror M4 is adjusted until the top edge of the field of view becomes visible, \textit{i.e.} where the illumination from the chamber is clipped. This will have a circular shape. Then, adjusting the mirror in the orthogonal direction, the left-right position of the field of view can be adjusted, by centering the visible arc on the camera sensor.
