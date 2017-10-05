@@ -181,7 +181,7 @@
       \label{fig:Core}
     \end{figure}
 
-    As the most important part of the microscope is actually the sample, the design is based around a core consisting of the imaging chamber and the objectives (\autoref{fig:Core}). Also part of the core are two mirror blocks placed at the back of the objectives, and three custom designed rings to hold the objectives in place. The objectives are pointing slightly up, closing a \SI{60}{\degree} angle with the horizontal plane, and \SI{120}{\degree} angle with each other. 
+    As the most important part of the microscope is actually the sample, the design is based around a core consisting of the imaging chamber and the objectives (\autoref{fig:Core}). Also part of the core are two mirror blocks placed at the back of the objectives, and three custom designed rings to hold the objectives in place. The objectives are pointing slightly upwards, closing a \SI{60}{\degree} angle with the horizontal plane, and \SI{120}{\degree} angle with each other. 
 
     \subsubsection{Chamber}
     The chamber serves two purposes: it holds the immersion liquid necessary for imaging, and it also keeps the objectives in the \SI{120}{\degree} position. The objectives are held by their necks as opposed to the standard mounting method from the back by the threads. The advantage of this is that any axial movements due to thermal expansion are greatly reduced, thus the focal plane position is more stable even when changing the imaging conditions.
@@ -247,7 +247,7 @@
     \end{figure}
 
   \subsection{Detection}
-    As the emitted light exits the objective and the mirror block, it is decoupled from the illumination path by the dichroic mirror. The light is then focused by a \SI{400}{mm} achromatic lens (L5, Edmunds Optics, \#49-281) onto the camera sensor (Andor Zyla 4.2 sCMOS). Just before the camera, a motorized filter wheel (F, LEP 96A361) is placed to filter out any unwanted wavelength from the emission light. Although this is not in the infinity space, due to the very small angles after the \SI{400}{mm} tube lens, the maximum axial focal shift is $\sim \SI{50}{nm}$ only, which is negligible compared to the axial resolution of $\sim \SI{1.1}{\micro m}$.
+    As the emitted light exits the objective and the mirror block, it is decoupled from the illumination path by the dichroic mirror. The light is then focused by a \SI{400}{mm} achromatic lens (L5, Edmunds Optics, \#49-281) onto the camera sensor (Andor Zyla 4.2 sCMOS). Just before the camera, a motorized filter wheel (F, LEP 96A361) is placed to discriminate any unwanted wavelengths from the emission light. Although this is not in the infinity space, due to the very small angles after the \SI{400}{mm} tube lens, the maximum axial focal shift is $\sim \SI{50}{nm}$ only, which is negligible compared to the axial resolution of $\sim \SI{1.1}{\micro m}$.
 
     Similarly to the common galvo in the illumination path, the two detection arms share the same camera. Although two cameras could also be used, due to the operating principle of the microscope, the two objective are not used for imaging at the same time. This means a single camera is capable of acquiring all the images, however, the two distinct detection arms need to be merged to be able to use a single detector.
     
@@ -415,7 +415,7 @@
   % Resolution for Lattice light-sheet \cite{chen_lattice_2014}: \SI{230}{nm} in x and \SI{370}{nm} in z
   % \cite{chhetri_whole-animal_2015}
 
-  After the design phase, all custom parts were manufactured by the EMBL mechanical workshop, and microscope was assembled on a MellesGriot optical table (Fig. \ref{fig:frontView}). The microscope was equipped with an Andor Zyla 4.2 sCMOS camera, that offers a large field of view of 2048\texttimes 2048 pixels with a pixel pitch of \SI{6.5}{\micro m}. It offers a high dynamic range of 1:30,000, and high frame rate at 100 frames per second (fps), while readout noise is minimal (0.9 e$^-$).
+  Following the desin phase, all custom parts were manufactured by the EMBL mechanical workshop, and microscope was assembled on a MellesGriot optical table (Fig. \ref{fig:frontView}). The microscope was equipped with an Andor Zyla 4.2 sCMOS camera, that offers a large field of view of 2048\texttimes 2048 pixels with a pixel pitch of \SI{6.5}{\micro m}. It offers a high dynamic range of 1:30,000, and high frame rate at 100 frames per second (fps), while readout noise is minimal (0.9 e$^-$).
   
   To evaluate the performance of the microscope, we conducted various measurements, concerning the stability and the resolution of the system. The methods and results of these measurements will be presented in this section.
 
@@ -514,8 +514,10 @@
 
     Anisotropy in the resolution becomes apparent in the single-view recordings, when the stacks are resliced from a different direction than the imaging plane. Even though the native view of each objective (\autoref{fig:zygoteMontage}a,d) shows good contrast, and easy to recognize features, when rotated and sliced corresponding to the view of the other objective, the contrast is almost completely gone, and resolution is decreased (\autoref{fig:zygoteMontage}b,e). The fused stack, after the multi-view deconvolution contains the high resolution information form both views, and thus both directions show good quality and high contrast (\autoref{fig:zygoteMontage}c,f).
 
-    
 
+
+
+  
 
 
     %#     ## ######## ######## ##     ## 
@@ -546,3 +548,15 @@
 
   % \subsection{Drosophila salivary gland imaging}
   %   Salivary glands from third instar larvae expressing fluorescent nuclear (H2A-mCherry) and centriole (ASL-YFP) markers were kindly provided by Ulla-Maj Fiuza. The salivary glands were imaged in PBS, together with a small piece of gel with fluorescent beads.
+
+
+\section{Conclusions}
+
+  In this chapter we have presented a novel light-sheet microscope designed for subcellular imaging of mouse embryos. The microscope has two identical, high NA (1.1) objectives, positioned in a \SI{120}{\degree} angle, and operates with a \SI{30}{\degree} tilted light-sheet. Due to the symmetrical design both objectives can be used for detection and illumination as well, providing multi-view capabilities without sample rotation.
+
+  We have characterized the optical properties of the microscope by measuring the light-sheet dimensions (average length: \SI{93}{\micro m}, average thickness: \SI{3.6}{\micro m}), and by measuring the point spread function. When combining the two views, the resolution is much closer to an ideal isotropic shape, being \SI{496}{nm} along the long axis and \SI{314}{nm} along the short axis as opposed to \SI{1323}{nm} and \SI{411}{nm} measured for a single view. This 2.67 times increase in axial resolution can potentially make the difference in being able to track all chromosomes in a developing mouse embryo.
+
+  To be able to surpass the proof-of-concept state, the microscope still needs some improvements. The detection view switching unit needs to be improved to minimize field of view drift of both views. Data processing for long term experiments would be extremely challenging otherwise. Another necessity for long term experiments is the implementation of an environmental chamber to provide the appropriate conditions for live embryo imaging.
+
+  The use of high NA objectives also keep the door open for future upgrades, such as adding structured illumination \cite{keller_fast_2010, chang_csilsfm_2017}, or coupling in a high power pulsed laser for photomanipulation capabilities \cite{rauzi_probing_2017}. Another natural extension to the system would be an addition of a third objective, that would allow for truly isotropic imaging and two-sided sample illumination.
+  
