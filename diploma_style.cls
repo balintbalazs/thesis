@@ -20,7 +20,7 @@
 \usepackage{xspace}
 \usepackage[titletoc]{appendix}
 \usepackage[pagewise]{lineno}
-% \linenumbers
+\linenumbers
 
 \usepackage[ plainpages = false, pdfpagelabels,
                  %pdftex,
@@ -55,6 +55,14 @@
 
 \frenchspacing
 \sloppy
+
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.7}
 
 \renewcommand{\bibname}{References}
 

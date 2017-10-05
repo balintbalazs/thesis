@@ -71,7 +71,7 @@
 
   This \SI{120}{\degree} arrangement has several benefits when compared to the traditional \SI{90}{\degree} configuration. When placing the objectives in \SI{90}{\degree}, the largest possible light collection half-angle for an objective can be $\alpha_{max,90} =\SI{45}{\degree}$, and the corresponding NA is $\na_{max,90} = n \cdot \sin \alpha_{max,90} = 0.94$, where $n=1.33$ the refractive index of water. The closest to this from the commercially available objectives offers a numerical aperture of 0.8. For a \SI{120}{\degree} arrangement, the theoretical maximum is $\na_{max,120} = n \cdot \sin (\SI{120}{\degree} /2) = 1.15$.
 
-  Although the resolution won't be completely isotropic when combining the images from two \SI{120}{\degree} views (\autoref{fig:psf-rot}), as it is for \SI{90}{degree} views, due to the higher maximum NA possible, the resolution can be higher in the \SI{120}{\degree} case. When simulating the combined multi-view PSFs (\autoref{fig:psf-rot}), for NA=0.8 objectives in \SI{90}{degree} the axial and lateral resolutions are both \SI{317}{nm}; while for two NA=1.1 objectives in \SI{120}{\degree} the axial resolution will be identical, \SI{317}{nm}, and the lateral will be better, at \SI{193}{nm}.
+  Although the resolution won't be completely isotropic when combining the images from two \SI{120}{\degree} views (\autoref{fig:psf-rot}), as it is for \SI{90}{\degree} views, due to the higher maximum NA possible, the resolution can be higher in the \SI{120}{\degree} case. When simulating the combined multi-view PSFs (\autoref{fig:psf-rot}), for NA=0.8 objectives in \SI{90}{\degree} the axial and lateral resolutions are both \SI{317}{nm}; while for two NA=1.1 objectives in \SI{120}{\degree} the axial resolution will be identical, \SI{317}{nm}, and the lateral will be better, at \SI{193}{nm}.
   
   Although this difference in resolution may seem marginal, the \SI{120}{\degree} configuration has a another advantage in light collection efficiency. Collecting as much of the fluorescence signal as possible is crucial in live imaging applications, due to the limited available photon budget (see \autoref{fig:tradeoffs} and \cite{laissue_assessing_2017}). Collecting more light from the sample allows to image faster with the same contrast, or to reduce the illumination power and maintaining the imaging speed. As light collection efficiency depends on the solid angle subtended by the detection lens, (see Appendix \autoref{app:lightEff}), a 1.1 NA objective can collect twice as many photons as a 0.8 NA objective, which gives the \SI{120}{\degree} setup a clear edge in low-light imaging.
 
@@ -126,7 +126,7 @@
       \begin{equation}
         2\cdot W_{0} = 2\cdot \sqrt{\frac{z_R \cdot \lambda}{\pi}} = \SI{5.57}{\micro m}
       \end{equation}
-      when $\lambda=\SI{488}{nm}$ for GFP excitation. As the beam width for these calculations is defined as $1/e^2$ of the peak intensity, we also calculate the more commonly used FWHM:
+      when $\lambda=\SI{488}{nm}$ for GFP excitation. As the beam width for these calculations is defined as $1/e^2$ of the peak intensity, we also calculate the more commonly used full width at half maximum (FWHM):
       \begin{equation}
         \mathrm{FWHM} = W_0 \cdot \sqrt{2 \ln 2} = \SI{3.28}{\micro m}.
       \end{equation}
@@ -420,31 +420,38 @@
 
   \subsection{Stability of view switcher unit}
     \label{sec:mirrorStability}
+
+    \begin{figure}
+      \centering
+      \includegraphics[width=\textwidth]{trackCenter}
+      \bcaption[Stability measurements of view switcher unit] {A closed aperture was imaged on the camera from both views, every \SI{10}{s}, for \SI{4}{h}. The dots represent the center of each frame, color coded with the time. The red ellipse represents the 95\% confidence interval of the measured positions based on principal component analysis. Standard deviations for right view: $\sigma_1 = \SI{4.37}{px}$, $\sigma_2 = \SI{2.26}{px}$; for left view: $\sigma_1 = \SI{0.07}{px}$, $\sigma_2 = \SI{0.04}{px}$.}
+      \label{fig:stability}
+    \end{figure}
+
     As the view switcher unit is a custom designed solution for this microscope, it is necessary to evaluate the effect of the switching on the field of view. Because this is a moving unit, many mechanical imprecisions can introduce a drift in the final image. 
 
     To assess the reproducibility in the movement of the detection branch switching unit, a long term stability test was conducted. To exclude all other factors (such as sample drift), we imaged the opening of two closed irises that were mounted on the detection optical rail. Image formation was done by two achromatic lenses ($f=\SI{75}{mm}$) positioned directly after mirrors M5 and M5'.
     
     The apertures were imaged from both views every 10 seconds, for \SI{4}{h}, for a total of 1440 images per view, and 2880 switches. The center of the aperture was segmented on all images using Matlab, and tracked to assess any drift occurring during the \SI{4}{h} time lapse (\autoref{fig:stability}). To visualize the uncertainty of the aperture's position, we performed principal component analysis (PCA) on the positions and visualized the results by plotting the 95\% confidence ellipse on the images. Although the right view had a significant spread with a standard deviation of \SI{4.37}{px} and \SI{2.26}px along the long ans short axes respectively, the left view was extremely stable, and the standard deviation was only \SI{0.07}{px} and \SI{0.04}{px} for the long and short axes respectively. This result implies that there is no conceptual limitation in reaching sub-pixel reproducibility with the view switching unit, although some optimization is still needed for the right view to reach the same stability as the left view. 
 
-    \begin{figure}
-      \centering
-      \includegraphics[width=\textwidth]{trackCenter}
-      \bcaption[Stability measurements of view switcher unit] {A closed aperture was imaged on the camera from both views, every \SI{10}{s}, for \SI{4}{h}. The dot represent the center of each frame, color coded with the time. The red ellipse represents the 95\% confidence interval of the measured positions based on principal component analysis. Standard deviations for right view: $\sigma_1 = \SI{4.37}{px}$, $\sigma_2 = \SI{2.26}{px}$; for left view: $\sigma_1 = \SI{0.07}{px}$, $\sigma_2 = \SI{0.04}{px}$.}
-      \label{fig:stability}
-    \end{figure}
+    
 
   \subsection{Characterizing the illumination profile}
-    Since a Gaussian beam is used for illumination, its intensity profile is dependent on the axial position (\autoref{eq:gaussian}). Although the total intensity at any cross section of the beam is constant, because of the divergent properties, the peak intensity varies. To assess any non-uniformities in the illumination pattern, we measured the illumination beam intensity for each view.
 
-    To visualize the beam, the chamber was filled with a fluorescent solution (methylene blue solution in distilled water). In order to increase the signal to noise ratio of these images, a long exposure time of \SI{200}{ms} were used, and 500 images of each beam was averaged, and the background subtracted (\autoref{fig:beamProfiles}).
-    To determine the beam waist position, we measured the beam thickness (FWHM) for each column of the averaged images, and located the position of the minimal width. The beam width at the waist position for the left view was   \SI{3.70}{\micro m}, and for the right view it was \SI{3.58}{\micro m} (\autoref{fig:beamProfiles}). We also measured the usable length of the beams (\ref{sec:dimensions}). The distance between the points where the beam has expanded by a factor of $\sqrt2$ relative to the waist is \SI{95.42}{\micro m} for the left view, and \SI{90.35}{\micro m} for the right view. This corresponds well to the original requirement of a minimal field of view of \SI{100}{\micro m}. Depending on the sample however, the practical field of view can be larger than this, as the camera sensor allows for a field of view of \SI{266}{\micro m}.  
-
-    \begin{figure}[htb]
+    \begin{figure}[hbt]
       \centering
       \includegraphics[width=\textwidth]{beamPlots.pdf}
       \bcaption[Illumination beam profile]{Average of 500 stationary beam images for both left (top left) and right objectives (bottom left). Beam intensity profile along the waist of each beam is plotted in the center column. The right column shows the beam width profile of each beam ($1/e^2$).}
       \label{fig:beamProfiles}
     \end{figure}
+
+    Since a Gaussian beam is used for illumination, its intensity profile is dependent of the axial position (\autoref{eq:gaussian}). Although the total intensity at any cross section of the beam is constant, because of the divergent properties, the peak intensity varies. To assess any non-uniformities in the illumination pattern, we measured the illumination beam intensity for each view.
+
+    To visualize the beam, the chamber was filled with a fluorescent solution (0.1 \% methylene blue in distilled water). In order to increase the signal to noise ratio of these images, a long exposure time of \SI{200}{ms} was used, and 500 images of each beam was averaged, and the background subtracted (\autoref{fig:beamProfiles}). Background images were acquired by repeating the image acquisition with the laser turned off, and averaging the recorder dark images.
+
+    To determine the beam waist position, we measured the beam thickness (FWHM) for each column of the averaged images, and located the position of the minimal width. The beam width at the waist position for the left view was   \SI{3.70}{\micro m}, and for the right view it was \SI{3.58}{\micro m} (\autoref{fig:beamProfiles}). We also measured the usable length of the beams (\ref{sec:dimensions}). The distance between the points where the beam has expanded by a factor of $\sqrt2$ relative to the waist is \SI{95.42}{\micro m} for the left view, and \SI{90.35}{\micro m} for the right view. This corresponds well to the original requirement of a minimal field of view of \SI{100}{\micro m}. Depending on the sample however, the practical field of view can be larger than this, as the camera sensor allows for a field of view of \SI{266}{\micro m}.  
+
+    
 
 
   
@@ -452,20 +459,21 @@
 
   \subsection{Resolution and point spread function measurement}
 
-    In order to establish an ideal, reference PSF, we simulated the theoretical PSF of the microscope with the Gibson-Lanni model \cite{gibson_experimental_1992}, using the MicroscPSF Matlab implementation \cite{li_fast_2017}. The advantage of this model is that is accounts for any differences between the experimental conditions and the design parameters of the objective, and thus it can simulate any possible aberrations that should arise. The adjustable parameters are the thicknesses ($t$) and refractive indices ($n$) of the immersion medium ($i$), coverslip ($g$), and sample ($s$). To simulate the reference PSF, we accounted for the slight mismatch in refractive index between the FEP foil ($n_g = 1.344$) and water ($n_i = 1.33$). The working distance of the objective is \SI{2}{mm}, while the thickness of the foil is \SI{50}{micro m}. 
+    In order to establish an ideal, reference PSF, we simulated the theoretical PSF of the microscope with the Gibson-Lanni model \cite{gibson_experimental_1992}, using the MicroscPSF Matlab implementation \cite{li_fast_2017}. The advantage of this model is that is accounts for any differences between the experimental conditions and the design parameters of the objective, and thus it can simulate any possible aberrations that should arise. The adjustable parameters are the thicknesses ($t$) and refractive indices ($n$) of the immersion medium ($i$), coverslip ($g$), and sample ($s$). To simulate the reference PSF, we accounted for the slight mismatch in refractive index between the FEP foil ($n_g = 1.344$) and water ($n_i = 1.33$). The working distance of the objective is \SI{2}{mm}, while the thickness of the foil is \SI{50}{\micro m}. 
 
-    \begin{figure}[htb]
+    \begin{figure}
       \centering
       \includegraphics[width=\textwidth]{PSF}
       \bcaption[Simulated and measured PSF of Dual Mouse-SPIM]{Top row: axial sections of simulated and measured point spread functions. Middle row: lateral intensity profile and Gaussian fit. Bottom row: Axial intensity profile and Gaussian fit. Simulations were performed based on the Gibson-Lanni model. Immersion medium  and sample refractive index: 1.330, coverslip (FEP foil) refractive index: 1.344, coverslip distance: \SI{1900}{\micro m}, coverslip thickness: \SI{50}{\micro m}. Excitation wavelength: $\lambda_{ex} = \SI{561}{nm}$. Emission wavelength: $\lambda_{em} = \SI{600}{nm}$. Scale bar: \SI{1}{\micro m}.}
       \label{fig:measuredPSF}
     \end{figure}
 
-    It is apparent from the simulations that even though the FEP refractive index is almost identical to the refractive index of water, a slight spherical aberration is still present even for the ideal case (\autoref{fig:measuredPSF}, left). The resolution measured as the FWHM of the intensity profile through the lateral and axial cross sections is \SI{271}{nm} and \SI{866}{nm} respectively.
+    It is apparent from the simulations that even though the FEP refractive index is almost identical to the refractive index of water, a slight spherical aberration is still present even for the ideal case (\autoref{fig:measuredPSF}, left). The resolution measured as the FWHM of the intensity profile through the lateral and axial cross sections is \SI{271}{nm} and \SI{866}{nm} respectively. FWHM was measured in Fiji by fitting a Gaussian curve, and multiplying the standard deviation of the resulting fit by $2 \sqrt{2 \ln 2}$.
 
-    To experimentally measure the resolution of the microscope, and characterize its optical performance, we measured the point spread function using fluorescently labeled beads (TetraSpeck \SI{500}{nm}, ThermoFisher) suspended in 0.8\% GelRite. The gel was loaded in glass capillaries and allowed to cool. After the gel solidified, a $\sim$\SI{1}{mm} piece was cut off and placed in the microscope sample holder. The beads were imaged from both views using the \SI{561}{nm} laser line with the 561 long-pass filter.
+    % \subsubsection{Methods}
+    To experimentally measure the resolution of the microscope and characterize its optical performance, we measured the point spread function using fluorescently labeled beads suspended in 0.8\% GelRite (\autoref{sec:methods2}). The gel was loaded in glass capillaries  and allowed to cool. After the gel solidified, a $\sim$\SI{1}{mm} piece was cut off and placed in the microscope sample holder. The beads were imaged from both views using the \SI{561}{nm} laser line with the 561 long-pass filter (Semrock, BLP02-561R-25).
 
-    From both views 12 beads were averaged using Fiji and the 3D PSF estimator of the MOSAICsuite. In order to acquire a more accurate PSF, the averaged bead images were deconvolved with the ideal image of the bead. The results of the deconvolution are shown on \autoref{fig:measuredPSF}. Similarly to the simulation, we measured the axial and lateral resolutions on the experimental PSFs. For the left view, the measured resolutions were \SI{386}{nm} in the lateral direction, and \SI{1350}{nm} in the axial direction. For the right view the lateral resolution was \SI{326}{nm}, and the axial was \SI{1297}{nm}.
+    From both views 12 beads were averaged using Fiji \cite{schindelin_fiji:_2012} and the 3D PSF estimator of the MOSAIC suite \cite{cardinale_imagej_2010}. In order to acquire a more accurate PSF, the averaged bead images were deconvolved with the ideal image of the bead (uniform sphere width a diameter of \SI{500}{nm}) using the DeconvolutionLab2 Fiji plugin \cite{sage_deconvolutionlab2:_2017}. The results of the deconvolution are shown on \autoref{fig:measuredPSF}. Similarly to the simulation, we measured the axial and lateral resolutions on the experimental PSFs. For the left view, the measured resolutions were \SI{386}{nm} in the lateral direction, and \SI{1350}{nm} in the axial direction. For the right view the lateral resolution was \SI{326}{nm}, and the axial was \SI{1297}{nm}.
 
     \begin{figure}
       \centering
@@ -474,36 +482,37 @@
       \label{fig:fusedPSF}
     \end{figure}
     
-    To estimate the achievable multi-view resolution of the system, we combined the two measured PSFs. First, the PSFs were rotated by $\pm \SI{60}{\degree}$ to correspond to the objective orientations. The PSF images were then normalized by scaling the maximum to 1, and the two rotated and normalized PSFs were multiplied (\autoref{fig:fusedPSF}). Resolution of the combined PSF is much improved in all directions, along its shortest axis the FWHM is \SI{314}{nm}, and along the longest axis the FWHM is \SI{496}{nm} (\autoref{fig:fusedPSF}). Both are better than the corresponding resolutions for th single view, especially along the long axis, where the resolution is 2.67 times better. This is almost perfectly matching the theoretically expected increase in the axial direction (compare with \autoref{sec:120concept}).
+    To estimate the achievable multi-view resolution of the system, we combined the two measured PSFs. First, the PSFs were rotated by $\pm \SI{60}{\degree}$ to correspond to the objective orientations. The PSF images were then normalized by scaling the maximum to 1, and the two rotated and normalized PSFs were multiplied (\autoref{fig:fusedPSF}). Resolution of the combined PSF is much improved in all directions: along its shortest axis the FWHM is \SI{314}{nm}, and along the longest axis the FWHM is \SI{496}{nm} (\autoref{fig:fusedPSF}). Both are better than the corresponding resolutions for a single view, especially along the long axis, where the resolution is 2.67 times better. This is almost perfectly matching the theoretically expected increase in the axial direction (compare with \autoref{sec:120concept}).
 
 
   \subsection{Resolution inside a \textit{Drosphila melanogaster} embryo}
 
     Apart from measuring the point spread function and resolution in an ideal bead sample, we also wanted to know the resolution inside a biological sample, as the tissues usually introduce some aberrations to the light path. Although these aberrations highly depend on the sample, as a worst case scenario, we measured the point spread function inside a \textit{Drosophila melanogater} embryo. As this specimen is highly opaque and scattering, it gives a good estimate for the upper bound of the resolution.
 
-    Instead of the fluorescent beads, we imaged a \textit{Drosophila} embryo expressing H2A-mCherry marking the nuclei, and ASL-YFP marking the centrosomes (\autoref{fig:drosoEmbryo}a). As the centrosomal protein ASL is diffraction limited in size \cite{gonczy_towards_2012}, its image gives a good estimate for the point spread function inside the specimen.
+    Instead of the fluorescent beads, we imaged a \textit{Drosophila} embryo expressing H2A-mCherry marking the nuclei, and ASL-YFP marking the centrosomes (\autoref{fig:drosoEmbryo}a, and \autoref{sec:methods2}). As the centrosomal protein ASL is diffraction limited in size \cite{gonczy_towards_2012}, its image gives a good estimate for the point spread function inside the specimen.
 
     Similarly to the bead recordings, 15 centriole images were averaged with the 3D PSF tool of the MOSAIC plugin in Fiji (\autoref{fig:drosoEmbryo}c). On the averaged image we measured the resolution by fitting a Gaussian function on the lateral and axial intensity profiles (\autoref{fig:drosoEmbryo}d,e), and calculating the FWHM of the fitted Gaussian. The size of the averaged centrioles was \SI{654}{nm} in the lateral, and \SI{2739}{nm} in the axial direction.
 
-    \begin{figure}[htb]
+    \begin{figure}[ptb]
       \centering
       \includegraphics[width=.9\textwidth]{droso/drosoEmbryo}
       \bcaption[Maximum intensity projection of a \textit{Drosophila melanogaster} embryo recording]{Maximum intensity projection of a \SI{30}{\micro m} thick substack. Orange: nuclei (H2A-mCherry), blue: centrioles (ASL-YFP). 50x magnification. (\textbf{a}) Overview of the embryo. (\textbf{b}) Zoomed in view to the region marked in (\textbf{a}). (\textbf{c}) Average image of 15 centrioles distributed evenly in the embryo. (d) Gaussian fit on the lateral intensity profile of the averaged centrioles; FWHM=\SI{654}{nm}. (d) Gaussian fit on the axial intensity profile of the averaged centrioles; FWHM=\SI{2739}{nm}.}
       \label{fig:drosoEmbryo}
     \end{figure}
-
+    
   \subsection{Multi-view imaging of a mouse zygote}
-
-    To demonstrate the multi-view capabilities and improved image quality of the microscope, we performed dual-view imaging of a fixed mouse zygote and combined the images using the Multiview Reconstruction \cite{preibisch_efficient_2014} plugin of Fiji (\autoref{fig:zygoteMontage}). The microtubules were stained with Alexa Fluor 488, and the zygote was imaged from both views with \SI{0.5}{\micro m} inter-plane distance.
-
-    Anisotropy in the resolution becomes apparent in the single-view recordings, when the stacks are resliced from a different direction than the imaging plane. Even though the native view of each objective (\autoref{fig:zygoteMontage}a,d) shows good contrast, and easy to recognize features, when rotated and sliced corresponding to the view of the other objective, the contrast is almost completely gone, and resolution decreased (\autoref{fig:zygoteMontage}b,e). The fused stack, after the multi-view deconvolution contains the high resolution information form both views, and thus both directions show good quality and high contrast (\autoref{fig:zygoteMontage}c,f).
-
-    \begin{figure}[htb]
+    \begin{figure}[ptb]
       \centering
       \includegraphics[width=.75\textwidth]{zygoteMontage}
       \bcaption[Multi-view recording of a mouse zygote]{Dual-view imaging was performed on a fixed mouse zygote. Microtubules wre stained with Alexa Fluor 488. Top row: view of Left objective. Bottom row: view of Right objective. (a) Raw image from left objective. (b) Rotated view of Right objective. (c) Multi-view deconvolution of stacks (a) and (b). (d) Rotated slice from left objective. (e) Raw image from right objective. (f) Multi-view deconvolution of stacks (d) and (e). Scale bar: \SI{50}{\micro m}.}
       \label{fig:zygoteMontage}
     \end{figure}
+
+    To demonstrate the multi-view capabilities and improved image quality of the microscope, we performed dual-view imaging of a fixed mouse zygote and combined the images using the Multiview Reconstruction \cite{preibisch_efficient_2014} plugin of Fiji (\autoref{fig:zygoteMontage}). The microtubules were stained with Alexa Fluor 488, and the zygote was imaged from both views with \SI{0.5}{\micro m} inter-plane distance.
+
+    Anisotropy in the resolution becomes apparent in the single-view recordings, when the stacks are resliced from a different direction than the imaging plane. Even though the native view of each objective (\autoref{fig:zygoteMontage}a,d) shows good contrast, and easy to recognize features, when rotated and sliced corresponding to the view of the other objective, the contrast is almost completely gone, and resolution is decreased (\autoref{fig:zygoteMontage}b,e). The fused stack, after the multi-view deconvolution contains the high resolution information form both views, and thus both directions show good quality and high contrast (\autoref{fig:zygoteMontage}c,f).
+
+    
 
 
 
@@ -516,15 +525,22 @@
     %#     ## ########    ##    ##     ## 
 
 \section{Methods}
+    \label{sec:methods2}
 
-  \subsection{Bead imaging}
-    For registration and resolution measurements we used TetraSpeck (ThermoFisher, T7279 and T7281) \SI{0.1}{\micro m} and \SI{0.5}{\micro m} diameter beads. The bead solutions were thoroughly vortexed and sonicated for \SI{5}{mins} before diluting them 1:100 in distilled water. GelRite (Sigma-Aldrich, G1910) gel was prepared in distilled water at 0.8\% concentration with 0.1\% $\mathrm{MgSO_4\cdot 7 H_2O}$ and kept at \SI{70}{\degree C} until use. 
+  \subsection{Preparation of fluorescent bead samples}
+    For registration and resolution measurements we used TetraSpeck \SI{0.5}{\micro m} diameter fluorescently labeled beads (ThermoFisher, T7281). The stock bead solution was thoroughly vortexed and sonicated for \SI{5}{min} before diluting it 1:100 in distilled water. The diluted bead solution saw stored at \SI{4}{\degree C} until use. GelRite (Sigma-Aldrich, G1910) gel was prepared in distilled water at 0.8\% concentration with 0.1\% $\mathrm{MgSO_4\cdot 7 H_2O}$ and kept at \SI{70}{\degree C} until use. \SI{50}{\micro l} of the diluted bead solution was added with a heated pipette tip to \SI{450}{\micro l} of gel solution at \SI{70}{\degree} to prevent  polymerization. The gel was thoroughly vortexed, and loaded to glass micropipettes (Brand \SI{100}{\micro l}). The gel was allowed to cool to room temperature and stored in a petri dish under $\mathrm{dH_2O}$ at \SI{4}{\degree} until use. For imaging, a small piece of gel was extruded from the capillary, cut off, and placed in the sample holder. After positioning the gel to the bottom of the sample holder, the holder was filled with \SI{200}{\micro l} $\mathrm{dH_2O}$.
 
-  \subsection{Mouse zygote imaging}
-    Fixed mouse zygotes labeled with Alexa-488 (microtubules) and Alexa-647 (kinetochores) were kindly provided by Judith Reichmann. Zygotes were transferred to the sample holder, and imaged in PBS. To allow for multi-view reconstruction, a fluorescent beads (TetraSpeck \SI{0.5}{\micro m} suspended in GelRite wre placed nex to the zygote in the sample holder. After imaging the zygote from both views, the beads were also recorded using the same stack definitions. After data acquisition, the multi-view datasets were registered and deconvolved in Fiji \cite{schindelin_fiji:_2012} using the Multiview Reconstruction Plugin \cite{preibisch_software_2010,preibisch_efficient_2014}. The deconvolution was based on a simulated PSF generated in Fiji using the PSF Generator plugin \cite{kirshner_3d_2011} using the Born-Wolf PSF model. $\mathrm{NA_{ex}}=0.1$, $\mathrm{NA_{em}}=1.1$, n=1.33, $\lambda_{ex} = \SI{488}{nm}$, $\lambda_{em} = \SI{510}{nm}$.
+  \subsection{Preparing the sample holder}
+    The sample holder was lined with \SI{12.5}{\micro m} (PSF measurements) or \SI{50}{\micro m} (mouse zygote and \textit{Drosophila} embryo imaging) thin FEP foil ( "BRAND" ). The FEP foils were cut to size, washed with 70\% ethanol followed by a second wash with $\mathrm{dH_2O}$. After washing, both surfaces of the foils were chemically activated by a \SI{20}{s} plasma treatment ( "MACHINE" ). The foils were then stored in a petri dish until further use separated by lens cleaning tissues (Whatman, 2105-841
+    ). Before imaging, the sample holder was cleaned with dish soap, rinsed with tap water, rinsed with 70\% ethanol, and rinsed with $\mathrm{dH_2O}$. The prepared foils were glued to the inside of the cleaned sample holder with medical grade silicon glue ( "BRAND" ). During the \SI{5}{min} curing process the foil was pressed against the sample holder by a custom made press fitting the shape of the sample holder. Final dilution of the stock bead solution in the gel is 1:1000.
 
   \subsection{Drosophila embryo imaging}
-    \textit{Drosophila melanogaster} embryos expressing fluorescent nuclear (H2A-mCherry) and centriole (ASL-YFP) markers were collected on an agar juice plate and dechorionated in 50\% bleach solution for \SI{1}{min}. After rinsing the bleach with deionized water, the embryos were placed in the sample holder under PBS solution. A small piece of gel containing fluorescent beads were also placed next to the samples to aid in multi-view registration.
+    \textit{Drosophila melanogaster} embryos (fly stock AH1) expressing fluorescent nuclear (H2A-mCherry) and centriole (ASL-YFP) markers were collected on an agar juice plates and dechorionated in 50\% bleach solution for \SI{1}{min}. After rinsing the bleach with deionized water, the embryos were placed in the sample holder under PBS solution. A small piece of gel containing fluorescent beads were also placed next to the samples to aid in multi-view registration.
 
-  \subsection{Drosophila salivary gland imaging}
-    Salivary glands from third instar larvae expressing fluorescent nuclear (H2A-mCherry) and centriole (ASL-YFP) markers were kindly provided by Ulla-Maj Fiuza. The salivary glands were imaged in PBS, together with a small piece of gel with fluorescent beads.
+  \subsection{Mouse zygote imaging}
+    Fixed mouse zygotes labeled with Alexa-488 (microtubules) and Alexa-647 (kinetochores) were kindly provided by Judith Reichmann. Zygotes were transferred to the sample holder, and imaged in PBS. To allow for multi-view reconstruction, a fluorescent beads (TetraSpeck \SI{0.5}{\micro m} suspended in GelRite wre placed next to the zygote in the sample holder. After imaging the zygote from both views, the beads were also recorded using the same stack definitions. After data acquisition, the multi-view datasets were registered and deconvolved in Fiji \cite{schindelin_fiji:_2012} using the Multiview Reconstruction Plugin \cite{preibisch_software_2010,preibisch_efficient_2014}. The deconvolution was based on a simulated PSF generated in Fiji with the PSF Generator plugin \cite{kirshner_3d_2011} using the Born-Wolf PSF model \cite{born_principles_2013}. $\mathrm{NA_{ex}}=0.1$, $\mathrm{NA_{em}}=1.1$, n=1.33, $\lambda_{ex} = \SI{488}{nm}$, $\lambda_{em} = \SI{510}{nm}$.
+
+  
+
+  % \subsection{Drosophila salivary gland imaging}
+  %   Salivary glands from third instar larvae expressing fluorescent nuclear (H2A-mCherry) and centriole (ASL-YFP) markers were kindly provided by Ulla-Maj Fiuza. The salivary glands were imaged in PBS, together with a small piece of gel with fluorescent beads.
