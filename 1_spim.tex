@@ -39,7 +39,7 @@ In an ideal setting, the ultimate microscope would be able to record a continuos
 \section{Wide-field fluorescence microscopy}
   Fluorescence microscopy \cite{lichtman_fluorescence_2005,diaspro_optical_2011}, as a subset of light microscopy is one of the few methods that allows subcellular imaging of live specimens. The first use of the term fluorescence is credited to  George Gabriel Stokes \cite{stokes_change_1852}, and it refers to the phenomenon when a molecule emits light after absorbing light or other electromagnetic radiation. As the name of the technique suggests, this method collects fluorescent light from the specimens which has numerous advantages, but also some drawbacks. Since biological tissue is usually not fluorescent, except for some autofluorescence at shorter wavelengths, fluorescent dyes or proteins have to be introduced to the system in order to be able to collect the necessary information. The advantage of this is that the signal of the labeled structures will be of very high ratio compared to the background.
 
-  A fluorescent molecule is capable of absorbing photons in a given range (excitation spectrum) and temporarily store its energy by having an electron in  a higher energy orbital, \textit{i.e.} in an excited state. This excited state, however is not stable, and the electron quickly jumps back to the ground state while emitting a photon with equal energy to the energy difference between the excited and ground states. The energy of the absorbed and emitted photons are not the same, as energy loss occurs due to internal relaxation events, and the emitted photon has lower energy than the absorbed photon. This phenomenon is called the Stokes shift, or red shift, and can be exploited in microscopy to drastically increase the signal to noise ratio by filtering out the illumination light (Fig. \ref{fig:spectrum}).
+  A fluorescent molecule is capable of absorbing photons in a given range (excitation spectrum) and temporarily store its energy by having an electron in  a higher energy orbital, \textit{i.e.} in an excited state. This excited state, however, is not stable, and the electron quickly jumps back to the ground state while emitting a photon with equal energy to the energy difference between the excited and ground states. The energy of the absorbed and emitted photons are not the same, as energy loss occurs due to internal relaxation events, and the emitted photon has lower energy than the absorbed photon. This phenomenon is called the Stokes shift, or red shift, and can be exploited in microscopy to drastically increase the signal to noise ratio by filtering out the illumination light (Fig. \ref{fig:spectrum}).
 
   \begin{figure}
     \centering
@@ -53,7 +53,7 @@ In an ideal setting, the ultimate microscope would be able to record a continuos
   %  very small amount of illumination photons will result in fluorescence ($<0.0001\%$), the signal to noise ratio of the fluorescence is still very high due to the filtering.
 
   \subsection{Fluorescent proteins}
-    Traditionally synthetic fluorescent dyes were used to label certain structures in the specimens. Some of these directly bind to their target,
+    Traditionally, synthetic fluorescent dyes were used to label certain structures in the specimens. Some of these directly bind to their target,
     % such as DAPI to DNA,
     and others can be used when conjugated to an antibody specific to the structure of interest. The drawback of these methods is that the fluorescent label has to be added to the sample from an external source, and, in many cases, this also necessitates sample preparation techniques incompatible with live imaging, such as fixation \cite{bacallao_guiding_1990}.
 
@@ -64,13 +64,14 @@ In an ideal setting, the ultimate microscope would be able to record a continuos
     By imaging fluorescently labelled specimens, a wide-field fluorescence microscope has the capability of discriminating illumination light from fluorescent emitted light due to the Stokes shift described in the previous section. The microscope's operating principle is depicted in Figure \ref{fig:wide-field}.
 
     A light source, typically a mercury lamp is focused on the back focal plane of the objective to create even illumination at the sample. Before entering the objective, the light is filtered, so only the wavelengths that correspond to the excitation properties of the observed fluorophores are transmitted. Since the same objective is used for both illumination and detection, a dichroic mirror is utilized to decouple the illumination and detection paths. The emitted light is filtered again to make sure any reflected and scattered light from the illumination source is blocked to increase signal to noise ratio.
-
-    Finally, the light is focused by a tube lens to create a magnified image in the camera sensor. This type of imaging is called infinity corrected optics, since the back focal point of the objective is in ``infinity", meaning that the light exiting the back aperture is parallel. This is achieved by placing the sample exactly at the focal point of the objective. Infinity corrected optics has the advantage that it allows placing various additional optical elements in the infinity space (\textit{i.e.} the space between the objective and the tube lens) without affecting the image quality. In this example such elements are the dichroic mirror and the emission filter. 
+    Finally, the light is focused by a tube lens to create a magnified image in the camera sensor.
+    
+    This type of imaging is called infinity corrected optics, since the back focal point of the objective is in ``infinity", meaning that the light exiting the back aperture is parallel. This is achieved by placing the sample exactly at the focal point of the objective. Infinity corrected optics has the advantage that it allows placing various additional optical elements in the infinity space (\textit{i.e.} the space between the objective and the tube lens) without affecting the image quality. In this example such elements are the dichroic mirror and the emission filter. 
 
     \begin{figure}[tb]
       \centering
       \includegraphics[page=4,width=0.7\textwidth]{spim_cyl}
-      \bcaption[Wide-field fluorescence microscope]{(a) The light source is focused on the back focal plane of the objective to provide an even illumination to the sample. Emitted photons are collected by the objective, and are separated from the illumination light by a dichroic mirror. (b) , $\alpha$}
+      \bcaption[Wide-field fluorescence microscope]{The light source is focused on the back focal plane of the objective to provide an even illumination to the sample. Emitted photons are collected by the objective, and are separated from the illumination light by a dichroic mirror. Inset: Light collection of an objective lens. $\alpha$: light collection half-angle; $f$: focal length; $r$: radius of lens.}
       \label{fig:wide-field}
     \end{figure}
 
@@ -80,14 +81,13 @@ In an ideal setting, the ultimate microscope would be able to record a continuos
       M = \frac{f_{TL}}{f_{OBJ}}.
       \label{eq:magnification}
     \end{equation}
-    The final field of view (FOV) of the microscope will depend on the magnification, and also on the size of the imaging sensor:
+    The final field of view (FOV) of the microscope will depend on the magnification, and also on the size of the imaging sensor ($D$), and the objective field number ($FN$):
     \begin{equation}
-      FOV = \frac{A}{M},
+      FOV = \frac{\min(D, FN)}{M}.
       \label{eq:FOV}
     \end{equation}
-    where $A$ is the area of the sensor. 
 
-    Apart from magnification, the most important property of the objective is the half-angle of the light acceptance cone, $\alpha$. This not only determines the amount of collected light, but also the achievable resolution of the system (see next section). This angle depends on the size of the lens relative to its focal length. In other words depends on the aperture of the lens, which is why the expression \textit{numerical aperture} (NA) is more commonly used to express this property of the objective:
+    Apart from magnification, the most important property of the objective is the half-angle of the light acceptance cone, $\alpha$ (\autoref{fig:wide-field}, inset). This not only determines the amount of collected light, but also the achievable resolution of the system (see \autoref{sec:resolution}). This angle depends on the size of the lens relative to its focal length. In other words depends on the aperture of the lens, which is why the expression \textit{numerical aperture} (NA) is more commonly used to express this property of the objective:
     \begin{equation}
       \text{NA} = n\cdot \sin \alpha.
       \label{eq:NA}
@@ -112,6 +112,7 @@ In an ideal setting, the ultimate microscope would be able to record a continuos
     % ##     ## ########  ######  
 
   \subsection{Resolution of a wide-field microscope}
+    \label{sec:resolution}
     The resolution of an optical systems is defined by the size of the smallest distinguishable feature on the image. Practically this means the minimum distance between two point-like objects so that the two objects can still be resolved. This mainly depends on two factors: the NA of the objective, and the pixel size of the imaging sensor.
 
     Even if the imaging sensor would have infinitely fine resolution, it is not possible to reach arbitrary high resolutions due to the wave nature of light and diffraction effects that occur at the aperture of the objective. This means that depending on the wavelength of the light, any point source will have a finite size on the image, it will be spread out, that will limit the resolution. The shape of this image is called the \textit{point spread function}, or PSF (Fig. \ref{fig:psf-wf}), as this function describes the behavior of the optical system when imaging a point like source. This property of lenses was already discovered by Abbe in 1873 \cite{abbe_beitrage_1873}, when he constructed his famous formula for resolution:
@@ -214,7 +215,7 @@ In an ideal setting, the ultimate microscope would be able to record a continuos
 
   \begin{figure}
     \centering
-    \includegraphics[width=0.6\textwidth]{resolution}
+    \includegraphics[width=0.55\textwidth]{resolution}
     \bcaption[Resolution of a wide-field microscope]{Axial (blue) and lateral (red) resolutions of a wide-field microscope are shown with respect to the numerical aperture (NA). Resolutions are calculated with $\lambda =510nm$, the emission maximum of GFP and $n=1.33$, the refractive index of water, for water dipping objectives.}
     \label{fig:resolution}
   \end{figure}
@@ -317,17 +318,18 @@ In an ideal setting, the ultimate microscope would be able to record a continuos
     \label{fig:spim_concept}
   \end{figure}
 
-  A selective-plane illumination microscope (SPIM) uses a light-sheet to illuminate only a thin section of the sample (Fig.~\ref{fig:spim_concept}). This illumination plane is perpendicular to the imaging axis of the detection objective and coincides with the focal plane. This way, only the section in focus will be illuminated, thus providing much better signal to noise ratio. In case of conventional wide-field fluorescence microscopy, where the whole specimen is illuminated, light scattering from different regions contributes to a significant background noise. With selective-plane illumination, this problem is intrinsically solved, and it also provides a true sectioning capability. This makes SPIM especially suitable for 3D imaging.
+  A selective-plane illumination microscope (SPIM) uses a light-sheet to illuminate only a thin section of the sample (Fig.~\ref{fig:spim_concept}). This illumination plane is perpendicular to the imaging axis of the detection objective and coincides with the focal plane. This way, only the section in focus will be illuminated, thus providing much better signal to noise ratio. In case of conventional wide-field fluorescence microscopy, where the whole specimen is illuminated, out of focus light contributes to a significant background noise. 
+  With selective-plane illumination, this problem is intrinsically solved, and it also provides a true sectioning capability. This makes SPIM especially suitable for 3D imaging.
 
   
 
   The main principle behind single plane illumination microscopy, that is illuminating the sample from the side by a very thin light-sheet, dates back to the early 20\textsuperscript{th} century, when Siedentopf and Zsigmondy first described the ultramicroscope \cite{siedentopf_uber_1902}. This microscope used sunlight as an illumination source, that was guided through a precision slit to generate a thin light-sheet. This allowed Zsigmondy to visualize gold nanoparticles floating in and out of the light-sheet. Since these particles are much smaller than the wavelength of the light, the device was called an ultramicroscope. His studies with colloids, and the development of the ultramicroscope led Zsigmondy to win the Nobel Prize in 1925.
 
-  After Zsigmondy, this method was forgotten until rediscovered in the 1990s, when Voie \etal constructed their Orthogonal-plane Fluorescent Optical Sectioning (OPFOS) microscope \cite{voie_orthogonal-plane_1993}. They used it to image a fixed, optically cleared and fluorescently labelled guinea pig cochlea. In order to acquire a 3D dataset, the sample was illuminated from the side with a light-sheet generated by a cylindrical lens, then rotated around the center axis to obtain multiple views. Although they only reached a lateral resolution around \SI{10}{\micro m} and axial resolution of \SI{26}{\micro m}, this method allowed them to generate a 3D reconstruction of the cochlea \cite{voie_three-dimensional_1995}.
+  After Zsigmondy, this method was forgotten until rediscovered in the 1990s, when Voie \etal constructed their Orthogonal-plane Fluorescent Optical Sectioning (OPFOS) microscope \cite{voie_orthogonal-plane_1993}. They used it to image a fixed, optically cleared and fluorescently labelled guinea pig cochlea. In order to acquire a 3D dataset, the sample was illuminated from the side with a light-sheet generated by a cylindrical lens, then rotated around the center axis to obtain multiple views. Although they only reached a lateral resolution around \SI{10}{\micro m} and axial resolution of \SI{26}{\micro m}, this method allowed them to generate a 3D reconstruction of the guinea pig cochlea \cite{voie_three-dimensional_1995}.
 
   Later, in 2002, Fuchs et al. developed Thin Light-Sheet Microscopy (TLSM) \cite{fuchs_thin_2002} and used this technique to investigate the microbial life in seawater samples without disturbing their natural environment (by e.g. placing them on a coverslip). Their light-sheet was similar to the one utilized in OPFOS, being \SI{23}{\micro m} thin, and providing a $\SI{1}{mm} \times \SI{1}{mm}$ field of view.
 
-  Despite these early efforts, the method did not gain larger momentum. The real breakthrough in light-sheet imaging happened at EMBL in 2004, where Huisken \etal \cite{huisken_optical_2004} combined the advantages of endogenous fluorescent proteins and the optical sectioning capability of light-sheet illumination to image Medaka fish embryos, and the complete embryonic development of a \textit{Drosopila melanogaster} embryo. They called this Selective-Plane Illumination Microscopy (SPIM), and it quickly became popular to investigate developmental biological questions.
+  Despite these early efforts, the method did not gain larger momentum. The real breakthrough in light-sheet imaging happened at the European Molecular Biology Laboratory (EMBL) in 2004, where Huisken \etal \cite{huisken_optical_2004} combined the advantages of endogenous fluorescent proteins and the optical sectioning capability of light-sheet illumination to image Medaka fish embryos, and the complete embryonic development of a \textit{Drosopila melanogaster} embryo. They called this Selective-Plane Illumination Microscopy (SPIM), and it quickly became popular to investigate developmental biological questions.
 
   \label{sec:multiview}
   \begin{figure}[tb]
@@ -373,7 +375,7 @@ In an ideal setting, the ultimate microscope would be able to record a continuos
   %\end{itemize}
 
 
-  \subsection{Optics of light-sheet microscopy}
+  % \subsection{Optics of light-sheet microscopy}
 
     
     \begin{figure}[htb]
@@ -406,7 +408,7 @@ In an ideal setting, the ultimate microscope would be able to record a continuos
   % \subsection{Illumination}
 
   \subsection{Static light-sheet illumination}
-    For a static light-sheet, the normally circular Gaussian laser beam needs to be shaped in an astigmatic manner, i.e. either expanded or squeezed along one direction, to shape it into a sheet instead of a beam. This effect can be achieved by using a cylindrical lens, which as the name suggests has a curvature in one direction, but is flat in the other, thus focusing a circular beam to a sheet.
+    For a static light-sheet, the normally circular Gaussian laser beam needs to be shaped in an astigmatic manner, i.e. either expanded or squeezed along one direction, to shape it into a sheet instead of a beam. This effect can be achieved by using a cylindrical lens, which as the name suggests has a curvature in one direction, but is flat in the other, thus focusing a circular beam to a sheet (\autoref{fig:light-sheet}).
     
     However, to achieve light-sheets that are thin enough, one would need to use cylindrical lens with a very short focal length, and these are hardly accessible in well corrected formats. For this reason, it is more common to use a longer focal length cylindrical lens in conjunction with a microscope objective, which is well corrected for chromatic and spherical aberrations \cite{greger_basic_2007}. This way, the light-sheet length, thickness and width can be adjusted for the specific imaging tasks.
 
@@ -489,7 +491,7 @@ In an ideal setting, the ultimate microscope would be able to record a continuos
     % \end{equation}
     
     
-    Based on these equations, the light-sheet dimensions and usable field of view (fov) can be specified (Fig. \ref{fig:fov}). The light-sheet thickness will depend on the beam waist, $W_{0,y}$ (if we assume the cylindrical lens is focusing along $y$), and the length of the light-sheet can be defined as twice the Rayleigh range, $2 \cdot z_{R,y}$. As these are coupled (see Eq. \ref{eq:rayleighXY}), having a thin light-sheet for better sectioning also means the length of it will be relatively short. Fortunately, because of the quadratic relation, to increase the field of view by a factor of two, the light-sheet thickness only needs to increase by a factor of $\sqrt{2}$.
+    Based on these equations, the light-sheet dimensions and usable field of view can be specified (Fig. \ref{fig:fov}). The light-sheet thickness will depend on the beam waist, $W_{0,y}$ (if we assume the cylindrical lens is focusing along $y$), and the length of the light-sheet can be defined as twice the Rayleigh range, $2 \cdot z_{R,y}$. As these are coupled (see Eq. \ref{eq:rayleighXY}), having a thin light-sheet for better sectioning also means the length of it will be relatively short. Fortunately, because of the quadratic relation, to increase the field of view by a factor of two, the light-sheet thickness only needs to increase by a factor of $\sqrt{2}$.
 
     % Since the illumination is uneven, the usable height of the field of view is smaller than the actual illuminated region (Figure \ref{fig:fov}). The width of the field of view $w_{fov}$ is determined by the Rayleigh length, since this is in a direct relation with the beam divergence. To stay in the optimal region, the light-sheet should only be used in the range of 1 Rayleigh length on both sides of the beam waist (Figure \ref{fig:width}). In this range, the ratio between the thickest (at $z=z_0$) and the thinnest (at $z=0$) part of the beam $W(z)$ will be $\sqrt{2}\approx 1.4142$ which is still acceptable.
 
@@ -510,7 +512,7 @@ In an ideal setting, the ultimate microscope would be able to record a continuos
 
     A more flexible way of creating a light-sheet is by scanning a focused beam in the focal plane to generate a virtual light-sheet (digital scanned light-sheet microscopy, DSLM \cite{keller_reconstruction_2008}). Although this method might require higher peak intensities, it solves both drawbacks of the cylindrical lens illumination. By scanning the beam, the light-sheet height can be freely chosen, and a homogenous illumination will be provided. Focusing the beam in all directions evenly introduces more angles in the lateral direction as well, which shortens the length of the shadows.
     
-    The basic optical layout of a DSLM is shown on Fig. \ref{fig:dslm}. A galvanometer controlled mirror is used to alter the beam path that can quickly turn around its axis which will result in an angular sweep of the laser beam. To change the angular movement to translation, a scan lens is used to generate an intermediate scanning plane. This plane is then imaged to the specimen by the tube lens and the illumination objective, resulting in a scanned focused beam at the detection focal plane. The detection unit is identical to the wide-field detection scheme, similarly to the static light-sheet illumination. By scanning the beam at a high frequency, a virtual light-sheet is generated, and the fluorescent signal is captured by a single exposure on the camera, resulting in an evenly illuminated field of view.
+    The basic optical layout of a DSLM is shown on Fig. \ref{fig:dslm}. A galvanometer controlled mirror is used to alter the beam path that can quickly turn around its axis which will result in an angular sweep of the laser beam. To change the angular movement to translation, a scan lens is used to generate an intermediate scanning plane. This plane is then imaged to the specimen by the tube lens and the illumination objective, resulting in a scanned focused beam at the detection focal plane. The detection unit is identical to the wide-field detection scheme, similarly to the static light-sheet illumination. By scanning the beam at a high frequency, a virtual light-sheet is generated, and the fluorescence signal is captured by a single exposure on the camera, resulting in an evenly illuminated field of view.
 
   
 
@@ -572,7 +574,7 @@ In an ideal setting, the ultimate microscope would be able to record a continuos
 
     After the initial 3 days of pre-implantation, the embryo undergoes the implantation process, during which it is inaccessible to microscopical investigations. Although a new method was recently developed that allows \textit{in vitro} culturing of the embryos embedded in a 3D gel \cite{panavaite_3d-geec:_2017}, this has not reached wider adoption yet. Because of this, developmental processes during implantation have only been investigated in fixed embryos.
     
-    Following the implantation process, at the post-implantation phase, \textit{ex vivo} embryo culturing becomes possible again \cite{hsu_vitro_1979, huang_effect_2001}, and these embryos can be kept alive for several days in an artificial environment. During this process especially interesting stages are the late blastocyst ($\sim$4.5), gastrulation ($\sim$E6.5), and somite formation ($\sim$E8.5). Before live imaging techniques became available, these stages were mostly investigated using \textit{in situ} visualization techniques to shed light on several developmental processes \cite{nowotschin_cellular_2010}. Many pathways playing important roles have been identified this way, however live imaging is still necessary to validate these results, and ensure continuity in the same specimen \cite{garcia_live_2011}.
+    Following the implantation process, at the post-implantation phase, \textit{ex vivo} embryo culturing becomes possible again \cite{hsu_vitro_1979, huang_effect_2001}, and these embryos can be kept alive for several days in an artificial environment. During this process especially interesting stages are the late blastocyst ($\sim$E4.5), gastrulation ($\sim$E6.5), and somite formation ($\sim$E8.5). Before live imaging techniques became available, these stages were mostly investigated using \textit{in situ} visualization techniques to shed light on several developmental processes \cite{nowotschin_cellular_2010}. Many pathways playing important roles have been identified this way, however live imaging is still necessary to validate these results, and ensure continuity in the same specimen \cite{garcia_live_2011}.
 
     Light-sheet microscopy is a good choice for imaging these stages, just like in the case of pre-implantation embryos. These embryos, however, present new challenges for sample handling and culturing. Owing to their extreme sensitivity, dissection can be difficult, especially for earlier stages (E4.5). Furthermore, since the embryo is also growing during development, gel embedding is not an option, as this might constrain proper development. Thus, special handling and mounting techniques had to be developed in order to allow live 3D imaging of these specimens.
 
