@@ -20,7 +20,7 @@
 \usepackage{xspace}
 \usepackage[titletoc]{appendix}
 \usepackage[pagewise]{lineno}
-\linenumbers
+% \linenumbers
 
 \usepackage[ plainpages = false, pdfpagelabels,
                  %pdftex,
