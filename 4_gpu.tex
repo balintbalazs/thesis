@@ -103,7 +103,7 @@ z\\
 =
 \begin{pmatrix}
 a x + b y + c z + d\\ 
-e x + f y + g z + g\\ 
+e x + f y + g z + h\\ 
 i x + j y + k z + l\\
 1
 \end{pmatrix}
@@ -154,7 +154,7 @@ If this is possible, then fusion can be carried out separately for each image pl
 \end{align}
 where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resolution of the microscope, which are 277 nm and 1099 nm respectively. 
 
- If these conditions hold (\textit{i.e.} the microscope is properly aligned), then direct plane by plane fusion will not result in any loss of information compared to the full 3D image fusion.
+ If these conditions are fulfilled (\textit{i.e.} the microscope is properly aligned), direct plane by plane fusion will not result in any loss of information compared to the full 3D image fusion.
 
 % \subsection{Image preprocessing pipeline}
 
@@ -180,9 +180,9 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
 % Since our microscope control software is implemented in LabVIEW, all the functions in our pipeline were incorporated in a dynamic linked library (DLL) which can be loaded by LabVIEW to use the CUDA functions. Furthermore, to facilitate the integration to existing software, we created a LabVIEW library based on these CUDA functions, to provide a consistent and easy to use interface for further development.
 
 \subsection{CUDA implementation of direct fusion}
-  As our custom microscope control software (\autoref{sec:software}) is developed in LabVIEW, we implemented the pipeline as a combination of a CUDA and a LabVIEW library. The CUDA library implements all the necessary low level functions and exposes these in a dynamically linked library (dll). The LabVIEW library, \texttt{LVCUDA.lvlib} implements two high level classes: \texttt{cuArray}, and \texttt{Texture} (\autoref{fig:LVCUDA}). These classes interface to the CUDA dll, and allow to easily build a flexible CUDA-based image processing pipeline in LabVIEW.
+  Our custom microscope control software (\autoref{sec:software}) is developed in LabVIEW and we implemented the pipeline as a combination of a CUDA and a LabVIEW library. The CUDA library implements all the necessary low level functions and exposes these in a dynamically linked library (dll). The LabVIEW library, \texttt{LVCUDA.lvlib} implements two high level classes: \texttt{cuArray}, and \texttt{Texture} (\autoref{fig:LVCUDA}). These classes interface to the CUDA dll, and allow to easily build a flexible CUDA-based image processing pipeline in LabVIEW.
 
-  As the pipeline operates on 2D images, both classes support 1D or 2D arrays in a pitched configuration. \texttt{CuArray} as the parent class stores the pointer to the array, as well as the pitch, width and height. As LabVIEW natively doesn't support pointer operations, the pointer is simply cast to a 64 bit unsigned integer internally. As this is a private member of the class there is no danger of accidental modification. As a descendent to \texttt{cuArray} class, the \texttt{Texture} adds a further member to store the reference to the CUDA texture object. This class is used to implement the affine transformation, as it supports floating point indexing and automatic linear interpolation.
+  As the pipeline operates on 2D images, both classes support 1D or 2D arrays in a pitched configuration. \texttt{CuArray} as the parent class stores the pointer to the array, as well as the pitch, width and height. LabVIEW natively doesn't support pointer operations, therefore the pointer is simply cast to a \SI{64}{bit} unsigned integer internally. As this is a private member of the class there is no danger of accidental modification. Being a descendent of \texttt{cuArray} class, the \texttt{Texture} class adds a further member to store the reference to a CUDA texture object. This class is used to implement the affine transformation, as it supports floating point indexing and automatic linear interpolation.
 
   \begin{figure}
     \centering
@@ -210,9 +210,24 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
     \label{fig:drosophila}
   \end{figure*}
 
-  The image preprocessing pipeline was tested on our previously described Multi-View Single Plane Illumination Microscope (MuVi-SPIM)\cite{krzic_multiview_2012}. For the background subtraction we recorded 1500 dark images with each camera and averaged them, to obtain the camera specific background images. Before image acquisition these were uploaded to the GPU memory, and were readily available for the pipeline.
+  The image preprocessing pipeline was tested on our MuVi-SPIM microscope \cite{krzic_multiview_2012}. For the background subtraction we recorded 1500 dark images with each camera and averaged them, in order to obtain the camera specific background images. Prior to image acquisition these were uploaded to the GPU memory, and were readily available for the pipeline.
 
-  After careful alignment of the microscope to meet the previously discussed requirements (Eqs. \eqref{eq:req1} -- \eqref{eq:req3}), we imaged fluorescent beads in a gel suspension to obtain the affine transformation parameters. After making sure that these parameters indeed fulfill the previously set requirements, these were also uploaded to the GPU memory for further use in our pipeline.
+  Following careful alignment of the microscope to meet the previously discussed requirements (Eqs. \ref{eq:req1} -- \ref{eq:req3}), we imaged fluorescent beads in a gel suspension to obtain the affine transformation parameters. The 3D transformation parameters were the following:
+
+  \[
+  \begin{pmatrix}
+    1.013 & 2.497\times 10^{-3} & 7.110\times 10^{-3} & -21.71 \\
+    -1.701\times 10^{-3} & 1.014 & -1.980\times 10^{-3} & -4.085 \\
+    2.667\times 10^{-6} & -6.816\times 10^{-5} & 1.003 & -0.566 \\
+    0 & 0 & 0 & 1
+  \end{pmatrix}
+  \]
+
+  \begin{align*}    
+    \max |cz| =& \SI{0.0693}{\micro m}  \\
+    \max |gz| =& \SI{0.019}{\micro m}  \\
+    \max | i x + j y + (k-1)  z + l | =& \SI{0.8384}{\micro m}
+  \end{align*}
 
   To validate our hypotheses, that 2D direct image fusion is sufficient instead of the full 3D fusion, we imaged several samples. First, we imaged the flourescent beads again, now with the live fusion enabled, to make sure our registration parameters are correct. Manual evaluation of the data revealed that the fusion indeed worked, without any artifacts, such as double beads which would indicate an imprecision in alignment or in the transformation parameters.
 
