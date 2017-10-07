@@ -308,24 +308,10 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
       \label{eq:wnl}
     \end{equation}
     
-    where 𝑒 is the intensity scaled to photoelectrons, and $\sigma_{𝑅𝑁}$ is the camera read noise. To perform the scaling of digital numbers (DN) to photoelectrons, it’s necessary to know the camera offset and conversion parameters: $e=(I-offset)\cdot g)$, where $g$ is the gain in photoelectrons/DN, in $I$ is the original pixel intensity. This transformation assumes a Poisson-Gaussian noise, incorporating the photon shot noise and the camera readout noise, which is a good model for most scientific imaging sensors, such as (EM)CCD or sCMOS.
+    where $e$ is the intensity scaled to photoelectrons, and $\sigma_{𝑅𝑁}$ is the camera read noise. To perform the scaling of digital numbers (DN) to photoelectrons, it’s necessary to know the camera offset and conversion parameters: $e=(I-offset)\cdot g)$, where $g$ is the gain in photoelectrons/DN, in $I$ is the original pixel intensity. This transformation assumes a Poisson-Gaussian noise, incorporating the photon shot noise and the camera readout noise, which is a good model for most scientific imaging sensors, such as (EM)CCD or sCMOS.
 
     To accommodate for all imaging needs, two options are available in the noise dependent lossy mode. In Mode 1, after the stabilizing transform (\autoref{eq:wnl}), the prediction is performed first, followed by quantization of the prediction errors. This mode reaches a better compression ratio and higher peak signal to noise ratio (PSNR) for the same quantization step compared to Mode 2 (\autoref{fig:swapping} a, b), and is recommended for most use cases. For larger quantization steps ($q \geq 3 \sigma$), however, Mode 1 might introduce some spatial correlations, because the prediction errors that are being quantized depend on multiple adjacent pixels (\autoref{fig:swapping} c, d). Mode 2 excludes this possibility by swapping the quantization and prediction (\autoref{fig:swapping} c, d) at the expense of compression ratio. Since no correlations are introduced, Mode 2 is suitable for highly sensitive image analysis tasks, such as single-molecule localization. In this paper, we use Mode 2 for all single-molecule localization data, and Mode 1 for all other datasets.
   
-
-    
-
-
-
-    \begin{figure}[tpb]
-      \centering
-      \includegraphics[page=1,height=0.5\textwidth]{bubbles}
-      \bcaption[Lossless compression performance]{Performance comparison of our \b3d compression algorithm (red circle) vs. KLB (orange), uncompressed TIFF (light yellow), LZW compressed TIFF (light blue) and JPEG2000 (blue) regarding write speed (horizontal axis), read speed (vertical axis) and file size (circle size). (see also Table \ref{tab:performance}).}
-      \label{fig:bubbles}
-    \end{figure}
-
-    
-
     \begin{figure}[tpb]
       \centering
       \includegraphics[page=1,width=0.7\textwidth]{swapping}
@@ -333,7 +319,39 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
       \label{fig:swapping}
     \end{figure}
 
+
+    \subsubsection{Additional noise introduced by compression}
+    
+    When applying quantization to any kind of data, the quantization error can be modeled as an additional uniform noise with standard deviation of $\frac{\delta}{\sqrt{12}}$, where $\delta$ is the quantization step size \cite{gray_quantization_1998}. During compression the quantization is proportional to the standard deviation of the original image noise, thus the noise on the uncompressed image will be:
+    \begin{equation}
+      \sigma_{out} = \sigma_{in} \cdot \sqrt{1+ \frac{q^2}{12}}
+    \end{equation}
+    For the WNL case, when $q = 1 \sigma$ this means an increase of 4\%, which also coincides with the measured increase of localization error for single molecule localization (\autoref{fig:wnlSMLM}a). However, this is not the only source of additional noise we have to consider, because at the decompression step there is a possibility of getting floating point results after applying the inverse of the compression steps, and for most applications these have to be coerced to integer numbers. This effectively adds a second quantization, but now at a constant quantization step of 1. This results in an additional uniform noise with variance of $\frac{1}{12}$:
+    \begin{equation}
+      \sigma_{out} = \sigma_{in} \cdot \sqrt{1+ \frac{q^2}{12}} + \frac{1}{12}
+      \label{eq:extraNoise}
+    \end{equation}
+    We verified this by compressing 512 images (1024\texttimes 1024 pixels) of random Poisson noise with different means (1..512), and calculated the standard deviation for each frame after the decompression step. Finally, we plotted the ratio $\sigma_{out}/\sigma_{in}$ as a function of the mean $m$ (\autoref{fig:extraNoise}), and we found that it is in very good agreement with the theory outlined above.
+
+    
+
+    
+
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.7\textwidth]{extraNoise}
+      \bcaption[Theoretical and measured increase in image noise for WNL compression]{Validating \autoref{eq:extraNoise}, we plot the relative increase in image noise as a function of the mean. Blue line: plot of \autoref{eq:extraNoise} Red line: plot of measured data. To obtain the measurement, we compressed a stack of 512 images consisting of Poisson noise, each with a different mean. After WNL compression the data was read in Matlab, and the standard deviation was calculated for each frame. The ratio $\sigma_{in}/\sigma_{out}$ is plotted as a function of the mean.}
+      \label{fig:extraNoise}
+    \end{figure}
+
   \subsection{Benchmarking}
+
+  \begin{figure}[tpb]
+    \centering
+    \includegraphics[page=1,height=0.5\textwidth]{bubbles}
+    \bcaption[Lossless compression performance]{Performance comparison of our \b3d compression algorithm (red circle) vs. KLB (orange), uncompressed TIFF (light yellow), LZW compressed TIFF (light blue) and JPEG2000 (blue) regarding write speed (horizontal axis), read speed (vertical axis) and file size (circle size). (see also Table \ref{tab:performance}).}
+    \label{fig:bubbles}
+  \end{figure}
 
     \begin{figure}[tpb]
       \centering
