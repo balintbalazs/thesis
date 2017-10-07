@@ -85,7 +85,7 @@ By combining scanned light-sheet \cite{keller_reconstruction_2008} with confocal
 
 \subsection{Image registration}
 
-To perform image fusion of multiple views, first image registration is necessary: the coordinate systems of both views have to be properly overlapped. Ideally a single mirroring transformation would be enough to superpose the two camera images, however in practice the microscope can never be aligned with such precision. Other types of transformations are also necessary: translation to account for offsets in the field of view; scaling in case of slightly different magnifications; and also shearing if the detection plane is not perfectly perpendicular to the sample movement direction \cite{krzic_multiple-view_2009}. To combine all of these effects, a full, 3D affine transformation is necessary to properly align the two camera images (Fig. \ref{fig:acquisition} a). This transformation can be represented by a matrix multiplication with 12 different parameters:
+To perform image fusion of multiple views, first image registration is necessary: the coordinate systems of both views have to be properly overlapped. Ideally a single mirroring transformation would be enough to superpose the two camera images, however in practice the microscope can never be aligned with such precision. Other types of transformations are also necessary: translation to account for offsets in the field of view; scaling in case of slightly different magnifications; and also shearing if the detection plane is not perfectly perpendicular to the sample movement direction \cite{krzic_multiple-view_2009}. To combine all of these effects, a full, 3D affine transformation is necessary to properly align the two camera images (\autoref{fig:acquisition} a). This transformation can be represented by a matrix multiplication with 12 different parameters:
 \[
 \begin{pmatrix}
 a & b & c & d \\ 
@@ -146,7 +146,7 @@ e x + f y + g\\
 1
 \end{pmatrix}
 \]
-If this is possible, then fusion can be carried out separately for each image plane (Fig. \ref{fig:acquisition} b), which would greatly facilitate live image fusion. The requirements for this are the following:
+If this is possible, then fusion can be carried out separately for each image plane (\autoref{fig:acquisition} b), which would greatly facilitate live image fusion. The requirements for this are the following:
 \begin{align}
 \left| c z \right| &< \sigma_{xy} & \forall z \label{eq:req1}\\
 \left| g z \right|  &< \sigma_{xy} & \forall z \label{eq:req2}\\
@@ -217,7 +217,7 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
 
   To validate our hypotheses, that 2D direct image fusion is sufficient instead of the full 3D fusion, we imaged several samples. First, we imaged the flourescent beads again, now with the live fusion enabled, to make sure our registration parameters are correct. Manual evaluation of the data revealed that the fusion indeed worked, without any artifacts, such as double beads which would indicate an imprecision in alignment or in the transformation parameters.
 
-  We also applied the live fusion to a real biological specimen, namely \textit{Drosophila melanogaster} embryos expressing H2Av-mCherry histone marker. The embryos were imaged first without direct fusion enabled, and immediately afterwards with direct fusion enabled (Fig. \ref{fig:drosophila}). Image quality dependency on the depth of the imaging plane is especially apparent in single-view stacks. Planes closer to the camera give a sharp, high contrast image, while planes further then the middle of the embryo are severely degraded due to scattering.
+  We also applied the live fusion to a real biological specimen, namely \textit{Drosophila melanogaster} embryos expressing H2Av-mCherry histone marker. The embryos were imaged first without direct fusion enabled, and immediately afterwards with direct fusion enabled (\autoref{fig:drosophila}). Image quality dependency on the depth of the imaging plane is especially apparent in single-view stacks. Planes closer to the camera give a sharp, high contrast image, while planes further then the middle of the embryo are severely degraded due to scattering.
 
   Stacks obtained with the live fusion enabled show a consistently high image quality throughout the entire stack, independent of the depth. This allows us to keep only the already fused data, thus effectively reducing the storage requirement by half, and facilitating further data processing steps. 
 
@@ -255,20 +255,22 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
 
   A second feature of our compression library is a novel algorithm for noise dependent lossy compression of scientific images. As mentioned before, lossy compression is not recommended for scientific images, and the reason for this, is all practical lossy compression algorithms are designed with the intent of fooling the human visual system \cite{sayood_introduction_2012}. While the images compressed by these algorithms may appear identical to the eye, any downstream data analysis could be negatively impacted by the compression artifacts. To our knowledge, only a single algorithm allows to set the loss in a deterministic manner: the near-lossless operating mode of JPEG-LS \cite{weinberger_loco-i_2000}. In this mode it is possible to set the maximum allowable error a pixel can have after decompression. Although this can be useful for certain applications, it has not been widely implemented, as the visual quality loss is more severe compared to other algorithms with the same compression ratio \cite{santa-cruz_study_2000}.
 
-  \b3d image compression
-  light-sheet (Sec. \ref{sec:light-sheet})
-  data handling is bottleneck 
 
-  KLB \cite{amat_efficient_2015}
 
-  big data viewer \cite{pietzsch_bigdataviewer:_2015}
-  Fiji \cite{schindelin_fiji:_2012}
+  % \b3d image compression
+  % light-sheet (Sec. \ref{sec:light-sheet})
+  % data handling is bottleneck 
 
-  FLIC \cite{wang_fast_2012}
-  SFALIC \cite{starosolski_simple_2007}
-  FELICS \cite{howard_fast_1993} -> this was before JPEG-LS
-  Treib terrain editing \cite{treib_interactive_2012}
-  Treib turbulence \cite{treib_turbulence_2012}
+  % KLB \cite{amat_efficient_2015}
+
+  % big data viewer \cite{pietzsch_bigdataviewer:_2015}
+  % Fiji \cite{schindelin_fiji:_2012}
+
+  % FLIC \cite{wang_fast_2012}
+  % SFALIC \cite{starosolski_simple_2007}
+  % FELICS \cite{howard_fast_1993} -> this was before JPEG-LS
+  % Treib terrain editing \cite{treib_interactive_2012}
+  % Treib turbulence \cite{treib_turbulence_2012}
 
 
 
@@ -281,12 +283,37 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
 
     compression scheme: modeling+ coding \cite{rissanen_universal_1981}
 
+    
+    \subsubsection{Lossless compression}
+    To ensure high performance while still keeping the central processing unit (CPU) of the computer available for imaging tasks, we developed our compression algorithm in the CUDA framework \cite{nickolls_scalable_2008} that utilizes the massively parallel architecture of the graphics processing unit (GPU). The algorithm design initially had three main requirements to ensure suitability for a high-speed microscopy environment: 1) low complexity for fast execution, 2) no data dependencies to enable parallel execution, and 3) full reversibility to ensure lossless compression. Since existing image compression standards such as JPEG2000 \cite{adams_jpeg-2000_2001} or JPEG-LS \cite{weinberger_loco-i_2000} were designed to maximize compression ratio even at the expense of compression speed, these were not suitable for our needs. Furthermore, most steps inherently require sequential execution, thus preventing efficient parallelization. Promising efforts have been made to enable parallel compression by simplifying JPEG-LS, by removing the limiting steps from the algorithm (such as Golomb parameter adaptation or context modeling) \cite{wang_fast_2012,starosolski_simple_2007}. Although some of these methods could reach a significant speedup with minimal expense in compression ratio, their performance was still not enough for real-time compression of high-speed microscopy data.
+
+    As in the case of other image compression methods, our algorithm has two main components: decorrelation and entropy coding. To decorrelate the data, similarly to JPEG-LS and lossless-JPEG \cite{pennebaker_jpeg:_1992}, a prediction is performed for each pixel by calculating the average of the top and left neighbors (\autoref{fig:algorithm}). The prediction is subtracted from the real pixel value, resulting in the prediction error term ϵ. Since the neighboring pixels have a high chance of correlation, these error terms will typically be very small compared to the raw intensity values. The prediction error terms are then subsequently run-length encoded and entropy coded by a fast, CUDA enabled Huffman coder \cite{treib_interactive_2012,treib_turbulence_2012} to effectively reduce data size. For decompression, the Huffman coding and run-length encoding are first reversed, then each pixel value is reconstructed from the neighboring values and the prediction errors. Although this implementation sacrifices a little in compression ratio compared to size-optimized methods, it can surpass a compression speed of \SI{1}{GB/s} (\autoref{fig:bubbles}), which is sufficient even for the dual camera confocal MuVi-SPIM setup \cite{de_medeiros_confocal_2015}.
+    
     \begin{figure}[tpb]
       \centering
       \includegraphics[page=1,width=0.6\textwidth]{SFig1_flow}
-      \bcaption[\b3d algorithm schematics]{(\textbf{a}) Prediction context for pixel X, the next sample to be encoded. Three neighboring pixels are considered: left (A), top (B) and top left (C) neighbors. (\textbf{b}) Lossless JPEG predictors for X, based on the context showed in (\textbf{a}). The first three predictors are one-dimensional, while the rest are two-dimensional. Using a two dimensional predictor while increases complexity slightly, also increases the achievable compression ratio. We found that for fluorescence microscopy images predictor 7 performs best, hence its inclusion in the \b3d algorithm. (\textbf{c)} Complete algorithm flowchart depicting the main stages of the compression. First, if the result should be lossless, pixel prediction is performed on the original image values. If within noise level mode is selected, the image noise is stabilized first (see "\textbf{Supplementary Note}"), which is then scaled by the quantization step q. Prediction is performed, and the prediction errors are rounded to the nearest integer. The prediction errors for both lossless and lossy modes are then run-length encoded, and finally Huffman coding is applied to effectively reduce data size. The output of the Huffman coder is saved as the compressed file.}
+      \bcaption[\b3d algorithm schematics]{(\textbf{a}) Prediction context for pixel X, the next sample to be encoded. Three neighboring pixels are considered: left (A), top (B) and top left (C) neighbors. (\textbf{b}) Lossless JPEG predictors for X, based on the context showed in (\textbf{a}). The first three predictors are one-dimensional, while the rest are two-dimensional. Using a two dimensional predictor while increases complexity slightly, also increases the achievable compression ratio. We found that for fluorescence microscopy images predictor 7 performs best, hence its inclusion in the \b3d algorithm. (\textbf{c)} Complete algorithm flowchart depicting the main stages of the compression. First, if the result should be lossless, pixel prediction is performed on the original image values. If within noise level mode is selected, the image noise is stabilized first (see \autoref{sec:wnl}), which is then scaled by the quantization step $q$. Prediction is performed, and the prediction errors are rounded to the nearest integer. The prediction errors for both lossless and lossy modes are then run-length encoded, and finally Huffman coding is applied to effectively reduce data size. The output of the Huffman coder is saved as the compressed file.}
       \label{fig:algorithm}
     \end{figure}
+
+    \subsubsection{Within noise level compression}
+    \label{sec:wnl}
+    Noise dependent lossy compression relies on the fact that microscopy images naturally contain photon shot noise. It only allows differences in the pixel values between the compressed and uncompressed images that are proportional to this noise level. A special case for this mode is when all compression errors are smaller than the standard deviation of the noise ($\sigma$), which we call within noise level (WNL) compression.
+
+    Our algorithm is inspired by both the near-lossless mode of JPEG-LS \cite{weinberger_loco-i_2000}, where the maximum compression error can be set to a predefined value, and the square root compression scheme \cite{gowen_square_2003, bernstein_noise_2010}, that quantizes its input relative to its square. We combine the two methods to achieve noise dependent lossy compression while still retaining good image quality and avoiding banding artifacts.
+
+    Before the prediction errors are sent to the entropy coder, a quantization can take place that reduces the number of symbols that need to be encoded in order to increase compression ratio. By changing the quantization step, the maximum absolute reconstruction error can be defined, such as when using JPEG-LS. For noise dependent compression, however, the quantization step should be proportional to the image noise, which can be achieved by the following transformation introduced by Bernstein \etal \cite{bernstein_noise_2010}:
+    \begin{equation}
+      T = 2 \sqrt{e + \sigma^2_{RN}}
+      \label{eq:wnl}
+    \end{equation}
+    
+    where 𝑒 is the intensity scaled to photoelectrons, and $\sigma_{𝑅𝑁}$ is the camera read noise. To perform the scaling of digital numbers (DN) to photoelectrons, it’s necessary to know the camera offset and conversion parameters: $e=(I-offset)\cdot g)$, where $g$ is the gain in photoelectrons/DN, in $I$ is the original pixel intensity. This transformation assumes a Poisson-Gaussian noise, incorporating the photon shot noise and the camera readout noise, which is a good model for most scientific imaging sensors, such as (EM)CCD or sCMOS.
+
+    To accommodate for all imaging needs, two options are available in the noise dependent lossy mode. In Mode 1, after the stabilizing transform (\autoref{eq:wnl}), the prediction is performed first, followed by quantization of the prediction errors. This mode reaches a better compression ratio and higher peak signal to noise ratio (PSNR) for the same quantization step compared to Mode 2 (\autoref{fig:swapping} a, b), and is recommended for most use cases. For larger quantization steps ($q \geq 3 \sigma$), however, Mode 1 might introduce some spatial correlations, because the prediction errors that are being quantized depend on multiple adjacent pixels (\autoref{fig:swapping} c, d). Mode 2 excludes this possibility by swapping the quantization and prediction (\autoref{fig:swapping} c, d) at the expense of compression ratio. Since no correlations are introduced, Mode 2 is suitable for highly sensitive image analysis tasks, such as single-molecule localization. In this paper, we use Mode 2 for all single-molecule localization data, and Mode 1 for all other datasets.
+  
+
+    
 
 
 
@@ -294,7 +321,7 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
       \centering
       \includegraphics[page=1,height=0.5\textwidth]{bubbles}
       \bcaption[Lossless compression performance]{Performance comparison of our \b3d compression algorithm (red circle) vs. KLB (orange), uncompressed TIFF (light yellow), LZW compressed TIFF (light blue) and JPEG2000 (blue) regarding write speed (horizontal axis), read speed (vertical axis) and file size (circle size). (see also Table \ref{tab:performance}).}
-      \label{fig:performance}
+      \label{fig:bubbles}
     \end{figure}
 
     
@@ -400,3 +427,9 @@ Single molecule localization data was simulated in Matlab ( "Supplementary Code"
 
 \subsubsection{Code availability}
 Code used for analyzing data, \b3d source code and compiled binaries, including a filter plugin for HDF5, is available for download at \url{https://git.embl.de/balazs/B3D}.
+
+
+
+\subsection{Conclusions}
+
+Our algorithm is implemented in C++, and allows for easy integration through an API with various programming languages. The library was tested on Linux (Ubuntu 16.04) and Windows (10). Additionally, we implemented a filter plugin for HDF5 which enables a seamless integration in all software packages that are supporting the native HDF5 library, such as Matlab, Python, Imaris, or Ilastik. Because of its versatility, HDF5 has emerged as the de facto standard in the open source light sheet microscopy field, and is also the basis for the widely used BigDataViewer \cite{pietzsch_bigdataviewer:_2015} in Fiji \cite{schindelin_fiji:_2012}. When loading a \b3d compressed image in an HDF5 enabled application, the library automatically calls our filter plugin, decompresses the image on the GPU, and copies it back into CPU memory. Due to B3D’s efficient compression and its high decompression speed, loading data is often accelerated: For a state-of-the-art hard drive with \SI{200}{MB/s} bandwidth, loading a \SI{2}{GB} uncompressed 3D stack of images takes about 10 seconds. With an average compression ratio of 20 fold in the WNL mode, the loading time is reduced to 0.5 seconds followed by 2 seconds of decompression, which yields a factor of four speed-up. It is also worth to note, that the achieved WNL compression reduces the camera data rate to below \SI{40}{MB/s}, well below the \SI{1}{Gb/s} Ethernet standard. This enables to use current network infrastructure to move data to long term storage and even makes the use of cloud services possible. Altogether, \b3d, our efficient GPU-based image compression library allows for exceptionally fast compression speed and greatly increases compression ratio with its WNL scheme, offering a versatile tool that can be easily tailored to any high-speed microscopy environment.
