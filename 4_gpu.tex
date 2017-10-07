@@ -32,7 +32,7 @@
 
   This chapter will focus on addressing these challenges, by presenting a real-time, GPU-based image preprocessing pipeline consisting of two parts (\autoref{fig:pipeline}).
   The first part is a fast image fusion method for our workhorse light-sheet microscope, the MuVi-SPIM \cite{krzic_multiview_2012}, that enables live fusion of the images arriving from two opposing cameras.
-  The second part of the pipeline, which can also be used in a standalone way, is a real-time image compression library that allows lossless and within noise level compression of the data already during acquisition.
+  The second part of the pipeline, which can also be used in a standalone way, is a real-time image compression library that allows lossless and noise dependent lossy compression of the data already during acquisition.
 
   \begin{figure}
     \centering
@@ -43,7 +43,7 @@
 
 
 
-  \subsection{CUDA architecture}
+  \section{CUDA architecture}
 
     CUDA \cite{nickolls_scalable_2008}
     CUDA programming Guide \cite{nvidia_cuda_2015}
@@ -116,7 +116,7 @@ For the two opposing views of MuVi-SPIM, these parameters are only dependent on 
 
 In our previous fusion pipeline, after the parameters were acquired, the 3D stacks are fused by transforming one of the views to the coordinate system of the other (using the affine transformation parameters from the bead based registration), and fusing the two stack by applying a sigmoidal weighted average. The weights are determined in a way to exclude the parts of a stack that has worse image quality, and complement is from the other view. When using the electronic confocal slit detection (eCSD) weighting is not necessary, as the scattered light is already rejected in these recordings, and a simple sum of the two stacks gives the best results regardless of the sample \cite{de_medeiros_confocal_2015}.
 
-The fusion process itself, however can be very resource intensive, and take a considerable amount of time. This is simply due to the size of the 3D stacks: a single stack is usually between 2 and \SI{4}{GB} in size. Thus, the necessary memory requirement to fuse 2 of these stacks is $3\cdot \SI{4}{GB} = \SI{12}{GB}$, as the result will also take up the same space. Just reading and writing this amount of information to the hard disk takes a considerable amount of time. When using an SSD drive for example, with a \SI{500}{MB/s} read/write speed, just the I/O operations will take around $\frac{\SI{12}{GB}}{\SI{500}{MB/s}} = \SI{24}{s}$.
+The fusion process itself, can be very resource intensive, and take a considerable amount of time. This is simply due to the size of the 3D stacks: a single stack is usually between 2 and \SI{4}{GB} in size. Thus, the necessary memory requirement to fuse 2 of these stacks is $3\cdot \SI{4}{GB} = \SI{12}{GB}$, as the result will also take up the same space. Just reading and writing this amount of information to the hard disk takes a considerable amount of time. When using an SSD drive for example, with a \SI{500}{MB/s} read/write speed, just the I/O operations will take around $\frac{\SI{12}{GB}}{\SI{500}{MB/s}} = \SI{24}{s}$.
 
 
 \begin{figure}
