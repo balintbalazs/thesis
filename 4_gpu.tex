@@ -43,10 +43,10 @@
 
 
 
-  \section{CUDA architecture}
+  % \section{CUDA architecture}
 
-    CUDA \cite{nickolls_scalable_2008}
-    CUDA programming Guide \cite{nvidia_cuda_2015}
+  %   CUDA \cite{nickolls_scalable_2008}
+  %   CUDA programming Guide \cite{nvidia_cuda_2015}
 
 
 
@@ -125,8 +125,7 @@ The fusion process itself, can be very resource intensive, and take a considerab
   \bcaption[Multi-view fusion methods for light-sheet microscopy]{a) Full 3D stacks are acquired from the opposing views (yellow and blue), which are then registered in 3D space using previously acquired affine transformation parameters. Registered stacks are then weighted averaged to create the final fused stack (green). b) Images from opposing views are directly fused plane by plane. Registration takes place in 2D space thus reducing computational effort and memory requirements. The registered planes are then weighted averaged to create the final fused image.}
   \label{fig:acquisition}
 \end{figure}
-
-It would be much more practical to already fuse the opposing views before displaying or saving the image. Since the two cameras ideally image the same $z$ plane, it should be possible to reduce the alignment problem to a 2D affine transformation:
+hIt would be much more practical to already fuse the opposing views before displaying or saving the image. Since the two cameras ideally image the same $z$ plane, it should be possible to reduce the alignment problem to a 2D affine transformation:
 \[
 \begin{pmatrix}
 a & b & d\\ 
@@ -203,12 +202,7 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
 
 \subsection{Results}
 
-  \begin{figure*}[tb]
-    \centering
-    \includegraphics[width=1\textwidth]{fusion/drosophila_D2}
-    \caption{ GPU fused images of a \textit{Drosophila melanogaster} embryo. Two stacks were taken in quick succession first without fusion, then with fusion enabled. Fused images are shown in the middle of each subfigure, while the individual camera images are in the bottom insets. The top-left inset depicts the z-position of the shown images. a) Image from closer to the left camera. b) Image from the center of the embryo. c) Image from closer to the right camera.}
-    \label{fig:drosophila}
-  \end{figure*}
+  
 
   The image preprocessing pipeline was tested on our MuVi-SPIM microscope \cite{krzic_multiview_2012}. For the background subtraction we recorded 1500 dark images with each camera and averaged them, in order to obtain the camera specific background images. Prior to image acquisition these were uploaded to the GPU memory, and were readily available for the pipeline.
 
@@ -216,24 +210,39 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
 
   \[
   \begin{pmatrix}
-    1.013 & 2.497\times 10^{-3} & 7.110\times 10^{-3} & -21.71 \\
-    -1.701\times 10^{-3} & 1.014 & -1.980\times 10^{-3} & -4.085 \\
-    2.667\times 10^{-6} & -6.816\times 10^{-5} & 1.003 & -0.566 \\
+    1.013 & 2.494\times 10^{-3} & \mathbf{7.182\times 10^{-3}} & -21.67 \\
+    -1.697\times 10^{-3} & 1.014 & \mathbf{-3.192\times 10^{-5}} & -4.161 \\
+    \mathbf{-9.694\times 10^{-5}} & \mathbf{1.937\times 10^{-7}} & \mathbf{1.003} & \mathbf{-0.433} \\
     0 & 0 & 0 & 1
   \end{pmatrix}
   \]
-
-  \begin{align*}    
-    \max |cz| =& \SI{0.0693}{\micro m}  \\
-    \max |gz| =& \SI{0.019}{\micro m}  \\
-    \max | i x + j y + (k-1)  z + l | =& \SI{0.8384}{\micro m}
+  Substituting these values to \autoref{eq:req1, eq:req2, eq:req3} and evaluating fot he full range of $x, y, z$, the maximum displacement for each coordinate will be:
+  \begin{align*}
+    \max |cz| =& \SI{0.070}{\micro m}  \\
+    \max |gz| =& \SI{3.11e-4}{\micro m}  \\
+    \max | i x + j y + (k-1)  z + l | =& \SI{0.7789}{\micro m}
   \end{align*}
+  % x, y 0..2048, z -50..50
+
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{fusion/beads/2Dvs3Dbeads}
+    \bcaption[Comparison of 3D and 2D fusion of beads]{Front and side views of a representative bead after 3D full affine fusion (a, b) and after 2D planewise fusion (c,d). FHWM was measured along the indicated lines, through the center of the bead image. Scale bar: \SI{1}{\micro m}.}
+    \label{fig:2Dvs3Dbeads}
+  \end{figure}
 
   To validate our hypotheses, that 2D direct image fusion is sufficient instead of the full 3D fusion, we imaged several samples. First, we imaged the flourescent beads again, now with the live fusion enabled, to make sure our registration parameters are correct. Manual evaluation of the data revealed that the fusion indeed worked, without any artifacts, such as double beads which would indicate an imprecision in alignment or in the transformation parameters.
 
   We also applied the live fusion to a real biological specimen, namely \textit{Drosophila melanogaster} embryos expressing H2Av-mCherry histone marker. The embryos were imaged first without direct fusion enabled, and immediately afterwards with direct fusion enabled (\autoref{fig:drosophila}). Image quality dependency on the depth of the imaging plane is especially apparent in single-view stacks. Planes closer to the camera give a sharp, high contrast image, while planes further then the middle of the embryo are severely degraded due to scattering.
 
-  Stacks obtained with the live fusion enabled show a consistently high image quality throughout the entire stack, independent of the depth. This allows us to keep only the already fused data, thus effectively reducing the storage requirement by half, and facilitating further data processing steps. 
+  Stacks obtained with the live fusion enabled show a consistently high image quality throughout the entire stack, independent of the depth. This allows us to keep only the already fused data, thus effectively reducing the storage requirement by half, and facilitating further data processing steps.
+
+  \begin{figure*}[tb]
+    \centering
+    \includegraphics[width=1\textwidth]{fusion/drosophila_D2}
+    \caption{ GPU fused images of a \textit{Drosophila melanogaster} embryo. Two stacks were taken in quick succession first without fusion, then with fusion enabled. Fused images are shown in the middle of each subfigure, while the individual camera images are in the bottom insets. The top-left inset depicts the z-position of the shown images. a) Image from closer to the left camera. b) Image from the center of the embryo. c) Image from closer to the right camera.}
+    \label{fig:drosophila}
+  \end{figure*}
 
 
 % \section{Conclusions}
@@ -443,7 +452,7 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
 \section{Methods}
   \label{sec:methodsB3D}
 \subsubsection{Compression benchmarking}
-For all presented benchmarks, TIFF and JPEG2000 performance was measured through MATLAB's imwrite and imread functions, while KLB and \b3d performance was measured in C++. All benchmarks were run on a computer featuring 32 processing cores (2×Intel Xeon E5-2620 v4), \SI{128}{GB} RAM and an NVIDIA GeForce GTX 970 graphics processing unit. Read and write measurements were performed in RAM to minimize I/O overhead, and are an average of 5 runs.
+For all presented benchmarks, TIFF and JPEG2000 performance was measured through MATLAB's imwrite and imread functions, while KLB and \b3d performance was measured in C++. All benchmarks were run on a computer featuring 32 processing cores (2×Intel Xeon E5-2620 v4), \SI{128}{GB} RAM and an NVIDIA GeForce GTX 970 graphics processing unit. Read and write measurements were performed in RAM to minimize I/O overhead, and are an average of 5 runs. SMLM datasets were provided by Joran Deschamps, and were originally published in \cite{deschamps_3d_2014} and \cite{deschamps_efficient_2016}. Screening datasets were provided by Jean-Karim Hériché, and were originally published in \cite{simpson_genome-wide_2012}
 
 \subsubsection{Light-sheet imaging}
 \textit{Drosophila} embryos were imaged in our MuVi-SPIM setup \cite{krzic_multiview_2012} using the electronic confocal slit detection (eCSD) \cite{de_medeiros_confocal_2015}. Embryos were collected on an agar juice plate, and dechorionated in 50\% bleach solution for \SI{1}{min}. The embryos were then mounted in a shortened glass capillary (Brand \SI{100}{\micro l}) filled with 0.8\% GelRite (Sigma-Aldrich), and pushed out of the capillary to be supported only by the gel.
