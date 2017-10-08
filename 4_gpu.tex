@@ -237,14 +237,16 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
   As these are below the resolution of the microscope, discarding the coefficients, and reducing the 3D transformation to a 2D transformation will not have any negative effects on the image quality.
   % x, y 0..2048, z -50..50
 
-  \begin{figure*}
+  
+
+  To validate our hypotheses, we fused bead stacks that were acquired for the calibration using both the 3D and the 2D transformations. The 2D, planewise fused beads do not exhibit any pathological morphologies compared to the 3D fused beads (\autoref{fig:2Dvs3Dbeads}). When measuring the size of the bead images (FWHM) along the lateral and axial directions, the difference is less than 0.5\%. This is well below any resolvable features.
+
+  \begin{figure}[bht]
     \centering
     \includegraphics[width=1\textwidth]{fusion/drosophila_D2}
     \caption{ GPU fused images of a \textit{Drosophila melanogaster} embryo. Two stacks were taken in quick succession first without fusion, then with fusion enabled. Fused images are shown in the middle of each subfigure, while the individual camera images are in the bottom insets. The top-left inset depicts the z-position of the shown images. a) Image from closer to the left camera. b) Image from the center of the embryo. c) Image from closer to the right camera.}
     \label{fig:drosophila}
-  \end{figure*}
-
-  To validate our hypotheses, we fused bead stacks that were acquired for the calibration using both the 3D and the 2D transformations. The 2D, planewise fused beads do not exhibit any pathological morphologies compared to the 3D fused beads (\autoref{fig:2Dvs3Dbeads}). When measuring the size of the bead images (FWHM) along the lateral and axial directions, the difference is less than 0.5\%. This is well below any resolvable features.
+  \end{figure}
 
   We applied the direct fusion method to various biological specimens, such as \textit{Drosophila melanogaster} embryos, zebrafish larvae, \textit{Phallusia mammillata} embryos and \textit{Volvox} algae. As a demonstration, here we show the results of imaging \textit{Drosophila} embryos expressing H2Av-mCherry histone marker. The embryos were imaged first without direct fusion enabled, and immediately afterwards with direct fusion enabled (\autoref{fig:drosophila}). Image quality dependency on the depth of the imaging plane is especially apparent in single-view stacks. Planes closer to the objective give a sharp, high contrast image, while planes deeper inside the embryo are severely degraded due to scattering.
 
@@ -352,6 +354,7 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
 
 
     \subsubsection{Additional noise introduced by compression}
+    \label{sec:extraNoise}
 
     When applying quantization to any kind of data, the quantization error can be modeled as an additional uniform noise with standard deviation of $\frac{\delta}{\sqrt{12}}$, where $\delta$ is the quantization step size \cite{gray_quantization_1998}. During compression the quantization is proportional to the standard deviation of the original image noise, thus the noise on the uncompressed image will be:
     \begin{equation}
@@ -375,14 +378,18 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
       \label{fig:extraNoise}
     \end{figure}
 
-  \subsection{Benchmarking}
+  \subsection{Evaluation of the compression algorithm}
 
-  \begin{figure}[tpb]
-    \centering
-    \includegraphics[page=1,height=0.5\textwidth]{bubbles}
-    \bcaption[Lossless compression performance]{Performance comparison of our \b3d compression algorithm (red circle) vs. KLB (orange), uncompressed TIFF (light yellow), LZW compressed TIFF (light blue) and JPEG2000 (blue) regarding write speed (horizontal axis), read speed (vertical axis) and file size (circle size). (see also Table \ref{tab:performance}).}
-    \label{fig:bubbles}
-  \end{figure}
+  We compared our algorithm’s performance with TIFF (LZW), JPEG2000, and the speed-optimized KLB \cite{amat_efficient_2015} by measuring compression speed, decompression speed and resulting file size (\autoref{fig:bubbles}). Only \b3d is capable of handling the sustained high data rate of modern sCMOS cameras typically used in light-sheet microscopy, while still maintaining compression ratios comparable to more complex, but much slower algorithms (\autoref{tab:performance}).
+
+  "TODO" We define the mode where the quantization step is equal to the noise (q=1σ) as within noise level (WNL) compression. Using this method, the compression ratio massively increases for all imaging modalities compared to the lossless mode (\autoref{fig:benchmark}) without any apparent loss in image quality (\autoref{fig:wnlSamples}). Furthermore, the average compression error is considerably smaller than the image noise itself (\autoref{fig:RMSD}).
+
+    \begin{figure}[tpb]
+      \centering
+      \includegraphics[page=1,height=0.5\textwidth]{bubbles}
+      \bcaption[Lossless compression performance]{Performance comparison of our \b3d compression algorithm (red circle) vs. KLB (orange), uncompressed TIFF (light yellow), LZW compressed TIFF (light blue) and JPEG2000 (blue) regarding write speed (horizontal axis), read speed (vertical axis) and file size (circle size). (see also Table \ref{tab:performance}).}
+      \label{fig:bubbles}
+    \end{figure}
 
     \begin{figure}[tpb]
       \centering
@@ -390,6 +397,8 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
       \bcaption[Within noise level compression performance]{WNL compression performance compared with lossless performance for 9 different dataset representing 3 imaging modalities (SPIM, SMLM, screening). Compression ratio = original size / compressed size. For description of datasets see Table \ref{tab:datasets} in Appendix B.}
       \label{fig:benchmark}
     \end{figure}
+
+
 
     \begin{figure}[tpb]
       \centering
@@ -405,7 +414,7 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
       \label{fig:RMSD}
     \end{figure}
 
-    
+    To see how this noise-dependent compression affects common imaging pipelines, we tested the effect of different levels of compression on 3D nucleus and membrane segmentation in light-sheet microscopy, and on single-molecule localization accuracy in superresolution microscopy. First, we imaged a \textit{Drosophila melanogaster} embryo expressing an H2Av-mCherry nuclear marker in the MuVi-SPIM and segmented the nuclei (\autoref{fig:wnlDroso}a and \autoref{sec:methodsB3D}). Then we performed noise dependent compression at various quality levels and calculated the segmentation overlap compared to the uncompressed stack (\autoref{sec:methodsB3D}). At WNL compression ($q=1 \sigma$) the segmentation overlap is almost perfect (\autoref{fig:wnlDroso}b) with an overlap score of 0.996. Even when increasing the quantization step to $4\sigma$ (\autoref{fig:wnlDroso}c) the overlap score stays at 0.98 and only drops below 0.97 when the compression ratio is already above 120 (quantization step of $5\sigma$, \autoref{fig:wnlDroso}d). We got similar results for a membrane segmentation pipeline that is used with \textit{Phallusia mammillata} embryos (\autoref{sec:methodsB3D} and \autoref{fig:wnlPhallusia}).
 
     \begin{figure}[tpb]
       \centering
@@ -420,6 +429,8 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
       \bcaption[Influence of noise dependent lossy compression on 3D membrane segmentation]{A \textit{Phallusia mammillata} embryo expressing PH-citrine membrane marker was imaged in MuVi-SPIM \cite{krzic_multiview_2012}, and 3D membrane segmentation was performed (\autoref{sec:methodsB3D}) (\textbf{a}). The raw data was subsequently compressed at increasingly higher compression levels, and segmented using the same settings as the uncompressed data. To visualize segmentation mismatch, the results of the uncompressed (green) and compressed (magenta) datasets are overlaid in a single image (\textbf{b, c}; overlap in white). Representative compression levels were chosen at two different multiples of the photon shot noise, at q=1.6$\upsigma$ (\textbf{b}) and q=4.8$\upsigma$ (\textbf{c}). For all compression levels the segmentation overlap score (\autoref{sec:methodsB3D}) was calculated and is plotted in (\textbf{d}) along with the achieved compression ratios.}
       \label{fig:wnlPhallusia}
     \end{figure}
+
+    Next, we evaluated our compression algorithm in the context of single molecule localization, and measured how the localization precision is affected by an increasing compression ratio. We compressed a single-molecule localization microscopy (SMLM) dataset of immuno-detected microtubules (\autoref{fig:wnlSMLM}a) with increasing compression levels. For WNL compression ($q=1\sigma$) no deterioration of the image was visible (\autoref{fig:wnlSMLM}b), and even for the case of $q=4\sigma$ the compression induced errors were much smaller than the resolvable features (\autoref{fig:wnlSMLM}c). To quantify the impact of compression on the localization error, we used a simulated dataset (\autoref{sec:sec:methodsB3D}) and compared the localization output of different compression levels to the ground truth (\autoref{fig:wnlSMLM}d). Lossless compression resulted in a compression ratio of 2.7, whereas WNL compression reached a compression ratio of 5.0, while increasing the localization error by only 4\%. This also coincides with the theoretical increase of image noise (\autoref{sec:extraNoise}). Furthermore, the increase in localization error was not dependent on the signal to background noise ratio (\autoref{fig:SFig6_locprecVsNphotons}).
 
     \begin{figure}[tpb]
       \centering
@@ -437,14 +448,10 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
 
 
 
-\section{Noise dependent lossy compression}
   
-  square root compression \cite{gowen_square_2003}
-  noise and bias in square root compression \cite{bernstein_noise_2010}
-  quantization \cite{gray_quantization_1998}
-  Anscombe \cite{anscombe_transformation_1948}
-  optimal inverse Anscombe \cite{makitalo_optimal_2011,makitalo_closed-form_2011}
-  optimal inverse generalized Anscombe \cite{makitalo_optimal_2013}
+  % Anscombe \cite{anscombe_transformation_1948}
+  % optimal inverse Anscombe \cite{makitalo_optimal_2011,makitalo_closed-form_2011}
+  % optimal inverse generalized Anscombe \cite{makitalo_optimal_2013}
 
 
 
