@@ -112,11 +112,11 @@ where $x, y, z$ are the coordinates of the original 3D image, and $a, b, ..., l$
 
 These parameters are traditionally acquired by a bead based registration algorithm after imaging fluorescent beads from each view of the microscope \cite{preibisch_bead-based_2009,preibisch_software_2010}. The beads are segmented by using a difference of Gaussian filter, and the registration parameters are acquired by matching the segmented bead coordinates in each view. Identifying the corresponding beads in each view is done by a translation and rotation invariant local geometric descriptor. This matches the beads based on their relative position to their nearest neighbors. After the matching beads are identified, the affine transformation parameters are calculated by minimizing the global displacement for each pair of beads.
 
-For the two opposing views of MuVi-SPIM, these parameters are only dependent on the optical setup itself, and not the sample or the experiment. Because of this, it is sufficient to determine the transformation parameters only after modifying the microscope (\textit{e.g.} after realignment).
+For the two opposing views of MuVi-SPIM, these parameters are only dependent on the optical setup itself, and not on he sample or on the experiment. Because of this, it is sufficient to determine the transformation parameters only after modifying the microscope (\textit{e.g.} after realignment).
 
-In our previous fusion pipeline, after the parameters were acquired, the 3D stacks are fused by transforming one of the views to the coordinate system of the other (using the affine transformation parameters from the bead based registration), and fusing the two stack by applying a sigmoidal weighted average. The weights are determined in a way to exclude the parts of a stack that has worse image quality, and complement is from the other view. When using the electronic confocal slit detection (eCSD) weighting is not necessary, as the scattered light is already rejected in these recordings, and a simple sum of the two stacks gives the best results regardless of the sample \cite{de_medeiros_confocal_2015}.
+In our currently used fusion pipeline, after the parameters are acquired, the 3D stacks are fused by transforming one of the views to the coordinate system of the other (using the affine transformation parameters from the bead based registration), and fusing the two stack by applying a sigmoidal weighted average. The weights are determined in a way to exclude the parts of a stack that has worse image quality, and complement is from the other view. When using the electronic confocal slit detection (eCSD) weighting is not necessary, as the scattered light is already rejected in these recordings, and a simple sum of the two stacks gives the best results regardless of the sample \cite{de_medeiros_confocal_2015}.
 
-The fusion process itself, can be very resource intensive, and take a considerable amount of time. This is simply due to the size of the 3D stacks: a single stack is usually between 2 and \SI{4}{GB} in size. Thus, the necessary memory requirement to fuse 2 of these stacks is $3\cdot \SI{4}{GB} = \SI{12}{GB}$, as the result will also take up the same space. Just reading and writing this amount of information to the hard disk takes a considerable amount of time. When using an SSD drive for example, with a \SI{500}{MB/s} read/write speed, just the I/O operations will take around $\frac{\SI{12}{GB}}{\SI{500}{MB/s}} = \SI{24}{s}$.
+The fusion process itself can be very resource intensive, and take a considerable amount of time. This is simply due to the size of the 3D stacks: a single stack is usually between 2 and \SI{4}{GB} in size. Thus, the necessary memory requirement to fuse 2 of these stacks is $3\cdot \SI{4}{GB} = \SI{12}{GB}$, as the result will also take up the same space. Just reading and writing this amount of information to the hard disk takes a considerable amount of time. When using an SSD drive for example, with a \SI{500}{MB/s} read/write speed, just the I/O operations will take around $\frac{\SI{12}{GB}}{\SI{500}{MB/s}} = \SI{24}{s}$.
 
 
 \begin{figure}
@@ -125,7 +125,9 @@ The fusion process itself, can be very resource intensive, and take a considerab
   \bcaption[Multi-view fusion methods for light-sheet microscopy]{a) Full 3D stacks are acquired from the opposing views (yellow and blue), which are then registered in 3D space using previously acquired affine transformation parameters. Registered stacks are then weighted averaged to create the final fused stack (green). b) Images from opposing views are directly fused plane by plane. Registration takes place in 2D space thus reducing computational effort and memory requirements. The registered planes are then weighted averaged to create the final fused image.}
   \label{fig:acquisition}
 \end{figure}
-hIt would be much more practical to already fuse the opposing views before displaying or saving the image. Since the two cameras ideally image the same $z$ plane, it should be possible to reduce the alignment problem to a 2D affine transformation:
+
+\subsection{2D fusion of opposing views}
+To speed up the image fusion process, we take a new approach to fusing the images. As the two objectives of MuVi-SPIM ideally image the same $z$ plane, it should be possible to reduce the alignment problem to a 2D affine transformation:
 \[
 \begin{pmatrix}
 a & b & d\\ 
@@ -145,13 +147,15 @@ e x + f y + g\\
 1
 \end{pmatrix}
 \]
-If this is possible, fusion can be carried out separately for each image plane (\autoref{fig:acquisition} b), which would greatly facilitate live image fusion. The requirements for this are the following:
+The advantage of a simplified transformation is not only the reduced computational complexity, but also the massively reduced memory requirement, as in this case it is sufficient to store 3 planes in memory instead of 3 entire stacks (\autoref{fig:acquisition} b). Performing the 2D direct fusion on the GPU immediately after acquisition has two benefits: first, only the fused images are stored to the hard drive, which directly results in 50\% savings in storage space. Second, since the fusion is faster than the camera acquisition speed, the fused image can be displayed for the users instead of the 2 raw images. This would greatly improve user experience and speed up the initial, set-up phase of each experiment.
+
+In order to allow for the direct, 2D fusion, the microscope needs to be very well aligned to minimize the any adverse effects of discarding some of the affine transformation parameters. The requirements for this are the following:
 \begin{align}
 \left| c z \right| &< \sigma_{xy} & \forall z \label{eq:req1}\\
 \left| g z \right|  &< \sigma_{xy} & \forall z \label{eq:req2}\\
 \left| i x + j y + (k-1)  z + l \right| &< \sigma_z & \forall x, y, z  \label{eq:req3}
 \end{align}
-where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resolution of the microscope, which are 277 nm and 1099 nm respectively. 
+where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resolution of the microscope, which are \SI{277}{nm} and \SI{1099}{nm} respectively. 
 
  If these conditions are fulfilled (\textit{i.e.} the microscope is properly aligned), direct plane by plane fusion will not result in any loss of information compared to the full 3D image fusion.
 
@@ -176,13 +180,8 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
 
 % %To maximize GPU utilization, and ultimately justify the long data transfer times, in addition to the plane by plane fusion (which is actually an affine transformation followed by weighted average), we also implemented background subtraction, subsampling, LUT conversion from 16 bits to 8 bits, and JPEG compression in our pipeline (Fig \ref{fig:pipeline}). All of these steps either enhance image quality (such as background subtraction), reduce data size (LUT conversion, subsampling, JPEG), or both (fusion).
 
-% Since our microscope control software is implemented in LabVIEW, all the functions in our pipeline were incorporated in a dynamic linked library (DLL) which can be loaded by LabVIEW to use the CUDA functions. Furthermore, to facilitate the integration to existing software, we created a LabVIEW library based on these CUDA functions, to provide a consistent and easy to use interface for further development.
 
 \subsection{CUDA implementation of direct fusion}
-  Our custom microscope control software (\autoref{sec:software}) is developed in LabVIEW and we implemented the pipeline as a combination of a CUDA and a LabVIEW library. The CUDA library implements all the necessary low level functions and exposes these in a dynamically linked library (dll). The LabVIEW library, \texttt{LVCUDA.lvlib} implements two high level classes: \texttt{cuArray}, and \texttt{Texture} (\autoref{fig:LVCUDA}). These classes interface to the CUDA dll, and allow to easily build a flexible CUDA-based image processing pipeline in LabVIEW.
-
-  As the pipeline operates on 2D images, both classes support 1D or 2D arrays in a pitched configuration. \texttt{CuArray} as the parent class stores the pointer to the array, as well as the pitch, width and height. LabVIEW natively doesn't support pointer operations, therefore the pointer is simply cast to a \SI{64}{bit} unsigned integer internally. As this is a private member of the class there is no danger of accidental modification. Being a descendent of \texttt{cuArray} class, the \texttt{Texture} class adds a further member to store the reference to a CUDA texture object. This class is used to implement the affine transformation, as it supports floating point indexing and automatic linear interpolation.
-
   \begin{figure}
     \centering
     \begin{subfigure}[t]{0.49\textwidth}
@@ -199,14 +198,27 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
     \label{fig:LVCUDA}
   \end{figure}
 
+  Our custom microscope control software (\autoref{sec:software}) is developed in LabVIEW and we implemented the pipeline as a combination of a CUDA and a LabVIEW library. The CUDA library implements all the necessary low level functions and exposes these in a dynamically linked library (dll). The LabVIEW library, \texttt{LVCUDA.lvlib} implements two high level classes: \texttt{cuArray}, and \texttt{Texture} (\autoref{fig:LVCUDA}). These classes interface to the CUDA dll, and allow to easily build a flexible CUDA-based image processing pipeline in LabVIEW.
 
-\subsection{Results}
+  As the pipeline operates on 2D images, both classes support 1D or 2D arrays in a pitched configuration. \texttt{CuArray} as the parent class stores the pointer to the array, as well as the pitch, width and height. LabVIEW natively doesn't support pointer operations, therefore the pointer is simply cast to a \SI{64}{bit} unsigned integer internally. As this is a private member of the class there is no danger of accidental modification. Being a descendent of \texttt{cuArray} class, the \texttt{Texture} class adds a further member to store the reference to a CUDA texture object. This class is used to implement the affine transformation, as it supports floating point indexing and automatic linear interpolation.
+
+  As the processing is actually bottlenecked by the data transfer rate between the main memory and GPU memory, we implemented multiple commonly used image preprocessing operations for our pipeline to maximize the utility of the GPU. These functions include background subtraction, background masking and image compression. We will discuss these features in the following sections of the chapter. 
 
   
 
+
+\subsection{Results} 
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.6\textwidth]{fusion/beads/2Dvs3Dbeads}
+  \bcaption[Comparison of 3D and 2D fusion of beads]{Front and side views of a representative bead after 3D full affine fusion (a, b) and after 2D planewise fusion (c,d). FHWM was measured along the indicated lines, through the center of the bead image. Scale bar: \SI{1}{\micro m}.}
+  \label{fig:2Dvs3Dbeads}
+\end{figure}
+
   The image preprocessing pipeline was tested on our MuVi-SPIM microscope \cite{krzic_multiview_2012}. For the background subtraction we recorded 1500 dark images with each camera and averaged them, in order to obtain the camera specific background images. Prior to image acquisition these were uploaded to the GPU memory, and were readily available for the pipeline.
 
-  Following careful alignment of the microscope to meet the previously discussed requirements (Eqs. \ref{eq:req1} -- \ref{eq:req3}), we imaged fluorescent beads in a gel suspension to obtain the affine transformation parameters. The 3D transformation parameters were the following:
+  Following careful alignment of the microscope to meet the previously discussed requirements (Eqs. \ref{eq:req1} -- \ref{eq:req3}), we imaged fluorescent beads in a gel suspension to obtain the affine transformation parameters. The 3D transformation parameters obtained were the following:
 
   \[
   \begin{pmatrix}
@@ -216,33 +228,29 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
     0 & 0 & 0 & 1
   \end{pmatrix}
   \]
-  Substituting these values to \autoref{eq:req1, eq:req2, eq:req3} and evaluating fot he full range of $x, y, z$, the maximum displacement for each coordinate will be:
+  Substituting these values to Eqs. \ref{eq:req1} -- \ref{eq:req3} and evaluating for the full range of $x, y, z$, the maximum contribution of the discarded coefficients for each coordinate will be:
   \begin{align*}
     \max |cz| =& \SI{0.070}{\micro m}  \\
     \max |gz| =& \SI{3.11e-4}{\micro m}  \\
     \max | i x + j y + (k-1)  z + l | =& \SI{0.7789}{\micro m}
   \end{align*}
+  As these are below the resolution of the microscope, discarding the coefficients, and reducing the 3D transformation to a 2D transformation will not have any negative effects on the image quality.
   % x, y 0..2048, z -50..50
 
-  \begin{figure}
-    \centering
-    \includegraphics[width=0.6\textwidth]{fusion/beads/2Dvs3Dbeads}
-    \bcaption[Comparison of 3D and 2D fusion of beads]{Front and side views of a representative bead after 3D full affine fusion (a, b) and after 2D planewise fusion (c,d). FHWM was measured along the indicated lines, through the center of the bead image. Scale bar: \SI{1}{\micro m}.}
-    \label{fig:2Dvs3Dbeads}
-  \end{figure}
-
-  To validate our hypotheses, that 2D direct image fusion is sufficient instead of the full 3D fusion, we imaged several samples. First, we imaged the flourescent beads again, now with the live fusion enabled, to make sure our registration parameters are correct. Manual evaluation of the data revealed that the fusion indeed worked, without any artifacts, such as double beads which would indicate an imprecision in alignment or in the transformation parameters.
-
-  We also applied the live fusion to a real biological specimen, namely \textit{Drosophila melanogaster} embryos expressing H2Av-mCherry histone marker. The embryos were imaged first without direct fusion enabled, and immediately afterwards with direct fusion enabled (\autoref{fig:drosophila}). Image quality dependency on the depth of the imaging plane is especially apparent in single-view stacks. Planes closer to the camera give a sharp, high contrast image, while planes further then the middle of the embryo are severely degraded due to scattering.
-
-  Stacks obtained with the live fusion enabled show a consistently high image quality throughout the entire stack, independent of the depth. This allows us to keep only the already fused data, thus effectively reducing the storage requirement by half, and facilitating further data processing steps.
-
-  \begin{figure*}[tb]
+  \begin{figure*}
     \centering
     \includegraphics[width=1\textwidth]{fusion/drosophila_D2}
     \caption{ GPU fused images of a \textit{Drosophila melanogaster} embryo. Two stacks were taken in quick succession first without fusion, then with fusion enabled. Fused images are shown in the middle of each subfigure, while the individual camera images are in the bottom insets. The top-left inset depicts the z-position of the shown images. a) Image from closer to the left camera. b) Image from the center of the embryo. c) Image from closer to the right camera.}
     \label{fig:drosophila}
   \end{figure*}
+
+  To validate our hypotheses, we fused bead stacks that were acquired for the calibration using both the 3D and the 2D transformations. The 2D, planewise fused beads do not exhibit any pathological morphologies compared to the 3D fused beads (\autoref{fig:2Dvs3Dbeads}). When measuring the size of the bead images (FWHM) along the lateral and axial directions, the difference is less than 0.5\%. This is well below any resolvable features.
+
+  We applied the direct fusion method to various biological specimens, such as \textit{Drosophila melanogaster} embryos, zebrafish larvae, \textit{Phallusia mammillata} embryos and \textit{Volvox} algae. As a demonstration, here we show the results of imaging \textit{Drosophila} embryos expressing H2Av-mCherry histone marker. The embryos were imaged first without direct fusion enabled, and immediately afterwards with direct fusion enabled (\autoref{fig:drosophila}). Image quality dependency on the depth of the imaging plane is especially apparent in single-view stacks. Planes closer to the objective give a sharp, high contrast image, while planes deeper inside the embryo are severely degraded due to scattering.
+
+  Stacks obtained with the live fusion enabled show a consistently high image quality throughout the entire stack, independent of the depth. This allows us to keep only the already fused data, thus effectively reducing the storage requirement by half, and facilitating further data processing steps.
+
+  
 
 
 % \section{Conclusions}
