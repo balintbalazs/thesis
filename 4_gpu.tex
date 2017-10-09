@@ -241,16 +241,23 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
 
   To validate our hypotheses, we fused bead stacks that were acquired for the calibration using both the 3D and the 2D transformations. The 2D, planewise fused beads do not exhibit any pathological morphologies compared to the 3D fused beads (\autoref{fig:2Dvs3Dbeads}). When measuring the size of the bead images (FWHM) along the lateral and axial directions, the difference is less than 0.5\%. This is well below any resolvable features.
 
-  \begin{figure}[bht]
+  \begin{figure}[b]
     \centering
     \includegraphics[width=1\textwidth]{fusion/drosophila_D2}
     \caption{ GPU fused images of a \textit{Drosophila melanogaster} embryo. Two stacks were taken in quick succession first without fusion, then with fusion enabled. Fused images are shown in the middle of each subfigure, while the individual camera images are in the bottom insets. The top-left inset depicts the z-position of the shown images. a) Image from closer to the left camera. b) Image from the center of the embryo. c) Image from closer to the right camera.}
-    \label{fig:drosophila}
+    \label{fig:drosophila_D2}
   \end{figure}
 
-  We applied the direct fusion method to various biological specimens, such as \textit{Drosophila melanogaster} embryos, zebrafish larvae, \textit{Phallusia mammillata} embryos and \textit{Volvox} algae. As a demonstration, here we show the results of imaging \textit{Drosophila} embryos expressing H2Av-mCherry histone marker. The embryos were imaged first without direct fusion enabled, and immediately afterwards with direct fusion enabled (\autoref{fig:drosophila}). Image quality dependency on the depth of the imaging plane is especially apparent in single-view stacks. Planes closer to the objective give a sharp, high contrast image, while planes deeper inside the embryo are severely degraded due to scattering.
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{fusion/drosophilaContrast}
+    \bcaption[Image contrast depending on z position for raw and fused stacks]{Image contrast was measured as the Shannon entropy of the normalized Discrete Cosine Transform of the sections \cite{royer_adaptive_2016}. Contrast measurments were performed on the images shown on \autoref{fig:drosophila_D2}.}
+    \label{fig:drosophilaContrast}
+  \end{figure}
 
-  Stacks obtained with the live fusion enabled show a consistently high image quality throughout the entire stack, independent of the depth. This allows us to keep only the already fused data, thus effectively reducing the storage requirement by half, and facilitating further data processing steps.
+  We applied the direct fusion method to various biological specimens, such as \textit{Drosophila melanogaster} embryos, zebrafish larvae, \textit{Phallusia mammillata} embryos and \textit{Volvox} algae. As a demonstration, here we show the results of imaging \textit{Drosophila} embryos expressing H2Av-mCherry histone marker. The embryos were imaged first without direct fusion enabled, and immediately afterwards with direct fusion enabled (\autoref{fig:drosophila_D2}). Image quality dependency on the depth of the imaging plane is especially apparent in single-view stacks. Planes closer to the objective give a sharp, high contrast image, while planes deeper inside the embryo are severely degraded due to scattering (\autoref{fig:drosophilaContrast}).
+
+  Stacks obtained with the live fusion enabled show a consistently high image quality throughout the entire stack, independent of the depth (\autoref{fig:drosophilaContrast}). This allows us to keep only the already fused data, thus effectively reducing the storage requirement by half, and facilitating further data processing steps.
 
   
 
