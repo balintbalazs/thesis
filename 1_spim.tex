@@ -624,21 +624,45 @@ In an ideal setting, the ultimate microscope would be able to record a continuos
 \section{Image compression}
   As we will see later (\autoref{sec:sizes}), light-sheet microscopy is capable of generating an immense amount of data in a short amount of time. This is why not only fast data processing but data compression also plays an important role when evaluating, sharing and storing the images. In this section we will briefly introduce the core concepts of image compression and show some examples that will facilitate understanding \autoref{ch:GPU}. For a more comprehensive review on data compression fundamentals, the interested reader is referred to the works of Sayood \cite{sayood_introduction_2012}, and Salomon and Motta \cite{salomon_handbook_2010}.
  
-  There are two distinct ways of data compression: lossless and lossy. This is an important difference, and greatly depends on the application itself. For some type of data no loss is acceptable, for example computer programs or text. Here, even a small change could drastically change the meaning of the original data. For other applications, mostly audio and video compression, some loss can be tolerated as long as there is no perceived change or distortion. For scientific applications mostly lossless compression is used. Even for image data, where lossy compression can significantly increase the compression ratio (original size / compressed size)
+  There are two distinct ways of data compression: lossless and lossy. This is an important difference, and greatly depends on the application itself. For some type of data no loss is acceptable, for example computer programs or text. Here, even a small change could drastically change the meaning of the original data. For other applications, mostly audio and video compression, some loss can be tolerated as long as there is no perceived change or distortion. For scientific applications mostly lossless compression is used. Even for image data, where lossy compression can significantly increase the compression ratio (original size / compressed size), lossy compression is usually not recommended, as it can alter the measurement results in unpredictable ways \cite{cromey_digital_2013}.
+
+  % There are a multitude of techniques developed in the context of data compression, and most compression methods are built based on this repertoire. Because of this, many algorithms follow a common pattern, and 
 
   \subsection{Basics of information theory}
-    what is information? or how much information is there in a piece of text/string/data
-    more surprise - more information, more unexpected - more information
-    coin flip
-    number of digits needed to represent a number - $\log_b n$
-    information in one piece of date (eg 1 symbol) $\log_2 1/p$
+    As compression is the art of reducing the size of a message without while keeping the same amount of information, it is necessary to briefly discuss the theory behind information, and how to quantify it. These concepts were first introduced by Shannon, in his extremely influential papers \cite{shannon_mathematical_1948,shannon_mathematical_1948-1,shannon_prediction_1951}. As the scope of a rigorous mathematical explanation is outside of the scope of this work, we refer the interested reader to the aforementioned works.
 
-    compression: modeling + coding \cite{rissanen_universal_1981}
-    redistributing probabilities
+    Informally, information can be quantified as the amount of surprise. Any statement for, if it has a high probability carries a low amount of information, while if it has a small probability, there is more information. Consider the following example: "It is July." If it is indeed July, this statement doesn't provide too much information. Continuing with the following sentence, however carries more information, as it is unexpected under the circumstances: "It is snowing outside" (provided the conversation takes place on the Northern Hemisphere).
+
+    The self information of event $A$ can be defined the following way:
+    \begin{equation}
+      I(A) = \log_b \frac{1}{P(A)} = - \log_b P(A),
+      \label{eq:selfInfo}
+    \end{equation}
+    where $P(A)$ is the probability of event $A$ occurring. The base of the logarithm can be chosen freely, but usually the preferred base is $b=2$. With this choice, the unit of information is \SI{1}{bit}, and $I(A)$ represents how many bits are required to store the information contained in $A$.
+
+    The average self information, also called the entropy, for a random variable $X$ can be calculated based on the self-information of the outcomes $A_i$:
+    \begin{equation}
+      H(X) = \sum_i P(A_i)I(A_i) = - \sum_i P(A_i) \log_b P(A_i)
+      \label{eq:entropy}
+    \end{equation}
+    If we consider a data stream $S$, where each symbol records the outcome of independent, identical random experiments $X$, then the average information in each symbol will be $H(X)$. As a consequence, as stated by Shannon's source coding theorem \cite{shannon_mathematical_1948}, the shortest representation of $S$ will require at least $N\cdot H(X)$ bits, where $N$ is the number of symbols in the stream. This defines the theoretical lower bound any nai\:ve compression algorithm (also called entropy coding) can achieve without loosing any information.
+
+    The requirement, however, is that the symbols are independent of each other, which is usually not true for most of the data types we (humans) are interested in. In order to achieve ideal compression, the data needs to be modeled, or transformed, to represent it as a sequence of independent variables. This pattern of modeling and coding \cite{rissanen_universal_1981} is the core of all modern compression algorithms. 
+    The following sections will briefly introduce these concepts by two examples: Huffman coding, and pixel prediction.
+    
+    % in the context of image compression
+    % redistributing probabilities
+    
+  \subsection{Entropy coding -- Huffman coding}
+    \label{sec:entropyCoding}
+    
+
+    The aim of entropy coding (\autoref{sec:entropyCoding}) is, based on the probability distribution of $X$, to compress the data as small as possible, reaching 
+
     aim: few letters with very high probability, all other letters with very low probability, e.g. exponential distribution
     worst: uniform distribution = random noise
 
-  \subsection{Entropy coding -- Huffman coding}
+
     how to reduce data size? use variable length codes
     code length depends on symbol frequency - more frequent, shorter codes
     problem? how do we know the boundaries between codewords?
@@ -647,7 +671,11 @@ In an ideal setting, the ultimate microscope would be able to record a continuos
     "The long discussion in [Gilbert and Moore 59] \cite{gilbert_variable-length_1959} proves that the Huffman code is a minimum-length code in the sense that no other encoding has a shorter average length"
 
   \subsection{Transform coding / Modeling / Decorrelation}
+    \label{sec:decorrelation}
     Since entropy coding doesn't assume anything about the data structure, it is not capable of recognizing and compressing any regular patterns or correlations between the consecutive data points. To maximize the efficiency of compression, any correlations should be removed from the data before it is fed to the entropy coder. Here we will briefly discuss some decorrelation strategies for image compression that aim to improve the performance of a successive entropy coder.
+
+    discrete cosine transform (DCT) \cite{ahmed_discrete_1974}
+    discrete wavelet transform (DWT) \cite{mallat_theory_1989, jensen_ripples_2001}
     
     % Decorrelation itself does not compress the data, it just reorganizes the information in a way that make a subsequent entropy coder more efficient.
     
