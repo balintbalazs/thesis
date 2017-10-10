@@ -622,6 +622,69 @@ In an ideal setting, the ultimate microscope would be able to record a continuos
     3. multi-view deconvolution
 
 \section{Image compression}
+  As we will see later (\autoref{sec:sizes}), light-sheet microscopy is capable of generating an immense amount of data in a short amount of time. This is why not only fast data processing but data compression also plays an important role when evaluating, sharing and storing the images. In this section we will briefly introduce the core concepts of image compression and show some examples that will facilitate understanding \autoref{ch:GPU}. For a more comprehensive review on data compression fundamentals, the interested reader is referred to the works of Sayood \cite{sayood_introduction_2012}, and Salomon and Motta \cite{salomon_handbook_2010}.
+ 
+  There are two distinct ways of data compression: lossless and lossy. This is an important difference, and greatly depends on the application itself. For some type of data no loss is acceptable, for example computer programs or text. Here, even a small change could drastically change the meaning of the original data. For other applications, mostly audio and video compression, some loss can be tolerated as long as there is no perceived change or distortion. For scientific applications mostly lossless compression is used. Even for image data, where lossy compression can significantly increase the compression ratio (original size / compressed size)
+
+  \subsection{Basics of information theory}
+    what is information? or how much information is there in a piece of text/string/data
+    more surprise - more information, more unexpected - more information
+    coin flip
+    number of digits needed to represent a number - $\log_b n$
+    information in one piece of date (eg 1 symbol) $\log_2 1/p$
+
+    compression: modeling + coding \cite{rissanen_universal_1981}
+    redistributing probabilities
+    aim: few letters with very high probability, all other letters with very low probability, e.g. exponential distribution
+    worst: uniform distribution = random noise
+
+  \subsection{Entropy coding -- Huffman coding}
+    how to reduce data size? use variable length codes
+    code length depends on symbol frequency - more frequent, shorter codes
+    problem? how do we know the boundaries between codewords?
+    prefix free codes - no codeword is a prefix of any other codeword
+    Huffman coding is like this, and also ideal in the sense that the average codeword length for large data
+    "The long discussion in [Gilbert and Moore 59] \cite{gilbert_variable-length_1959} proves that the Huffman code is a minimum-length code in the sense that no other encoding has a shorter average length"
+
+  \subsection{Transform coding / Modeling / Decorrelation}
+    Since entropy coding doesn't assume anything about the data structure, it is not capable of recognizing and compressing any regular patterns or correlations between the consecutive data points. To maximize the efficiency of compression, any correlations should be removed from the data before it is fed to the entropy coder. Here we will briefly discuss some decorrelation strategies for image compression that aim to improve the performance of a successive entropy coder.
+    
+    % Decorrelation itself does not compress the data, it just reorganizes the information in a way that make a subsequent entropy coder more efficient.
+    
+
+    
+    To see how such an algorithm could work, let's consider the following sequence:
+    \begin{center}
+      \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+        \hline
+        37 & 38 & 39 & 38 & 36 & 37 & 39 & 38 & 40 & 42 & 44 & 46 & 48 \\
+        \hline
+      \end{tabular}
+    \end{center}
+    Although there is no obvious pattern in this sequence, there are no sharp jumps between the consecutive values, and this can be exploited by using a prediction scheme. Let's define the prediction ($\Pred(\cdot)$) for each element ($X_k$) to be equal to the preceding element. The prediction error would be $\varepsilon_k = X_K - \Pred(X_k) = X_k - X_{k-1}$:
+    \begin{center}
+      \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+        \hline
+        37 & 1 & 1 & -1 & -2 & 1 & 2 & -1 & 2 & 2 & 2 & 2 & 2 \\
+        \hline
+      \end{tabular}
+    \end{center}
+    As apparent from this new sequence, the number of distinct values are reduced, which means that fewer bits can represent this sequence than the original. When running these two sequences through an entropy coder, the error sequence will be much more compressed due to this property.
+    
+    Using a predictive scheme to remove correlations from neighboring elements is a very good strategy for various applications, where this signal is only slowly changing. It has been successfully implemented in audio and image compression algorithms as well, such as lossless-JPEG \cite{pennebaker_jpeg:_1992}, JPEG-LS \cite{weinberger_loco-i_2000}, and also CALIC \cite{wu_context-based_1997}, SFALIC \cite{starosolski_simple_2007}, FLIC \cite{wang_fast_2012}.
+
+    \begin{center}
+      \begin{tabular}{|c|c|c|c|c}
+        \hline
+        \rowcolor{gray!25}
+        \ \ \ & \ & \ & \ \ \ & \ \\ \hline
+        \rowcolor{gray!25}
+        \ & C & B & D & \ \\ \hline
+        \cellcolor{gray!25} \ & \cellcolor{gray!25}A & \cellcolor{green!25}X & \ & \ \\ \hline
+        \ & \ & \ & \ & \ \\
+      \end{tabular}
+    \end{center}
+
 
 
 

@@ -19,6 +19,7 @@
 \usepackage{fancyhdr} % for better header layout
 \usepackage{xspace}
 \usepackage[titletoc]{appendix}
+\usepackage[table]{xcolor}% http://ctan.org/pkg/xcolor
 \usepackage[pagewise]{lineno}
 % \linenumbers
 
