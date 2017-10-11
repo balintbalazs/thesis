@@ -21,30 +21,30 @@
   %     3. multi-view deconvolution
   
   \section{Image compression}
-    As we will see later (\autoref{sec:sizes}), light-sheet microscopy is capable of generating an immense amount of data in a short amount of time. This is why not only fast data processing, but data compression also plays an important role when evaluating, sharing and storing the images. In this section we will briefly introduce the core concepts of image compression and show some examples as a background for \autoref{ch:GPU}. For a more comprehensive review on data compression fundamentals, the interested reader is referred to the works of Sayood \cite{sayood_introduction_2012}, and Salomon and Motta \cite{salomon_handbook_2010}.
+    As we will see later (\autoref{sec:sizes}), light-sheet microscopy is capable of generating an immense amount of data in a short amount of time. For this reason not only fast data processing, but data compression also plays an important role when evaluating, sharing and storing the images. In this section we will briefly introduce the core concepts of image compression and show some examples as a background for \autoref{ch:GPU}. For a more comprehensive review on data compression fundamentals, the interested reader is referred to the works of Sayood \cite{sayood_introduction_2012}, and Salomon and Motta \cite{salomon_handbook_2010}.
    
-    There are two distinct ways of data compression: lossless and lossy. This is an important difference, and greatly depends on the application itself. For some type of data no loss is acceptable, for example computer programs or text. Here, even a small change could drastically change the meaning of the original data. For other applications, mostly audio and video compression, some loss can be tolerated as long as there is no perceived change or distortion. For scientific applications mostly lossless compression is used. Even for image data, where lossy compression can significantly increase the compression ratio (original size / compressed size), lossy compression is usually not recommended, as it can alter the measurement results in unpredictable ways \cite{cromey_digital_2013}.
+    There are two distinct ways of data compression: lossless and lossy. This is an important difference, and the choice between the two greatly depends on the application itself. For some types of data no loss is acceptable, for example computer programs or text. Here, even a small change could drastically influence the meaning of the original data. For other applications, such as audio and video compression, some loss can be tolerated as long as there is no perceived change or distortion. For scientific applications mostly lossless compression is used. Even for image data, where lossy compression can significantly increase the compression ratio (original size / compressed size), lossy compression is usually not recommended, as it can alter the measurement results in unpredictable ways \cite{cromey_digital_2013}.
   
     % There are a multitude of techniques developed in the context of data compression, and most compression methods are built based on this repertoire. Because of this, many algorithms follow a common pattern, and 
   
     \subsection{Basics of information theory}
-      As compression is the art of reducing the size of a message without while keeping the same amount of information, it is necessary to briefly discuss the theory behind information, and how to quantify it. These concepts were first introduced by Shannon, in his extremely influential papers \cite{shannon_mathematical_1948,shannon_mathematical_1948-1,shannon_prediction_1951}. As the scope of a rigorous mathematical explanation is outside of the scope of this work, we refer the interested reader to the aforementioned works.
+      As compression is the art of reducing the size of a message while keeping the same amount of information, it is necessary to briefly discuss the theory behind information, and how to quantify it. These concepts were first introduced by Shannon, in his highly influential papers \cite{shannon_mathematical_1948,shannon_mathematical_1948-1,shannon_prediction_1951}. As a rigorous mathematical explanation is outside the scope of this work, we refer the interested reader to the aforementioned works.
   
-      Informally, information can be quantified as the amount of surprise. Any statement, if it has a high probability carries a low amount of information, while if it has a small probability, there is more information. Consider the following example: "It is July". If it is indeed July, this statement doesn't provide too much information. Continuing with "It is snowing outside", carries more information, as it is unexpected under the circumstances (provided the conversation takes place on the Northern Hemisphere).
+      Informally, information can be quantified as the amount of surprise. Any statement, if it has a high probability carries a low amount of information, while if it has a small probability, there is more information. Consider the following example: ``It is July". If it is indeed July, this statement doesn't provide too much information. Continuing with ``It is snowing outside", carries more information, as it is unexpected under the circumstances (provided the conversation takes place on the Northern Hemisphere).
   
-      The self information of event $A$ can be defined the following way:
+      The self-information of event $A$ can be defined the following way:
       \begin{equation}
         I(A) = \log_b \frac{1}{P(A)} = - \log_b P(A),
         \label{eq:selfInfo}
       \end{equation}
       where $P(A)$ is the probability of event $A$ occurring. The base of the logarithm can be chosen freely, but usually the preferred base is $b=2$. With this choice, the unit of information is \SI{1}{bit}, and $I(A)$ represents how many bits are required to store the information contained in $A$.
   
-      The average self information, also called the entropy, for a random variable $X$ can be calculated based on the self-information of the outcomes $A_i$:
+      The average self-information, also called the entropy, for a random variable $X$ can be calculated based on the self-information of the outcomes $A_i$:
       \begin{equation}
         H(X) = \sum_i P(A_i)I(A_i) = - \sum_i P(A_i) \log_b P(A_i)
         \label{eq:entropy}
       \end{equation}
-      If we consider a data stream $S$, where each symbol records the outcome of independent, identical random experiments $X$, then the average information in each symbol will be $H(X)$. As a consequence, as stated by Shannon's source coding theorem \cite{shannon_mathematical_1948}, the shortest representation of $S$ will require at least $N\cdot H(X)$ bits, where $N$ is the number of symbols in the stream. This defines the theoretical lower bound any nai\:ve compression algorithm (also called entropy coding) can achieve without loosing any information.
+      If we consider a data stream $S$, where each symbol records the outcome of independent, identical random experiments $X$, then the average information in each symbol will be $H(X)$. As a consequence, as stated by Shannon's source coding theorem \cite{shannon_mathematical_1948}, the shortest representation of $S$ will require at least $N\cdot H(X)$ bits, where $N$ is the number of symbols in the stream. This defines the theoretical lower bound that any na\"ive compression algorithm, also called entropy coding, can achieve without loosing any information.
   
       The requirement, however, is that the symbols are independent of each other, which is usually not true for most of the data types we (humans) are interested in. In order to achieve ideal compression, the data needs to be modeled, or transformed, to represent it as a sequence of independent variables. This pattern of modeling and coding \cite{rissanen_universal_1981} is the core of all modern compression algorithms. 
       The following sections will briefly introduce these concepts by two examples: Huffman coding, and pixel prediction.
@@ -55,7 +55,7 @@
     \subsection{Entropy coding}
       \label{sec:entropyCoding}
 
-      Entropy coding algorithms aim to reduce data size and reach the limit of entropy for any kind of input, provided the probability distribution of the possible symbols. All of these algorithms work in a similar way, as their aim is represent the symbols of the input data by codewords in a way to minimize the overall length of the data. Variable length codes for example replace the more common symbols with short codewords, while for less frequent symbols they use longer codewords. The ideal length of a codeword for symbol $A$ is actually equal to $I(A)$, as this was the definition of self-information.
+      Entropy coding algorithms aim to reduce data size and reach the limit of entropy for any kind of input, provided the probability distribution of the possible symbols. All of these algorithms work in a similar way, as their aim is to represent the symbols of the input data by codewords in a way to minimize the overall length of the data. Variable length codes for example replace the more common symbols with short codewords, while for less frequent symbols they use longer codewords. The ideal length of a codeword for symbol $A$ is actually equal to $I(A)$, as this was the definition of self-information.
 
 
       \subsubsection{Prefix-free codes}
@@ -103,9 +103,9 @@
         \item In an optimum code, the two least frequent codewords should have the same lengths.
       \end{enumerate}
   
-      From these statements the first is trivial to see that is correct. If the more frequent letters would have longer codewords then the less frequent letters, the average codeword length (weighted by the probabilities) would be larger than in the opposite case. Thus, more frequent letters must not have longer codewords than less frequent letter.
+      From these statements it is trivial to see that the first is correct. If the more frequent letters would have longer codewords then the less frequent letters, the average codeword length (weighted by the probabilities) would be larger than in the opposite case. Thus, more frequent letters must not have longer codewords than less frequent letter.
   
-      The second statement at first glance might not be so intuitive, so let's consider the following situation. The two least frequent codewords do not have the same lengths, that is the least frequent is longer. However, because this is a prefix code, the second longest codeword is not a prefix of the longest codeword. This means, if we truncate the longest codeword to the same length as the second longest, they will still be distinct codes and uniquely decodable. This way we have a new coding scheme which requires less space on average to code the same sequence as the original code, from which we can conclude the original code was not optimal. Therefore, for an optimal code, statement 2 must be true.
+      The second statement at first glance might not be so intuitive, so let's consider the following situation. Let's assume that the two least frequent codewords do not have the same lengths, and least frequent is longer. However, because this is a prefix code, the second longest codeword is not a prefix of the longest codeword. This means, if we truncate the longest codeword to the same length as the second longest, they will still be distinct codes and uniquely decodable. This way we have a new coding scheme which requires less space on average to code the same sequence as the original code, from which we can conclude the original code was not optimal. Therefore, for an optimal code, statement 2 must be true.
   
       \begin{table}
         \bcaption[Huffman code table]{}
@@ -127,7 +127,7 @@
       \begin{figure}
         \centering
         \includegraphics[width=0.6\textwidth]{huffman}
-        \bcaption[Building the binary Huffman tree]{The letters are ordered by probability, these will be the final leave of the tree. To join the to branches at every iteration we join the to nodes with the smallest probability, and create a new common node with the sum of the probabilities. This process is continued until all nodes are joined in a root node with probability of 1. Now, if we traverse down the tree to each leaf, the codeword will be defined by their position.}
+        \bcaption[Building the binary Huffman tree]{The letters are ordered by probability, these will be the final leaves of the tree. To create the branches, at every iteration we join the two nodes with the smallest probability, and create a new common node with the sum of the probabilities. This process is continued until all nodes are joined in a root node with probability of 1. Now, if we traverse down the tree to each leaf, the codeword will be defined by their position.}
         \label{fig:huffman}
       \end{figure}
   
@@ -141,7 +141,7 @@
       \begin{equation}
         l = 0.4\times 1 + 0.2 \times 2 + 0.2 \times 3 + 0.1 \times 4 + 0.1 \times 4 = 2.2 \text{ bits/symbol}
       \end{equation}
-      The efficiency of a code can be measured by comparing the average code size to the entropy of the source. For this example, the difference is 0.078 bits/symbols. As the Huffman code operates in base two, it will produce a code with zero redundancy when the probabilities are negative powers of two.
+      The efficiency of a code can be measured by comparing the average code size to the entropy of the source. For this example, the difference is 0.078 bits/symbols. As the Huffman code operates in base 2, it will produce a code with zero redundancy when the probabilities are negative powers of 2.
   
       \begin{table}
         \bcaption[Huffman code table]{}
@@ -170,20 +170,20 @@
       Since entropy coding doesn't assume anything about the data structure, it is not capable of recognizing and compressing any regular patterns or correlations between the consecutive data points. To maximize the efficiency of compression, any correlations should be removed from the data before it is fed to the entropy coder. Here we will briefly discuss some decorrelation strategies for image compression that aim to improve the performance of a successive entropy coder.
 
       \subsubsection{Transform coding}
-      Very popular methods for decorrelation are the transformations that represent the data as a decomposition of orthonormal functions. One of the most common of these transformations is the Fourier transform, that represents a periodic signal as a sum of sine an cosine functions. As most natural images are continuous tone, the idea behind this is that most of the information will be captured by just a few Fourier coefficients. Because of this, compressing the coefficients with an entropy coder should result in a smaller output than encoding the original data.
+      Very popular methods for decorrelation are the transformations that represent the data as a decomposition of orthonormal functions. One of the most common of these transformations is the Fourier transform, that represents a periodic signal as a sum of sine an cosine functions. As most natural images are of continuous tone, the idea behind this is that most of the information will be captured by just a few Fourier coefficients. Because of this, compressing the coefficients with an entropy coder should result in a smaller output than encoding the original data.
 
-      For practical purposes, instead of the discrete Fourier transform (DFT), the discrete cosine transform (DCT) \cite{ahmed_discrete_1974} is usually used in image compression applications. This is very similar to DFT, the difference being the periodic extension of the signal. In the DCT transform, the image is mirrored on the sides instead of just repeating to avoid large jumps at the boundaries that may introduce unwanted high frequency components to the Fourier transform. If the image is extended in a symmetric way, the Fourier transform will be able to represent the data with only using cosine functions, hence the name discrete cosine transformations.
+      For practical purposes, instead of the discrete Fourier transform (DFT), the discrete cosine transform (DCT) \cite{ahmed_discrete_1974} is usually used in image compression applications. This is very similar to DFT, the difference being the periodic extension of the signal. In the DCT transform, the image is mirrored on the sides instead of just repeating, to avoid large jumps at the boundaries that may introduce unwanted high frequency components in the Fourier transform. If the image is extended in a symmetric way, the Fourier transform will be able to represent the data with only using cosine functions, hence the name discrete cosine transformations.
 
       One drawback of frequency-based transformations, is that can't capture the spatial 
       To overcome this limitation, the DCT is usually performed on small chunks of the image, such as on 8\texttimes8 blocks in the JPEG compression. The other option is to use non-periodic base functions to represent the signal. One good example for this is the use of wavelets, and based on this, the discrete wavelet transform (DWT) \cite{mallat_theory_1989, jensen_ripples_2001}.
 
-      As both DCT and DWT operate with floating point coefficients (although DWT has integer-based variants), the inverse transformation is not guaranteed to exactly reconstruct the original data. This is due to the finite machine precision of floating point numbers. Due to this fact these transformations are usually used in lossy compression algorithms and the coefficients are quantized based on the required image quality.
+      As both DCT and DWT operate with floating point coefficients (although DWT has integer-based variants), the inverse transformation is not guaranteed to exactly reconstruct the original data. This is due to the finite machine precision of floating point numbers. Due to this fact these transformations are generally used in lossy compression algorithms and the coefficients are quantized based on the required image quality.
       
       % Decorrelation itself does not compress the data, it just reorganizes the information in a way that make a subsequent entropy coder more efficient.
       
   
       \subsubsection{Predictive decorrelation}
-      Another family of decorrelation methods is based on predicting the values of each data point (or pixel) based on the context of the neighboring values. These techniques are based on differential pulse code modulation (DPCM), a decorrelation method originally used for audio compression. Here, before the data stream is entropy coded, a prediction is made for each value, which is equal to the preceeding value. The difference to the prediction, called the prediction error, or prediction residual ($\varepsilon$) is passed to the entropy coder.
+      Another family of decorrelation methods is based on predicting the values of each data point (or pixel) depending on the context of the neighboring values. These techniques are based on differential pulse code modulation (DPCM), a decorrelation method originally used for audio compression. Here, before the data stream is entropy coded, a prediction is made for each value, which is equal to the preceeding value. The difference to the prediction, called the prediction error, or prediction residual ($\varepsilon$) is passed to the entropy coder.
 
       To see how why such an algorithm can increase compression ratio, let's consider the following sequence:
       \begin{center}
@@ -193,7 +193,7 @@
           \hline
         \end{tabular}
       \end{center}
-      Although there is no obvious pattern in this sequence, there are no sharp jumps between the consecutive values, and this can be exploited by using a prediction scheme. Let's define the prediction ($\Pred(\cdot)$) for each element ($X_k$) to be equal to the preceding element. The prediction error would be $\varepsilon_k = X_K - \Pred(X_k) = X_k - X_{k-1}$:
+      Although there is no obvious pattern in this sequence, there are no sharp jumps between the consecutive values, and this can be exploited by using a prediction scheme. Let's define the prediction $\Pred(\cdot)$ for each element $X_k$ to be equal to the preceding element. The prediction error would be $\varepsilon_k = X_K - \Pred(X_k) = X_k - X_{k-1}$:
       \begin{center}
         \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
           \hline
@@ -203,7 +203,7 @@
       \end{center}
       As apparent from this new sequence, the number of distinct values are reduced, which means that fewer bits can represent this sequence than the original. When running these two sequences through an entropy coder, the error sequence will be much more compressed due to this property.
       
-      Using a predictive scheme to remove correlations from neighboring elements is a very good strategy for various applications, where this signal is only slowly changing. It has been successfully implemented in audio and image compression algorithms as well, such as lossless-JPEG \cite{pennebaker_jpeg:_1992}, JPEG-LS \cite{weinberger_loco-i_2000}, CALIC \cite{wu_context-based_1997}, SFALIC \cite{starosolski_simple_2007} and FLIC \cite{wang_fast_2012} just to name a few.
+      Using a predictive scheme to remove correlations from neighboring elements is a very good strategy for various applications, where this signal is only slowly changing. It has been successfully implemented in audio and image compression algorithms as well, such as lossless-JPEG \cite{pennebaker_jpeg:_1992}, JPEG-LS \cite{weinberger_loco-i_2000}, CALIC \cite{wu_context-based_1997}, SFALIC \cite{starosolski_simple_2007} and FLIC \cite{wang_fast_2012}, just to name a few.
   
       \begin{figure}
         \centering
@@ -246,9 +246,9 @@
           A + B - C & \text{otherwise }
         \end{cases}
       \end{equation}
-      This function tries to estimate is there is an edge close to X. If it detects a vertical edge to the left of X, it picks B for the prediction, while if it detects a horizontal edge above X it tends to pick A. If no edge is detected, the prediction is the same as predictor 4 of the lossless JPEG standard.
+      This function tries to estimate if there is an edge close to X. If it detects a vertical edge to the left of X, it picks B for the prediction, while if it detects a horizontal edge above X it tends to pick A. If no edge is detected, the prediction is the same as predictor 4 of the lossless JPEG standard.
 
-      A useful property of the prediction based methods, is that there is no base change as in the transform coding methods, and it is possible to construct bounded lossy compression algorithms. JPEG-LS, for example defines a near-lossless mode of operation, where the user can select the maximum absolute reconstruction error per pixel. This is achieved by quantizing the prediction residual $\varepsilon$ with a quantization step depending of the allowable error. Since the decoding algorithm simply calculates $\hat{X} = \pred(X) + \varepsilon$, any quantization error of $\varepsilon$ is directly reflected in the reconstructed pixel value. Since the quantization error is known, and bounded by the quantization step size, the maximum reconstruction error ofr each pixel is also bounded. This mode is sometimes used for medical imaging applications, where the preservation of diagnostic quality is required by law, but higher compression ratios are desired than what is possible by lossless compression.
+      A useful property of the prediction based methods is, that there is no base change as in the transform coding methods, and it is possible to construct bounded lossy compression algorithms. JPEG-LS, for example defines a near-lossless mode of operation, where the user can select the maximum absolute reconstruction error per pixel. This is achieved by quantizing the prediction residual $\varepsilon$ with a quantization step depending on the allowable error. Since the decoding algorithm simply calculates $\hat{X} = \pred(X) + \varepsilon$, any quantization error of $\varepsilon$ is directly reflected in the reconstructed pixel value. Since the quantization error is known, and bounded by the quantization step size, the maximum reconstruction error for each pixel is also bounded. This mode is sometimes used for medical imaging applications, where the preservation of diagnostic quality is required by law, but higher compression ratios are desired than what is possible by lossless compression.
   
   
   
