@@ -27,7 +27,7 @@
   \begin{figure}[btp]
     \centering
     \includegraphics[page=1,width=0.5\textwidth]{comparison_with_pictograms}
-    \bcaption[Experiment sizes and data rate of different imaging modalities]{Comparison of single-plane illumination microscopy (SPIM, red rectangle), high-content screening (light blue), single molecule localization microscopy (SMLM, orange) and confocal microscopy (blue) by typical experiment size and data production rate (see also Table \ref{tab:sizes}).}
+    \bcaption[Experiment sizes and data rate of different imaging modalities]{Comparison of single-plane illumination microscopy (SPIM, red), high-content screening (light blue), single molecule localization microscopy (SMLM, orange) and confocal microscopy (blue) by typical experiment size and data production rate (see also Table \ref{tab:sizes}).}
     \label{fig:sizes}
   \end{figure}
 
@@ -63,14 +63,14 @@
 
 \section{Live fusion}
 
-Similarly to the DualMouse-SPIM, our currently used production microscope, the Multiview-SPIM (MuVi-SPIM) \cite{krzic_multiview_2012} also uses multiple imaging directions to improve the image quality. In this case, however, the aim is completeness rather than increasing the resolution. As the MuVi-SPIM is capable of imaging much larger specimens, such as entire \textit{Drosophila} embryos, the sample size itself can present some challenges, especially for opaques specimens. As light scattering and absorption impacts both the illumination and detection optics, the negative effects for SPIM are more pronounced compared to single-lens systems \cite{de_medeiros_deep_2016}.
+Similarly to the DualMouse-SPIM, our currently used production microscope, the Multiview-SPIM (MuVi-SPIM) \cite{krzic_multiview_2012} also uses multiple imaging directions to improve the image quality. In this case, however, the aim is completeness rather than increasing the resolution. As the MuVi-SPIM is capable of imaging much larger specimens, such as entire \textit{Drosophila} embryos, the sample size itself can present some challenges, especially for opaques specimens. As light scattering and absorption impact both the illumination and detection optics, the negative effects for SPIM are more pronounced compared to single-lens systems \cite{de_medeiros_deep_2016}.
 
 
 
 
 \subsection{Multiview SPIM for \textit{in toto} imaging}
 
-MuVi-SPIM  provides an elegant solution for multi-view imaging. A standard SPIM setup with a single detection and a single illumination lens would rotate the sample to acquire images from multiple directions. MuVi-SPIM, on the other hand, utilizes two opposing objectives for illumination, and two opposing objectives for detection (\autoref{fig:muvi-spim}a). As the sample is held by an aqueous gel inside the imaging chamber, all objectives have unobstructed view of it from multiple directions (\autoref{fig:muvi-spim}b,c).
+MuVi-SPIM  provides an elegant solution for multi-view imaging. A standard SPIM setup with a single detection and a single illumination lens would rotate the sample to acquire images from multiple directions. MuVi-SPIM, on the other hand, utilizes two opposing objectives for illumination and two opposing objectives for detection (\autoref{fig:muvi-spim}a). As the sample is held by an aqueous gel inside the imaging chamber, all objectives have unobstructed view of it from multiple directions (\autoref{fig:muvi-spim}b,c).
 
 Data acquisition is done in two steps: the sample is illuminated by Light sheet 1, and fluorescence is collected by both detection objectives at the same time, after which Light sheet 2 is activated, and both cameras record the fluorescence again (\autoref{fig:muvi-spim}d). This process will result in 4 datasets, all with partial information due to scattering effects. The 4 views are later fused to a single, high quality dataset (\autoref{fig:muvi-spim}e). This fusion process is necessary before any further analysis steps can be performed, however, due to the sheer size of the data, it takes a considerable amount of time after the acquisition.
 
@@ -79,7 +79,7 @@ By combining scanned light-sheet \cite{keller_reconstruction_2008} with confocal
 \begin{figure}
   \centering
   \includegraphics[width=1\columnwidth]{fusion/muvi-spim}
-  \bcaption[Operating principle of MuVi-SPIM]{(a) The microscope consists of two illumination and two detection arms for simultaneous multi-view illumination and detection. (b) The 4 arms meet in the imaging chamber that is filled with water, and contains the sample. (c) The sample is held by a glass capillary, in  a GelRite cylinder. Optical sectioning is acheived by a virtaul light-sheet. (d) The light-sheets can be generated from two sides (Light sheet 1 and 2), and detection is also double sided (Camera 1 and 2). Adapted from \cite{krzic_multiview_2012}.}
+  \bcaption[Operating principle of MuVi-SPIM]{(a) The microscope consists of two illumination and two detection arms for simultaneous multi-view illumination and detection. (b) The 4 arms meet in the imaging chamber that is filled with water, and contains the sample. (c) The sample is held by a glass capillary, in  a GelRite cylinder. Optical sectioning is achieved by a virtual light-sheet. (d) The light-sheets can be generated from two sides (Light sheet 1 and 2), and detection is also double sided (Camera 1 and 2). Adapted from \cite{krzic_multiview_2012}.}
   \label{fig:muvi-spim}
 \end{figure}
 
@@ -88,8 +88,15 @@ By combining scanned light-sheet \cite{keller_reconstruction_2008} with confocal
 
 \subsection{Image registration}
 
-To perform image fusion of multiple views, first image registration is necessary: the coordinate systems of both views have to be properly overlapped. Ideally a single mirroring transformation would be enough to superpose the two camera images, however in practice the microscope can never be aligned with such precision. Other types of transformations are also necessary: translation to account for offsets in the field of view; scaling in case of slightly different magnifications; and also shearing if the detection plane is not perfectly perpendicular to the sample movement direction \cite{krzic_multiple-view_2009}. To combine all of these effects, a full, 3D affine transformation is necessary to properly align the two camera images (\autoref{fig:acquisition} a). This transformation can be represented by a matrix multiplication with 12 different parameters:
-\[
+To perform image fusion of multiple views, first image registration is necessary: the coordinate systems of the views have to be properly overlapped. Ideally a single mirroring transformation would be enough to superpose the two camera images, however in practice the microscope can never be aligned with such precision. Other types of transformations are also necessary: translation to account for offsets in the field of view; scaling in case of slightly different magnifications; and also shearing if the detection plane is not perfectly perpendicular to the sample movement direction \cite{krzic_multiple-view_2009}. To combine all of these effects, a full, 3D affine transformation is necessary to properly align the two camera images (\autoref{fig:acquisition} a). This transformation can be represented by a matrix multiplication with 12 different parameters:
+\[  
+\begin{pmatrix}
+x,\\
+y,\\
+z,\\
+1
+\end{pmatrix}
+=
 \begin{pmatrix}
 a & b & c & d \\ 
 e & f & g & h \\ 
@@ -111,15 +118,15 @@ i x + j y + k z + l\\
 1
 \end{pmatrix}
 \]
-where $x, y, z$ are the coordinates of the original 3D image, and $a, b, ..., l$ are the affine transformation parameters.
+where $x, y, z$ are the coordinates in the original 3D image, $x', y', z'$ are coordinates in the transformed image, and $a, b, ..., l$ are the affine transformation parameters.
 
-These parameters are traditionally acquired by a bead based registration algorithm after imaging fluorescent beads from each view of the microscope \cite{preibisch_bead-based_2009,preibisch_software_2010}. The beads are segmented by using a difference of Gaussian filter, and the registration parameters are acquired by matching the segmented bead coordinates in each view. Identifying the corresponding beads in each view is done by a translation and rotation invariant local geometric descriptor. This matches the beads based on their relative position to their nearest neighbors. After the matching beads are identified, the affine transformation parameters are calculated by minimizing the global displacement for each pair of beads.
+These parameters are traditionally acquired by a bead based registration algorithm after imaging fluorescent beads from each view of the microscope \cite{preibisch_bead-based_2009,preibisch_software_2010}. The beads are segmented by using a difference of Gaussian filter, and the registration parameters are acquired by matching the segmented bead coordinates in each view. Identifying the corresponding beads is done by a translation and rotation invariant local geometric descriptor. This matches the beads based on their relative position to their nearest neighbors. After the matching beads are identified, the affine transformation parameters are calculated by minimizing the global displacement for each pair of beads.
 
 For the two opposing views of MuVi-SPIM, these parameters are only dependent on the optical setup itself, and not on he sample or on the experiment. Because of this, it is sufficient to determine the transformation parameters only after modifying the microscope (\textit{e.g.} after realignment).
 
-In our currently used fusion pipeline, after the parameters are acquired, the 3D stacks are fused by transforming one of the views to the coordinate system of the other (using the affine transformation parameters from the bead based registration), and fusing the two stack by applying a sigmoidal weighted average. The weights are determined in a way to exclude the parts of a stack that has worse image quality, and complement is from the other view. When using the electronic confocal slit detection (eCSD) weighting is not necessary, as the scattered light is already rejected in these recordings, and a simple sum of the two stacks gives the best results regardless of the sample \cite{de_medeiros_confocal_2015}.
+In our currently used fusion pipeline, after the parameters are acquired, the 3D stacks are fused by transforming one of the views to the coordinate system of the other (using the affine transformation parameters from the bead based registration), and fusing the two stack by applying a sigmoidal weighted average (\ref{fig:acquisition}a). The weights are determined in a way to exclude the parts of the stacks that have worse image quality and complement these from the other view's high quality regions. When using the electronic confocal slit detection (eCSD) weighting is not necessary, as the scattered light is already rejected in these recordings, and a simple sum of the two stacks gives the best results regardless of the sample \cite{de_medeiros_confocal_2015}.
 
-The fusion process itself can be very resource intensive, and take a considerable amount of time. This is simply due to the size of the 3D stacks: a single stack is usually between 2 and \SI{4}{GB} in size. Thus, the necessary memory requirement to fuse 2 of these stacks is $3\cdot \SI{4}{GB} = \SI{12}{GB}$, as the result will also take up the same space. Just reading and writing this amount of information to the hard disk takes a considerable amount of time. When using an SSD drive for example, with a \SI{500}{MB/s} read/write speed, just the I/O operations will take around $\frac{\SI{12}{GB}}{\SI{500}{MB/s}} = \SI{24}{s}$.
+The fusion process itself can be very resource intensive and take a considerable amount of time. This is simply due to the size of the 3D stacks: a single stack is usually between 2 and \SI{4}{GB} in size. Thus, the necessary memory requirement to fuse 2 of these stacks is $3\cdot \SI{4}{GB} = \SI{12}{GB}$, as the result will also take up the same space. Just reading and writing this amount of information to the hard disk takes a considerable amount of time. When using an SSD drive for example, with a \SI{500}{MB/s} read and write speed, just the read/write operations will take around $\frac{\SI{12}{GB}}{\SI{500}{MB/s}} = \SI{24}{s}$.
 
 
 \begin{figure}
@@ -130,9 +137,16 @@ The fusion process itself can be very resource intensive, and take a considerabl
 \end{figure}
 
 \subsection{2D fusion of opposing views}
-To speed up the image fusion process, we take a new approach to fusing the images. As the two objectives of MuVi-SPIM ideally image the same $z$ plane, it should be possible to reduce the alignment problem to a 2D affine transformation:
+To speed up the image processing, we take a new approach to fusing the images. As the two objectives of MuVi-SPIM ideally image the same $z$ plane, it should be possible to reduce the alignment problem to a 2D affine transformation:
 \[
 \begin{pmatrix}
+  
+\begin{pmatrix}
+x'\\
+y'\\
+1
+\end{pmatrix}
+=
 a & b & d\\ 
 e & f & h \\
 0 & 0 & 1
@@ -146,13 +160,13 @@ y\\
 =
 \begin{pmatrix}
 a x + b y + d\\ 
-e x + f y + g\\
+e x + f y + h\\
 1
 \end{pmatrix}
 \]
 The advantage of a simplified transformation is not only the reduced computational complexity, but also the massively reduced memory requirement, as in this case it is sufficient to store 3 planes in memory instead of 3 entire stacks (\autoref{fig:acquisition} b). Performing the 2D direct fusion on the GPU immediately after acquisition has two benefits: first, only the fused images are stored to the hard drive, which directly results in 50\% savings in storage space. Second, since the fusion is faster than the camera acquisition speed, the fused image can be displayed for the users instead of the 2 raw images. This would greatly improve user experience and speed up the initial, set-up phase of each experiment.
 
-In order to allow for the direct, 2D fusion, the microscope needs to be very well aligned to minimize the any adverse effects of discarding some of the affine transformation parameters. The requirements for this are the following:
+In order to allow for the direct, 2D fusion, the microscope needs to be very well aligned to minimize any adverse effects arising from discarding some of the transformation parameters. The requirements for this are the following:
 \begin{align}
 \left| c z \right| &< \sigma_{xy} & \forall z \label{eq:req1}\\
 \left| g z \right|  &< \sigma_{xy} & \forall z \label{eq:req2}\\
@@ -201,11 +215,11 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
     \label{fig:LVCUDA}
   \end{figure}
 
-  Our custom microscope control software (\autoref{sec:software}) is developed in LabVIEW and we implemented the pipeline as a combination of a CUDA and a LabVIEW library. The CUDA library implements all the necessary low level functions and exposes these in a dynamically linked library (dll). The LabVIEW library, \texttt{LVCUDA.lvlib} implements two high level classes: \texttt{cuArray}, and \texttt{Texture} (\autoref{fig:LVCUDA}). These classes interface to the CUDA dll, and allow to easily build a flexible CUDA-based image processing pipeline in LabVIEW.
+  Our custom microscope control software (\autoref{sec:software}) is developed in LabVIEW and we implemented the pipeline as a combination of a CUDA and a LabVIEW library. The CUDA library implements all the necessary low level functions and exposes these in a dynamically linked library (dll). The LabVIEW library, \texttt{LVCUDA.lvlib} implements two high level classes: \texttt{cuArray}, and \texttt{Texture} (\autoref{fig:LVCUDA}). These classes interface with the CUDA dll, and allow to easily build a flexible CUDA-based image processing pipeline in LabVIEW.
 
-  As the pipeline operates on 2D images, both classes support 1D or 2D arrays in a pitched configuration. \texttt{CuArray} as the parent class stores the pointer to the array, as well as the pitch, width and height. LabVIEW natively doesn't support pointer operations, therefore the pointer is simply cast to a \SI{64}{bit} unsigned integer internally. As this is a private member of the class there is no danger of accidental modification. Being a descendent of \texttt{cuArray} class, the \texttt{Texture} class adds a further member to store the reference to a CUDA texture object. This class is used to implement the affine transformation, as it supports floating point indexing and automatic linear interpolation.
+  As the pipeline operates on 2D images, both classes support 1D or 2D arrays in a pitched configuration. \texttt{CuArray}, as the parent class, stores the pointer to the array, as well as the pitch, width and height. LabVIEW natively doesn't support pointer operations, therefore the pointer is simply cast to a \SI{64}{bit} unsigned integer internally. As this is a private member of the class there is no danger of accidental modification. Being a descendent of \texttt{cuArray} class, the \texttt{Texture} class adds a further member to store the reference to a CUDA texture object. This class is used to implement the affine transformation, as it supports floating point indexing and automatic linear interpolation.
 
-  As the processing is actually bottlenecked by the data transfer rate between the main memory and GPU memory, we implemented multiple commonly used image preprocessing operations for our pipeline to maximize the utility of the GPU. These functions include background subtraction, background masking and image compression. We will discuss these features in the following sections of the chapter. 
+  Since the processing is actually bottlenecked by the data transfer rate between the main memory and GPU memory, we implemented multiple commonly used image preprocessing operations for our pipeline to maximize the utility of the GPU. These functions include background subtraction, background masking and image compression. We will discuss these features in the following sections of the chapter. 
 
   
 
@@ -221,7 +235,7 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
 
   The image preprocessing pipeline was tested on our MuVi-SPIM microscope \cite{krzic_multiview_2012}. For the background subtraction we recorded 1500 dark images with each camera and averaged them, in order to obtain the camera specific background images. Prior to image acquisition these were uploaded to the GPU memory, and were readily available for the pipeline.
 
-  Following careful alignment of the microscope to meet the previously discussed requirements (Eqs. \ref{eq:req1} -- \ref{eq:req3}), we imaged fluorescent beads in a gel suspension to obtain the affine transformation parameters. The 3D transformation parameters obtained were the following:
+  Following careful alignment of the microscope to meet the previously discussed requirements (Eqs. \ref{eq:req1} -- \ref{eq:req3}), we imaged fluorescent beads in a gel suspension to obtain the affine transformation parameters. The measured 3D transformation parameters were the following:
 
   \[
   \begin{pmatrix}
@@ -237,12 +251,12 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
     \max |gz| =& \SI{3.11e-4}{\micro m}  \\
     \max | i x + j y + (k-1)  z + l | =& \SI{0.7789}{\micro m}
   \end{align*}
-  As these are below the resolution of the microscope, discarding the coefficients, and reducing the 3D transformation to a 2D transformation will not have any negative effects on the image quality.
+  As these are below the resolution of the microscope, discarding the coefficients and reducing the 3D transformation to a 2D transformation will not have any negative effects on the image quality.
   % x, y 0..2048, z -50..50
 
   
 
-  To validate our hypotheses, we fused bead stacks that were acquired for the calibration using both the 3D and the 2D transformations. The 2D, planewise fused beads do not exhibit any pathological morphologies compared to the 3D fused beads (\autoref{fig:2Dvs3Dbeads}). When measuring the size of the bead images (FWHM) along the lateral and axial directions, the difference is less than 0.5\%. This is well below any resolvable features.
+  To validate our hypotheses, we fused bead stacks that were acquired for the calibration using both the 3D and the 2D transformations. The 2D, planewise fused beads do not exhibit any pathological morphologies compared to the 3D fused beads (\autoref{fig:2Dvs3Dbeads}). When measuring the size of the bead images (FWHM) along the lateral and axial directions, the difference is less than 0.5\% compared to the 3D fused dataset. This is well below any resolvable features.
 
   \begin{figure}[b]
     \centering
