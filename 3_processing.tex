@@ -168,6 +168,8 @@
     \subsection{Transform coding / Modeling / Decorrelation}
       \label{sec:decorrelation}
       Since entropy coding doesn't assume anything about the data structure, it is not capable of recognizing and compressing any regular patterns or correlations between the consecutive data points. To maximize the efficiency of compression, any correlations should be removed from the data before it is fed to the entropy coder. Here we will briefly discuss some decorrelation strategies for image compression that aim to improve the performance of a successive entropy coder.
+
+
   
       discrete cosine transform (DCT) \cite{ahmed_discrete_1974}
       discrete wavelet transform (DWT) \cite{mallat_theory_1989, jensen_ripples_2001}
@@ -196,7 +198,8 @@
       
       Using a predictive scheme to remove correlations from neighboring elements is a very good strategy for various applications, where this signal is only slowly changing. It has been successfully implemented in audio and image compression algorithms as well, such as lossless-JPEG \cite{pennebaker_jpeg:_1992}, JPEG-LS \cite{weinberger_loco-i_2000}, and also CALIC \cite{wu_context-based_1997}, SFALIC \cite{starosolski_simple_2007}, FLIC \cite{wang_fast_2012}.
   
-      \begin{center}
+      \begin{figure}
+        \centering
         \begin{tabular}{|c|c|c|c|c}
           \hline
           \rowcolor{gray!25}
@@ -206,7 +209,35 @@
           \cellcolor{gray!25} \ & \cellcolor{gray!25}A & \cellcolor{green!25}X & \ & \ \\ \hline
           \ & \ & \ & \ & \ \\
         \end{tabular}
-      \end{center}
+        \bcaption[Context for pixel prediction]{X is the current pixel to be encoded and the previously encoded pixels are indicated with gray background. To allow for decoding, only the already encoded pixels are used for the prediction, typically the nearest neighbors (A, B, C, D).}
+        \label{fig:context}
+      \end{figure}
+
+      For image compression, as the data is inherently multi-dimensional, the prediction rules can also be multi-dimensional, which can better capture the structure of the data, and achieve better decorrelation. For a typical encoding scenario, where the pixels are encoded one by one, the prediction can be based on the already encoded values (gray in \autoref{fig:context}). This causality constraint is necessary in order to be able to decode the image.
+
+      Usually the nearest neighbors are used for the prediction, but this is not necessity; CALIC for example uses the second neighbors \cite{wu_context-based_1997}, and the third dimension can also be utilized if the data structures allows, for example when encoding hyperspectral recordings \cite{aranki_hardware_2009}.
+
+      The lossless part of the JPEG standard specifies 7 possible rules for the prediction step \cite{pennebaker_jpeg:_1992}:
+      \begin{align*}
+        \Pred_1(X) =& A \\
+        \Pred_2(X) =& B \\
+        \Pred_3(X) =& C \\
+        \Pred_4(X) =& A + B - C \\
+        \Pred_5(X) =& A + (B - C)/2 \\
+        \Pred_6(X) =& B + (A - C)/2 \\
+        \Pred_7(X) =& (A + B)/2 \\
+      \end{align*}
+
+      A more recent standard for lossless image compression, JPEG-LS uses the median edge predictor of the LOCO-I algorithm \cite{weinberger_loco-i_2000}:
+      \begin{equation}
+        \Pred(X) = 
+        \begin{cases}
+          \min(A,B) & \text{if } \geq \max(A,B) \\
+          \max(A,B) & \text{if } \leq \min(A,B) \\
+          A + B - C & \text{otherwise }
+        \end{cases}
+      \end{equation}
+
   
   
   
