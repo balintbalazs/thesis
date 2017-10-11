@@ -12,16 +12,16 @@
 
   \graphicspath{{./figures/3_processing/}}
 
-  \section{Image processing for light-sheet microscopy}
+  % \section{Image processing for light-sheet microscopy}
   
-    necessary preprocessing steps for multi-view light-sheet microscopy
-    image fusion
-      1. bead based registration
-      2. weighted average / cake fusion
-      3. multi-view deconvolution
+  %   necessary preprocessing steps for multi-view light-sheet microscopy
+  %   image fusion
+  %     1. bead based registration
+  %     2. weighted average / cake fusion
+  %     3. multi-view deconvolution
   
   \section{Image compression}
-    As we will see later (\autoref{sec:sizes}), light-sheet microscopy is capable of generating an immense amount of data in a short amount of time. This is why not only fast data processing but data compression also plays an important role when evaluating, sharing and storing the images. In this section we will briefly introduce the core concepts of image compression and show some examples as a background for \autoref{ch:GPU}. For a more comprehensive review on data compression fundamentals, the interested reader is referred to the works of Sayood \cite{sayood_introduction_2012}, and Salomon and Motta \cite{salomon_handbook_2010}.
+    As we will see later (\autoref{sec:sizes}), light-sheet microscopy is capable of generating an immense amount of data in a short amount of time. This is why not only fast data processing, but data compression also plays an important role when evaluating, sharing and storing the images. In this section we will briefly introduce the core concepts of image compression and show some examples as a background for \autoref{ch:GPU}. For a more comprehensive review on data compression fundamentals, the interested reader is referred to the works of Sayood \cite{sayood_introduction_2012}, and Salomon and Motta \cite{salomon_handbook_2010}.
    
     There are two distinct ways of data compression: lossless and lossy. This is an important difference, and greatly depends on the application itself. For some type of data no loss is acceptable, for example computer programs or text. Here, even a small change could drastically change the meaning of the original data. For other applications, mostly audio and video compression, some loss can be tolerated as long as there is no perceived change or distortion. For scientific applications mostly lossless compression is used. Even for image data, where lossy compression can significantly increase the compression ratio (original size / compressed size), lossy compression is usually not recommended, as it can alter the measurement results in unpredictable ways \cite{cromey_digital_2013}.
   
@@ -183,7 +183,7 @@
       
   
       \subsubsection{Predictive decorrelation}
-      Another family of decorrelation methods is based on predicting the values of each data point (or pixel) based on the context of the neighboring values. These techniques are based on differential pulse code modulation (DPCM), a decorrelation method used for audio compression. Here, before the data stream is entropy coded, a prediction is made for each value, which is equal to the preceeding value. The difference to the prediction, called the prediction error, or prediction residual ($\varepsilon$) is passed to the entropy coder.
+      Another family of decorrelation methods is based on predicting the values of each data point (or pixel) based on the context of the neighboring values. These techniques are based on differential pulse code modulation (DPCM), a decorrelation method originally used for audio compression. Here, before the data stream is entropy coded, a prediction is made for each value, which is equal to the preceeding value. The difference to the prediction, called the prediction error, or prediction residual ($\varepsilon$) is passed to the entropy coder.
 
       To see how why such an algorithm can increase compression ratio, let's consider the following sequence:
       \begin{center}
@@ -203,10 +203,11 @@
       \end{center}
       As apparent from this new sequence, the number of distinct values are reduced, which means that fewer bits can represent this sequence than the original. When running these two sequences through an entropy coder, the error sequence will be much more compressed due to this property.
       
-      Using a predictive scheme to remove correlations from neighboring elements is a very good strategy for various applications, where this signal is only slowly changing. It has been successfully implemented in audio and image compression algorithms as well, such as lossless-JPEG \cite{pennebaker_jpeg:_1992}, JPEG-LS \cite{weinberger_loco-i_2000}, and also CALIC \cite{wu_context-based_1997}, SFALIC \cite{starosolski_simple_2007} and FLIC \cite{wang_fast_2012}.
+      Using a predictive scheme to remove correlations from neighboring elements is a very good strategy for various applications, where this signal is only slowly changing. It has been successfully implemented in audio and image compression algorithms as well, such as lossless-JPEG \cite{pennebaker_jpeg:_1992}, JPEG-LS \cite{weinberger_loco-i_2000}, CALIC \cite{wu_context-based_1997}, SFALIC \cite{starosolski_simple_2007} and FLIC \cite{wang_fast_2012} just to name a few.
   
       \begin{figure}
         \centering
+        \renewcommand{\arraystretch}{1.5}
         \begin{tabular}{|c|c|c|c|c}
           \hline
           \rowcolor{gray!25}
@@ -222,7 +223,7 @@
 
       For image compression, as the data is inherently multi-dimensional, the prediction rules can also be multi-dimensional, which can better capture the structure of the data, and achieve better decorrelation. For a typical encoding scenario, where the pixels are encoded one by one, the prediction can be based on the already encoded values (gray in \autoref{fig:context}). This causality constraint is necessary in order to be able to decode the image.
 
-      Usually the nearest neighbors are used for the prediction, but this is not necessity; CALIC for example uses the second neighbors \cite{wu_context-based_1997}, and the third dimension can also be utilized if the data structures allows, for example when encoding hyperspectral recordings \cite{aranki_hardware_2009}.
+      Usually the nearest neighbors are used for the prediction, but this is not necessity; CALIC for example uses the second neighbors \cite{wu_context-based_1997}, and the third dimension can also be utilized if the data structure allows this, for example when encoding hyperspectral recordings \cite{aranki_hardware_2009}.
 
       The lossless part of the JPEG standard specifies 7 possible rules for the prediction step \cite{pennebaker_jpeg:_1992}:
       \begin{align*}
@@ -234,8 +235,9 @@
         \Pred_6(X) =& B + (A - C)/2 \\
         \Pred_7(X) =& (A + B)/2 \\
       \end{align*}
+      Depending on the patterns of the input image, some predictors can perform better than others. For general use, predictor 4 or 7 are recommended, as these are not direction dependent, and usually perform best. Predictor 7 is just the mean of the top and left neighbors, while predictor 4 assumes that the values for pixels A, B, C and X are on the same plane, and calculates the prediction based on this. 
 
-      A more recent standard for lossless image compression, JPEG-LS uses the median edge predictor of the LOCO-I algorithm \cite{weinberger_loco-i_2000}:
+      Other algorithms try to improve the prediction by adapting it depending on the local texture. The LOCO-I algorithm (part of JPEG-LS), for example uses the median edge detector \cite{weinberger_loco-i_2000}:
       \begin{equation}
         \Pred(X) = 
         \begin{cases}
@@ -244,16 +246,18 @@
           A + B - C & \text{otherwise }
         \end{cases}
       \end{equation}
+      This function tries to estimate is there is an edge close to X. If it detects a vertical edge to the left of X, it picks B for the prediction, while if it detects a horizontal edge above X it tends to pick A. If no edge is detected, the prediction is the same as predictor 4 of the lossless JPEG standard.
 
+      A useful property of the prediction based methods, is that there is no base change as in the transform coding methods, and it is possible to construct bounded lossy compression algorithms. JPEG-LS, for example defines a near-lossless mode of operation, where the user can select the maximum absolute reconstruction error per pixel. This is achieved by quantizing the prediction residual $\varepsilon$ with a quantization step depending of the allowable error. Since the decoding algorithm simply calculates $\hat{X} = \pred(X) + \varepsilon$, any quantization error of $\varepsilon$ is directly reflected in the reconstructed pixel value. Since the quantization error is known, and bounded by the quantization step size, the maximum reconstruction error ofr each pixel is also bounded. This mode is sometimes used for medical imaging applications, where the preservation of diagnostic quality is required by law, but higher compression ratios are desired than what is possible by lossless compression.
   
   
   
   
-  \section{Noise in light microscopy images}
-  \subsection{Photon shot noise}
-  \subsection{Camera noise}
-    \subsubsection{CCD}
-    \subsubsection{EM-CCD}
-    \subsubsection{sCMOS}
-  \subsection{Variance stabilization}
+  % \section{Noise in light microscopy images}
+  % \subsection{Photon shot noise}
+  % \subsection{Camera noise}
+  %   \subsubsection{CCD}
+  %   \subsubsection{EM-CCD}
+  %   \subsubsection{sCMOS}
+  % \subsection{Variance stabilization}
   
