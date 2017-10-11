@@ -165,20 +165,27 @@
 
       Another alternative for compressing very low entropy data is run-length encoding. This coding method assumes that the same character appears in the message many times consecutively, and instead of storing each of these individually it counts the number of identical symbols in a single run, and encodes the run-length together with the symbol. As this strategy is only efficient for very low entropy data, it is a common practice to combine run-length encoding with Huffman coding to construct a low redundancy coder for a wide range of input data.
   
-    \subsection{Transform coding / Modeling / Decorrelation}
+    \subsection{Decorrelation}
       \label{sec:decorrelation}
       Since entropy coding doesn't assume anything about the data structure, it is not capable of recognizing and compressing any regular patterns or correlations between the consecutive data points. To maximize the efficiency of compression, any correlations should be removed from the data before it is fed to the entropy coder. Here we will briefly discuss some decorrelation strategies for image compression that aim to improve the performance of a successive entropy coder.
 
+      \subsubsection{Transform coding}
+      Very popular methods for decorrelation are the transformations that represent the data as a decomposition of orthonormal functions. One of the most common of these transformations is the Fourier transform, that represents a periodic signal as a sum of sine an cosine functions. As most natural images are continuous tone, the idea behind this is that most of the information will be captured by just a few Fourier coefficients. Because of this, compressing the coefficients with an entropy coder should result in a smaller output than encoding the original data.
 
-  
-      discrete cosine transform (DCT) \cite{ahmed_discrete_1974}
-      discrete wavelet transform (DWT) \cite{mallat_theory_1989, jensen_ripples_2001}
+      For practical purposes, instead of the discrete Fourier transform (DFT), the discrete cosine transform (DCT) \cite{ahmed_discrete_1974} is usually used in image compression applications. This is very similar to DFT, the difference being the periodic extension of the signal. In the DCT transform, the image is mirrored on the sides instead of just repeating to avoid large jumps at the boundaries that may introduce unwanted high frequency components to the Fourier transform. If the image is extended in a symmetric way, the Fourier transform will be able to represent the data with only using cosine functions, hence the name discrete cosine transformations.
+
+      One drawback of frequency-based transformations, is that can't capture the spatial 
+      To overcome this limitation, the DCT is usually performed on small chunks of the image, such as on 8\texttimes8 blocks in the JPEG compression. The other option is to use non-periodic base functions to represent the signal. One good example for this is the use of wavelets, and based on this, the discrete wavelet transform (DWT) \cite{mallat_theory_1989, jensen_ripples_2001}.
+
+      As both DCT and DWT operate with floating point coefficients (although DWT has integer-based variants), the inverse transformation is not guaranteed to exactly reconstruct the original data. This is due to the finite machine precision of floating point numbers. Due to this fact these transformations are usually used in lossy compression algorithms and the coefficients are quantized based on the required image quality.
       
       % Decorrelation itself does not compress the data, it just reorganizes the information in a way that make a subsequent entropy coder more efficient.
       
   
-      
-      To see how such an algorithm could work, let's consider the following sequence:
+      \subsubsection{Predictive decorrelation}
+      Another family of decorrelation methods is based on predicting the values of each data point (or pixel) based on the context of the neighboring values. These techniques are based on differential pulse code modulation (DPCM), a decorrelation method used for audio compression. Here, before the data stream is entropy coded, a prediction is made for each value, which is equal to the preceeding value. The difference to the prediction, called the prediction error, or prediction residual ($\varepsilon$) is passed to the entropy coder.
+
+      To see how why such an algorithm can increase compression ratio, let's consider the following sequence:
       \begin{center}
         \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
           \hline
@@ -196,7 +203,7 @@
       \end{center}
       As apparent from this new sequence, the number of distinct values are reduced, which means that fewer bits can represent this sequence than the original. When running these two sequences through an entropy coder, the error sequence will be much more compressed due to this property.
       
-      Using a predictive scheme to remove correlations from neighboring elements is a very good strategy for various applications, where this signal is only slowly changing. It has been successfully implemented in audio and image compression algorithms as well, such as lossless-JPEG \cite{pennebaker_jpeg:_1992}, JPEG-LS \cite{weinberger_loco-i_2000}, and also CALIC \cite{wu_context-based_1997}, SFALIC \cite{starosolski_simple_2007}, FLIC \cite{wang_fast_2012}.
+      Using a predictive scheme to remove correlations from neighboring elements is a very good strategy for various applications, where this signal is only slowly changing. It has been successfully implemented in audio and image compression algorithms as well, such as lossless-JPEG \cite{pennebaker_jpeg:_1992}, JPEG-LS \cite{weinberger_loco-i_2000}, and also CALIC \cite{wu_context-based_1997}, SFALIC \cite{starosolski_simple_2007} and FLIC \cite{wang_fast_2012}.
   
       \begin{figure}
         \centering
