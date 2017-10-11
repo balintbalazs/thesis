@@ -52,28 +52,20 @@
       % in the context of image compression
       % redistributing probabilities
       
-    \subsection{Entropy coding -- Huffman coding}
+    \subsection{Entropy coding}
       \label{sec:entropyCoding}
+
+      Entropy coding algorithms aim to reduce data size and reach the limit of entropy for any kind of input, provided the probability distribution of the possible symbols. All of these algorithms work in a similar way, as their aim is represent the symbols of the input data by codewords in a way to minimize the overall length of the data. Variable length codes for example replace the more common symbols with short codewords, while for less frequent symbols they use longer codewords. The ideal length of a codeword for symbol $A$ is actually equal to $I(A)$, as this was the definition of self-information.
+
+
+      \subsubsection{Prefix-free codes}
+
+      Fix length codes have the convenience that there is no need to indicate the boundaries between them, as they are all the same length (\textit{e.g.} \SI{8}{bits} for ASCII codes). For variable length codes, as the name implies this is not possible, which necessitated the development of various strategies to demarcate these codewords. 
+
+      One way to indicate the end of a codeword is by using a specific delimiting sequence which is not part of any of the codewords. While this is an obvious solution, it is also wasteful, as these sequences will not contain any information regrading the original source. Prefix-free codes were developed to be able to omit these sequences, while still allowing unique decodability, making them very popular. This is achieved by making sure that once a codeword was assigned, no other codeword would start with that sequence. In other words, no codeword is a prefix of another codeword, hence the name of the technique. During decoding the bits are read until a valid codeword is matched. Since it is guaranteed that no other codeword will start with the same sequence, the decoder can record the symbol corresponding for that codeword, and continue reading the compressed stream.
+      % A practical implementation to this process is based on representing the codewords in a binary tree where each edge corresponds to one bit and is labeled 1 or 0. As the decoder is reading the bits, it traverses down the tree until it reaches a leaf. The symbol represented by that leaf will be the decoded symbol and the process can start over from the beginning.
       
-  
-      % The aim of entropy coding (\autoref{sec:entropyCoding}) is, based on the probability distribution of $X$, to compress the data as small as possible, reaching 
-  
-      % aim: few letters with very high probability, all other letters with very low probability, e.g. exponential distribution
-      % worst: uniform distribution = random noise
-  
-  
-      % how to reduce data size? use variable length codes
-      % code length depends on symbol frequency - more frequent, shorter codes
-      % problem? how do we know the boundaries between codewords?
-      % prefix free codes - no codeword is a prefix of any other codeword
-      % Huffman coding is like this, and also ideal in the sense that the average codeword length for large data
-      % "The long discussion in [Gilbert and Moore 59] \cite{gilbert_variable-length_1959} proves that the Huffman code is a minimum-length code in the sense that no other encoding has a shorter average length"
-  
-      Huffman coding is a prefix-free, optimal code that is widely used in data compression. It was developed by David A. Huffman as a course assignment on the first ever course on information theory at MIT, and was published shortly afterwards \cite{huffman_method_1952}. It is a variable length binary code which assigns different length codewords to letters of different probabilities. It is able to achieve optimal compression, which means the total length of the coded sequence will be minimal.
-      
-      Although it produces a variable length code which can introduce some issues with decoding, it is still uniquely decodable. It achieves this property by using prefix-free codewords, meaning that none of the codewords are prefixes of any other codewords. This property can be exploited when decoding the codeword, since during this procedure the number of bits for the next codeword can not be determined in advance. However if no codeword is a prefix of another codeword, by simply reading the successive bits one by one until we reach a valid codeword, it's possible to uniquely decode the message.
-  
-      Let's take the example in Table \ref{tab:huffman1}. Five letters are coded in binary code by Code \#1 and by Code \#2. Code 1 is not a prefix code, and because of this when reading the encoded sequence we can not be sure when we reach the end of a codeword. Decoding the sequence 0000 for example could be interpreted as 4 letters of $a_1$ or 2 letters of $a_3$.
+      Let's take the example in Table \ref{tab:prefix}. Five letters are coded in binary code by Code \#1 and by Code \#2. Code \#1 is not a prefix code, and because of this when reading the encoded sequence we can not be sure when we reach the end of a codeword. Decoding the sequence 0000 for example could be interpreted as 4 letters of $a_1$ or 2 letters of $a_3$. For Code \#2 it is clear that the sequence decodes to 2 letters of $a_3$.
   
       \begin{table}
         \bcaption[Examples of a random binary code (\#1) and a prefix-free binary code (\#2)]{Code \#2 is uniquely decodable, while for code \#1 it's necessary to introduce boundaries between codewords to be able to distinguish them.}
@@ -91,6 +83,19 @@
         \end{tabular}
         \label{tab:prefix}
       \end{table}
+  
+      % how to reduce data size? use variable length codes
+      % code length depends on symbol frequency - more frequent, shorter codes
+      % problem? how do we know the boundaries between codewords?
+      % prefix free codes - no codeword is a prefix of any other codeword
+      % Huffman coding is like this, and also ideal in the sense that the average codeword length for large data
+      % "The long discussion in [Gilbert and Moore 59] \cite{gilbert_variable-length_1959} proves that the Huffman code is a minimum-length code in the sense that no other encoding has a shorter average length"
+  
+
+      \subsubsection{Huffman coding}
+
+      Huffman coding is a prefix-free, optimal code that is widely used in data compression. It was developed by David A. Huffman as a course assignment on the first ever course on information theory at MIT, and was published shortly afterwards \cite{huffman_method_1952}. It is able to achieve optimal compression in a sense that no other prefix-free codes will produce a shorter output. Due to its simplicity combined with a good compression ratio it is still widely used in many compression algorithms, such as in JPEG, bzip2, or DEFLATE (zip) \cite{salomon_handbook_2010}.
+      
   
       The Huffman coding procedure is based on two observations regarding optimal and prefix-free codes:
       \begin{enumerate}
@@ -126,17 +131,17 @@
         \label{fig:huffman}
       \end{figure}
   
-      To construct such a code, the following iterative procedure can be used. Let's consider an alphabet with five letters $A = [a_1,a_2,a_3,a_4,a_5]$ with $P(a_1)=P(a_3)=0.2$, $P(a_2)=0.4$ and $P(a_4)=P(a_5)=0.1$ (Table \ref{tab:huffman1}). "The entropy for this source is 2.122 bits/symbol." Let's order the letters by probability, and consider the two least frequent. Since the codewords assigned to these should have the same lengths, "we can assign their codewords as"
+      To construct such a code, the following iterative procedure can be used. Let's consider an alphabet with five letters $A = [a_1,a_2,a_3,a_4,a_5]$ with $P(a_1)=P(a_3)=0.2$, $P(a_2)=0.4$ and $P(a_4)=P(a_5)=0.1$ (Table \ref{tab:huffman1}). This distribution represents a source with 2.122 bits/symbol. Let's order the letters by probability, and consider the two least frequent. Since the codewords assigned to these should have the same lengths, they can be assigned as
       \begin{align*}
         c(a_4) &= \alpha_1 * 0 \\
         c(a_5) &= \alpha_1 *1
       \end{align*}
   
-      where $c(a_i)$ is the assigned codeword for letter $a_i$ and $*$ denotes concatenation. Now we define a new alphabet $A'$ with only four letters $a_1, a_2, a_3, a'_4$, where $a'_4$ is a merged letter for $a_4$ and $a_5$ with the probability $P(a'_4) = P(a_4) + P(a_5) = 0.2$. We can continue this process of merging the letters until all of them are merged and we have only one letter left. Since this contains all of the original letters, its probability is 1. We can represent the end result in a binary tree (see Figure \ref{fig:huffman}), where the leaves are the letter of the alphabet, nodes are the merged letters, and the codewords are represented by the path from the root node to each leaf (compare with Table \ref{tab:huffman2}). "The average length of this code is"
+      where $c(a_i)$ is the assigned codeword for letter $a_i$ and $*$ denotes concatenation. Now we define a new alphabet $A'$ with only four letters $a_1, a_2, a_3, a'_4$, where $a'_4$ is a merged letter for $a_4$ and $a_5$ with the probability $P(a'_4) = P(a_4) + P(a_5) = 0.2$. We can continue this process of merging the letters until all of them are merged and we have only one letter left. Since this contains all of the original letters, its probability is 1. We can represent the end result in a binary tree (see Figure \ref{fig:huffman}), where the leaves are the letter of the alphabet, nodes are the merged letters, and the codewords are represented by the path from the root node to each leaf (compare with Table \ref{tab:huffman2}). The average length of this code is
       \begin{equation}
         l = 0.4\times 1 + 0.2 \times 2 + 0.2 \times 3 + 0.1 \times 4 + 0.1 \times 4 = 2.2 \text{ bits/symbol}
       \end{equation}
-      "A measure of the efficiency of this code is its redundancy—the difference between the entropy and the average length. In this case, the redundancy is 0.078 bits/symbol. The redundancy is zero when the probabilities are negative powers of two."
+      The efficiency of a code can be measured by comparing the average code size to the entropy of the source. For this example, the difference is 0.078 bits/symbols. As the Huffman code operates in base two, it will produce a code with zero redundancy when the probabilities are negative powers of two.
   
       \begin{table}
         \bcaption[Huffman code table]{}
@@ -154,6 +159,11 @@
         \end{tabular}
         \label{tab:huffman2}
       \end{table}
+
+    \subsubsection{Limitations of Huffman coding}
+      Although the Huffman code is optimal among variable length codes, for certain types of data it can have poor compression ratio. This limit lies in the fact that the length of the shortest code assignable is one. For certain types of data with very low entropy this will result in a relatively high redundancy. Arithmetic coding offers an alternative here, as contrary to Huffman coding it does not rely on substituting symbols with codewords, and thus can compress very low entropy data with minimal redundancy. This coding method maps the whole message to a single number with arbitrary precision in the interval of 0 to 1. A more detailed description of arithmetic coding in given in \cite{sayood_introduction_2012}.
+
+      Another alternative for compressing very low entropy data is run-length encoding. This coding method assumes that the same character appears in the message many times consecutively, and instead of storing each of these individually it counts the number of identical symbols in a single run, and encodes the run-length together with the symbol. As this strategy is only efficient for very low entropy data, it is a common practice to combine run-length encoding with Huffman coding to construct a low redundancy coder for a wide range of input data.
   
     \subsection{Transform coding / Modeling / Decorrelation}
       \label{sec:decorrelation}
