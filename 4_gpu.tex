@@ -351,7 +351,7 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
     
     \begin{figure}[tpb]
       \centering
-      \includegraphics[page=1,width=0.6\textwidth]{SFig1_flow}
+      \includegraphics[page=1,width=0.6\textwidth]{tiles}
       \bcaption[\b3d algorithm schematics]{(\textbf{a}) Prediction context for pixel X, the next sample to be encoded. Three neighboring pixels are considered: left (A), top (B) and top left (C) neighbors. (\textbf{b}) Lossless JPEG predictors for X, based on the context showed in (\textbf{a}). The first three predictors are one-dimensional, while the rest are two-dimensional. Using a two dimensional predictor while increases complexity slightly, also increases the achievable compression ratio. We found that for fluorescence microscopy images predictor 7 performs best, hence its inclusion in the \b3d algorithm. (\textbf{c)} Complete algorithm flowchart depicting the main stages of the compression. First, if the result should be lossless, pixel prediction is performed on the original image values. If within noise level mode is selected, the image noise is stabilized first (see \autoref{sec:wnl}), which is then scaled by the quantization step $q$. Prediction is performed, and the prediction errors are rounded to the nearest integer. The prediction errors for both lossless and lossy modes are then run-length encoded, and finally Huffman coding is applied to effectively reduce data size. The output of the Huffman coder is saved as the compressed file.}
       \label{fig:algorithm}
     \end{figure}
@@ -399,43 +399,52 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
 
     \begin{figure}
       \centering
-      \includegraphics[width=0.7\textwidth]{extraNoise}
+      \includegraphics[width=0.5\textwidth]{extraNoise}
       \bcaption[Theoretical and measured increase in image noise for WNL compression]{Validating \autoref{eq:extraNoise}, we plot the relative increase in image noise as a function of the mean. Blue line: plot of \autoref{eq:extraNoise} Red line: plot of measured data. To obtain the measurement, we compressed a stack of 512 images consisting of Poisson noise, each with a different mean. After WNL compression the data was read in Matlab, and the standard deviation was calculated for each frame. The ratio $\sigma_{in}/\sigma_{out}$ is plotted as a function of the mean.}
       \label{fig:extraNoise}
     \end{figure}
 
   \subsection{Evaluation of the compression algorithm}
 
-  We compared our algorithm’s performance with some of the most commonly used image formats in the scientific field: TIFF (LZW) and JPEG2000. Furthermore, we also included the state of the art KLB compression \cite{amat_efficient_2015}, which was especially designed for fast compression of large light-sheet datasets. We measured compression speed, decompression speed and resulting file size for all algorithms (\autoref{fig:bubbles}). Only \b3d is capable of handling the sustained high data rate of modern sCMOS cameras typically used in light-sheet microscopy, while still maintaining compression ratios comparable to more complex, but much slower algorithms (\autoref{tab:performance} in Appendix \ref{app:b}).
+  We compared our algorithm’s performance with some of the most commonly used image formats in the scientific field: TIFF (LZW) and JPEG2000. Furthermore, we also included the state of the art KLB compression \cite{amat_efficient_2015}, which was especially designed for fast compression of large light-sheet datasets. We measured compression speed, decompression speed and resulting file size for all algorithms (\autoref{fig:bubbles}a). Only \b3d is capable of handling the sustained high data rate of modern sCMOS cameras typically used in light-sheet microscopy, while still maintaining compression ratios comparable to more complex, but much slower algorithms (\autoref{tab:performance} in Appendix \ref{app:tables}).
 
-  "TODO" We define the mode where the quantization step is equal to the noise (q=1σ) as within noise level (WNL) compression. Using this method, the compression ratio massively increases for all imaging modalities compared to the lossless mode (\autoref{fig:benchmark}) without any apparent loss in image quality (\autoref{fig:wnlSamples}). Furthermore, the average compression error is considerably smaller than the image noise itself (\autoref{fig:RMSD}).
+  "TODO" We define the mode where the quantization step is equal to the noise (q=1σ) as within noise level (WNL) compression. Using this method, the compression ratio massively increases for all imaging modalities compared to the lossless mode (\autoref{fig:bubbles}b) without any apparent loss in image quality (\autoref{fig:wnlSamples}). Furthermore, the average compression error is considerably smaller than the image noise itself (\autoref{fig:RMSD}).
 
     \begin{figure}[tpb]
       \centering
-      \includegraphics[page=1,height=0.5\textwidth]{bubbles}
-      \bcaption[Lossless compression performance]{Performance comparison of our \b3d compression algorithm (red circle) vs. KLB (orange), uncompressed TIFF (light yellow), LZW compressed TIFF (light blue) and JPEG2000 (blue) regarding write speed (horizontal axis), read speed (vertical axis) and file size (circle size). (see also Table \ref{tab:performance}).}
+      \begin{subfigure}{0.49\textwidth}
+        \centering
+        \includegraphics[page=1,height=0.9\textwidth]{bubbles}
+        \caption{}
+      \end{subfigure}      
+      \begin{subfigure}{0.49\textwidth}
+        \centering
+        \includegraphics[page=1,height=0.9\textwidth]{Fig1c_compressionBars}
+        \caption{}
+      \end{subfigure}      
+      \bcaption[Compression performance]{(\textbf{a}) Performance comparison of our \b3d compression algorithm (red circle) vs. KLB (orange), uncompressed TIFF (light yellow), LZW compressed TIFF (light blue) and JPEG2000 (blue) regarding write speed (horizontal axis), read speed (vertical axis) and file size (circle size). (see also Table \ref{tab:performance}). (\textbf{b}) WNL compression performance compared with lossless performance for 9 different dataset representing 3 imaging modalities (SPIM, SMLM, screening). Compression ratio = original size / compressed size. For description of datasets see Table \ref{tab:datasets} in Appendix B.}
       \label{fig:bubbles}
     \end{figure}
 
-    \begin{figure}[tpb]
-      \centering
-      \includegraphics[page=1,height=0.5\textwidth]{Fig1c_compressionBars}
-      \bcaption[Within noise level compression performance]{WNL compression performance compared with lossless performance for 9 different dataset representing 3 imaging modalities (SPIM, SMLM, screening). Compression ratio = original size / compressed size. For description of datasets see Table \ref{tab:datasets} in Appendix B.}
-      \label{fig:benchmark}
-    \end{figure}
+    % \begin{figure}[tpb]
+    %   \centering
+    %   \includegraphics[page=1,height=0.4\textwidth]{Fig1c_compressionBars}
+    %   \bcaption[Within noise level compression performance]{WNL compression performance compared with lossless performance for 9 different dataset representing 3 imaging modalities (SPIM, SMLM, screening). Compression ratio = original size / compressed size. For description of datasets see Table \ref{tab:datasets} in Appendix B.}
+    %   \label{fig:benchmark}
+    % \end{figure}
 
 
 
     \begin{figure}[tpb]
       \centering
-      \includegraphics[page=1,width=0.9\textwidth]{wnlSamples}
+      \includegraphics[page=1,width=0.7\textwidth]{wnlSamples}
       \bcaption[Image quality of a WNL compressed dataset]{WNL compression performance compared with lossless performance for 9 different dataset representing 3 imaging modalities (SPIM, SMLM, screening). Compression ratio = original size / compressed size. For description of datasets see Table \ref{tab:datasets}.}
       \label{fig:wnlSamples}
     \end{figure}
 
     \begin{figure}[tpb]
       \centering
-      \includegraphics[page=1,width=0.7\textwidth]{SFig4_RMSDvsSD}
+      \includegraphics[page=1,width=0.6\textwidth]{SFig4_RMSDvsSD}
       \bcaption[Compression error compared to image noise]{To compare the difference arising from WNL compression to image noise, we imaged a single plane 100 times in a \textit{Drosophila melanogaster} embryo expressing H2Av-mCherry nuclear marker at \SI{38}{ms} intervals. The whole acquisition took \SI{3.8}{s}, for which the sample can be considered stationary. To visualize image noise, the standard deviation was calculated for the uncompressed images (left). All images were then WNL compressed, and the root mean square deviation was calculated compared to the uncompressed images (right). The root mean square deviation on average is 3.18 times smaller than the standard deviation of the uncompressed images.}
       \label{fig:RMSD}
     \end{figure}
@@ -494,7 +503,7 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
   %#     ## ##          ##    ##     ## 
   %#     ## ########    ##    ##     ## 
 
-\section{Methods}
+\subsection{Methods}
   \label{sec:methodsB3D}
 \subsubsection{Compression benchmarking}
 For all presented benchmarks, TIFF and JPEG2000 performance was measured through MATLAB's imwrite and imread functions, while KLB and \b3d performance was measured in C++. All benchmarks were run on a computer featuring 32 processing cores (2×Intel Xeon E5-2620 v4), \SI{128}{GB} RAM and an NVIDIA GeForce GTX 970 graphics processing unit. Read and write measurements were performed in RAM to minimize I/O overhead, and are an average of 5 runs. SMLM datasets were provided by Joran Deschamps (EMBL, Heidelberg), and were originally published in \cite{deschamps_3d_2014} and \cite{deschamps_efficient_2016}. Screening datasets were provided by Jean-Karim Hériché (EMBL, Heidelberg), and were originally published in \cite{simpson_genome-wide_2012}
