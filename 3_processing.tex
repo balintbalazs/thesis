@@ -184,6 +184,7 @@
       
   
       \subsubsection{Predictive decorrelation}
+      \label{sec:predictors}
       Another family of decorrelation methods is based on predicting the values of each data point (or pixel) depending on the context of the neighboring values. These techniques are based on differential pulse code modulation (DPCM), a decorrelation method originally used for audio compression. Here, before the data stream is entropy coded, a prediction is made for each value, which is equal to the preceeding value. The difference to the prediction, called the prediction error, or prediction residual ($\varepsilon$) is passed to the entropy coder.
 
       To see how why such an algorithm can increase compression ratio, let's consider the following sequence:
