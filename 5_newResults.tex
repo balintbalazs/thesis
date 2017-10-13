@@ -1,0 +1,56 @@
+% !TEX root = dissertation_BB.tex
+%% spellcheck-language en-US
+
+\section{New scientific results}
+
+  \paragraph{Thesis I.}\textit{I have designed and constructed a new light-sheet microscope suitable for high resolution near isotropic imaging of delicate samples. A novel  arrangement of two high numerical aperture objectives in 120 degrees allows for near isotropic resolution while increasing light collection efficiency by a factor of two.}
+  
+    Corresponding publications: \cite{de_medeiros_light-sheet_2016},\cite{strnad_inverted_2016}, \cite{hoyer_breaking_2016}
+
+    Live imaging of light sensitive specimens, such as a developing mouse embryo is a challenging task
+
+  \paragraph{Thesis II.} \textit{I have developed a GPU-based image processing pipeline for multi-view light-sheet microscopy that enables real time fusion of opposing views.}
+
+    Corresponding publications: \cite{balazs_gpu-based_2016}, \cite{balazs_gpu-based_2016-1}, \cite{balazs_gpu-based_2017}
+
+
+
+  \paragraph{Thesis III.} \textit{I have  developed a new image compression algorithm that enables noise dependent lossy compression of light microscopy images, and can reach a compression ratio of 100 fold while preserving the results of downstream data analysis steps. A fast CUDA implementation allows for real-time image compression of high-speed microscopy images.}
+
+    Corresponding publications: \cite{balazs_real-time_2017}, \cite{balazs_gpu-based_2016}, \cite{balazs_gpu-based_2016-1}, \cite{balazs_gpu-based_2017}
+    
+    % \b3d is an efficient, GPU-based image compression library allowing lossless and noise dependent lossy compression of microscopy images.
+    Since many high-speed microscopy methods generate immense amounts of data, easily reaching terabytes per experiment, image compression is especially important to efficiently deal with such datasets. Existing compression methods suitable for microscopy images are not able to deal with the high data rate of modern sCMOS cameras ($\sim \SI{800}{MB/s}$).
+
+    I developed \b3d, a GPU-based parallel image compression algorithm capable of over \SI{1}{GB/s} throughput, allowing live image compression. To further reduce the data size, I developed a noise dependent lossy compression that only modifies the data in a deterministic manner. The allowed differences for each pixel can be specified as a proportion of the inherent image noise, accounting for photon shot noise and camera readout noise. Due to the use of pixel prediction, the subjective image quality is higher than for other methods that simply quantize the square root of the images.
+
+  \paragraph{Thesis IV.} \textit{I have shown that within noise level compression does not affect the results of most commonly used image processing applications, and it allows a factor of 4 increase in compression ratio compared to lossless methods.}
+  
+    Corresponding publications: \cite{balazs_real-time_2017}, \cite{balazs_gpu-based_2016}, \cite{balazs_gpu-based_2016-1}, \cite{balazs_gpu-based_2017}
+    
+    As data integrity in microscopy is paramount for 
+    
+
+
+\section{Application of the results}
+Both the new DualMouse-SPIM microscope and the GPU-based image processing and compression pipeline have direct applications in light-sheet imaging of embryonic development.
+
+Multiple potential collaborators indicated their interest in using the DualMouse-SPIM for their studies in mouse embryonic development. The Hiiragi group, focusing on symmetry breaking events in the pre-implantation and early post-implantation stages would like to use this system for imaging larger specimens from multiple direction, which is not possible on their current microscopes, and could allow them to observe previously unknown mechanisms. The Ellenberg group is interested in investigating chromosome missesgregation mechanisms in the first few divisions during embryonic development. The increased axial resolution of this system will allow to track each individual chromosome during the division process, which was not possible on their current setup due to the insufficient axial resolution.
+
+The GPU-based image processing pipleline, especially the 2D fusion of opposing views is already being used on our lab's workhorse microscope, the MuVi-SPIM. Being able to fuse the two views of the opposing objectives during imaging not only results in considerable storage space savings, but significantly speeds up the data analysis as well.
+
+The image compression algorithm, \b3d, although was developed with light-sheet microscopy in mind, has a more wide-spread use-case. Any kind of high-speed, high-throughput light-microscopy experiment can benefit form the massive data reduction offered by the within noise level mode. Since the compression can also be done immediately during imaging, not only the storage requirements, but the data bandwidth is reduced as well, which renders the use of high performance RAID arrays and \SI{10}{Gbit} networks unnecessary, further reducing costs.
+Due to the similarly high decompression speed, reading the data is also accelerated, which can be beneficial for data browsing and 3D rendering applications. Several companies of different fields already expressed their interest in the compression library, such as Bitplane AG (3D data analysis and visualisation), Luxendo GmbH (light-sheet microscopy), and Hamamatsu Photonics K.K (camera and sensor manufacturing).
+
+% microscope:
+% high res imaging of mouse development
+% legfokepeppen kinetochore (chromosome) tracking
+% Ellenberg group: kinetochore tracking, only works with isotropic res, not with orig. mouse-SPIM
+% Hiiragi group: symmerty breaking, also for post-implantation, as the dual view allows to image larger specimens
+
+% compression:
+% any biology lab working with light-sheet microscopy
+% time and space and money savings
+% already in HDF5, works with Matlab, python, bigdataviewer
+% commercial:
+% Bitplane AG (Imaris, 3D data analysis software), Luxendo GmbH (light-sheet microscopes), Hamamatsu Photonics K.K (camera and sensor manufacturing)
