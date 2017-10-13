@@ -7,8 +7,9 @@ Light-sheet fluorescence microscopy, also called single plane illumination micro
 
 A symmetric light-sheet microscope is presented, featuring two high numerical aperture objectives arranged in \SI{120}{\degree}, both capable of illuminating the sample and detecting the fluorescence signal. It allows for multi-view imaging of delicate samples where rotation is not possible. The optical properties of the microscope are characterized, and its imaging capabilities are demonstrated on \textit{Drosophila melanogaster} embryos and mouse zygotes.
 
-To address the big data problem of light-sheet microscopy, a real-time, GPU-based image processing pipeline is presented. It is capable of performing commonly required preprocessing tasks such as fusion of opposing views during image acquisition. It includes a novel, high-speed image compression method that alongside a lossless mode also has a noise dependent lossy mode. This allows to significantly increase the compression ratio without affecting the results of any further analysis. A detailed performance analysis is presented of the different compression modes for various biological samples and imaging modalities.
-
+To address the big data problem of light-sheet microscopy, a real-time, GPU-based image processing pipeline is presented.
+Alongside its capability of performing commonly required preprocessing tasks, such as image fusion of opposing views, immediately during image acquisition, it also contains a novel, high-speed image compression method. This algorithm is suitable for both a lossless and a noise-dependent lossy image compression, the latter allowing for a significantly increased compression ratio, without affecting the results of any further analysis.
+A detailed performance analysis is presented of the different compression modes for various biological samples and imaging modalities.
 
 
 % preprocessing and compressing the data real-time

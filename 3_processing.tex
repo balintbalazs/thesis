@@ -28,6 +28,7 @@
     % There are a multitude of techniques developed in the context of data compression, and most compression methods are built based on this repertoire. Because of this, many algorithms follow a common pattern, and 
   
     \subsection{Basics of information theory}
+      \label{sec:entropy}
       As compression is the art of reducing the size of a message while keeping the same amount of information, it is necessary to briefly discuss the theory behind information, and how to quantify it. These concepts were first introduced by Shannon, in his highly influential papers \cite{shannon_mathematical_1948,shannon_mathematical_1948-1,shannon_prediction_1951}. As a rigorous mathematical explanation is outside the scope of this work, we refer the interested reader to the aforementioned works.
   
       Informally, information can be quantified as the amount of surprise. Any statement, if it has a high probability carries a low amount of information, while if it has a small probability, there is more information. Consider the following example: ``It is July". If it is indeed July, this statement doesn't provide too much information. Continuing with ``It is snowing outside", carries more information, as it is unexpected under the circumstances (provided the conversation takes place on the Northern Hemisphere).
