@@ -11,12 +11,29 @@
 
 \graphicspath{{./figures/1_spim/}}
 
+constant need to understand the world and nature
+most important sense: sight
+optical instruments to aid in discovery: microscope for small and close objects, telescope for large and far objects
+
+looking at life, how does it work? try and record 
+optics history? Leeuwenhoek, Robert Hooke ``artificial organs" \cite{hooke_micrographia:_1665}
+
+breakthrough: fluorescence microscopy
+for 3d live imaging necessary to span large scales in space and time
+light-sheet fluorescence microscopy (LSFM), also called single-plane illumination microscopy (SPIM)
+
+microscopy has evolved far from its original roots of pure optics, 
+also necessary: electronics, programming, data analysis
+
+% move this to chapter DualMouse -->
 Unraveling the secrets of mammalian development has been a long standing challenge for developmental biologists and medical professionals alike. 
-% Understanding the early embryonic development allows to shed light on questions such as human infertility and congenital diseases. 
 This phase of early life is an incredibly complex and dynamic process spanning through large scales in space and time. Subcellular processes at the nanoscale are happening in the range of milliseconds or faster, while whole embryo reorganizations and tissue migration events take place over the course of hours \cite{gilbert_developmental_2013}. Resolving these processes presents a true challenge, since to understand the underlying mechanisms, molecular specificity is just as crucial as high spatial and temporal resolution.
+% <--
 
-Light microscopy is one of the oldest methods that is still widely used today to investigate the inner workings of microscopic life. A particularly important branch is fluorescence microscopy \cite{diaspro_optical_2011}, that relies on using fluorescent labels to mark specific regions inside the specimens. Light-sheet microscopy is a relatively new addition to the arsenal of tools that comprise light microscopy methods, and is especially suitable for live imaging of embryonic samples over extended periods of time \cite{keller_quantitative_2008, huisken_selective_2009, weber_light_2011,tomer_shedding_2011}. It is also easily adapted to the sample, allowing to image a large variety of specimens, from entire organs, such as cleared mouse brains \cite{dodt_ultramicroscopy:_2007}, to the subcellular processes occurring inside cultured cells \cite{chen_lattice_2014}.
+Light microscopy is one of the oldest methods that is still widely used today to investigate the inner workings of microscopic life. A particularly important branch is fluorescence microscopy \cite{diaspro_optical_2011}, that relies on using fluorescent labels that mark specific structures inside the specimens. Light-sheet microscopy is a relatively new addition to the arsenal of tools that comprise light microscopy methods, and is especially suitable for live imaging of embryonic samples over extended periods of time \cite{keller_quantitative_2008, huisken_selective_2009, weber_light_2011,tomer_shedding_2011}. It is also easily adapted to the sample, allowing to image a large variety of specimens, from entire organs, such as cleared mouse brains \cite{dodt_ultramicroscopy:_2007}, to the subcellular processes occurring inside cultured cells \cite{chen_lattice_2014}.
 
+
+\section{Challenges in microscopy for live imaging}
 In an ideal setting, the ultimate microscope would be able to record a continuos, 3D, and multicolor dataset of any biological process of interest with the highest possible resolution. Unfortunately this is not possible; due to several limitations in physics and biology, a compromise is necessary. The diffractive nature of light, the lifetime of fluorescent probes and the photosensitivity of biological specimens all require microscopy to be able to adapt to answer the question at hand. In order to acquire useful data one has to choose a tradeoff between spatial and temporal resolution, and signal contrast, while making sure the biology is not affected by the imaging process itself (Fig. \ref{fig:tradeoffs}) \cite{laissue_assessing_2017}. 
 
 \begin{figure}
@@ -37,6 +54,7 @@ In an ideal setting, the ultimate microscope would be able to record a continuos
 %\section{Light-sheet microscopy}
 
 \section{Wide-field fluorescence microscopy}
+fluorescence microscopy \cite{hurtley_future_2003}
   Fluorescence microscopy \cite{lichtman_fluorescence_2005,diaspro_optical_2011}, as a subset of light microscopy is one of the few methods that allows subcellular imaging of live specimens. The first use of the term fluorescence is credited to  George Gabriel Stokes \cite{stokes_change_1852}, and it refers to the phenomenon when a molecule emits light after absorbing light or other electromagnetic radiation. As the name of the technique suggests, this method collects fluorescent light from the specimens which has numerous advantages, but also some drawbacks. Since biological tissue is usually not fluorescent, except for some autofluorescence mostly at shorter wavelengths, fluorescent dyes or proteins have to be introduced to the system in order to be able to collect the necessary information. The advantage of this is that the signal of the labeled structures will be of very high ratio compared to the background.
 
   A fluorescent molecule is capable of absorbing photons in a given range (excitation spectrum) and temporarily store its energy by having an electron in  a higher energy orbital, \textit{i.e.} in an excited state. This excited state, however, is not stable, and the electron quickly jumps back to the ground state while emitting a photon with equal energy to the energy difference between the excited and ground states. The energy of the absorbed and emitted photons are not the same, as energy loss occurs due to internal relaxation events, and the emitted photon has lower energy than the absorbed photon. This phenomenon is called the Stokes shift, or red shift, and can be exploited in microscopy to drastically increase the signal to noise ratio by filtering out the illumination light (Fig. \ref{fig:spectrum}).
