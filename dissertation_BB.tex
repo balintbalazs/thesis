@@ -83,13 +83,29 @@
 \input{5_newResults}
 
 
-\begin{appendices}
+% \begin{appendices}
+
+\chapter*{Appendix}
+\markboth{\MakeUppercase{Appendix}}{}
+\addcontentsline{toc}{chapter}{Appendix}
+\setcounter{table}{0}
+\setcounter{figure}{0}
+\setcounter{section}{0}
+\renewcommand{\thesection}{\Alph{section}
+\setcounter{table}{0}
+\setcounter{figure}{0}}
+\renewcommand{\thetable}{\Alph{section}\arabic{table}}
+\renewcommand{\thefigure}{\Alph{section}\arabic{figure}}
+
 \input{appendix_a}
+\clearpage
 \input{appendix_b}
+\clearpage
 \input{appendix_c}
+\clearpage
 \input{appendix_3d}
 
-\end{appendices}
+% \end{appendices}
 
 \cleardoublepage
 \chapter*{References}
