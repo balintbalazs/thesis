@@ -3,8 +3,8 @@
 \LoadClass[8pt,a5paper,twoside,openright]{article}
 %\usepackage[utf8x]{inputenc}
 %\usepackage{ucs}
-\usepackage{fullpage}
-%\usepackage[includeheadfoot,inner=3.75cm,outer=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+% \usepackage{fullpage}
+\usepackage[includeheadfoot,inner=2cm,outer=2cm,top=2cm,bottom=2cm]{geometry}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -78,9 +78,9 @@
   \begin{center}
   
   	%\vspace*{15mm}
-    {\huge {\textbf {\@title}} \par}
+    {\LARGE {\textbf {\@title}} \par}
 	\vspace*{10mm}
-    {{\LARGE \@author} \par}
+    {{\Large \@author} \par}
 
 	\vspace*{10mm}
     \@ppke \par

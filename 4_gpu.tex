@@ -502,7 +502,7 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
 
     To see how the noise-dependent compression affects common imaging pipelines, we tested the effect of different levels of compression on 3D nucleus and membrane segmentation in light-sheet microscopy, and on single-molecule localization accuracy in superresolution microscopy.
     First, we imaged a \textit{Drosophila melanogaster} embryo expressing an H2Av-mCherry nuclear marker in the MuVi-SPIM and segmented the nuclei with Ilastik \cite{sommer_ilastik:_2011} (\autoref{fig:wnlDroso}a and \autoref{sec:methodsB3D}). Then we performed noise dependent compression at various quality levels and calculated the segmentation overlap compared to the uncompressed stack (\autoref{sec:methodsB3D}). At WNL compression ($q=1 \sigma$) the segmentation overlap is almost perfect (\autoref{fig:wnlDroso}b) with an overlap score of 0.996. Even when increasing the quantization step to $4\sigma$ (\autoref{fig:wnlDroso}c) the overlap score stays at 0.98 and only drops below 0.97 when the compression ratio is already above 120 (quantization step of $5\sigma$, \autoref{fig:wnlDroso}d).
-    We got similar results for a membrane segmentation pipeline that is used with \textit{Phallusia mammillata} embryos (\autoref{sec:methodsB3D} and \autoref{fig:wnlPhallusia}).
+    We got similar results for a membrane segmentation pipeline that is used with \textit{Phallusia mammillata} embryos (\autoref{fig:wnlPhallusia}and \autoref{sec:methodsB3D}).
 
     \begin{figure}[tpb]
       \centering
