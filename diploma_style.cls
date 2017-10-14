@@ -20,6 +20,7 @@
 \usepackage{xspace}
 \usepackage[titletoc]{appendix}
 \usepackage[table]{xcolor}% http://ctan.org/pkg/xcolor
+\usepackage{pdflscape}
 \usepackage[pagewise]{lineno}
 % \linenumbers
 
@@ -42,14 +43,14 @@
 
 \usepackage{setspace}
 \usepackage{media9}
-\usepackage{titletoc}
+% \usepackage{titletoc}
 \usepackage{enumitem}
 \setlist{noitemsep} % or \setlist{noitemsep} to leave space around whole list
 % \titlecontents*{chapter}% <section-type>
 %   [0pt]% <left>
-%   {\addvspace{1em}}% <above-code>
-%   {\bfseries\chaptername\ \thecontentslabel\:\quad}% <numbered-entry-format>
-%   {\bfseries\thecontentslabel\quad}% <numberless-entry-format>
+%   {\addvspace{0em}}% <above-code>
+%   {\bfseries}% <numbered-entry-format>
+%   {\bfseries}% <numberless-entry-format>
 %   {\bfseries\hfill\contentspage}% <filler-page-format>
 
 \onehalfspacing

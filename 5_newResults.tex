@@ -3,18 +3,20 @@
 
 \section{New scientific results}
 
-  \paragraph{Thesis I.}\textit{I have designed and constructed a new light-sheet microscope suitable for high resolution near isotropic imaging of delicate samples. A novel  arrangement of two high numerical aperture objectives in 120 degrees allows for near isotropic resolution while increasing light collection efficiency by a factor of two.}
+  \paragraph{Thesis I.}\textit{I have designed and constructed a new light-sheet microscope suitable for high resolution imaging of delicate samples. A novel arrangement of two high numerical aperture objectives in 120 degrees combined with a tilted light-sheet allows for near isotropic resolution while increasing light collection efficiency by a factor of two.}
   
     Corresponding publications: \cite{de_medeiros_light-sheet_2016},\cite{strnad_inverted_2016}, \cite{hoyer_breaking_2016}
 
-    Live imaging of light sensitive specimens, such as a developing mouse embryo is a challenging task
+    DualMouse-SPIM is a novel design for symmetric light-sheet microscopy. The use of high NA objectives in \SI{120}{\degree} not only increases volumetric resolution compared to the conventional \SI{90}{\degree} setup, but due to the larger detection angle, light collection efficiency is doubled. This is especially beneficial for delicate, light-sensitive specimens, such as mouse embryos, since phototoxic effects are reduced while the contrast is preserved.
+
+    As part of the microscope I have designed a custom beam splitter unit that allows the use of a single galvo scanner to generate the light-sheet for both objectives. I have also designed a custom detection merging unit that allows the use of a single camera for both detection views.
 
 
   \paragraph{Thesis II.} \textit{I have developed a GPU-based image processing pipeline for multi-view light-sheet microscopy that enables real time fusion of opposing views.}
 
     Corresponding publications: \cite{balazs_gpu-based_2016}, \cite{balazs_gpu-based_2016-1}, \cite{balazs_gpu-based_2017}
 
-    I have developed a GPU-based image preprocessing pipeline, which integrates directly to our universal microscope control software in LabVIEW. The pipeline currently supports background subtraction and background masking, furthermore it is capable of fusing opposing views of the same plane faster than real-time. I have shown that 
+    I have developed a GPU-based image preprocessing pipeline, which integrates directly to our universal microscope control software in LabVIEW. The pipeline currently supports background subtraction and background masking, furthermore it is capable of fusing opposing views of the same plane faster than real-time. I have shown that it is possible to reduce the registration of opposing camera views from a 3D alignment to a 2D alignment without any negative effects in image quality and resolution. This massively reduces the necessary computing resources, and allows the use of CUDA textures for faster than real-time image fusion. Processing speed of this implementation is \SI{138}{fps}, a 18.3\texttimes\ increase compared to a single threaded CPU implementation.
 
 
 

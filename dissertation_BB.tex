@@ -51,9 +51,11 @@
 
 \input{0_abstract}
 
+\addtocontents{toc}{\protect{\pdfbookmark[0]{\contentsname}{toc}}}
 \tableofcontents
 \pagestyle{fancy}
 \markboth{\MakeUppercase{Contents}}{}
+
 
 \listoffigures
 \addcontentsline{toc}{chapter}{List of Figures}
@@ -61,7 +63,10 @@
 \listoftables
 \addcontentsline{toc}{chapter}{List of Tables}
 
-\input{0_intro}
+% \input{0_intro}
+\cleardoublepage
+\setcounter{page}{1}
+\pagenumbering{arabic}
 
 \input{1_spim}
 
@@ -78,16 +83,11 @@
 \input{5_newResults}
 
 
-\cleardoublepage
-\chapter*{Acknowledgements}
-\markboth{\MakeUppercase{Acknowledgements}}{}
-\addcontentsline{toc}{chapter}{Acknowledgements}
-
-
 \begin{appendices}
 \input{appendix_a}
 \input{appendix_b}
 \input{appendix_c}
+\input{appendix_3d}
 
 \end{appendices}
 
@@ -95,6 +95,12 @@
 \chapter*{References}
 \addcontentsline{toc}{chapter}{References}
 \input{6_references}
+
+
+\cleardoublepage
+\chapter*{Acknowledgements}
+\markboth{\MakeUppercase{Acknowledgements}}{}
+\addcontentsline{toc}{chapter}{Acknowledgements}
 
 
 
