@@ -11,6 +11,40 @@
 \markboth{\MakeUppercase{Introduction}}{}
 \addcontentsline{toc}{chapter}{Introduction}
 
+% constant need to understand the world and nature
+% most important sense: sight
+% optical instruments to aid in discovery: microscope for small and close objects, telescope for large and far objects
 
-% Hooke's Micrographia 1665 \cite{hooke_micrographia:_1665}
-Coming soon.
+% looking at life, how does it work? try and record 
+% optics history? Leeuwenhoek, Robert Hooke ``artificial organs" \cite{hooke_micrographia:_1665}
+
+% breakthrough: fluorescence microscopy
+% for 3d live imaging necessary to span large scales in space and time
+% light-sheet fluorescence microscopy (LSFM), also called single-plane illumination microscopy (SPIM)
+
+% microscopy has evolved far from its original roots of pure optics, 
+% also necessary: electronics, programming, data analysis
+
+
+
+% Although microscopy has substantially changed and improved throughout the last few decades, the quest has remained the same: observe the smallest structures continuously in time without altering the natural environment of the specimen. This is a true challenge, as 
+
+% egyre komplexebb es jobb technikakat alkalmazunk a vilag megismeresere
+% 
+
+
+Imaging techniques such as microscopy are one of the most extensively used tools in medical and biological research. The reason for this is simple: visualizing something invisible to the naked eye is an extremely powerful way to gain insight to its inner workings. Our brain has evolved to receive and process a multitude of signals from various sensors, and arguably the most powerful of these is vision.
+
+As a branch of optics, microscopy (from ancient Greek mikros, ``small" and skopein, ``to see") is based on observing the interactions of light with an object of interest, such as a cell. To be able to see these interactions, the optics of the microscope magnifies the image of the sample, which can be recorded on a suitable device. For the first microscopes in the 17\textsuperscript{th} century, this was just an eye at the end of the ocular, and the recording is a drawing of the observed image \cite{hooke_micrographia:_1665}.
+
+Microscopy is a truly multidisciplinary field: even in its simplest form, just using a single lens, the principles of physics are applied to gain a deeper understanding of biology and nature. Today, microscopy encompasses most of natural sciences and builds on various technological advancements. While physics and biology are still in the main focus, chemistry (fluorescent molecules), engineering (automation) and computer science (image analysis) are all integrated in a modern microscopy environment.
+
+Light-sheet fluorescence microscopy (LSFM), also called single plane illumination microscopy (SPIM), is a relatively new addition to the arsenal of tools that comprise light microscopy methods, and is especially suitable for live imaging of embryonic samples over extended periods of time \cite{keller_quantitative_2008, huisken_selective_2009, weber_light_2011,tomer_shedding_2011}. It is also easily adapted to the sample, allowing to image a large variety of specimens, from entire organs \cite{dodt_ultramicroscopy:_2007}, to the subcellular processes occurring inside cultured cells \cite{chen_lattice_2014}.
+
+This work tackles two challenges in light-sheet microscopy: high resolution live imaging of delicate samples, such as mouse embryos, and real-time image processing and compression of large light-sheet datasets. Before discussing the work in detail, \autoref{ch:intro} and \autoref{ch:compr} will give a short introduction to the concepts this thesis builds on. The basics of fluorescence microscopy, light-sheet microscopy, information theory and image compression will be covered.
+
+\autoref{ch:DualMouse} is devoted to presenting a new light-sheet microscope, the Dual Mouse-SPIM, designed for isotropic imaging of light-sensitive specimens. This microscope is based on two identical objectives positioned in \SI{120}{\degree} as opposed to the conventional \SI{90}{\degree} orientation used in light-sheet microscopy, and offer dual-view detection through both lenses. We discuss the benefits of this arrangements, the design principles and optical layout of the microscope. After characterizing the optical properties of the microscope, we demonstrate its imaging capabilities on multiple samples.
+
+In \autoref{ch:GPU} we present a GPU-based real-time image processing pipeline designed to efficiently handle large amounts of microscopy data. As 3D imaging is gaining more and more traction, image data is generated at a faster pace than ever. We present a real-time preprocessing solution for multiview light-sheet microscopy, and a new image compression algorithm to significantly reduce data size by taking image noise into account. The theory behind these methods will be discussed before demonstrating their capabilities and evaluating their performance on multiple biological samples.
+
+Finally, \autoref{ch:discussion} will give a summary of the new results presented in this thesis, and discuss the potential future applications.

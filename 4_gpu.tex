@@ -586,7 +586,7 @@ Analysis of single-molecule localization data was performed on a custom-written 
 reconstructed by filtering out localizations with a high uncertainty (>\SI{30}{nm} and large PSF (>\SI{150}{nm}) and Gaussian rendering.
 
 \subsubsection{Simulation of single-molecule localization data}
-Single molecule localization data was simulated in Matlab by generating a grid of pixelated Gaussian spots with standard deviation of 1 pixel. With a pixel size of a 100 nm, this corresponds to a FWHM of 235.48 nm. The center of each spot was slightly offset from the pixel grid at 0.1 pixel increments in both x and y directions. To this ground truth image a constant value was added to simulate illumination background, and finally Poisson noise was applied to the image. This process was repeated 10000 times to obtain enough images for adequate accuracy.
+Single molecule localization data was simulated in Matlab by generating a grid of pixelated Gaussian spots with standard deviation of 1 pixel. With a pixel size of a 100 nm, this corresponds to a FWHM of 235.48 nm. The center of each spot was slightly offset from the pixel grid at 0.1 pixel increments in both x and y directions. To this ground truth image a constant value was added to simulate illumination background, and finally Poisson noise was applied to the image. This process was repeated 10,000 times to obtain enough images for adequate accuracy.
 
 \subsubsection{Code availability}
 Code used for analyzing data, \b3d source code and compiled binaries, including a filter plugin for HDF5, is available for download at \url{https://git.embl.de/balazs/B3D}.

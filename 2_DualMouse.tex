@@ -32,12 +32,15 @@
 
   % from lattice paper: ``because photodamage mechanisms that scale supralinearly with peak intensity have been identified for both visible \cite{donnert_major_2007} and two-photon \cite{ji_high-speed_2008} excitation."
 
+  % move this to chapter DualMouse -->
+Unraveling the secrets of mammalian development has been a long standing challenge for developmental biologists and medical professionals alike. 
+This phase of early life is an incredibly complex and dynamic process spanning through large scales in space and time. Subcellular processes at the nanoscale are happening in the range of milliseconds or faster, while whole embryo reorganizations and tissue migration events take place over the course of hours \cite{gilbert_developmental_2013}. Resolving these processes presents a true challenge, since to understand the underlying mechanisms, molecular specificity is just as crucial as high spatial and temporal resolution.
+% <--
+As we have seen in \autoref{ch:intro}, live imaging of mouse embryonic development is an especially challenging task, but light-sheet microscopy can offer a good solution owing to its gentle optical sectioning and fast image acquisition. The Mouse-SPIM \cite{strnad_inverted_2016} introduced in the previous chapter also solves the issue of live imaging with its inverted design: the embryos are held by a foil that not only allows easy sample handling, but also acts as a barrier and isolates the embryos from the immersion medium.
 
-  As we have seen in the previous chapter, live imaging of mouse embryonic development is an especially challenging task, but light-sheet microscopy can offer a good solution owing to its gentle optical sectioning and fast image acquisition. The Mouse-SPIM introduced in the previous chapter also solves the issue of live imaging with its inverted design: the embryos are held by a foil that not only allows easy sample handling, but also acts as a barrier and isolates the embryos from the immersion medium.
+As all microscopes, the Mouse-SPIM also had to make a compromise: although its design allows long term live imaging, it only has a single detection view, as rotation is not possible with the sample mounting trays. Due to this configuration, its resolution is inherently anisotropic, having an axial to lateral resolution ratio of around 3. Although this is sufficient for many applications, such as cell tracking, for detecting subcellular features it might be limiting. One such example is chromosome tracking, which could shed light on chromosome missegregation mechanisms in the early embryonic development, which is the cause of many congenital diseases also affecting humans.
 
-  As all microscopes, the Mouse-SPIM also had to make a compromise: although its design allows long term live imaging, it only has a single detection view, as rotation is not possible with the sample mounting trays. Due to this configuration, its resolution is inherently anisotropic, having an axial to lateral resolution ratio of around 3. Although this is sufficient for many applications, such as cell tracking, for detecting subcellular features it might be limiting. One such example is chromosome tracking, which could shed light on chromosome missegregation mechanisms in the early embryonic development, which is the cause of many congenital diseases also affecting humans.
-
-  In this chapter, we present a novel light-sheet microscope developed to address the above challenges by using high NA objectives for subcellular isotropic resolution and low-light imaging, and offering multi-view detection without having to rotate the samples. The microscope is designed to be live imaging compatible, offering new perspectives in the research of mouse embryonic development. This chapter will describe the design concepts for the microscope, the optical layout, alignment strategies, and the result of various performance measurements, and its multi-view imaging capabilities. 
+In this chapter, we present a novel light-sheet microscope developed to address the above challenges by using high NA objectives for subcellular isotropic resolution and low-light imaging, and offering multi-view detection without having to rotate the samples. The microscope is designed to be live imaging compatible, offering new perspectives in the research of mouse embryonic development. This chapter will describe the design concepts for the microscope, the optical layout, alignment strategies, and the result of various performance measurements, and its multi-view imaging capabilities. 
 
   %#######  ########  ######  ####  ######   ##    ## 
   %#     ## ##       ##    ##  ##  ##    ##  ###   ## 
@@ -109,7 +112,7 @@
     \end{equation}
     and the back aperture diameter is \SI{17.6}{mm}.
     
-    To generate the tilted light-sheet as shown on Fig. \ref{fig:objectiveCloseup}, the illumination beam will need to be displaced by
+    To generate the tilted light-sheet as shown on \autoref{fig:objectiveCloseup}, the illumination beam will need to be displaced by
     \begin{equation}
       \delta = f_o \cdot \tan \SI{30}{\degree} = \SI{4.62}{mm}
     \end{equation}
@@ -280,7 +283,7 @@
 
   \subsection{Alignment of illumination branches}
 
-    The two illumination branches start with a common light source, a single mode fiber coupled to laser combiner, and they also share a galvanometric mirror that performs the beam scanning to generate the virtual light-sheet. Likewise shared is a scan lens focusing on the galvo mirror (GM), and the illumination splitter unit (PM, see Section \ref{sec:splitter}).
+    The two illumination branches start with a common light source, a single mode fiber coupled to laser combiner, and they also share a galvanometric mirror that performs the beam scanning to generate the virtual light-sheet. Likewise shared is a scan lens focusing on the galvo mirror (GM), and the illumination splitter unit (PM, see \autoref{sec:splitter}).
 
     Alignment for the illumination arms are done in three steps. First the laser beam is aligned on the first rail that holds the galvo, lens L1, and the splitter unit PM. This is performed by two kinematic mirrors placed between the fiber output and the galvo mirror (not shown on figure). Using these two mirrors it is possible to freely align the beam along all four degrees of freedom: translation in two orthogonal directions and rotation around two orthogonal axes. Beam alignment on the rail is tested by two irises at the two ends of the rail, if the beam passes through both of them we consider it centered and straight on the optical axis.
 
@@ -418,7 +421,7 @@
   % Resolution for Lattice light-sheet \cite{chen_lattice_2014}: \SI{230}{nm} in x and \SI{370}{nm} in z
   % \cite{chhetri_whole-animal_2015}
 
-  Following the desin phase, all custom parts were manufactured by the EMBL mechanical workshop, and microscope was assembled on a MellesGriot optical table (Fig. \ref{fig:frontView}). The microscope was equipped with an Andor Zyla 4.2 sCMOS camera, that offers a large field of view of 2048\texttimes 2048 pixels with a pixel pitch of \SI{6.5}{\micro m}. It offers a high dynamic range of 1:30,000, and high frame rate at 100 frames per second (fps), while readout noise is minimal (0.9 e$^-$).
+  Following the desin phase, all custom parts were manufactured by the EMBL mechanical workshop, and microscope was assembled on a MellesGriot optical table (\autoref{fig:frontView} and \autoref{fig:3D}). The microscope was equipped with an Andor Zyla 4.2 sCMOS camera, that offers a large field of view of 2048\texttimes 2048 pixels with a pixel pitch of \SI{6.5}{\micro m}. It offers a high dynamic range of 1:30,000, and high frame rate at 100 frames per second (fps), while readout noise is minimal (0.9 e$^-$).
   
   To evaluate the performance of the microscope, we conducted various measurements, concerning the stability and the resolution of the system. The methods and results of these measurements will be presented in this section.
 
@@ -454,7 +457,7 @@
 
     To visualize the beam, the chamber was filled with a fluorescent solution (0.1 \% methylene blue in distilled water). In order to increase the signal to noise ratio of these images, a long exposure time of \SI{200}{ms} was used, and 500 images of each beam was averaged. Dark images were acquired by repeating the image acquisition with the laser turned off. The average of the dark images were subtracted from the averaged beam images, resulting in the beam intensity profile (\autoref{fig:beamProfiles}).
 
-    To determine the beam waist position, we measured the beam thickness (FWHM) for each column of the averaged images, and located the position of the minimal width. The beam width at the waist position for the left view was   \SI{3.70}{\micro m}, and for the right view it was \SI{3.58}{\micro m} (\autoref{fig:beamProfiles}). We also measured the usable length of the beams (\ref{sec:dimensions}). The distance between the points where the beam has expanded by a factor of $\sqrt2$ relative to the waist is \SI{95.42}{\micro m} for the left view, and \SI{90.35}{\micro m} for the right view. This corresponds well to the original requirement of a minimal field of view of \SI{100}{\micro m}. Depending on the sample and the required level of optical sectioning, the practical field of view can be larger than this, as the camera sensor allows for a field of view of \SI{266}{\micro m}.  
+    To determine the beam waist position, we measured the beam thickness (FWHM) for each column of the averaged images, and located the position of the minimal width. The beam width at the waist position for the left view was   \SI{3.70}{\micro m}, and for the right view it was \SI{3.58}{\micro m} (\autoref{fig:beamProfiles}). We also measured the usable length of the beams (\autoref{sec:dimensions}). The distance between the points where the beam has expanded by a factor of $\sqrt2$ relative to the waist is \SI{95.42}{\micro m} for the left view, and \SI{90.35}{\micro m} for the right view. This corresponds well to the original requirement of a minimal field of view of \SI{100}{\micro m}. Depending on the sample and the required level of optical sectioning, the practical field of view can be larger than this, as the camera sensor allows for a field of view of \SI{266}{\micro m}.  
 
     
 

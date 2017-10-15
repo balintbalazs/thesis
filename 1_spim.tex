@@ -7,59 +7,29 @@
 %   #
 %  ###
 
-\chapter{Introduction}
+\chapter{Live imaging in three dimensions}
+\label{ch:intro}
 
 \graphicspath{{./figures/1_spim/}}
 
-constant need to understand the world and nature
-most important sense: sight
-optical instruments to aid in discovery: microscope for small and close objects, telescope for large and far objects
 
-looking at life, how does it work? try and record 
-optics history? Leeuwenhoek, Robert Hooke ``artificial organs" \cite{hooke_micrographia:_1665}
+Live imaging is indispensable to understand the processes during embryonic development. In an ideal setting, the ultimate microscope would be able to record a continuos, 3D, and multicolor dataset of any biological process of interest with the highest possible resolution. Unfortunately this is not possible; due to several limitations in physics and biology, a compromise is necessary. The diffractive nature of light, the lifetime of fluorescent probes and the photosensitivity of biological specimens all require microscopy to be able to adapt to answer the question at hand. In order to acquire useful data one has to choose a tradeoff between spatial and temporal resolution, and signal contrast, while making sure the biology is not affected by the imaging process itself (\autoref{fig:tradeoffs}) \cite{laissue_assessing_2017}. 
 
-breakthrough: fluorescence microscopy
-for 3d live imaging necessary to span large scales in space and time
-light-sheet fluorescence microscopy (LSFM), also called single-plane illumination microscopy (SPIM)
-
-microscopy has evolved far from its original roots of pure optics, 
-also necessary: electronics, programming, data analysis
-
-% move this to chapter DualMouse -->
-Unraveling the secrets of mammalian development has been a long standing challenge for developmental biologists and medical professionals alike. 
-This phase of early life is an incredibly complex and dynamic process spanning through large scales in space and time. Subcellular processes at the nanoscale are happening in the range of milliseconds or faster, while whole embryo reorganizations and tissue migration events take place over the course of hours \cite{gilbert_developmental_2013}. Resolving these processes presents a true challenge, since to understand the underlying mechanisms, molecular specificity is just as crucial as high spatial and temporal resolution.
-% <--
-
-Light microscopy is one of the oldest methods that is still widely used today to investigate the inner workings of microscopic life. A particularly important branch is fluorescence microscopy \cite{diaspro_optical_2011}, that relies on using fluorescent labels that mark specific structures inside the specimens. Light-sheet microscopy is a relatively new addition to the arsenal of tools that comprise light microscopy methods, and is especially suitable for live imaging of embryonic samples over extended periods of time \cite{keller_quantitative_2008, huisken_selective_2009, weber_light_2011,tomer_shedding_2011}. It is also easily adapted to the sample, allowing to image a large variety of specimens, from entire organs, such as cleared mouse brains \cite{dodt_ultramicroscopy:_2007}, to the subcellular processes occurring inside cultured cells \cite{chen_lattice_2014}.
-
-
-This thesis is structured in three chapters. This chapter gives an introduction to the current state of the art in fluorescence microscopy and light-sheet microscopy. \autoref{ch:DualMouse} 
-\autoref{ch:GPU}
-
-\section{Challenges in microscopy for live imaging}
-In an ideal setting, the ultimate microscope would be able to record a continuos, 3D, and multicolor dataset of any biological process of interest with the highest possible resolution. Unfortunately this is not possible; due to several limitations in physics and biology, a compromise is necessary. The diffractive nature of light, the lifetime of fluorescent probes and the photosensitivity of biological specimens all require microscopy to be able to adapt to answer the question at hand. In order to acquire useful data one has to choose a tradeoff between spatial and temporal resolution, and signal contrast, while making sure the biology is not affected by the imaging process itself (\autoref{fig:tradeoffs}) \cite{laissue_assessing_2017}. 
-
-\begin{figure}
+\begin{figure}[bht]
   \centering
-  \includegraphics[width=0.6\textwidth]{tradeoffs}
+  \includegraphics[width=0.4\textwidth]{tradeoffs}
   \bcaption[Tradeoffs in fluorescence microscopy for live imaging]{Also called the ``pyramid of frustration". When optimizing the imaging conditions (red dot), a tradeoff has to be made between resolution, contrast, and imaging speed, while avoiding photodamage. One can only be improved at the expense of the others due to the limited photon budget of the fluorescent molecules. Adapted from \cite{laissue_assessing_2017}.}
   \label{fig:tradeoffs}
 \end{figure}
 
-% The most commonly used model organism for these kind of questions is the mouse embryo, that exhibits several common features to human development.
-% % , and allows to study it 
-% It has several advantages: full genome is sequenced \cite{mouse_genome_sequencing_consortium_initial_2002}, relatively fast reproduction rate facilitating genetic modifications, already extensively developed tools for genetics \cite{capecchi_new_1989,silver_mouse_1995}. All of these make the mouse embryo the primary model organism when investigating biological processes in mammalians.
 
-% Fluorescence microscopy is currently the only imaging technique that not only offers live imaging with high spatial and temporal resolution, it also allows for molecular specificity by the use of fluorescent labeling molecules.
-
-
-
-%\section{Light-sheet microscopy}
+% Light microscopy is one of the oldest methods that is still widely used today to investigate the inner workings of microscopic life. A particularly important branch is fluorescence microscopy \cite{diaspro_optical_2011}, that relies on using fluorescent labels that mark specific structures inside the specimens. 
 
 \section{Wide-field fluorescence microscopy}
-  Fluorescence microscopy \cite{lichtman_fluorescence_2005,diaspro_optical_2011}, as a subset of light microscopy is one of the few methods that allows subcellular imaging of live specimens. The first use of the term fluorescence is credited to  George Gabriel Stokes \cite{stokes_change_1852}, and it refers to the phenomenon when a molecule emits light after absorbing light or other electromagnetic radiation. As the name of the technique suggests, this method collects fluorescent light from the specimens which has numerous advantages, but also some drawbacks. Since biological tissue are usually not fluorescent, except for some autofluorescence mostly at shorter wavelengths, fluorescent dyes or proteins have to be introduced to the system in order to be able to collect the necessary information. The advantage of this is that the signal of the labeled structures will be of very high ratio compared to the background.
 
-  A fluorescent molecule is capable of absorbing photons in a given range (excitation spectrum) and temporarily store its energy by having an electron in  a higher energy orbital, \textit{i.e.} in an excited state. This excited state, however, is not stable, and the electron quickly jumps back to the ground state while emitting a photon with equal energy to the energy difference between the excited and ground states. The energy of the absorbed and emitted photons are not the same, as energy loss occurs due to internal relaxation events, and the emitted photon has lower energy than the absorbed photon. This phenomenon is called the Stokes shift, or red shift, and can be exploited in microscopy to drastically increase the signal to noise ratio by filtering out the illumination light (\autoref{fig:spectrum}).
+Fluorescence microscopy \cite{lichtman_fluorescence_2005,diaspro_optical_2011}, as a subset of light microscopy is one of the few methods that allows subcellular imaging of live specimens. The first use of the term fluorescence is credited to  George Gabriel Stokes \cite{stokes_change_1852}, and it refers to the phenomenon when a molecule emits light after absorbing light or other electromagnetic radiation. As the name of the technique suggests, this method collects fluorescent light from the specimens which has numerous advantages, but also some drawbacks. Since biological tissue are usually not fluorescent, except for some autofluorescence mostly at shorter wavelengths, fluorescent dyes or proteins have to be introduced to the system in order to be able to collect the necessary information. The advantage of this is that the signal of the labeled structures will be of very high ratio compared to the background.
+
+A fluorescent molecule is capable of absorbing photons in a given range (excitation spectrum) and temporarily store its energy by having an electron in  a higher energy orbital, \textit{i.e.} in an excited state. This excited state, however, is not stable, and the electron quickly jumps back to the ground state while emitting a photon with equal energy to the energy difference between the excited and ground states. The energy of the absorbed and emitted photons are not the same, as energy loss occurs due to internal relaxation events, and the emitted photon has lower energy than the absorbed photon. This phenomenon is called the Stokes shift, or red shift, and can be exploited in microscopy to drastically increase the signal to noise ratio by filtering out the illumination light (\autoref{fig:spectrum}).
 
   \begin{figure}
     \centering
@@ -77,7 +47,7 @@ In an ideal setting, the ultimate microscope would be able to record a continuos
     % such as DAPI to DNA,
     and others can be used when conjugated to an antibody specific to the structure of interest. The drawback of these methods is that the fluorescent label has to be added to the sample from an external source, and, in many cases, this also necessitates sample preparation techniques incompatible with live imaging, such as fixation \cite{bacallao_guiding_1990}.
 
-    The discovery of fluorescent proteins have revolutionized fluorescence microscopy. Since these molecules are proteins, they can be produced directly by the organism if the proper genetic modifications are performed. Even though this was a hurdle at the time of discovering the green fluorescent protein (GFP) \cite{shimomura_extraction_1962}, the first of its kind, genetic engineering techniques evolved since then \cite{prasher_primary_1992}, and not only has it been successfully integrated in the genome of nematodes \cite{chalfie_green_1994}, zebrafish \cite{amsterdam_aequorea_1995}, and mice \cite{okabe_green_1997}, but many variants have been also engineered by introducing mutations to increase fluorescence intensity, and to change the fluorescence spectrum to allow multicolor imaging \cite{heim_wavelength_1994,heim_engineering_1996,cormack_facs-optimized_1996,okabe_green_1997}. The usefulness and impact of these proteins are so profound, that in 2008 the Nobel Prize in chemistry was awarded to Osamu Shimomura, Martin Chalfie, and Roger Tsien ``for the discovery and development of the green fluorescent protein, GFP" \cite{service_three_2008}.
+    The discovery of fluorescent proteins have revolutionized fluorescence microscopy. Since these molecules are proteins, they can be produced directly by the organism if the proper genetic modifications are performed. Even though this was a hurdle at the time of discovering the green fluorescent protein (GFP) \cite{shimomura_extraction_1962}, genetic engineering techniques evolved since then \cite{prasher_primary_1992}, and not only has it been successfully integrated in the genome of a multitude of organisims \cite{chalfie_green_1994,amsterdam_aequorea_1995,okabe_green_1997}, but many variants have been also engineered by introducing mutations to increase fluorescence intensity, and to change the fluorescence spectrum to allow multicolor imaging \cite{heim_wavelength_1994,heim_engineering_1996,cormack_facs-optimized_1996,okabe_green_1997}. The usefulness and impact of these proteins are so profound, that in 2008 the Nobel Prize in chemistry was awarded to Osamu Shimomura, Martin Chalfie, and Roger Tsien ``for the discovery and development of the green fluorescent protein, GFP" \cite{service_three_2008}.
 
 
   \subsection{Wide-field image formation}

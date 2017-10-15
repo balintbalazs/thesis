@@ -20,14 +20,15 @@
   %     2. weighted average / cake fusion
   %     3. multi-view deconvolution
   
-  \section{Image compression}
-    As we will see later (\autoref{sec:sizes}), light-sheet microscopy is capable of generating an immense amount of data in a short amount of time. For this reason not only fast data processing, but data compression also plays an important role when evaluating, sharing and storing the images. In this section we will briefly introduce the core concepts of image compression and show some examples as a background for \autoref{ch:GPU}. For a more comprehensive review on data compression fundamentals, the interested reader is referred to the works of Sayood \cite{sayood_introduction_2012}, and Salomon and Motta \cite{salomon_handbook_2010}.
+  \chapter{Image compression}
+  \label{ch:compr}
+    As we will see later (\autoref{sec:sizes}), light-sheet microscopy is capable of generating an immense amount of data in a short amount of time. For this reason not only fast data processing, but data compression also plays an important role when evaluating, sharing and storing the images. In this chapter we will briefly introduce the core concepts of image compression and show some examples as a background for \autoref{ch:GPU}. For a more comprehensive review on data compression fundamentals, the interested reader is referred to the works of Sayood \cite{sayood_introduction_2012}, and Salomon and Motta \cite{salomon_handbook_2010}.
    
     There are two distinct ways of data compression: lossless and lossy. This is an important difference, and the choice between the two greatly depends on the application itself. For some types of data no loss is acceptable, for example computer programs or text. Here, even a small change could drastically influence the meaning of the original data. For other applications, such as audio and video compression, some loss can be tolerated as long as there is no perceived change or distortion. For scientific applications mostly lossless compression is used. Even for image data, where lossy compression can significantly increase the compression ratio (original size / compressed size), lossy compression is usually not recommended, as it can alter the measurement results in unpredictable ways \cite{cromey_digital_2013}.
   
     % There are a multitude of techniques developed in the context of data compression, and most compression methods are built based on this repertoire. Because of this, many algorithms follow a common pattern, and 
   
-    \subsection{Basics of information theory}
+    \section{Basics of information theory}
       \label{sec:entropy}
       As compression is the art of reducing the size of a message while keeping the same amount of information, it is necessary to briefly discuss the theory behind information, and how to quantify it. These concepts were first introduced by Shannon, in his highly influential papers \cite{shannon_mathematical_1948,shannon_mathematical_1948-1,shannon_prediction_1951}. As a rigorous mathematical explanation is outside the scope of this work, we refer the interested reader to the aforementioned works.
   
@@ -53,7 +54,7 @@
       % in the context of image compression
       % redistributing probabilities
       
-    \subsection{Entropy coding}
+    \section{Entropy coding}
       \label{sec:entropyCoding}
 
       Entropy coding algorithms aim to reduce data size and reach the limit of entropy for any kind of input, provided the probability distribution of the possible symbols. All of these algorithms work in a similar way, as their aim is to represent the symbols of the input data by codewords in a way to minimize the overall length of the data. Variable length codes for example replace the more common symbols with short codewords, while for less frequent symbols they use longer codewords. The ideal length of a codeword for symbol $A$ is actually equal to $I(A)$, as this was the definition of self-information.
@@ -66,7 +67,7 @@
       One way to indicate the end of a codeword is by using a specific delimiting sequence which is not part of any of the codewords. While this is an obvious solution, it is also wasteful, as these sequences will not contain any information regrading the original source. Prefix-free codes were developed to be able to omit these sequences, while still allowing unique decodability, making them very popular. This is achieved by making sure that once a codeword was assigned, no other codeword would start with that sequence. In other words, no codeword is a prefix of another codeword, hence the name of the technique. During decoding the bits are read until a valid codeword is matched. Since it is guaranteed that no other codeword will start with the same sequence, the decoder can record the symbol corresponding for that codeword, and continue reading the compressed stream.
       % A practical implementation to this process is based on representing the codewords in a binary tree where each edge corresponds to one bit and is labeled 1 or 0. As the decoder is reading the bits, it traverses down the tree until it reaches a leaf. The symbol represented by that leaf will be the decoded symbol and the process can start over from the beginning.
       
-      Let's take the example in Table \ref{tab:prefix}. Five letters are coded in binary code by Code \#1 and by Code \#2. Code \#1 is not a prefix code, and because of this when reading the encoded sequence we can not be sure when we reach the end of a codeword. Decoding the sequence 0000 for example could be interpreted as 4 letters of $a_1$ or 2 letters of $a_3$. For Code \#2 it is clear that the sequence decodes to 2 letters of $a_3$.
+      Let's take the example in \autoref{tab:prefix}. Five letters are coded in binary code by Code \#1 and by Code \#2. Code \#1 is not a prefix code, and because of this when reading the encoded sequence we can not be sure when we reach the end of a codeword. Decoding the sequence 0000 for example could be interpreted as 4 letters of $a_1$ or 2 letters of $a_3$. For Code \#2 it is clear that the sequence decodes to 2 letters of $a_3$.
   
       \begin{table}
         \bcaption[Examples of a random binary code (\#1) and a prefix-free binary code (\#2)]{Code \#2 is uniquely decodable, while for code \#1 it's necessary to introduce boundaries between codewords to be able to distinguish them.}
@@ -109,7 +110,7 @@
       The second statement at first glance might not be so intuitive, so let's consider the following situation. Let's assume that the two least frequent codewords do not have the same lengths, and least frequent is longer. However, because this is a prefix code, the second longest codeword is not a prefix of the longest codeword. This means, if we truncate the longest codeword to the same length as the second longest, they will still be distinct codes and uniquely decodable. This way we have a new coding scheme which requires less space on average to code the same sequence as the original code, from which we can conclude the original code was not optimal. Therefore, for an optimal code, statement 2 must be true.
   
       \begin{table}
-        \bcaption[Huffman code table]{}
+        \bcaption[Letters to be Huffman coded and their probabilities]{}
         \centering
         \begin{tabular}{ccr}
           \toprule
@@ -132,13 +133,13 @@
         \label{fig:huffman}
       \end{figure}
   
-      To construct such a code, the following iterative procedure can be used. Let's consider an alphabet with five letters $A = [a_1,a_2,a_3,a_4,a_5]$ with $P(a_1)=P(a_3)=0.2$, $P(a_2)=0.4$ and $P(a_4)=P(a_5)=0.1$ (Table \ref{tab:huffman1}). This distribution represents a source with 2.122 bits/symbol. Let's order the letters by probability, and consider the two least frequent. Since the codewords assigned to these should have the same lengths, they can be assigned as
+      To construct such a code, the following iterative procedure can be used. Let's consider an alphabet with five letters $A = [a_1,a_2,a_3,a_4,a_5]$ with $P(a_1)=P(a_3)=0.2$, $P(a_2)=0.4$ and $P(a_4)=P(a_5)=0.1$ (\autoref{tab:huffman1}). This distribution represents a source with 2.122 bits/symbol. Let's order the letters by probability, and consider the two least frequent. Since the codewords assigned to these should have the same lengths, they can be assigned as
       \begin{align*}
         c(a_4) &= \alpha_1 * 0 \\
         c(a_5) &= \alpha_1 *1
       \end{align*}
   
-      where $c(a_i)$ is the assigned codeword for letter $a_i$ and $*$ denotes concatenation. Now we define a new alphabet $A'$ with only four letters $a_1, a_2, a_3, a'_4$, where $a'_4$ is a merged letter for $a_4$ and $a_5$ with the probability $P(a'_4) = P(a_4) + P(a_5) = 0.2$. We can continue this process of merging the letters until all of them are merged and we have only one letter left. Since this contains all of the original letters, its probability is 1. We can represent the end result in a binary tree (see Figure \ref{fig:huffman}), where the leaves are the letter of the alphabet, nodes are the merged letters, and the codewords are represented by the path from the root node to each leaf (compare with Table \ref{tab:huffman2}). The average length of this code is
+      where $c(a_i)$ is the assigned codeword for letter $a_i$ and $*$ denotes concatenation. Now we define a new alphabet $A'$ with only four letters $a_1, a_2, a_3, a'_4$, where $a'_4$ is a merged letter for $a_4$ and $a_5$ with the probability $P(a'_4) = P(a_4) + P(a_5) = 0.2$. We can continue this process of merging the letters until all of them are merged and we have only one letter left. Since this contains all of the original letters, its probability is 1. We can represent the end result in a binary tree (see \autoref{fig:huffman}), where the leaves are the letter of the alphabet, nodes are the merged letters, and the codewords are represented by the path from the root node to each leaf (compare with \autoref{tab:huffman2}). The average length of this code is
       \begin{equation}
         l = 0.4\times 1 + 0.2 \times 2 + 0.2 \times 3 + 0.1 \times 4 + 0.1 \times 4 = 2.2 \text{ bits/symbol}
       \end{equation}
@@ -166,7 +167,7 @@
 
       Another alternative for compressing very low entropy data is run-length encoding. This coding method assumes that the same character appears in the message many times consecutively, and instead of storing each of these individually it counts the number of identical symbols in a single run, and encodes the run-length together with the symbol. As this strategy is only efficient for very low entropy data, it is a common practice to combine run-length encoding with Huffman coding to construct a low redundancy coder for a wide range of input data.
   
-    \subsection{Decorrelation}
+    \section{Decorrelation}
       \label{sec:decorrelation}
       Since entropy coding doesn't assume anything about the data structure, it is not capable of recognizing and compressing any regular patterns or correlations between the consecutive data points. To maximize the efficiency of compression, any correlations should be removed from the data before it is fed to the entropy coder. Here we will briefly discuss some decorrelation strategies for image compression that aim to improve the performance of a successive entropy coder.
 
