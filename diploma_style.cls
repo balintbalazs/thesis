@@ -22,7 +22,7 @@
 \usepackage[table]{xcolor}% http://ctan.org/pkg/xcolor
 \usepackage{pdflscape}
 \usepackage[pagewise]{lineno}
-% \linenumbers
+\linenumbers
 
 \usepackage[ plainpages = false, pdfpagelabels,
                  %pdftex,

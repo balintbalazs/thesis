@@ -13,7 +13,7 @@
 \graphicspath{{./figures/1_spim/}}
 
 
-Live imaging is indispensable to understand the processes during embryonic development. In an ideal setting, the ultimate microscope would be able to record a continuos, 3D, and multicolor dataset of any biological process of interest with the highest possible resolution. Unfortunately this is not possible; due to several limitations in physics and biology, a compromise is necessary. The diffractive nature of light, the lifetime of fluorescent probes and the photosensitivity of biological specimens all require microscopy to be able to adapt to answer the question at hand. In order to acquire useful data one has to choose a tradeoff between spatial and temporal resolution, and signal contrast, while making sure the biology is not affected by the imaging process itself (\autoref{fig:tradeoffs}) \cite{laissue_assessing_2017}. 
+Live imaging is indispensable to understand the processes during embryonic development. In an ideal setting, the ultimate microscope would be able to record a continuos, 3D, multicolor dataset of any biological process of interest with the highest possible resolution. Unfortunately this is not possible; due to several limitations in physics and biology, a compromise is necessary. The diffractive nature of light, the lifetime of fluorescent probes and the photosensitivity of biological specimens all require microscopy to be able to adapt to answer the question at hand. In order to acquire useful data one has to choose a tradeoff between spatial and temporal resolution, and signal contrast, while making sure the biology is not affected by the imaging process itself (\autoref{fig:tradeoffs}) \cite{laissue_assessing_2017}. 
 
 \begin{figure}[bht]
   \centering
@@ -121,7 +121,7 @@ A fluorescent molecule is capable of absorbing photons in a given range (excitat
     \begin{figure}
       \centering
       \includegraphics[width=1\textwidth]{psfs/WF.pdf}
-      \bcaption[Axial cross section of the PSF and OTF of a wide-field microscope]{Simulated PSF and OTF for a wide-field microscope with a water immersion objective ($n=1.33$). $NA=1.1$, $\lambda = \SI{510}{nm}$}
+      \bcaption[Axial cross section of the PSF and OTF of a wide-field microscope]{Simulated PSF (left) and OTF (right) for a wide-field microscope with a water immersion objective ($n=1.33$). $NA=1.1$, $\lambda = \SI{510}{nm}$}
       \label{fig:psf-wf}
     \end{figure}
 
@@ -280,7 +280,7 @@ A fluorescent molecule is capable of absorbing photons in a given range (excitat
     % Although confocal microscopy already provides a better resolution in all dimensions, the ratio of the axial and lateral resolution is still very high, due to the single objective illumination and detection. This seriously limits the microscope's 3D imaging capabilities, since in the $z$ direction (i.e. along the imaging axis) the resolution would be significantly worse than in the other directions.
     Although confocal microscopy already has 3D capabilities, its axial resolution is still limited compared to the lateral, since it uses only one objective. An alternative realization of the confocal microscope, the confocal theta microscope \cite{stelzer_fundamental_1994} introduces a second objective to the system, that is used to illuminate the sample (\autoref{fig:conf-theta}). Since this decouples the illumination and detection, using a filter cube is no longer necessary. The second objective is rotated by $\theta$ around the focus, this is where the name of this setup originates from.
 
-    As in the case of standard confocal microscopy, the system PSF is improved by the illumination pattern. Here, however, the axial direction of the detection coincides with the lateral direction of the illumination, which results in a dramatic improvement of axial resolution compared to standard confocal microscopy. Lateral resolution will also be increased, but by a smaller extent, resulting in an almost isotropic PSF, and equal axial and lateral resolutions (\autoref{fig:psf-theta}). 
+    As in the case of standard confocal microscopy, the system PSF is improved by the illumination pattern. Here, however, the axial direction of the detection coincides with the lateral direction of the illumination, which results in a dramatic improvement of axial resolution compared to standard confocal microscopy. Lateral resolution will also be increased, but by a smaller extent, resulting in an almost isotropic PSF, and equal axial and lateral resolutions.% (\autoref{fig:psf-theta}). 
 
     Although this is a big improvement to confocal microscopy in terms of resolution, this technique did not reach a widespread adoption as it complicates sample handling, while still suffering from two big drawbacks of confocal microscopy techniques that limits its live imaging capabilities.
 
