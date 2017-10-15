@@ -39,7 +39,9 @@
                  citecolor = black,	%red
                  anchorcolor = black,	% green
                  hyperindex = true,
-                 hyperfigures]{hyperref} 
+                 hyperfigures]{hyperref}
+                 
+\usepackage[acronym,toc,nonumberlist,nomain]{glossaries}
 
 \usepackage{setspace}
 \usepackage{media9}

@@ -1,7 +1,7 @@
 % !TEX program = xelatex
 \documentclass{diploma_style}
 
-\include{0_defBib}
+\input{0_defBib}
 
 \def\b3d{B\textsuperscript{3}D}
 \newcommand{\etal}{\textit{et al.}\xspace}
@@ -21,6 +21,7 @@
 \embl{\includegraphics[width=5cm]{figures/0_front/EMBL_logo}}
 \degree{PhD}
 
+\makeglossaries
 
 \title{A new angle on light-sheet microscopy and real-time image processing}
 %\date{2012 november}
@@ -46,6 +47,9 @@
 
 \listoftables
 \addcontentsline{toc}{chapter}{List of Tables}
+
+\glsaddall[types={\acronymtype}]
+\printglossary[type=\acronymtype, title=List of Abbreviations, toctitle=List of Abbreviations]
 
 \input{0_intro}
 \cleardoublepage
@@ -101,10 +105,7 @@
 \input{6_references}
 
 
-\cleardoublepage
-\chapter*{Acknowledgements}
-\markboth{\MakeUppercase{Acknowledgements}}{}
-\addcontentsline{toc}{chapter}{Acknowledgements}
+\input{7_ack}
 
 
 

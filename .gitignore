@@ -20,3 +20,11 @@ dissertation_BB*.pdf
 *.mat
 DualMouse*.pdf
 DualMouse*.psd
+*.acn
+*.acr
+*.alg
+*.glg
+*.glo
+*.gls
+*.glsdefs
+*.ist
