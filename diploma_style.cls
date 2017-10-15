@@ -71,6 +71,11 @@
 %\let\ocaption\caption
 \newcommand{\bcaption}[2][]{\caption[#1]{\textbf{#1.} #2}}
 
+\renewcommand{\chapterautorefname}{Chapter}
+\renewcommand{\sectionautorefname}{Section}
+\renewcommand{\subsectionautorefname}{Section}
+\renewcommand{\subsubsectionautorefname}{Section}
+
 
 %\pagestyle{headings}
 \pagestyle{fancy}
@@ -190,7 +195,7 @@
 
 \setcounter{secnumdepth}{2}
 
-\setcounter{tocdepth}{1}
+\setcounter{tocdepth}{2}
 
 
 %\addtolength{\textwidth}{-1cm}

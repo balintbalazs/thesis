@@ -11,6 +11,8 @@
 
     As part of the microscope I have designed a custom beam splitter unit that allows the use of a single galvo scanner to generate the light-sheet for both objectives. I have also designed a custom detection merging unit that allows the use of a single camera for both detection views.
 
+    I have characterized the optical properties of the microscope, measured the illumination profile and point spread function. With a \SI{3.6}{\micro m} thick light-sheet, a \SI{95}{\micro m} field of view is evenly illuminated. Dual view imag
+
 
   \paragraph{Thesis II.} \textit{I have developed a GPU-based image processing pipeline for multi-view light-sheet microscopy that enables real time fusion of opposing views.}
 
@@ -27,7 +29,7 @@
     % \b3d is an efficient, GPU-based image compression library allowing lossless and noise dependent lossy compression of microscopy images.
     Since many high-speed microscopy methods generate immense amounts of data, easily reaching terabytes per experiment, image compression is especially important to efficiently deal with such datasets. Existing compression methods suitable for microscopy images are not able to deal with the high data rate of modern sCMOS cameras ($\sim \SI{800}{MB/s}$).
 
-    I developed \b3d, a GPU-based parallel image compression algorithm capable of over \SI{1}{GB/s} throughput, allowing live image compression. To further reduce the data size, I developed a noise dependent lossy compression that only modifies the data in a deterministic manner. The allowed differences for each pixel can be specified as a proportion of the inherent image noise, accounting for photon shot noise and camera readout noise. Due to the use of pixel prediction, the subjective image quality is higher than for other methods that simply quantize the square root of the images.
+    I developed a GPU-based parallel image compression algorithm called \b3d, capable of over \SI{1}{GB/s} throughput, allowing live image compression. To further reduce the data size, I developed a noise dependent lossy compression that only modifies the data in a deterministic manner. The allowed differences for each pixel can be specified as a proportion of the inherent image noise, accounting for photon shot noise and camera readout noise. Due to the use of pixel prediction, the subjective image quality is higher than for other methods that simply quantize the square root of the images.
 
 
   \paragraph{Thesis IV.} \textit{I have shown that within noise level compression does not significantly affect the results of most commonly used image processing tasks, and it allows a 3.32\texttimes\ average increase in compression ratio compared to lossless mode.}
