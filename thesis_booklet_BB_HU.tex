@@ -124,7 +124,7 @@ This work tackles the previously outlined challenges in light-sheet microscopy: 
     A mikroszkóp részeként megterveztem egy egyedi nyalábosztó egységet, ami lehetővé teszi csupán egyetlen galvo-szkenner használatát a light-sheet generáláshoz mindkét objektív esetén. Továbbá egy olyan testreszabott detektálás-összeolvasztó egységet is megterveztem, ami lehetővé teszi egyetlen kamera használatát mindkét nézetből.
 
     Karakterizáltam a mikroszkóp optikai tulajdonságait, meghatározva a megvilágítási profilt és a pontátviteli függvényt (PSF).
-    A \SI{95}{\micro m}-es látómező egy \SI{3.6}{\micro m} vastagságú light-sheettel van egyenletesen megvilágítva. A mintaként használt gömböcskék két irányból történő képalkotása \SI{314}{nm} laterális és \SI{496}{nm} axiális felbontást eredményezett. Ez egy 2.67-szeres javulás egyetlen lencse axiális felbontásához képest. Ezen kívül demonstráltam a  mikroszkóp képességét Drosophila embriókról és az egér zigótákról készült felvételekkel. 
+    A \SI{95}{\micro m}-es látómező egy \SI{3,6}{\micro m} vastagságú light-sheettel van egyenletesen megvilágítva. A mintaként használt gömböcskék két irányból történő képalkotása \SI{314}{nm} laterális és \SI{496}{nm} axiális felbontást eredményezett. Ez egy 2,67-szeres javulás egyetlen lencse axiális felbontásához képest. Ezen kívül demonstráltam a  mikroszkóp képességét Drosophila embriókról és az egér zigótákról készült felvételekkel. 
     
 
     \begin{figure}
@@ -161,12 +161,12 @@ This work tackles the previously outlined challenges in light-sheet microscopy: 
   
 
 
-  \paragraph{Tézis IV.} \textit{I have shown that within noise level compression does not significantly affect the results of most commonly used image processing tasks, and it allows a 3.32\texttimes\ average increase in compression ratio compared to lossless mode.}
+  \paragraph{Tézis IV.} \textit{Megmutattam, hogy a zajszinten belüli tömörítés nem befolyásolja szignifikánsan a leggyakrabban használt képfeldolgozási feladatok eredményeit és a tömörítési arány 3,32-szeres átlagos javulását eredményezi a veszteségmentes tömörítéshez képest.}
   
     Kapcsolódó publikációk: \cite{balazs_real-time_2017}, \cite{balazs_gpu-based_2016}, \cite{balazs_gpu-based_2016-1}, \cite{balazs_gpu-based_2017}
     
-    As data integrity in microscopy is paramount for drawing the right conclusions from the experiments, using a lossy compression algorithm might be controversial.
-    I have shown that the within noise level (WNL) mode of \b3d does not significantly affect the results of several commonly used image analysis tasks. For light-sheet microscopy data I have shown that WNL compression introduces less variation to the image than the photon shot noise. When segmenting nuclei of \textit{Drosophila} embryos and membranes of \textit{Phallusia} embryos, the overlap of the segmented regions of uncompressed and WNL compressed datasets were 99.6\% and 94.5\% respectively, while compression ratios were 19.83 for \textit{Drosophila} and 40.01 for \textit{Phallusia} embryos. For single molecule localization microscopy data I have shown that WNL compression only introduces 4\% increase in localization uncertainty, while the average compression ratio is increased from 1.44 (lossless) to 4.96 (WNL). I have also shown that change in localization error due to the compression does not depend on the SNR of the input images.
+    Mivel az adatok integritása elengedhetetlen a megfelelő következtetések levonása érdekében, ezért a veszteséges tömörítés használata ellentmodnásos lehet.
+    Megmutattam, hogy a \b3d zajszinten belüli módja (within noise level, WNL) nem befolyásolja szignifikánsan a leggyakrabban használt képfeldolgozási feladatok eredményét. Light-sheet mikroszkópos adatokra megmutattam, hogy a WNL tömörítés kisebb eltérést okoz a képben, mint a sörétzaj (shot noise). A felvételek szegmentálása esetén a szegmentált régiók átfedése \textit{Drosophila} embrió sejtmagokra 99.6\%, míg \textit{Phallusia} embriók membránjára \%94.5. A tömörítési arány a két felvételre 19,3-szoros, illetve 40,01-szeres volt. Lokalizációs mikroszkóp adatokra megmuttam, hogy a WNL tömörítés mindössze 4\%-kal növeli a lokolizációs hibát, míg az átlagos tömörítási ráta 1,44-ről (veszteségmentes) 4.96-ra emelkedik. Megmutattam továbbá, hogy a lokalizációs hiba változása nem függ az felvételek jel-zaj viszonyától.
     
 
 
