@@ -115,24 +115,24 @@
 %  \null\vfill
   \begin{center}
   
-  	\vspace*{15mm}
+  	\vspace*{5mm}
     {\huge {\textbf {\@title}} \par}
     {\vspace*{15mm}}
     {{\LARGE \@author} \par}
 
 	\vspace*{15mm}
     \@ppke \par
-	\vspace*{1ex}
+	\vspace*{15mm}
     \@university \par
 	\vspace*{1ex}
     \@collegeordept \par
 		
 	\vspace*{10mm}
-    \@embl \par
-	\vspace*{1ex}
-    \@lab \par
-	\vspace*{10mm}
-    Supervisors: \@supervisor \par
+    % \@embl \par
+	% \vspace*{1ex}
+    % \@lab \par
+	% \vspace*{10mm}
+    Advisor: \@supervisor \par
 	\vspace*{10mm}
     \@degreedate
 

@@ -10,7 +10,7 @@
 \usepackage{amssymb}
 \usepackage{makeidx}
 \usepackage{graphicx}
-\usepackage[margin=11pt,font=scriptsize,labelfont=bf]{caption} % for improved layout of figure captions 
+\usepackage[margin=8pt,font=scriptsize,labelfont=bf]{caption} % for improved layout of figure captions 
 \usepackage{subcaption}
 \usepackage{verbatim}
 \usepackage{booktabs}
@@ -38,7 +38,19 @@
 \usepackage{setspace}
 \onehalfspacing
 
+\frenchspacing
+\sloppy
 
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.7}
+
+
+\newcommand{\bcaption}[2][]{\caption[#1]{\textbf{#1.} #2}}
 %\renewcommand{\bibname}{Refferences}
 
 %\pagestyle{headings}
@@ -90,11 +102,11 @@
     \@collegeordept \par
 		
 	\vspace*{10mm}
-    \@embl \par
-	\vspace*{0.5ex}
-    \@lab \par
-	\vspace*{0.5ex}
-    Supervisors: \@supervisor \par
+    % \@embl \par
+	% \vspace*{0.5ex}
+    % \@lab \par
+	% \vspace*{0.5ex}
+    Advisor: \@supervisor \par
 	\vspace*{10mm}
     \@degreedate
 
@@ -115,39 +127,39 @@
 {\end{quote}}
 
 
-\newenvironment{absztrakt}
-{\newpage
-\thispagestyle{empty}
-\begin{center}
-\vspace*{1.5cm}
-{\Large \bfseries Tartalmi kivonat}
-\end{center}
-\vspace{0.5cm}
-\begin{quote}}
-{\end{quote}}
+% \newenvironment{absztrakt}
+% {\newpage
+% \thispagestyle{empty}
+% \begin{center}
+% \vspace*{1.5cm}
+% {\Large \bfseries Tartalmi kivonat}
+% \end{center}
+% \vspace{0.5cm}
+% \begin{quote}}
+% {\end{quote}}
 
-\renewenvironment{abstract}
-{
-\newpage
-\thispagestyle{empty}
-\begin{center}
-\vspace*{1.5cm}
-{\Large \bfseries Abstract}
-\end{center}
-\vspace{0.5cm}
-\begin{quote}}
-{\end{quote}}
+% \renewenvironment{abstract}
+% {
+% \newpage
+% \thispagestyle{empty}
+% \begin{center}
+% \vspace*{1.5cm}
+% {\Large \bfseries Abstract}
+% \end{center}
+% \vspace{0.5cm}
+% \begin{quote}}
+% {\end{quote}}
 
-\newenvironment{acknowledgements}
-{\newpage
-\thispagestyle{empty}
-\begin{center}
-\vspace*{1.5cm}
-{\Large \bfseries Acknowledgements}
-\end{center}
-\vspace{0.5cm}
-\begin{quote}}
-{\end{quote}}
+% \newenvironment{acknowledgements}
+% {\newpage
+% \thispagestyle{empty}
+% \begin{center}
+% \vspace*{1.5cm}
+% {\Large \bfseries Acknowledgements}
+% \end{center}
+% \vspace{0.5cm}
+% \begin{quote}}
+% {\end{quote}}
 
 \setcounter{secnumdepth}{2}
 

@@ -2,6 +2,7 @@
 \documentclass{diploma_style}
 
 \input{0_defBib}
+\input{0_acronyms}
 
 \def\b3d{B\textsuperscript{3}D}
 \newcommand{\etal}{\textit{et al.}\xspace}
@@ -12,12 +13,12 @@
 \DeclareMathOperator{\Pred}{Pred}
 
 \author{\href{mailto:balint.balazs@embl.de}{Bálint Balázs}}
-\supervisor{\href{mailto:hufnagel@embl.de}{Lars Hufnagel, \textit{PhD}}, \href{mailto:rozsabal@koki.hu}{Balázs Rózsa, \textit{MD, PhD}}}
+\supervisor{\href{mailto:rozsabal@koki.hu}{Balázs Rózsa, \textit{M.D., Ph.D.}}}
 \lab{\href{http://www.embl.de/}{European Molecular Biology Laboratory}}
 \university{\href{http://www.ppke.hu/}{Pázmány Péter Catholic University}}
-\collegeordept{\href{http://www.itk.ppke.hu/}{Faculty of Information Technology}}
+\collegeordept{\href{http://www.itk.ppke.hu/}{Faculty of Information Technology and Bionics \\ Roska Tamás Doctoral School of Sciences and Technology}}
 \degreedate{A thesis submitted for the degree of \\ \textit{Doctor of Philosophy} \\ 2017}
-\ppke{\includegraphics[width=2cm]{figures/0_front/ITK_logo}}
+\ppke{\includegraphics[width=3cm]{figures/0_front/ITK_logo}}
 \embl{\includegraphics[width=5cm]{figures/0_front/EMBL_logo}}
 \degree{PhD}
 
@@ -51,6 +52,10 @@
 \glsaddall[types={\acronymtype}]
 \printglossary[type=\acronymtype, title=List of Abbreviations, toctitle=List of Abbreviations]
 
+
+\chapter*{Introduction}
+\markboth{\MakeUppercase{Introduction}}{}
+\addcontentsline{toc}{chapter}{Introduction}
 \input{0_intro}
 \cleardoublepage
 \setcounter{page}{1}
