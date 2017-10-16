@@ -106,7 +106,7 @@
 	% \vspace*{0.5ex}
     % \@lab \par
 	% \vspace*{0.5ex}
-    Advisor: \@supervisor \par
+    \@supervisor \par
 	\vspace*{10mm}
     \@degreedate
 

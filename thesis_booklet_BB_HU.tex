@@ -1,4 +1,5 @@
 % !TEX program = xelatex
+% spell-checker: disable
 \documentclass{booklet_style}
 
 %\usepackage[pagewise, mathlines]{lineno}
@@ -13,17 +14,17 @@
 
 \def\b3d{B\textsuperscript{3}D}
 
-\author{\href{mailto:balint.balazs@embl.de}{Bálint Balázs}}
-\supervisor{Advisor: \href{mailto:rozsabal@koki.hu}{Balázs Rózsa, \textit{M.D., Ph.D.}}}
+\author{\href{mailto:balint.balazs@embl.de}{Balázs Bálint}}
+\supervisor{Témavezető: \href{mailto:rozsabal@koki.hu}{Rózsa Balázs, \textit{M.D., Ph.D.}}}
 \lab{\href{http://www.embl.de/}{European Molecular Biology Laboratory}}
-\university{\href{http://www.ppke.hu/}{Pázmány Péter Catholic University}}
-\collegeordept{\href{http://www.itk.ppke.hu/}{Faculty of Information Technology and Bionics \\ Roska Tamás Doctoral School of Sciences and Technology}}
-\degreedate{\textit{Theses of the Ph.D. Dissertation} \\ Budapest, 2017}
+\university{\href{http://www.ppke.hu/}{Pázmány Péter Katolikus Egyetem}}
+\collegeordept{\href{http://www.itk.ppke.hu/}{Információs Technológiai és Bionikai Kar \\ Roska Tamás Műszaki és Természettudományi Doktori Iskola}}
+\degreedate{\textit{A Ph.D. disszertáció tézisei} \\ Budapest, 2017}
 \ppke{\includegraphics[width=2cm]{figures/0_front/ITK_logo}}
 \embl{\includegraphics[width=2.5cm]{figures/0_front/EMBL_logo}}
 \degree{PhD}
 
-\title{A new angle on light-sheet microscopy and real-time image processing}
+\title{Light-sheet mikroszkópia és valós idejű képfeldogozás új szemszögből}
 %\date{2012 november}
 
 
@@ -110,19 +111,21 @@ Not only these methods are capable of generating data extremely fast, but with t
 %   \label{fig:spim_concept}
 % \end{figure}
 
-\section{New scientific results}
+\section{Új tudományos eredmények}
 
 This work tackles the previously outlined challenges in light-sheet microscopy: high resolution live imaging of delicate samples, such as mouse embryos, and real-time image processing and compression of large light-sheet datasets.
 
-  \paragraph{Thesis I.}\textit{I have designed and constructed a new light-sheet microscope suitable for high resolution imaging of delicate samples without the necessity of gel embedding. A novel arrangement of two high numerical aperture objectives in 120 degrees combined with a tilted light-sheet allows for near isotropic resolution while increasing light collection efficiency by a factor of two.}
+  \paragraph{Tézis I.}\textit{Megterveztem es megépítettem egy light-sheet mikroszkópot, ami érzékeny minták nagy felbontású vizsgálatára alkalmas. A két darab, magas numerikus apertúrájú objektív 120 fokban történő elhelyezése, egy megdöntött light-sheettel kombinálva, izotróp 3D felbontású képalkotásra ad lehetőséget, miközben a fény begyűjtésének hatékonyságát kétszeresre növeli meg.}
   
-    Corresponding publications: \cite{de_medeiros_light-sheet_2016},\cite{strnad_inverted_2016}, \cite{hoyer_breaking_2016}
+    Kapcsolódó publikációk: \cite{de_medeiros_light-sheet_2016},\cite{strnad_inverted_2016}, \cite{hoyer_breaking_2016}
 
-    Dual Mouse-SPIM is a novel design for symmetric light-sheet microscopy. The use of high NA objectives in \SI{120}{\degree} not only increases volumetric resolution compared to the conventional \SI{90}{\degree} setup, but due to the larger detection angle, light collection efficiency is doubled. This is especially beneficial for delicate, light-sensitive specimens, such as mouse embryos, since phototoxic effects are reduced while the contrast is preserved. Both objectives can be used for illumination and detection, providing multi-view imaging without rotating the sample.
+    A Dual Mouse-SPIM egy újszerű megközelítést képvisel a light-sheet mikroszkópiában. A 120 fokban elhelyezett magas numerikus apertúrájú objektívek nemcsak a felbontás javítását eredményezi a hagyományos 90 fokos elrendezéssel szemben, hanem a nagyobb detektálási szögnek köszönhetően a fény begyűjtése kétszer hatékonyabban történik. Ez legfőképpen fényérzékeny minták esetén, mint például egér embriók esetén lehet előnyös, mivel a fototoxikus hatások lecsökkenthetők, míg a kontraszt megmarad. Mindét objektív használható megvilágításra és detektálásra is, ami lehetővé teszi a forgatás nélküli többnézetes felvételt.
 
-    As part of the microscope I have designed a custom beam splitter unit that allows the use of a single galvo scanner to generate the light-sheet for both objectives. I have also designed a custom detection merging unit that allows the use of a single camera for both detection views.
+    A mikroszkóp részeként megterveztem egy egyedi nyalábosztó egységet, ami lehetővé teszi csupán egyetlen galvo-szkenner használatát a light-sheet generáláshoz mindkét objektív esetén. Továbbá egy olyan testreszabott detektálás-összeolvasztó egységet is megterveztem, ami lehetővé teszi egyetlen kamera használatát mindkét nézetből.
 
-    I have characterized the optical properties of the microscope, measured the illumination profile and point spread function. With a \SI{3.6}{\micro m} thick light-sheet, a \SI{95}{\micro m} field of view is evenly illuminated. Dual view imaging of bead samples revealed a lateral resolution of \SI{314}{nm}, and axial resolution of \SI{496}{nm}. This is a 2.67\texttimes\ improvement compared to the axial resolution of a single lens. I have also demonstrated the imaging capabilities of the microscope on \textit{Drosophila} embryos and mouse zygotes.
+    Karakterizáltam a mikroszkóp optikai tulajdonságait, meghatározva a megvilágítási profilt és a pontátviteli függvényt (PSF).
+    A \SI{95}{\micro m}-es látómező egy \SI{3.6}{\micro m} vastagságú light-sheettel van egyenletesen megvilágítva. A mintaként használt gömböcskék két irányból történő képalkotása \SI{314}{nm} laterális és \SI{496}{nm} axiális felbontást eredményezett. Ez egy 2.67-szeres javulás egyetlen lencse axiális felbontásához képest. Ezen kívül demonstráltam a  mikroszkóp képességét Drosophila embriókról és az egér zigótákról készült felvételekkel. 
+    
 
     \begin{figure}
       \centering
@@ -132,11 +135,11 @@ This work tackles the previously outlined challenges in light-sheet microscopy: 
     \end{figure}
 
 
-  \paragraph{Thesis II.} \textit{I have developed a GPU-based image processing pipeline for multi-view light-sheet microscopy that enables real time fusion of opposing views.}
+  \paragraph{Tézis II.} \textit{Kidolgoztam egy GPU-alapú képfeldolgozási pipeline-t többnézetes light-sheet mikroszkópiára, amely lehetővé teszi a szemközti nézetek valós időbeni összeolvasztását.}
 
-    Corresponding publications: \cite{balazs_gpu-based_2016}, \cite{balazs_gpu-based_2016-1}, \cite{balazs_gpu-based_2017}
+    Kapcsolódó publikációk: \cite{balazs_gpu-based_2016}, \cite{balazs_gpu-based_2016-1}, \cite{balazs_gpu-based_2017}
 
-    I have developed a GPU-based image preprocessing pipeline, which integrates directly to our universal microscope control software in LabVIEW. The pipeline currently supports background subtraction and background masking, furthermore it is capable of fusing opposing views of the same plane faster than real-time. I have shown that it is possible to reduce the registration of opposing camera views from a 3D alignment to a 2D alignment without any negative effects in image quality and resolution. This massively reduces the necessary computing resources, and allows the use of CUDA textures for faster than real-time image fusion. Processing speed of this implementation is \SI{138}{fps}, a 18.3\texttimes\ increase compared to a single threaded CPU implementation.
+    Kidolgoztam egy GPU-alapú képfeldolgozási pipeline-t, mely közvetlenül integrálható a LabVIEW alapú univerzális mikroszkóp vezérlő rendszerünkbe. A pipeline jelenleg lehetővé teszi a háttér levonását és a háttér maszkolását, továbbá képes az azonos sík szemközti nézeteinek azonnali összeolvasztására. Megmutattam, hogy lehetséges a szemközti nézetek regisztrálásának 3D problémáját 2D problémára redukálni, anélkül, hogy ez negatív hatással lenne a képminőségre és a felbontásra. Ez jelentősen lecsökkenti a szükséges számítási kapacitást és lehetővé teszi a CUDA textúrák alkalmazását és a valós időbeni összeolvasztást. Ennek a megoldásnak a feldolgozási sebessége 138 fps, ami 18.3-szoros növekedés az egyszálú CPU verzióhoz képest.
 
 
     \begin{figure}
@@ -147,19 +150,19 @@ This work tackles the previously outlined challenges in light-sheet microscopy: 
     \end{figure}
     
 
-  \paragraph{Thesis III.} \textit{I have  developed a new image compression algorithm that enables noise dependent lossy compression of light microscopy images, and can reach a compression ratio of 100 fold while preserving the results of downstream data analysis steps. A fast CUDA implementation allows for real-time image compression of high-speed microscopy images.}
+  \paragraph{Tézis III.} \textit{Kifejlesztettem egy képtömörítési algoritmust, ami lehetővé teszi a fénymikroszkópokkal nyert képek zaj-függő veszteséges tömörítését és akár százszoros tömörítési arányt is elérhet, megőrizve a későbbi adatfeldolgozó lépések eredményeit. A gyors CUDA implementáció lehetővé teszi a nagysebességű kamerák képeinek valós idejű tömörítését.}
 
-    Corresponding publications: \cite{balazs_real-time_2017}, \cite{balazs_gpu-based_2016}, \cite{balazs_gpu-based_2016-1}, \cite{balazs_gpu-based_2017}
+    Kapcsolódó publikációk: \cite{balazs_real-time_2017}, \cite{balazs_gpu-based_2016}, \cite{balazs_gpu-based_2016-1}, \cite{balazs_gpu-based_2017}
     
-    % \b3d is an efficient, GPU-based image compression library allowing lossless and noise dependent lossy compression of microscopy images.
-    Since many high-speed microscopy methods generate immense amounts of data, easily reaching terabytes per experiment, image compression is especially important to efficiently deal with such datasets. Existing compression methods suitable for microscopy images are not able to deal with the high data rate of modern sCMOS cameras ($\sim \SI{800}{MB/s}$).
+    % \b3d is an efficient, GPU-based image compression library allowing losslaess and noise dependent lossy compression of microscopy images.
+    Mivel számos nagyebességű mikroszkópia eljárás hatalmas mennyiségű adatot generál, kísérletenként akár terabájtokat elérve, a képtömörítés kiemelt szerepet kap ilyen adathalmazok esetén. A jelenleg használt, mikroszkópos képekkel kompatibilis képtömörítési eljárások nem képesek a modern sCMOS kamerák nagy adatsebességével megküzdeni ($\sim \SI{800}{MB/s}$).
 
     I developed a GPU-based parallel image compression algorithm called \b3d, capable of over \SI{1}{GB/s} throughput, allowing live image compression. To further reduce the data size, I developed a noise dependent lossy compression that only modifies the data in a deterministic manner. The allowed differences for each pixel can be specified as a proportion of the inherent image noise, accounting for photon shot noise and camera readout noise. Due to the use of pixel prediction, the subjective image quality is higher than for other methods that simply quantize the square root of the images.
 
 
-  \paragraph{Thesis IV.} \textit{I have shown that within noise level compression does not significantly affect the results of most commonly used image processing tasks, and it allows a 3.32\texttimes\ average increase in compression ratio compared to lossless mode.}
+  \paragraph{Tézis IV.} \textit{I have shown that within noise level compression does not significantly affect the results of most commonly used image processing tasks, and it allows a 3.32\texttimes\ average increase in compression ratio compared to lossless mode.}
   
-    Corresponding publications: \cite{balazs_real-time_2017}, \cite{balazs_gpu-based_2016}, \cite{balazs_gpu-based_2016-1}, \cite{balazs_gpu-based_2017}
+    Kapcsolódó publikációk: \cite{balazs_real-time_2017}, \cite{balazs_gpu-based_2016}, \cite{balazs_gpu-based_2016-1}, \cite{balazs_gpu-based_2017}
     
     As data integrity in microscopy is paramount for drawing the right conclusions from the experiments, using a lossy compression algorithm might be controversial.
     I have shown that the within noise level (WNL) mode of \b3d does not significantly affect the results of several commonly used image analysis tasks. For light-sheet microscopy data I have shown that WNL compression introduces less variation to the image than the photon shot noise. When segmenting nuclei of \textit{Drosophila} embryos and membranes of \textit{Phallusia} embryos, the overlap of the segmented regions of uncompressed and WNL compressed datasets were 99.6\% and 94.5\% respectively, while compression ratios were 19.83 for \textit{Drosophila} and 40.01 for \textit{Phallusia} embryos. For single molecule localization microscopy data I have shown that WNL compression only introduces 4\% increase in localization uncertainty, while the average compression ratio is increased from 1.44 (lossless) to 4.96 (WNL). I have also shown that change in localization error due to the compression does not depend on the SNR of the input images.
