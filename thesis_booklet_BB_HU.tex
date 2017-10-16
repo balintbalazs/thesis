@@ -166,7 +166,19 @@ This work tackles the previously outlined challenges in light-sheet microscopy: 
     Kapcsolódó publikációk: \cite{balazs_real-time_2017}, \cite{balazs_gpu-based_2016}, \cite{balazs_gpu-based_2016-1}, \cite{balazs_gpu-based_2017}
     
     Mivel az adatok integritása elengedhetetlen a megfelelő következtetések levonása érdekében, ezért a veszteséges tömörítés használata ellentmodnásos lehet.
-    Megmutattam, hogy a \b3d zajszinten belüli módja (within noise level, WNL) nem befolyásolja szignifikánsan a leggyakrabban használt képfeldolgozási feladatok eredményét. Light-sheet mikroszkópos adatokra megmutattam, hogy a WNL tömörítés kisebb eltérést okoz a képben, mint a sörétzaj (shot noise). A felvételek szegmentálása esetén a szegmentált régiók átfedése \textit{Drosophila} embrió sejtmagokra 99.6\%, míg \textit{Phallusia} embriók membránjára \%94.5. A tömörítési arány a két felvételre 19,3-szoros, illetve 40,01-szeres volt. Lokalizációs mikroszkóp adatokra megmuttam, hogy a WNL tömörítés mindössze 4\%-kal növeli a lokolizációs hibát, míg az átlagos tömörítási ráta 1,44-ről (veszteségmentes) 4.96-ra emelkedik. Megmutattam továbbá, hogy a lokalizációs hiba változása nem függ az felvételek jel-zaj viszonyától.
+    Megmutattam, hogy a \b3d zajszinten belüli módja (within noise level, WNL) nem befolyásolja szignifikánsan a leggyakrabban használt képfeldolgozási feladatok eredményét.
+    
+    Light-sheet mikroszkópos adatokra megmutattam, hogy a WNL tömörítés kisebb eltérést okoz a képben, mint a sörétzaj (shot noise). A felvételek szegmentálása esetén a szegmentált régiók átfedése \textit{Drosophila} embrió sejtmagokra 99,6\%, míg \textit{Phallusia} embriók membránjára 94,5\%. A tömörítési arány a két felvételre 19,3-szoros, illetve 40,01-szeres volt.
+    
+    \begin{figure}
+      \centering
+      \includegraphics[page=1,width=\textwidth]{4_gpu/LLvsB3D}
+      \bcaption[Influence of noise dependent lossy compression on 3D nucleus segmentation]{A \textit{Drosophila melanogaster} embryo expressing H2Av-mCherry nuclear marker was imaged in MuVi-SPIM \cite{krzic_multiview_2012}, and 3D nucleus segmentation was performed. (\textbf{a}). To visualize segmentation mismatch, the results of the uncompressed (green) and compressed (magenta) datasets are overlaid in a single image (\textbf{b}, \textbf{c}; overlap in white). For all compression levels the segmentation overlap score was calculated and is plotted in (\textbf{d}) along with the achieved compression ratios.}
+      \label{fig:wnlDroso}
+    \end{figure}
+
+    Lokalizációs mikroszkóp adatokra megmuttam, hogy a WNL tömörítés mindössze 4\%-kal növeli a lokolizációs hibát, míg az átlagos tömörítási ráta 1,44-ről (veszteségmentes) 4,96-ra emelkedik. Megmutattam továbbá, hogy a lokalizációs hiba változása nem függ az felvételek jel-zaj viszonyától.
+
     
 
 

@@ -162,7 +162,20 @@ This work tackles the previously outlined challenges in light-sheet microscopy: 
     Corresponding publications: \cite{balazs_real-time_2017}, \cite{balazs_gpu-based_2016}, \cite{balazs_gpu-based_2016-1}, \cite{balazs_gpu-based_2017}
     
     As data integrity in microscopy is paramount for drawing the right conclusions from the experiments, using a lossy compression algorithm might be controversial.
-    I have shown that the within noise level (WNL) mode of \b3d does not significantly affect the results of several commonly used image analysis tasks. For light-sheet microscopy data I have shown that WNL compression introduces less variation to the image than the photon shot noise. When segmenting nuclei of \textit{Drosophila} embryos and membranes of \textit{Phallusia} embryos, the overlap of the segmented regions of uncompressed and WNL compressed datasets were 99.6\% and 94.5\% respectively, while compression ratios were 19.83 for \textit{Drosophila} and 40.01 for \textit{Phallusia} embryos. For single molecule localization microscopy data I have shown that WNL compression only introduces 4\% increase in localization uncertainty, while the average compression ratio is increased from 1.44 (lossless) to 4.96 (WNL). I have also shown that change in localization error due to the compression does not depend on the SNR of the input images.
+    I have shown that the within noise level (WNL) mode of \b3d does not significantly affect the results of several commonly used image analysis tasks.
+    
+    For light-sheet microscopy data I have shown that WNL compression introduces less variation to the image than the photon shot noise. When segmenting nuclei of \textit{Drosophila} embryos and membranes of \textit{Phallusia} embryos, the overlap of the segmented regions of uncompressed and WNL compressed datasets were 99.6\% and 94.5\% respectively, while compression ratios were 19.83 for \textit{Drosophila} and 40.01 for \textit{Phallusia} embryos.
+
+    \begin{figure}
+      \centering
+      \includegraphics[page=1,width=\textwidth]{4_gpu/LLvsB3D}
+      \bcaption[Influence of noise dependent lossy compression on 3D nucleus segmentation]{A \textit{Drosophila melanogaster} embryo expressing H2Av-mCherry nuclear marker was imaged in MuVi-SPIM \cite{krzic_multiview_2012}, and 3D nucleus segmentation was performed. (\textbf{a}). To visualize segmentation mismatch, the results of the uncompressed (green) and compressed (magenta) datasets are overlaid in a single image (\textbf{b}, \textbf{c}; overlap in white). For all compression levels the segmentation overlap score was calculated and is plotted in (\textbf{d}) along with the achieved compression ratios.}
+      \label{fig:wnlDroso}
+    \end{figure}
+    
+    For single molecule localization microscopy data I have shown that WNL compression only introduces 4\% increase in localization uncertainty, while the average compression ratio is increased from 1.44 (lossless) to 4.96 (WNL). I have also shown that change in localization error due to the compression does not depend on the SNR of the input images.
+
+    
     
 
 
