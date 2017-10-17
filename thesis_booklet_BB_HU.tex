@@ -48,13 +48,15 @@ Az optika egyik ágaként a mikroszkópia (görög erdet, mikrosz, ,,apró" és 
 
 A mikroszkópia egy igazán multidiszciplináris tudományág: még a legegyszerűbb formájában, egy egyszerű lencsét használva, a fizika alapelveit kihasználva nyerhetünk mélyebb megértést a bilógiáról és a természetről. Manapság a mikroszkópia felöleli a legtöbb természettudomány eredményeit, kiegészítve különféle technológiia fejlesztésekkel. Ugyan továbbra is a fizika és a biológia adják a kulcsszerepet, a kémia (fluoreszcens molekulák), mérnöki tudmányok (automatizálás) és infromációs technológia (képfeldolgozás) eredményi közösen alkotják a modern mikroszkópia alapjait.
 
-\section{Challenges in three dimensional imaging of live specimens}
+\section{Kihívások az élő minták háromdimenziós képalkotásában}
 
 
-\subsubsection{Challenges in image acquisition}
-Live imaging is indispensable to understand the processes during embryonic development. In an ideal setting, the ultimate microscope would be able to record a continuos, 3D, multicolor dataset of any biological process of interest with the highest possible resolution. Unfortunately this is not possible; due to several limitations in physics and biology, a compromise is necessary. The diffractive nature of light, the lifetime of fluorescent probes and the photosensitivity of biological specimens all require microscopy to be able to adapt to answer the question at hand. In order to acquire useful data one has to choose a tradeoff between spatial and temporal resolution, and signal contrast, while making sure the biology is not affected by the imaging process itself (\autoref{fig:tradeoffs}) \cite{laissue_assessing_2017}.
+\subsubsection{Kihívások a képalkotásban}
 
-Light-sheet fluorescence microscopy (LSFM), also called single plane illumination microscopy (SPIM) \cite{huisken_optical_2004}, is a relatively new addition to the arsenal of tools that comprise light microscopy methods, and is especially suitable for live imaging of embryonic samples over extended periods of time \cite{keller_quantitative_2008, huisken_selective_2009, weber_light_2011,tomer_shedding_2011}. It is also easily adapted to the sample, allowing to image a large variety of specimens, from entire organs \cite{dodt_ultramicroscopy:_2007}, to the subcellular processes occurring inside cultured cells \cite{chen_lattice_2014}.
+Az élő mintákról történő képalkotás elengedhetetlen az embrionális fejlődés folyamatainak megértéséhez. Az ideális esetben a mikroszkóp képes lenne egy folyamatos, háromdimenziós, többszínű felvételt készíteni bármely biológiai folyamatról, a lehető legnagyobb felbontással. Sajnos azonban ez nem lehetséges; a biológia és fizika határai miatt kompromisszumra van szükség. A fény diffrakciós természete, a fluoreszcens jelölők véges élettartama és az élő minták fényérzékenysége miatt a mikroszkópiának alkalmazkodnia kell az aktuálisan megválaszolandó kérdéshez. Annak érdekében, hogy valóban hasznos felvételek készülhessenek, meg kell találni az egyensúlyt a jel-zaj viszony növelése és a térbeni és időbeni felbontás javítása közt, mindeközben szemmel tartva, hogy a maga a képalkotás ne legyen befolyással a vizsgálandó folyamatokra (\autoref{fig:tradeoffs}) \cite{laissue_assessing_2017}.
+
+A light-sheet fluorescens mikroskópia (LSFM), másnéven egy-sík megvilágítású mikroszkópia (single plane illumination microscopy, SPIM) \cite{huisken_optical_2004} egy viszonylag új tagja azon technikák arzenáljának, melyek a fénymikroszkópián alapulnak. Nagy előnye, hogy különsen alkalmas élő minták hosszantartó vizsgálatára nagy térbeni és időbeni felbontással \cite{keller_quantitative_2008, huisken_selective_2009, weber_light_2011,tomer_shedding_2011}; továbbá könnyen adaptálható a vizsgálandó mintához, lehetővé téve számos különféle vizsgálatot, akár teljes szervek esetén \cite{dodt_ultramicroscopy:_2007}, "akár az egyes sejtek belsejében zajló folyamat \cite{chen_lattice_2014}."
+
 
 Even though light-sheet microscopy offers intrinsic optical sectioning
 To achieve isotropic 3D resolution, multiple views from different directions can be combined \cite{preibisch_efficient_2014}. This is most commonly achieved by embedding the sample in an aqueous gel which offers unrestricted view from multiple directions, and a stiff environment to position the sample \cite{krzic_multiview_2012}. Gel embedding, however is not always possible. Delicate samples, such as mouse embryos, require a very specific environment for proper development \cite{doherty_culture_2000}, which makes sample rotation impossible.
@@ -88,7 +90,7 @@ To achieve isotropic 3D resolution, multiple views from different directions can
 % A selective-plane illumination microscope (SPIM) uses a light-sheet to illuminate only a thin section of the sample. This illumination plane is perpendicular to the imaging axis of the detection objective and coincides with the focal plane. This way, only the section in focus will be illuminated, thus providing much better signal to noise ratio compare to wide-field illumination. In case of conventional wide-field fluorescence microscopy, where the whole specimen is illuminated, out of focus light contributes to a significant background noise. 
 % With selective-plane illumination, this problem is intrinsically solved, and it also provides a true sectioning capability. This makes SPIM especially suitable for 3D imaging.
 
-\subsubsection{Challenges in image processing}
+\subsubsection{Kihívások a képfeldolgozásban}
 
 When using any kind of microscopy in research, image processing is a crucial part of the workflow. This is especially true for light-sheet microscopy, since it is capable of imaging the same specimen for multiple days, producing immense amounts of data. A single overnight experiment of \textit{Drosophila} development (which is a very typical use-case for light-sheet microscopy) can produce multiple terabytes of data.
 
@@ -181,15 +183,14 @@ This work tackles the previously outlined challenges in light-sheet microscopy: 
     
 
 
-\section{Application of the results}
-  Both the new Dual Mouse-SPIM microscope and the GPU-based image processing and compression pipeline have direct applications in light-sheet imaging of embryonic development.
+\section{Lehetséges alaklmazások}
+Mind a Dual Mouse-SPIM mikroszkópnak, mind a GPU-alapú képfeldolgozásnak közvetlen alkalmazási lehetőségei vannak az embrionális fejlődés vizsgalatában. Több potenciális együttműködő fejezte ki érdeklődését a Dual Mouse-SPIM használata iránt az egérembrió fejlődésének vizsgálatához. A Hiiragi
+csoport, akik a pre- es posztimplantációs fázis szimmetriatörő eseményeire összpontosítanak, szeretnék kipróbálni ezt az elrendezést a nagyobb minták több irányból történő képalkotására, ami a jelenleg használt mikroszkópjukkal nem működik es lehetőseget adhat eddig ismeretlen mechanizmusok feltárasára. Az Ellenberg csoport a kromoszóma szegregáció mechanizmusait vizsgálja az embrionális fejlődés első néhány osztódási fázisában. A nagyobb axiális felbontás lehetőséget ad minden egyes kromoszóma követésére az osztódási folyamat során, ami eddig nem volt lehetséges az axiális felbontás hiányosságai miatt.
 
-  Multiple potential collaborators indicated their interest in using the Dual Mouse-SPIM for their studies in mouse embryonic development. The Hiiragi group, focusing on symmetry breaking events in the pre-implantation and early post-implantation stages would like to use this system for imaging larger specimens from multiple direction, which is not possible on their current microscopes, and could allow them to observe previously unknown mechanisms. The Ellenberg group is interested in investigating chromosome missesgregation mechanisms in the first few divisions during embryonic development. The increased axial resolution of this system will allow to track each individual chromosome during the division process, which was not possible on their current setup due to the insufficient axial resolution.
+A GPU-alapú képfeldolgozási pipeline-t, főképp a szemközti nézetek 2D fúzióját már most is használjuk laborunk nagyteljesítményű mikroszkopján, a MuVi-SPIM- en. A két szemközti objektív nézeteinek összeolvasztása a képalkotás közben nemcsak jelentős tárhely megtakarítást eredményez, de az adatelemzést is szignifikánsan felgyorsítja.
 
-  The GPU-based image processing pipleline, especially the 2D fusion of opposing views is already being used on our lab's workhorse microscope, the MuVi-SPIM. Being able to fuse the two views of the opposing objectives during imaging not only results in considerable storage space savings, but significantly speeds up the data analysis as well.
-
-  The image compression algorithm, \b3d, although was developed with light-sheet microscopy in mind, has a more wide-spread use-case. Any kind of high-speed, high-throughput light-microscopy experiment can benefit form the massive data reduction offered by the within noise level mode. Since the compression can also be done immediately during imaging, not only the storage requirements, but the data bandwidth is reduced as well, which renders the use of high performance RAID arrays and \SI{10}{Gbit} networks unnecessary, further reducing costs.
-  Due to the similarly high decompression speed, reading the data is also accelerated, which can be beneficial for data browsing and 3D rendering applications. Several companies of different fields already expressed their interest in the compression library, including Bitplane AG (3D data analysis and visualisation), Luxendo GmbH (light-sheet microscopy), and Hamamatsu Photonics K.K (camera and sensor manufacturing).
+A \b3d képtömörítési algoritmus először light-sheet mikroszkópia kihívásaira fókuszálva lett megtervezve, de sokkal széleskörűbb felhasználási lehetőséget nyújt. Bármilyen nagy teljesítményű, high-throughput fénymikroszkópián alapuló vizsgálat profitálhat a zajszinten belüli tömörítési eljárásnak köszönhető jelentős adatcsökkenés adta előnyökből. Mivel a tömörítés a képalkotás alatt azonnal kivetelezhető, nemcsak a tárolási feltételek, de a szükséges sévszélesség is lecsökken, ami szükségtelenné teszi a nagyteljesítményű RAID tömbök hazsnálatát és 10 Gbit-es hálózat kiépítését tovább csökkentve a költségeket. A hasonlóan gyors kitömörítési sebességnek köszönhetően az
+adatbeolvasás is gyorsabb lesz, amiből a böngészési és 3D adatmegjelenítési alkalmazások profitálhatnak. Néhany cég már érdeklődését fejezte ki a tömörítés iránt, többek között a Bitplane AG (3D adatelemzés és megjelenítés), Luxendo GmbH (light-sheet mikroszkópia) es Hamamatsu Photonics K.K. (kamera es szenzor gyártás).
 
 
 
@@ -197,7 +198,23 @@ This work tackles the previously outlined challenges in light-sheet microscopy: 
 % \cleardoublepage
 % \section*{References}
 
-\input{6_references}
+\newrefcontext{journal}
+\printbibliography[category=journal, title={A szerző közleményei a témában}, heading=secbib]
+\markboth{\MakeUppercase{References}}{}
+
+%\newrefcontext{others}
+\nocite{jakus_genetic_2010,gyorffy_recurrenceonline:_2011,shi_combined_2014}
+\printbibliography[category=others, title={A szerző további közleményei}, heading=secbib, resetnumbers=5]
+\markboth{\MakeUppercase{References}}{}
+
+\newrefcontext{conference}
+\printbibliography[category=conference, title={A szerző konferencia előadásai}, heading=secbib]
+\markboth{\MakeUppercase{References}}{}
+
+\newrefcontext
+\printbibliography[notcategory=journal,notcategory=conference,notcategory=others, resetnumbers=true, title={Refernciák}, heading=secbib]
+\markboth{\MakeUppercase{References}}{}
+
 
 %\end{linenumbers}
 \end{document}
