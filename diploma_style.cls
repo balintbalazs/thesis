@@ -2,7 +2,7 @@
 %% spellcheck-language en-US
 
 \ProvidesClass{diploma_style}
-\LoadClass[11pt,a4paper,twoside,openright]{report}
+\LoadClass[11pt,a4paper,oneside,openright]{report}
 % \LoadClass[11pt,a4paper,twoside,openany]{report}
 %\usepackage[utf8x]{inputenc}
 %\usepackage{ucs}
