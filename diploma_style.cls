@@ -1,3 +1,6 @@
+% !TEX root = dissertation_BB.tex
+%% spellcheck-language en-US
+
 \ProvidesClass{diploma_style}
 \LoadClass[11pt,a4paper,twoside,openright]{report}
 % \LoadClass[11pt,a4paper,twoside,openany]{report}
@@ -22,7 +25,7 @@
 \usepackage[table]{xcolor}% http://ctan.org/pkg/xcolor
 \usepackage{pdflscape}
 \usepackage[pagewise]{lineno}
-\linenumbers
+% \linenumbers
 
 \usepackage[ plainpages = false, pdfpagelabels,
                  %pdftex,

@@ -1,7 +1,7 @@
 % !TEX program = xelatex
 % spell-checker: disable
 \documentclass{booklet_style}
-
+\usepackage[magyar]{babel}
 %\usepackage[pagewise, mathlines]{lineno}
 
 %\usepackage[draft]{todonotes}
@@ -57,9 +57,8 @@ Az élő mintákról történő képalkotás elengedhetetlen az embrionális fej
 
 A light-sheet fluorescens mikroskópia (LSFM), másnéven egy-sík megvilágítású mikroszkópia (single plane illumination microscopy, SPIM) \cite{huisken_optical_2004} egy viszonylag új tagja azon technikák arzenáljának, melyek a fénymikroszkópián alapulnak. Nagy előnye, hogy különsen alkalmas élő minták hosszantartó vizsgálatára nagy térbeni és időbeni felbontással \cite{keller_quantitative_2008, huisken_selective_2009, weber_light_2011,tomer_shedding_2011}; továbbá könnyen adaptálható a vizsgálandó mintához, lehetővé téve számos különféle vizsgálatot, akár teljes szervek esetén \cite{dodt_ultramicroscopy:_2007}, "akár az egyes sejtek belsejében zajló folyamat \cite{chen_lattice_2014}."
 
-
-Even though light-sheet microscopy offers intrinsic optical sectioning
-To achieve isotropic 3D resolution, multiple views from different directions can be combined \cite{preibisch_efficient_2014}. This is most commonly achieved by embedding the sample in an aqueous gel which offers unrestricted view from multiple directions, and a stiff environment to position the sample \cite{krzic_multiview_2012}. Gel embedding, however is not always possible. Delicate samples, such as mouse embryos, require a very specific environment for proper development \cite{doherty_culture_2000}, which makes sample rotation impossible.
+Ugyan a light-sheet mikroskópia valódi optikai szeletelést tesz lehetővé, az axiális felbontása is rosszabb, mint a laterális, hasonlóan más mikroszkópiákhoz.
+Izotróp 3D-s felbontás elérhető egyazon mintáról több irányból készült felvételek összeolvasztásával \cite{preibisch_efficient_2014}. Ezt leggyakrabban úgy lehet megvalósítani, hogy a mintát egy víz alapú zselébe ágyazzuk, mely szabad hozzáférést ad minden irányból, és megfelelően stabilan tartja a mintát, mely így pontosan pozícionálható. Bizonyos érzékeny mintáknál azonban ez a módszer nem használható, például egér embriók esetében, melyek számára egy specifikusan kialakított környezet szükséges a megfelelő fejlődéshez \cite{doherty_culture_2000}. Ilyen mintáknál a forgatás hiánya miatt más megoldásra van szükség a többnézetes képalkotás megvalósításához.
 
 
 
@@ -92,11 +91,14 @@ To achieve isotropic 3D resolution, multiple views from different directions can
 
 \subsubsection{Kihívások a képfeldolgozásban}
 
-When using any kind of microscopy in research, image processing is a crucial part of the workflow. This is especially true for light-sheet microscopy, since it is capable of imaging the same specimen for multiple days, producing immense amounts of data. A single overnight experiment of \textit{Drosophila} development (which is a very typical use-case for light-sheet microscopy) can produce multiple terabytes of data.
+A képfeldolgozás minden mikroszkópiát alkalmazó kutatásban kritikus részét képzi a munkafolyamatnak. Ez különösképp igaz a light-sheet mikroszkópiára, ahol egy adott minta több napon keresztül történő vizsgálatára is lehetőség van, jelentős mennyiségű adatot generálva ezáltal.
+Egy egyszeri \textit{Drosophila} fejlődést célzó felvétel (ami egy tipikus példája a light-sheet mikroszkópia vizsgálatoknak) több terabyte adatot eredményez.
 
-Apart from light-sheet microscopy, many other microscopy modalities are also suffering from this problem. Methods, such as high content screening \cite{carpenter_systematic_2004,echeverri_high-throughput_2006,pepperkok_high-throughput_2006}, where tens of thousands of different genotypes are imaged generating millions of images; and single molecule localization microscopy (SMLM) \cite{betzig_imaging_2006,hess_ultra-high_2006,rust_sub-diffraction-limit_2006}, where just a single plane of a sample is imaged hundreds of thousands of times to acquire super-resolved images.
+A light-sheet mikroszkópián kívül egyéb mikroszkópos eljárások is hasonló problémával szemesülhetnek. Olyan eljárasok, mint a high content sreening \cite{carpenter_systematic_2004,echeverri_high-throughput_2006,pepperkok_high-throughput_2006}, ahol több ezer különböző genotípust vizsgálnak, vagy a loklizációs mikroszkópia (SMLM) \cite{betzig_imaging_2006,hess_ultra-high_2006,rust_sub-diffraction-limit_2006}, ahol a mintának egyetlen síkjáról készül több ezer felvétel a szuperrezolúció eléréséhez.
 
-Not only these methods are capable of generating data extremely fast, but with the sustained high data rate a single experiment can easily reach multiples of terabytes (\autoref{fig:sizes}). Handling this amount of data can quickly become the bottleneck for many discoveries, which is a more and more common issue in biological research \cite{wollman_high_2007,reynaud_guide_2015,perkel_struggle_2016}. 
+Ezek a módszerek nem csupán rendkívül gyorsan generálják az adatokat, hanem sokszor hosszú időn kereszül történik mindez, így egyes kísérletek a terabyte-os méretet is elérhetik (\autoref{fig:sizes}).
+Ez a hatalmas mennyiségű adat könnyen akadályt allíthat az új felfedezéseknek, ami egyre gyakrabban jellemző a biológiai kutatásokban \cite{wollman_high_2007,reynaud_guide_2015,perkel_struggle_2016}.
+
 
 
 
@@ -183,14 +185,14 @@ This work tackles the previously outlined challenges in light-sheet microscopy: 
     
 
 
-\section{Lehetséges alaklmazások}
+\section{Lehetséges alkalmazások}
 Mind a Dual Mouse-SPIM mikroszkópnak, mind a GPU-alapú képfeldolgozásnak közvetlen alkalmazási lehetőségei vannak az embrionális fejlődés vizsgalatában. Több potenciális együttműködő fejezte ki érdeklődését a Dual Mouse-SPIM használata iránt az egérembrió fejlődésének vizsgálatához. A Hiiragi
 csoport, akik a pre- es posztimplantációs fázis szimmetriatörő eseményeire összpontosítanak, szeretnék kipróbálni ezt az elrendezést a nagyobb minták több irányból történő képalkotására, ami a jelenleg használt mikroszkópjukkal nem működik es lehetőseget adhat eddig ismeretlen mechanizmusok feltárasára. Az Ellenberg csoport a kromoszóma szegregáció mechanizmusait vizsgálja az embrionális fejlődés első néhány osztódási fázisában. A nagyobb axiális felbontás lehetőséget ad minden egyes kromoszóma követésére az osztódási folyamat során, ami eddig nem volt lehetséges az axiális felbontás hiányosságai miatt.
 
 A GPU-alapú képfeldolgozási pipeline-t, főképp a szemközti nézetek 2D fúzióját már most is használjuk laborunk nagyteljesítményű mikroszkopján, a MuVi-SPIM- en. A két szemközti objektív nézeteinek összeolvasztása a képalkotás közben nemcsak jelentős tárhely megtakarítást eredményez, de az adatelemzést is szignifikánsan felgyorsítja.
 
 A \b3d képtömörítési algoritmus először light-sheet mikroszkópia kihívásaira fókuszálva lett megtervezve, de sokkal széleskörűbb felhasználási lehetőséget nyújt. Bármilyen nagy teljesítményű, high-throughput fénymikroszkópián alapuló vizsgálat profitálhat a zajszinten belüli tömörítési eljárásnak köszönhető jelentős adatcsökkenés adta előnyökből. Mivel a tömörítés a képalkotás alatt azonnal kivetelezhető, nemcsak a tárolási feltételek, de a szükséges sévszélesség is lecsökken, ami szükségtelenné teszi a nagyteljesítményű RAID tömbök hazsnálatát és 10 Gbit-es hálózat kiépítését tovább csökkentve a költségeket. A hasonlóan gyors kitömörítési sebességnek köszönhetően az
-adatbeolvasás is gyorsabb lesz, amiből a böngészési és 3D adatmegjelenítési alkalmazások profitálhatnak. Néhany cég már érdeklődését fejezte ki a tömörítés iránt, többek között a Bitplane AG (3D adatelemzés és megjelenítés), Luxendo GmbH (light-sheet mikroszkópia) es Hamamatsu Photonics K.K. (kamera es szenzor gyártás).
+adatbeolvasás is gyorsabb lesz, amiből a böngészési és 3D adatmegjelenítési alkalmazások profitálhatnak. Néhany cég már érdeklődését fejezte ki a tömörítés iránt, többek között a Bitplane AG (3D adatelemzés és megjelenítés), a Luxendo GmbH (light-sheet mikroszkópia) és a Hamamatsu Photonics K.K. (kamera es szenzor gyártás).
 
 
 
