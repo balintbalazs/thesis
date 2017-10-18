@@ -195,7 +195,23 @@ This work tackles the previously outlined challenges in light-sheet microscopy: 
 % \cleardoublepage
 % \section*{References}
 
-\input{6_references}
+\newrefcontext{journal}
+\printbibliography[category=journal, title={The author's publications}, heading=secbib]
+\markboth{\MakeUppercase{References}}{}
+
+%\newrefcontext{others}
+\nocite{jakus_genetic_2010,gyorffy_recurrenceonline:_2011,shi_combined_2014}
+\printbibliography[category=others, title={The author's others publications}, heading=secbib, resetnumbers=5]
+\markboth{\MakeUppercase{References}}{}
+
+\newrefcontext{conference}
+\printbibliography[category=conference, title={The author's conference presentations}, heading=secbib]
+\markboth{\MakeUppercase{References}}{}
+
+\newrefcontext
+\printbibliography[notcategory=journal,notcategory=conference,notcategory=others, resetnumbers=true, title={References cited in the thesis}, heading=secbib]
+\markboth{\MakeUppercase{References}}{}
+
 
 %\end{linenumbers}
 \end{document}

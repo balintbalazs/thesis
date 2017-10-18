@@ -54,7 +54,7 @@ t = @(x)(log(a*x+b));
 it = @(x)((exp(x)-b)/a);
 
 f = figure(1)
-set(f, 'Position', [ 586        1697        1334         499]);
+% set(f, 'Position', [ 586        1697        1334         499]);
 
 w = 321;
 %%
@@ -99,7 +99,7 @@ export_fig psf_spim.pdf
 set(gcf, 'Color', 'w');
 subplot(1,2,2)
 otf = psf2otf(p);
-otf(1:1)
+otf(1:1);
 % otf(1:1) = 1;
 otf = fftshift(otf);
 % otf = fftshift(psf2otf(p));
@@ -116,8 +116,8 @@ hold on
 % [C,h] = contour(t(p2), 8,'Color', 'black');
 axis image
 w = 66;
-xlim([(s(2)-w)/2, (s(2)-w)/2+w+1]);
-ylim([(s(1)-w)/2, (s(1)-w)/2+w+1]);
+% xlim([(s(2)-w)/2, (s(2)-w)/2+w+1]);
+% ylim([(s(1)-w)/2, (s(1)-w)/2+w+1]);
 c = h.LevelList;
 % caxis([t(0) t(1)]);
 colorbar('FontSize',11,'YTick',[t(0), c, t(1)],'YTickLabel',[0, round(it(c),3), 1]);

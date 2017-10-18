@@ -15,7 +15,11 @@
 \newrefcontext{conference}
 \printbibliography[category=conference, title={The author's conference presentations}, heading=secbib]
 \markboth{\MakeUppercase{References}}{}
+\clearpage
 
+\begin{multicols}{2}
+  \renewcommand*{\bibfont}{\scriptsize}
 \newrefcontext
 \printbibliography[notcategory=journal,notcategory=conference,notcategory=others, resetnumbers=true, title={References cited in the thesis}, heading=secbib]
 \markboth{\MakeUppercase{References}}{}
+\end{multicols}

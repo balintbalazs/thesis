@@ -25,6 +25,7 @@
 \usepackage[table]{xcolor}% http://ctan.org/pkg/xcolor
 \usepackage{pdflscape}
 \usepackage[pagewise]{lineno}
+\usepackage{multicol}
 % \linenumbers
 
 \usepackage[ plainpages = false, pdfpagelabels,
