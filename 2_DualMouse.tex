@@ -122,7 +122,7 @@ In this chapter, we present a novel light-sheet microscope developed to address 
 
     \subsubsection{The length and thickness of the light-sheet}
     
-      As we saw in \autoref{sec:dimensions}, the length of the light-sheet is determined by the Rayleigh-range of the beam in the $zy$ plane. Since $l_{fov}=2\cdot z_{R}=\SI{100}{\micro m}$
+      As we saw in \autoref{sec:dimensions}, the length of the light-sheet is determined by the Rayleigh-range of the beam in the $zy$ plane. Since $l_{\mathrm{FOV}}=2\cdot z_{R}=\SI{100}{\micro m}$
       \begin{equation}
         z_{R}=\SI{50}{\micro m}
       \end{equation}
@@ -151,7 +151,7 @@ In this chapter, we present a novel light-sheet microscope developed to address 
 
     \subsubsection{The height of the light-sheet}
     
-    The height of the light-sheet can be adjusted by changing the beam scanning amplitude with the galvo mirror. To scan the entire field of view of $h_{FOV} = \SI{270}{\micro m}$, the scanning angle range at the back focal plane of the objective will need to be $ \theta = \tan^{-1}(h_{FOV}/2/f_o) = \pm \SI{0.967}{\degree}$.
+    The height of the light-sheet can be adjusted by changing the beam scanning amplitude with the galvo mirror. To scan the entire field of view of $h_{\mathrm{FOV}} = \SI{270}{\micro m}$, the scanning angle range at the back focal plane of the objective will need to be $ \theta = \tan^{-1}(h_{\mathrm{FOV}}/2/f_o) = \pm \SI{0.967}{\degree}$.
 
 
       
@@ -230,9 +230,9 @@ In this chapter, we present a novel light-sheet microscope developed to address 
     Switching illumination side is done the following way. As the galvo is positioned at the focus of the first lens (L1, $f_1 = \SI{75}{mm}$, Edmunds Optics, \#47-639), the rotational movement will result in a linear scanning movement on mirror M and the prism mirror PM (\autoref{fig:splitter}). Depending on the lateral position of the beam, it will hit either the left or the right leg of the prism (Thorlabs, MRAK25-E02), and will be reflected to either direction. As the galvo mirror can be precisely controlled through our custom software, we can set and save the position when the beam is centered on the left lens L2 ($f_2 = \SI{75}{mm}$, Edmunds Optics, \#47-639) (\autoref{fig:splitter}a) and the position when the beam is centered on the right lens L2' (\autoref{fig:splitter}b). Lenses L1 and L2(L2') form a 4f system, and are imaging the galvo scanner on mirror M1(M1') (\autoref{fig:fullSchematics}). This way we can use the same galvo to generate the light-sheet for both directions, depending on the initial offset position. This not only has the advantage of being able to electronically switch the illumination arms, but only requires a single galvo scanner instead of one for each arm.
     
     Due to the arrangement of the bottom mirror and the prism mirror, the scanning direction will be rotated by \SI{90}{\degree}. This will result in a vertical scanning plane, which is exactly what we need to generate the light-sheet on the sample (see \autoref{sec:mirrors}).
-
     % \subsubsection{the rest of illumination}
-    Further following the illumination path, two achromatic lenses L3 and L4 ($f_3 = f_4 = \SI{200}{mm}$), in a 4f configuration relay the scanning axis to the back focal plane (BFP) of the objective. To couple in the laser with the imaging path, a quad-band dichroic mirror (DM, Semrock, Di03-R405/488/561/635-t3-25x36) is used, matching the wavelengths of the laser combiner.
+    Further following the illumination path, two achromatic lenses L3 and L4 ($f_3 = f_4 = \SI{200}{mm}$), in a 4f configuration relay the scanning axis to the back focal plane (BFP) of the objective.
+    % To couple in the laser with the imaging path, a quad-band dichroic mirror (DM, Semrock, Di03-R405/488/561/635-t3-25x36) is used, matching the wavelengths of the laser combiner.
 
     \begin{figure}
       \centering
@@ -251,7 +251,7 @@ In this chapter, we present a novel light-sheet microscope developed to address 
     \end{figure}
 
   \subsection{Detection}
-    As the emitted light exits the objective and the mirror block, it is decoupled from the illumination path by the dichroic mirror. The light is then focused by a \SI{400}{mm} achromatic lens (L5, Edmunds Optics, \#49-281) onto the camera sensor (Andor Zyla 4.2 sCMOS). Just before the camera, a motorized filter wheel (F, LEP 96A361) is placed to discriminate any unwanted wavelengths from the emission light. Although this is not in the infinity space, due to the very small angles after the \SI{400}{mm} tube lens, the maximum axial focal shift is $\sim \SI{50}{nm}$ only, which is negligible compared to the axial resolution of $\sim \SI{1.1}{\micro m}$.
+    As the emitted light exits the objective and the mirror block, it is spectrally separated from the illumination laser light by a quad band dichroic mirror (DM, Semrock, Di03-R405/488/561/635-t3-25x36) matching the wavelengths of the laser combiner. The light is then focused by a \SI{400}{mm} achromatic lens (L5, Edmunds Optics, \#49-281) onto the camera sensor (Andor Zyla 4.2 sCMOS). Just before the camera, a motorized filter wheel (F, LEP 96A361) is placed to discriminate any unwanted wavelengths from the emission light. Although this is not in the infinity space, due to the very small angles after the \SI{400}{mm} tube lens, the maximum axial focal shift is $\sim \SI{50}{nm}$ only, which is negligible compared to the axial resolution of $\sim \SI{1.1}{\micro m}$.
 
     Similarly to the common galvo in the illumination path, the two detection arms share the same camera. Although two cameras could also be used, due to the operating principle of the microscope, the two objective are not used for imaging at the same time. This means a single camera is capable of acquiring all the images, however, the two distinct detection arms need to be merged to be able to use a single detector.
     

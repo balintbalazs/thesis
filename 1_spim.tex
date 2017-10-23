@@ -27,7 +27,7 @@ Live imaging is indispensable to understand the processes during embryonic devel
 
 \section{Wide-field fluorescence microscopy}
 
-Fluorescence microscopy \cite{lichtman_fluorescence_2005,diaspro_optical_2011}, as a subset of light microscopy is one of the few methods that allows subcellular imaging of live specimens. The first use of the term fluorescence is credited to  George Gabriel Stokes \cite{stokes_change_1852}, and it refers to the phenomenon when a molecule emits light after absorbing light or other electromagnetic radiation. As the name of the technique suggests, this method collects fluorescent light from the specimens.
+Fluorescence microscopy \cite{lichtman_fluorescence_2005,diaspro_optical_2011}, as a subset of light microscopy is one of the few methods that allows subcellular imaging of live specimens, and the only method that allows to visualize specific structures or proteins. The first use of the term fluorescence is credited to  George Gabriel Stokes \cite{stokes_change_1852}, and it refers to the phenomenon when a molecule emits light after absorbing light or other electromagnetic radiation. As the name of the technique suggests, this method collects fluorescent light from the specimens.
 % which has numerous advantages, but also some drawbacks.
 Since biological tissue are usually not fluorescent, except for some autofluorescence mostly at shorter wavelengths, fluorescent dyes or proteins have to be introduced to the system in order to be able to collect the necessary information. The advantage of this is that the signal of the labeled structures will be of very high ratio compared to the background.
 
@@ -47,7 +47,7 @@ A fluorescent molecule is capable of absorbing photons in a given range (excitat
   \subsection{Fluorescent proteins}
     Traditionally, synthetic fluorescent dyes were used to label certain structures in the specimens. Some of these directly bind to their target,
     % such as DAPI to DNA,
-    and others can be used when conjugated to an antibody specific to the structure of interest. A requirement these methods is that the fluorescent label has to be added to the sample from an external source, and, in many cases, this also necessitates sample preparation techniques incompatible with live imaging, such as fixation \cite{bacallao_guiding_1990}.
+    and others can be used when conjugated to an antibody specific to the structure or protein of interest. A requirement these methods is that the fluorescent label has to be added to the sample from an external source, and, in many cases, this also necessitates sample preparation techniques incompatible with live imaging, such as fixation \cite{bacallao_guiding_1990}.
 
     The discovery of fluorescent proteins has revolutionized fluorescence microscopy. Since these molecules are proteins, they can be produced directly by the organism if the proper genetic modifications are performed. Even though this was a hurdle at the time of discovering the green fluorescent protein (GFP) \cite{shimomura_extraction_1962}, genetic engineering techniques evolved since then \cite{prasher_primary_1992}, and not only has it been successfully integrated in the genome of a multitude of organisims \cite{chalfie_green_1994,amsterdam_aequorea_1995,okabe_green_1997}, but many variants have been also engineered by introducing mutations to increase fluorescence intensity, and to change the fluorescence spectrum to allow multicolor imaging \cite{heim_wavelength_1994,heim_engineering_1996,cormack_facs-optimized_1996,okabe_green_1997}. The usefulness and impact of these proteins are so profound, that in 2008 the Nobel Prize in chemistry was awarded to Osamu Shimomura, Martin Chalfie, and Roger Tsien ``for the discovery and development of the green fluorescent protein, GFP" \cite{service_three_2008}.
 
@@ -58,7 +58,7 @@ A fluorescent molecule is capable of absorbing photons in a given range (excitat
     A light source, typically a mercury lamp is focused on the back focal plane of the objective to create even illumination at the sample. Before entering the objective, the light is filtered, so only the wavelengths that correspond to the excitation properties of the observed fluorophores are transmitted. Since the same objective is used for both illumination and detection, a dichroic mirror is utilized to decouple the illumination and detection paths. The emitted light is filtered again to make sure any reflected and scattered light from the illumination source is blocked to increase signal to noise ratio.
     Finally, the light is focused by a tube lens to create a magnified image on the camera sensor.
     
-    This type of imaging is called infinity corrected optics, since the back focal point of the objective is in ``infinity", meaning that the light exiting the back aperture is parallel. This is achieved by placing the sample exactly at the focal point of the objective. Infinity corrected optics has the advantage that it allows placing various additional optical elements in the infinity space (\textit{i.e.} the space between the objective and the tube lens) without affecting the image quality. In this example such elements are the dichroic mirror and the emission filter. 
+    This type of imaging is called infinity corrected optics, since the back focal point of the objective is in ``infinity", meaning that the light from a point source exiting the back aperture is parallel. This is achieved by placing the sample exactly at the focal point of the objective. Infinity corrected optics has the advantage that it allows placing various additional optical elements in the infinity space (\textit{i.e.} the space between the objective and the tube lens) without affecting the image quality. In this example such elements are the dichroic mirror and the emission filter. 
 
     \begin{figure}[tb]
       \centering
@@ -81,9 +81,10 @@ A fluorescent molecule is capable of absorbing photons in a given range (excitat
 
     Apart from the magnification, the most important property of the objective is the half-angle of the light acceptance cone, $\alpha$ (\autoref{fig:wide-field}, inset). This not only determines the amount of collected light, but also the achievable resolution of the system (see \autoref{sec:resolution}). This angle depends on the size of the lens relative to its focal length. In other words it depends on the aperture of the lens, which is why the expression \textit{numerical aperture} (NA) is more commonly used to express this property of the objective:
     \begin{equation}
-      \text{NA} = n\cdot \sin \alpha.
+      \text{NA} = n\cdot \sin \alpha,
       \label{eq:NA}
     \end{equation}
+    where $n$ is the refractive index of the medium, and describes the light propagation speed in the medium relative to the speed of light in vacuum. For air vacuum and air, $n=1$, for water $n_\mathrm{H_2O}=1.33$ and for commonly used optical glass $n_\mathrm{BK7} = 1.52$.
 
     For small $\alpha$ angles, the following approximation holds true: $\sin \alpha \approx \tan \alpha \approx \alpha$. Thus, the numerical aperture can also be expressed as a ratio of the radius of the lens and the focal length:
     \begin{equation}
@@ -134,7 +135,7 @@ A fluorescent molecule is capable of absorbing photons in a given range (excitat
       H(u,v) = C_0 \left| \int_0^1 J_0 (vr)e^{-i\frac{1}{2}\cdot ur^2} rdr \right|^2,
       \label{eq:psf}
     \end{equation}
-    where $C_0$ is a normalization constant, and $J_0$ is the zero order Bessel function of the first kind. Furthermore, instead of the commonly used Cartesian coordinates $x$, $y$ and $z$, the following optical coordinates are defined:
+    where $C_0$ is a normalization constant, and $J_0$ is the zeroth order Bessel function of the first kind. Furthermore, instead of the commonly used Cartesian coordinates $x$, $y$ and $z$, the following optical coordinates are defined:
     \begin{equation}
       v = \frac{2\pi n  r}{\lambda_0} \sin \alpha, \quad
       u=\frac{8\pi n  z}{\lambda_0} \sin^2 \frac{\alpha}{2}
@@ -191,7 +192,7 @@ A fluorescent molecule is capable of absorbing photons in a given range (excitat
 
 
 \section{Point scanning methods}
-  In most cases, a wide-field microscope is used to image a layer of cells, of a sectioned sample, thus axial resolution is not a concern. Imaging live specimens, however is not so straightforward, as these samples are usually much thicker than a typical section. For these samples 3-dimensional (3D) imaging is highly beneficial, which necessitates some kind of optical sectioning technique to be able to discriminate the features at different depths.
+  In most cases, a wide-field microscope is used to image a layer of cells, of a sectioned sample, thus axial resolution is not a concern. Imaging live specimens, however is not so straightforward, as these samples are usually much thicker than a typical section. For these samples 3-dimensional (3D) imaging is highly beneficial, which necessitates the use of optical sectioning instead of physical sectioning to be able to discriminate the features at different depths.
 
 
   Due to the design of the wide-field microscope, any photons emitted from outside the focal plane will also be detected by the sensor, however as these are not originating from the focus, only a blur will be visible. This blur potentially degrades image quality and signal-to-noise ratio to such an extent that makes imaging thick samples very difficult if not impossible in a wide-field microscope. 
@@ -314,7 +315,7 @@ A fluorescent molecule is capable of absorbing photons in a given range (excitat
 
   
 
-  The main principle behind single plane illumination microscopy, that is illuminating the sample from the side by a thin light-sheet, dates back to the early 20\textsuperscript{th} century, when Siedentopf and Zsigmondy first described the ultramicroscope \cite{siedentopf_uber_1902}. This microscope used sunlight as an illumination source, that was guided through a precision slit to generate a thin light-sheet. This allowed Zsigmondy to visualize gold nanoparticles floating in and out of the light-sheet. Since these particles are much smaller than the wavelength of the light, the device was called an ultramicroscope. His studies with colloids, and the development of the ultramicroscope led Zsigmondy to win the Nobel Prize in 1925.
+  The main principle behind single plane illumination microscopy, that is illuminating the sample from the side by a thin light-sheet, dates back to the early 20\textsuperscript{th} century, when Siedentopf and Zsigmondy first described the ultramicroscope \cite{siedentopf_uber_1902}. This microscope used sunlight as an illumination source, that was guided through a precision slit to generate a thin light-sheet. This allowed Zsigmondy to visualize gold nanoparticles floating in and out of the light-sheet by detecting the scattered light from the particles. Since these particles are much smaller than the wavelength of the light, the device was called an ultramicroscope. His studies with colloids, and the development of the ultramicroscope led Zsigmondy to win the Nobel Prize in 1925.
 
   After Zsigmondy, this method was forgotten until rediscovered in the 1990s, when Voie \etal constructed their Orthogonal-plane Fluorescent Optical Sectioning (OPFOS) microscope \cite{voie_orthogonal-plane_1993}. They used it to image a fixed, optically cleared and fluorescently labelled guinea pig cochlea. In order to acquire a 3D dataset, the sample was illuminated from the side with a light-sheet generated by a cylindrical lens, then rotated around the center axis to obtain multiple views. Although they only reached a lateral resolution around \SI{10}{\micro m} and axial resolution of \SI{26}{\micro m}, this method allowed them to generate a 3D reconstruction of the guinea pig cochlea \cite{voie_three-dimensional_1995}.
 
@@ -362,9 +363,11 @@ A fluorescent molecule is capable of absorbing photons in a given range (excitat
   % \subsection{Detection}
     Since illumination and detection for light-sheet microscopy are decoupled, two independent optical paths are implemented.
     
-    The detection unit of a SPIM is basically equivalent to a detection unit of a wide-field microscope, without a dichroic mirror (\autoref{fig:light-sheet}). The most important components are the objective together with the tube lens, filter wheel, and a sensor, typically a CCD or sCMOS camera.
-
-    One of the most important aspects that determines the resolution of the microscope is the detection objective. Since imaging biological specimens usually requires a water-based solution, the objectives also need to be directly submerged in the medium to minimize spherical aberrations. Since the refraction index of water ($n=1.33$) is greater than the refraction index of air, these objectives tend to have a higher NA, resulting in higher resolution. As the illumination is decoupled in this system, the light-sheet thickness also has an influence on the axial resolution. Finally, the resolution also depends on the pixel size of the sensor which determines the spatial sampling rate of the image.
+    The detection unit of a SPIM is basically equivalent to a detection unit of a wide-field microscope without the dichroic mirror (\autoref{fig:light-sheet}). The most important components are the objective together with the tube lens, filter wheel, and a sensor, typically a CCD or sCMOS camera.
+    
+    The resolution of a light-sheet microscope mainly depends on the detection objective.
+    % One of the most important aspects that determines the resolution of the microscope is the detection objective.
+    Since imaging biological specimens usually requires a water-based solution, the objectives also need to be directly submerged in the medium to minimize spherical aberrations. As the refraction index of water ($n=1.33$) is greater than the refraction index of air, these objectives tend to have a higher NA, resulting in higher resolution. As the illumination is decoupled in this system, the light-sheet thickness also has an influence on the axial resolution. Finally, the resolution also depends on the pixel size of the sensor which determines the spatial sampling rate of the image.
 
     Although image quality and resolution greatly depends on the detection optics, the real strength of light-sheet microscopy, the inherent optical sectioning is due to the specially designed illumination pattern, that confines light to the vicinity of the detection focal plane.
 
@@ -495,7 +498,7 @@ A fluorescent molecule is capable of absorbing photons in a given range (excitat
 % ##     ## ##     ## ##     ##       ## ##       
 % ##     ## ##     ## ##     ## ##    ## ##       
 % ##     ##  #######   #######   ######  ######## 
-\section{Light-sheet microscopy for mouse imaging}
+\section{Light-sheet microscopy for imaging mmalian development}
 
   Because of its optical sectioning capabilities, combined with the high specificity of fluorescent labels, confocal microscopy had an immense influence on biological research, and has been the go-to technique for decades for many discoveries \cite{shotton_confocal_1989,graf_live_2005,jonkman_any_2015}.
   % Even though it has some drawbacks, important discoveries have been made using this technique, as live imaging is not always necessary.
@@ -507,7 +510,7 @@ A fluorescent molecule is capable of absorbing photons in a given range (excitat
   Although out-of-focus illumination is still an issue, spinning disk confocal microscopy was successfully used to investigate the mechanisms of symmetry breaking in early mouse embryonic development \cite{korotkevich_apical_2017}, and the mechanisms leading to the first cell fate specification that will differentiate extraembryonic tissue from the embryo proper \cite{maitre_pulsatile_2015,dietrich_venus_2015,maitre_asymmetric_2016}. Even though these studies were carried out with live embryos, only a few hours of time-lapse imaging is possible before the accumulation of phototoxic effects arrests development \cite{nowotschin_chapter_2010}. Compared to this, just the pre-implantation phase of mouse embryonic development spans 3 days, and the full development is 18 days \cite{wolpert_principles_2011}.
 
 
-  \subsection{Imaging pre-implantation development}
+  \subsection{Imaging mammalian pre-implantation development}
 
     Pre-implantation is the first phase of mouse embryonic development, that starts right after fertilization. The embryo in this phase is still in the oviduct, travelling towards the uterus, where it will implant into the uterine wall. The developmental stage between fertilization and the implantation is called the pre-implantation stage. Here the embryo divides, and already the first cell fate specifications start when forming the trophoectoderm (TE) and the inner cell mass (ICM) at the blastocyst stage. ICM cells will form the embryo proper, while TE cell will contribute to the formation of the extraembryonic tissues.
     
@@ -529,7 +532,7 @@ A fluorescent molecule is capable of absorbing photons in a given range (excitat
     Using this setup, Strnad \textit{et al.} were able to pinpoint the exact timing of the first cell fate decision that leads either to ICM or TE cells. More than 100 embryos expressing nuclear (H2B-mCherry) and membrane (mG) markers were imaged for the entire 3 days of pre-implantation development (\autoref{fig:preMouse}B). The image quality was sufficient to segment all nuclei in the embryos (\autoref{fig:preMouse}C), and track them from 1 to 64 cell stage, building the complete lineage tree. Based on the lineage trees, and the final cell fate assignments, it was determined that at the 16 cell stage the final specification is already decided, while earlier than this it is still random.
     
 
-  \subsection{Imaging post-implantation development}
+  \subsection{Imaging mammalian post-implantation development}
   
     \begin{figure}[tb]
       \centering
