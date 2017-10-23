@@ -1,2 +1,2 @@
 *.pdf binary merge
-*.tex text
+*.tex text eol=lf
