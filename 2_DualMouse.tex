@@ -38,9 +38,9 @@ This phase of early life is an incredibly complex and dynamic process spanning t
 % <--
 As we have seen in \autoref{ch:intro}, live imaging of mouse embryonic development is an especially challenging task, but light-sheet microscopy can offer a good solution owing to its gentle optical sectioning and fast image acquisition. The Mouse-SPIM \cite{strnad_inverted_2016} introduced in the previous chapter also solves the issue of live imaging with its inverted design: the embryos are held by a foil that not only allows easy sample handling, but also acts as a barrier and isolates the embryos from the immersion medium.
 
-As all microscopes, the Mouse-SPIM also had to make a compromise: although its design allows long term live imaging, it only has a single detection view, as rotation is not possible with the sample mounting trays. Due to this configuration, its resolution is inherently anisotropic, having an axial to lateral resolution ratio of around 3. Although this is sufficient for many applications, such as cell tracking, for detecting subcellular features it might be limiting. One such example is chromosome tracking, which could shed light on chromosome missegregation mechanisms in the early embryonic development, which is the cause of many congenital diseases also affecting humans.
+As all microscopes, the Mouse-SPIM also had to make a compromise: although its design allows long term live imaging, it only has a single detection view, as rotation is not possible with the sample mounting trays. Due to this configuration, its resolution is inherently anisotropic, having an axial to lateral resolution ratio of around 3. Although this is sufficient for many applications, such as cell tracking, for detecting subcellular features it might be limiting. One such example is chromosome tracking, which could shed light on chromosome missegregation mechanisms in the early embryonic development. This is the cause of many congenital diseases also affecting humans.
 
-In this chapter, we present a novel light-sheet microscope developed to address the above challenges by using high NA objectives for subcellular isotropic resolution and low-light imaging, and offering multi-view detection without having to rotate the samples. The microscope is designed to be live imaging compatible, offering new perspectives in the research of mouse embryonic development. This chapter will describe the design concepts for the microscope, the optical layout, alignment strategies, and the result of various performance measurements, and its multi-view imaging capabilities. 
+In this chapter, we present a novel light-sheet microscope developed to address the above challenges by using high NA objectives for subcellular isotropic resolution and low-light imaging, and offering multi-view detection without the need to rotate the samples. The microscope is designed to be live imaging compatible, offering new perspectives in the research of mouse embryonic development. This chapter will describe the design concepts for the microscope, the optical layout, alignment strategies, and the result of various performance measurements, and its multi-view imaging capabilities. 
 
   %#######  ########  ######  ####  ######   ##    ## 
   %#     ## ##       ##    ##  ##  ##    ##  ###   ## 
@@ -63,7 +63,7 @@ In this chapter, we present a novel light-sheet microscope developed to address 
       \centering
       \includegraphics[page=2,width=0.8\textwidth]{objectiveCloseup}
     \end{subfigure}
-    \bcaption[Dual view concept with high NA objectives]{To achieve multi-view detection while maximizing resolution and light collection efficiency, two high NA objectives are placed in \SI{120}{\degree} arrangement. The sample (orange) is held from below by a thin FEP foil. To be able to overlap the light-sheet with the focal plane, the light-sheet is tilted \SI{30}{\degree}. The objectives are used in an alternating sequence for illumination and detection.}
+    \bcaption[Dual view concept with high NA objectives]{To achieve multi-view detection while maximizing resolution and light collection efficiency, two high NA objectives are placed in \SI{120}{\degree} arrangement. The sample (orange) is held from below by a thin FEP foil. To be able to overlap the light-sheet with the focal plane, the light-sheet is tilted by \SI{30}{\degree}. The objectives are used in an alternating sequence for illumination and detection.}
     \label{fig:objectiveCloseup}
   \end{figure}
 
@@ -110,7 +110,7 @@ In this chapter, we present a novel light-sheet microscope developed to address 
     \begin{equation}
     f_{o} = \frac{f_{tl}}{M} = \frac{200\text{  mm}}{25} = 8 \text{  mm},
     \end{equation}
-    and the back aperture diameter is \SI{17.6}{mm}.
+    and the back aperture diameter is $d = \SI{17.6}{mm}$.
     
     To generate the tilted light-sheet as shown on \autoref{fig:objectiveCloseup}, the illumination beam will need to be displaced by
     \begin{equation}
@@ -122,7 +122,7 @@ In this chapter, we present a novel light-sheet microscope developed to address 
 
     \subsubsection{The length and thickness of the light-sheet}
     
-      As we saw in \autoref{sec:dimensions}, the length of the light-sheet is determined by the Rayleigh-range of the beam in the $zy$ plane. Since $l_{\mathrm{FOV}}=2\cdot z_{R}=\SI{100}{\micro m}$
+      As we saw in \autoref{sec:dimensions}, the length of the light-sheet is determined by the Rayleigh-range of the beam in the $zy$-plane. Since $l_{\mathrm{FOV}}=2\cdot z_{R}=\SI{100}{\micro m}$
       \begin{equation}
         z_{R}=\SI{50}{\micro m}
       \end{equation}
@@ -137,21 +137,21 @@ In this chapter, we present a novel light-sheet microscope developed to address 
       
       From this, the divergence angle of the beam is
       \begin{equation}
-        \theta_0 = \frac{\lambda}{\pi W_0,y} = \SI{55.74}{mrad} = \SI{3.196}{\degree}
+        \theta_0 = \frac{\lambda}{\pi W_{0,y}} = \SI{55.74}{mrad} = \SI{3.196}{\degree}
       \end{equation}
       This means, the numerical aperture needed to produce this light-sheet is:
       \begin{equation}
         \NA_{ls} = n\cdot \sin(\theta _0) = 0.0743
       \end{equation}
-      Since $\NA=1.1$, and the diameter of the back aperture is $d=\SI{17.6}{mm}$ and the divergence angle $\theta_0 \ll 1$, using paraxial approximation, the necessary beam width at the back focal plane in the $y$ direction is
+      Since $\NA=1.1$, the diameter of the back aperture is $d=\SI{17.6}{mm}$ and the divergence angle $\theta_0 \ll 1$, using paraxial approximation, the necessary beam width at the back focal plane in the $y$ direction is
       \begin{equation}
         b_y = d \cdot \frac{\NA_{ls}}{\NA} = \SI{1.19}{mm}
       \end{equation}
-      Thus, to generate a light-sheet with appropriate length to cover a whole mouse pre-implantation embryo, the laser beam diameter should be $b=\SI{1.19}{mm}$. Larger than this will result in a more focused beam and a shorter light-sheet, while a smaller diameter beam will have worse optical sectioning capabilities.
+      Thus, to generate a light-sheet with appropriate length to cover a whole mouse pre-implantation embryo, the laser beam diameter should be $b=\SI{1.19}{mm}$. Larger diameters will result in a more focused beam and a shorter light-sheet, while a smaller diameter beam will have worse optical sectioning capabilities.
 
     \subsubsection{The height of the light-sheet}
     
-    The height of the light-sheet can be adjusted by changing the beam scanning amplitude with the galvo mirror. To scan the entire field of view of $h_{\mathrm{FOV}} = \SI{270}{\micro m}$, the scanning angle range at the back focal plane of the objective will need to be $ \theta = \tan^{-1}(h_{\mathrm{FOV}}/2/f_o) = \pm \SI{0.967}{\degree}$.
+    The height of the light-sheet can be adjusted by changing the beam scanning amplitude with the galvanometric mirror (also referred to as scanner). To scan the entire height of the field of view of $h_{\mathrm{FOV}} = \SI{270}{\micro m}$, the scanning angle range at the back focal plane of the objective will need to be $ \theta = \tan^{-1}(h_{\mathrm{FOV}}/2/f_o) = \pm \SI{0.967}{\degree}$.
 
 
       
@@ -181,7 +181,7 @@ In this chapter, we present a novel light-sheet microscope developed to address 
     \begin{figure}
       \centering
       \includegraphics[width=0.8\textwidth]{SW/frontRender.png}
-      \bcaption[The core unit of the microscope]{The two objectives (O and O') are mounted on a solid \SI{15}{mm} thick aluminium plate. Fitting on the objectives, a custom chamber (Ch) is holding the immersion medium for imaging. The mirror block with mirrors M3 and M4 directs the light to \SI{65}{mm} optical rails. Excitation (Ex.) and emission (Em.) light paths are indicated by the dash-dot line. Due to the symmetric arrangement, the excitation and illumination paths can be switched around. Objectives are secured with rings 1--3 (green, see main text for details).}
+      \bcaption[The core unit of the microscope]{The two objectives (O and O') are mounted on a solid \SI{15}{mm} thick aluminium plate. Fitting on the objectives, a custom chamber (Ch) is holding the immersion medium for imaging. The mirror block with mirrors M3 and M4 directs the light to \SI{65}{mm} optical rails. Excitation (Ex.) and emission (Em.) light paths are indicated by the dash-dot line. Due to the symmetric arrangement, the excitation and illumination paths can be alternated. The objectives are secured with rings 1--3 (green, see main text for details).}
       \label{fig:Core}
     \end{figure}
 
@@ -209,7 +209,7 @@ In this chapter, we present a novel light-sheet microscope developed to address 
     The illumination arm has three main roles:
     \begin{enumerate}
       \item expands the laser beam to the calculated \SI{1.2}{mm} size.
-      \item images the galvo scanner to the back focal plane of the objective
+      \item images the galvanometric scanner to the back focal plane of the objective
       \item switches the laser light between the two objectives during imaging
     \end{enumerate}
 
@@ -218,16 +218,16 @@ In this chapter, we present a novel light-sheet microscope developed to address 
     % \subsubsection{Beam splitter unit}
     \label{sec:splitter}
 
-    Switching between the two illumination arms is performed by a custom designed beam splitter unit (\autoref{fig:splitter}). Instead of utilizing a 50/50 beam splitter cube and mechanical shutters, we exploit the fact that a galvo scanner is needed to generate the light-sheet. As this galvo scanner (Cambridge Technology, 6210B) has a relatively large movement range ($\pm \SI{20}{\degree}$) it is also suitable for diverting the beam from one illumination arm to the other.
+    Switching between the two illumination arms is performed by a custom designed beam splitter unit (\autoref{fig:splitter}). Instead of utilizing a 50/50 beam splitter cube and mechanical shutters, we exploit the fact that a galvanometric scanner is needed to generate the light-sheet. As this galvanometric scanner (Cambridge Technology, 6210B) has a relatively large movement range ($\pm \SI{20}{\degree}$) it is also suitable for diverting the beam from one illumination arm to the other.
 
     \begin{figure}[htb]
       \centering
       \includegraphics[width=0.8\textwidth]{SW/splitterFigure}
-      \bcaption[Illumination branch splitting unit]{To divert the beam to either side, a right angle prism mirror is used in conjunction with a galvanometric scanning mirror. L1 acts as a scan lens, thus the beam is translated on mirror M. Depending on the galvo angle, the beam will be reflected either to the left (\textbf{a}) or to the right (\textbf{b}). L2 and L2' act as relay lenses, and will image the galvo movement to intermediate planes.}
+      \bcaption[Illumination branch splitting unit]{To divert the beam to either side, a right angle prism mirror is used in conjunction with a galvanometric scanning mirror. L1 acts as a scan lens, thus the beam is translated on mirror M. Depending on the scanner angle, the beam will be reflected either to the left (\textbf{a}) or to the right (\textbf{b}). L2 and L2' act as relay lenses, and will image the scanner movement to the corresponding intermediate planes.}
       \label{fig:splitter}
     \end{figure}
 
-    Switching illumination side is done the following way. As the galvo is positioned at the focus of the first lens (L1, $f_1 = \SI{75}{mm}$, Edmunds Optics, \#47-639), the rotational movement will result in a linear scanning movement on mirror M and the prism mirror PM (\autoref{fig:splitter}). Depending on the lateral position of the beam, it will hit either the left or the right leg of the prism (Thorlabs, MRAK25-E02), and will be reflected to either direction. As the galvo mirror can be precisely controlled through our custom software, we can set and save the position when the beam is centered on the left lens L2 ($f_2 = \SI{75}{mm}$, Edmunds Optics, \#47-639) (\autoref{fig:splitter}a) and the position when the beam is centered on the right lens L2' (\autoref{fig:splitter}b). Lenses L1 and L2(L2') form a 4f system, and are imaging the galvo scanner on mirror M1(M1') (\autoref{fig:fullSchematics}). This way we can use the same galvo to generate the light-sheet for both directions, depending on the initial offset position. This not only has the advantage of being able to electronically switch the illumination arms, but only requires a single galvo scanner instead of one for each arm.
+    Switching illumination side is done the following way. As the scanner is positioned at the focus of the first lens (L1, $f_1 = \SI{75}{mm}$, Edmund Optics, \#47-639), the rotational movement will result in a linear scanning movement on mirror M and the prism mirror PM (\autoref{fig:splitter}). Depending on the lateral position of the beam, it will hit either the left or the right leg of the prism (Thorlabs, MRAK25-E02), and will be reflected to either direction. As the galvanometric mirror can be precisely controlled through our custom software, we can set and save the position when the beam is centered on the left lens L2 ($f_2 = \SI{75}{mm}$, Edmund Optics, \#47-639) (\autoref{fig:splitter}a) and the position when the beam is centered on the right lens L2' (\autoref{fig:splitter}b). Lenses L1 and L2(L2') form a 4f system, and are imaging the scanner on mirror M1(M1') (\autoref{fig:fullSchematics}). This way we can use the same scanner to generate the light-sheet for both directions, depending on the initial offset position. This not only has the advantage of being able to electronically switch the illumination arms, but only requires a single galvanometric scanner instead of one for each arm.
     
     Due to the arrangement of the bottom mirror and the prism mirror, the scanning direction will be rotated by \SI{90}{\degree}. This will result in a vertical scanning plane, which is exactly what we need to generate the light-sheet on the sample (see \autoref{sec:mirrors}).
     % \subsubsection{the rest of illumination}
@@ -245,15 +245,15 @@ In this chapter, we present a novel light-sheet microscope developed to address 
         \includegraphics[page=1,width=1\textwidth]{schematicsLinear}
       \end{subfigure}
       
-      \bcaption[Dual Mouse SPIM optical layout]{The microscope consists of two main parts, the illumination branches (blue) and detection branches (yellow). For both illumination and detection there are two identical paths implemented. Illumination direction can be changed by applying a different offset to the galvo mirror, which in turn will direct the beam to the opposite face of the prism mirror. L1 and L2 will then image the galvo on M1. Using L3 as a scan lens, and L4 as a tube lens, the scanned beam is coupled to the objective path by quad band dichroic mirror (DM)
-      CAM -- camera, DM -- dichroic mirror, F -- filter wheel, L -- lens, M -- mirror, O -- objective, PM -- prism mirror, S -- sample}
+      \bcaption[Dual Mouse SPIM optical layout]{The microscope consists of two main parts, the illumination branches (blue) and detection branches (yellow). For both illumination and detection there are two identical paths implemented. Illumination direction can be changed by applying a different offset to the galvanometric mirror (scanner), which in turn will direct the beam to the opposite face of the prism mirror. L1 and L2 will then image the scanner on M1. Using L3 as a scan lens, and L4 as a tube lens, the scanned beam is coupled into the objective path by a quad band dichroic mirror (DM)
+      CAM -- camera, DM -- dichroic mirror, FW -- filter wheel, L -- lens, M -- mirror, O -- objective, PM -- prism mirror, S -- sample}
       \label{fig:fullSchematics}
     \end{figure}
 
   \subsection{Detection}
-    As the emitted light exits the objective and the mirror block, it is spectrally separated from the illumination laser light by a quad band dichroic mirror (DM, Semrock, Di03-R405/488/561/635-t3-25x36) matching the wavelengths of the laser combiner. The light is then focused by a \SI{400}{mm} achromatic lens (L5, Edmunds Optics, \#49-281) onto the camera sensor (Andor Zyla 4.2 sCMOS). Just before the camera, a motorized filter wheel (F, LEP 96A361) is placed to discriminate any unwanted wavelengths from the emission light. Although this is not in the infinity space, due to the very small angles after the \SI{400}{mm} tube lens, the maximum axial focal shift is $\sim \SI{50}{nm}$ only, which is negligible compared to the axial resolution of $\sim \SI{1.1}{\micro m}$.
+    As the emitted light exits the objective and the mirror block, it is spectrally separated from the illumination laser light by a quad band dichroic mirror (DM, Semrock, Di03-R405/488/561/635-t3-25x36) matching the wavelengths of the laser combiner. The light is then focused by a \SI{400}{mm} achromatic lens (L5, Edmund Optics, \#49-281) onto the camera sensor (Andor Zyla 4.2 sCMOS). Just before the camera, a motorized filter wheel (F, LEP 96A361) is placed to discriminate any unwanted wavelengths from the emission light. Although this is not in the infinity space, due to the very small angles after the \SI{400}{mm} tube lens, the maximum axial focal shift is $\sim \SI{50}{nm}$ only, which is negligible compared to the axial resolution of $\sim \SI{1.1}{\micro m}$.
 
-    Similarly to the common galvo in the illumination path, the two detection arms share the same camera. Although two cameras could also be used, due to the operating principle of the microscope, the two objective are not used for imaging at the same time. This means a single camera is capable of acquiring all the images, however, the two distinct detection arms need to be merged to be able to use a single detector.
+    Similarly to the common scanner in the illumination path, the two detection arms share the same camera. Although two cameras could also be used, due to the operating principle of the microscope, the two objectives are not used for imaging at the same time. This means a single camera is capable of acquiring all the images, however, the two distinct detection arms need to be merged to be able to use a single detector.
     
     Our solution to this problem is a custom designed view switching unit comprised of two broadband dielectric elliptical mirrors (Thorlabs,BBE1-E03) facing opposite directions, mounted on a high precision linear rail (OptoSigma, IPWS-F3090). Depending on the rail position, either the left (\autoref{fig:dualMirror}a) or the right (\autoref{fig:dualMirror}b) detection path will be reflected upwards, to the camera. 
 
@@ -283,55 +283,55 @@ In this chapter, we present a novel light-sheet microscope developed to address 
 
   \subsection{Alignment of illumination branches}
 
-    The two illumination branches start with a common light source, a single mode fiber coupled to laser combiner, and they also share a galvanometric mirror that performs the beam scanning to generate the virtual light-sheet. Likewise shared is a scan lens focusing on the galvo mirror (GM), and the illumination splitter unit (PM, see \autoref{sec:splitter}).
+    The two illumination branches start with a common light source, a single mode fiber coupled to laser combiner, and they also share a galvanometric mirror that performs the beam scanning to generate the virtual light-sheet. Likewise shared is a scan lens focusing on the galvanometric mirror (GM), and the illumination splitter unit (PM, see \autoref{sec:splitter}).
 
-    Alignment for the illumination arms are done in three steps. First the laser beam is aligned on the first rail that holds the galvo, lens L1, and the splitter unit PM. This is performed by two kinematic mirrors placed between the fiber output and the galvo mirror (not shown on figure). Using these two mirrors it is possible to freely align the beam along all four degrees of freedom: translation in two orthogonal directions and rotation around two orthogonal axes. Beam alignment on the rail is tested by two irises at the two ends of the rail, if the beam passes through both of them we consider it centered and straight on the optical axis.
+    Alignments for the illumination arms are done in three steps. First, the laser beam is aligned on the rail that holds the scanner, lens L1, and the splitter unit PM. This is performed by two kinematic mirrors placed between the fiber output and the galvanometric mirror (not shown on figure). Using these two mirrors it is possible to freely align the beam along all four degrees of freedom: translation in two orthogonal directions and rotation around two orthogonal axes. Beam alignment on the rail is tested by two irises at the two ends of the rail, if the beam passes through both of them we consider it centered and straight on the optical axis.
 
-    After the beam is aligned on the first rail, lens L1 and the splitter unit PM are placed in the measured positions to image the galvo mirror on mirror M1 using lenses L1 and L2. Correct positioning of the splitter unit along the rail is crucial, since this will affect the lateral position and tilt of the beam exiting the unit. To some extent, this can also be compensated by adjusting the two mirrors before the galvo mirror, but is avoided if possible as this will also displace the beam from the center of the galvo mirror.
+    After the beam is aligned on the first rail, lens L1 and the splitter unit PM are placed in the measured positions to image the galvanometric mirror on mirror M1 using lenses L1 and L2. Correct positioning of the splitter unit along the rail is crucial, since this will affect the lateral position and tilt of the beam exiting the unit. To some extent, this can also be compensated by adjusting the two mirrors before the galvanometric mirror, but is avoided if possible as this will also displace the beam from the center of the galvanometric mirror.
 
-    After rough alignment of the illumination arms, when the laser is already coupled in the objective, the fine adjustments are performed based on the image of the beam through the other objective. The beam is visualized by filling the chamber with a 0.1\% methylene blue solution. As this solution is fluorescent, and can be excited in a very large range, it is well suited to visualize the beam during adjustment.
+    After the initial alignment of the illumination arms, when the laser is already coupled in the objective, the fine adjustments are performed based on the image of the beam through the other objective. The beam is visualized by filling the chamber with a 0.1\% methylene blue solution. As this solution is fluorescent, and can be excited in a very large range, it is well suited to visualize the beam during adjustment.
 
     \paragraph{Adjusting beam position}
-      Beam position can be adjusted by either translating the beam in a conjugated image plane (I'), or by rotating the beam in a conjugated back focal plane (BFP'). The setup was designed in a way, that BFP' coincides with mirror M1. This mirror is mounted in a gimbal mirror mount, allowing to rotate the mirror exactly around its center, which avoids unwanted translational movements, and results in pure rotation of the beam. Lens L3 is positioned exactly 1 focal length from the mirror, thus acting as a scan lens, and transforming the rotational movements to translation. This translation is further imaged and demagnified by the tube lens L4 and the objective O onto the sample.
+      Beam position can be adjusted by either translating the beam in a conjugated image plane (I'), or by rotating the beam in a conjugated back focal plane (BFP'). The setup was designed in a way, that BFP' coincides with mirror M1. This mirror is held by a gimbal mirror mount, allowing to rotate the mirror precisely around its center, which avoids unwanted translational movements, and results in pure rotation of the beam. Lens L3 is positioned exactly 1 focal length from the mirror, thus acting as a scan lens, and transforming the rotational movements to translation. This translation is further imaged and demagnified by the tube lens L4 and the objective O onto the sample.
 
 
     \paragraph{Adjusting beam tilt}
-      Beam tilt can be adjusted by either rotating the beam in an intermediate image plane (I'), or translating it at the back focal plane (BFP). As mirror M2 is relatively far from the back focal plane, adjusting this will mostly result in translation that will rotate the beam. This movement, however, will also introduce translations, and has to be compensated by adjusting mirror M1. As the light-sheet needs to be tilted by \SI{30}{\degree} to coincide with the focal plane of the other objective, this level of adjustment is not possible with M2. In order to allow for a pure rotation of the light-sheet, we mounted the dichroic mirrors on linear stages (OptoSigma, TSDH-251C). By translating the dichroic mirror, the illumination laser beam gets translated at the back focal plane, which will result in a pure rotational movement at the sample. Rough alignment of the light-sheet is performed by adjusting the dichroic position while inspecting the light-sheet through a glass window in the chamber. Precise alignment is afterwards done based on the image of the beam visualized in a fluorescent medium.
+      Beam tilt can be adjusted by either rotating the beam in an intermediate image plane (I'), or translating it at the back focal plane (BFP). As mirror M2 is relatively far from the back focal plane, adjusting it will mostly result in translation that will rotate the beam in the ima plane. This movement, however, will also introduce translations, and has to be compensated by adjusting mirror M1. As the light-sheet needs to be tilted by \SI{30}{\degree} to coincide with the focal plane of the other objective, this level of adjustment is not possible with M2. In order to allow for a pure rotation of the light-sheet, we mounted the dichroic mirrors on linear stages (OptoSigma, TSDH-251C). By translating the dichroic mirror, the illumination laser beam gets translated at the back focal plane, which will result in a pure rotational movement at the sample. Coarse alignment of the light-sheet is performed by adjusting the dichroic position while inspecting the light-sheet through a glass window in the chamber. Precise alignment is done afterwards based on the image of the beam visualized in a fluorescent medium.
 
 
     % \paragraph{Adjusting beam axial position.}
 
 
     \paragraph{Adjusting scanning plane angle}
-      After the beam is properly aligned, i.e. it is in focus and in the center of field of view, it is still necessary to check if the scanning direction is parallel to the imaging plane. It is possible that the beam is in focus in the center position, but when moved up or down it drifts out of focus due to a tilted scanning angle. This tilt can be compensated by mirror M1, that is placed at the conjugated back focal plane BFP'. Between lenses L3 and L4 a magnified version of the light-sheet will be visible, and the tilt can be checked by placing an alignment target in the optical path while scanning the beam. By tilting mirror M1 up or down, the scanning pattern not only moves up or down, but is also rotated if the mirror surface is not exactly vertical. Since M1 and GM are in conjugated planes, the tilt and offset can be performed independently. The tilt is first fixed by M1 while inspecting the target, and the beam is re-centered by changing the offset on the galvo mirror. Moving the galvo mirror will not introduce tilt, since in this case rotation axis is perpendicular to the reflection plane.
+      After the beam is properly aligned, i.e. it is in focus and in the center of the field of view, it is still necessary to check if the scanning direction is parallel to the imaging plane. It is possible that the beam is in focus in the center position, but when moved vertically it drifts out of focus due to a tilted scanning angle. This tilt can be compensated by mirror M1, that is placed at the conjugated back focal plane BFP'. Between lenses L3 and L4 a magnified version of the light-sheet will be visible, and the tilt can be checked by placing an alignment target in the optical path while scanning the beam. By tilting mirror M1 up or down, the scanning pattern not only moves up or down, but is also rotated if the mirror surface is not exactly vertical. Since M1 and GM are in conjugated planes, the tilt and offset can be performed independently. The tilt is first fixed by M1 while inspecting the target, and the beam is re-centered by changing the offset on the galvanometric mirror. Moving the galvanometric mirror will not introduce tilt, since in this case rotation axis is perpendicular to the reflection plane.
 
 
 
 
   \subsection{Alignment of detection branches}
-    Since the detection path is equivalent to a wide-field detection scheme, its alignment is much simpler than that of the illumination branches. The only difference is the detection branch merging unit (see \autoref{sec:dualMirror}.) that features two moving mirrors. This, however, doesn't affect the alignment procedure, since the movement direction is parallel to both mirrors' surfaces, meaning that the exact position of the mirrors will not affect the image quality, as long as the mirrors are not clipping the image itself. A stability test was performed to confirm the consistent switching performance of the mirror unit before the final alignment took place (see \autoref{sec:mirrorStability}).
+    Since the detection path is equivalent to a wide-field detection scheme, its alignment is much simpler than that of the illumination branches. The only difference is the detection branch merging unit (see \autoref{sec:dualMirror}.) which features two moving mirrors. This, however, doesn't affect the alignment procedure, since the movement direction is parallel to both mirrors' surfaces, meaning that the exact position of the mirrors will not affect the image quality, as long as the mirrors are not clipping the image itself. A stability test was performed to confirm the consistent switching performance of the mirror unit before the final alignment took place (see \autoref{sec:mirrorStability}).
 
     % TODO: complete paragraph
     % The final alignment procedure 
 
     \paragraph{Positioning the tube lens}
-      The position of the tube lens determines the focal plane that is being imaged on the camera sensor. Ideally, the tube lens' distance from the camera sensor is exactly the tube lens' focal length, which will ensure the best imaging performance. If the tube lens' distance is not correct, the focal plane will be slightly shifted in the axial direction. Although small shifts will not necessarily have detrimental effect on the image quality, because the light sheet can also be shifted accordingly. Because of the shifted focal and image planes, however, the magnification of the system will be affected, and will change depending on the amount of defocus. For this reason we aim for positioning the tube lens as close to the theoretical position as possible.
+      The position of the tube lens determines the focal plane that is being imaged on the camera sensor. Ideally, the tube lens' distance from the camera sensor is exactly the tube lens' focal length, which will ensure the best imaging performance. If the tube lens' distance is not correct, the focal plane will be slightly shifted in the axial direction. Although small shifts will not necessarily have detrimental effect on the image quality, because the light-sheet can also be shifted accordingly. Because of the shifted focal and image planes, however, the magnification of the system will be affected, and will change depending on the amount of defocus. For this reason we aim for positioning the tube lens as close to the theoretical position as possible.
 
-      Our tube lens is a compound, achromatic lens with a center thickness of \SI{12.5}{mm}, and edge thickness of \SI{11.3}{mm}. Its effective focal length is \SI{400}{mm} which will produce a 50x magnified image. Back focal length is \SI{394.33}{mm} which we measured from the camera chip, and the lens was positioned at this theoretically optimal position.
+      Our tube lens is a compound, achromatic lens with a center thickness of \SI{12.5}{mm}, and edge thickness of \SI{11.3}{mm}. Its effective focal length is \SI{400}{mm} which will produce a 50x magnified image. The back focal length is \SI{394.33}{mm} which we measured from the camera chip, and the lens was positioned at this theoretically optimal position.
 
     \paragraph{Adjusting correction collar}
       The Nikon 25x objectives used for this setup have a built in correction ring that can be used to correct spherical aberrations resulting from refractive index differences when imaging samples behind a coverslip. This can be also effectively used to correct for any spherical aberrations occurring from imaging through the FEP foil. Although these aberrations are expected to be extremely low, due to the relatively thin, \SI{50}{\micro m} foil thickness, and the close matching of refractive index ($n_{FEP} = 1.344$, $n_{H_2O}=1.333$), for optimal, aberration free image quality it can't be neglected.
 
-      The correction collars are adjusted by inspecting a gel suspended fluorescent bead specimen with the microscope, where the beads can act as a reporter of the point spread function of the microscope. The alignment can be performed ``live" by inspecting the bead image quality for any aberrations. By gradually changing the correction collar, the ring artifacts are minimized on out-of-focus beads, and the peak intensity is maximized for in-focus beads. By moving the correction ring, the focal plane is also slightly shifted, which has to be compensated by shifting the light-sheet correspondingly to coincide with the correct imaging plane.
+      The correction collars are adjusted by inspecting a gel suspended fluorescent bead specimen with the microscope, where the beads can act as a reporter of the point spread function of the microscope. The alignment can be performed ``live" by inspecting the bead image quality for aberrations. By gradually changing the correction collar, the ring artifacts are minimized on out-of-focus beads, and the peak intensity is maximized for in-focus beads. By moving the correction ring, the focal plane is also slightly shifted, which has to be compensated by shifting the light-sheet correspondingly to coincide with the correct imaging plane.
 
     \paragraph{Adjusting field of view}
-      To allow for proper sampling of the image, we use 50\texttimes magnification, which combined with the \SI{6.5}{\micro m} pixel pitch of our sCMOS camera, will result in a \SI{0.13}{\micro m} pixel size. The full field of view recorded by the camera is $2048 \times \SI{0.13}{\micro m} = \SI{266.24}{\micro m}$.
+      To allow for proper sampling of the image, we use a 50\texttimes magnification, which combined with the \SI{6.5}{\micro m} pixel pitch of our sCMOS camera, will result in a \SI{0.13}{\micro m} pixel size. The full field of view recorded by the camera is $2048 \times \SI{0.13}{\micro m} = \SI{266.24}{\micro m}$.
       % The full field of view the objective provide, are larger than this at \SI{800}{\micro m}.
       To ensure the best image quality, we align the center of the objective field of view on the camera sensor, since this region has the best optical properties in terms of numerical aperture, aberration correction and field flatness.
 
       Field of view alignment can be performed using mirror M4 just before the detection merging unit. To identify the center region of the field of view, diffuse white light is used to illuminate the entire sample chamber and is imaged on the camera. Then, mirror M4 is adjusted until the top edge of the field of view becomes visible, \textit{i.e.} where the illumination from the chamber is clipped. This will have a circular shape. Afterwards, adjusting the mirror in the orthogonal direction, the left-right position of the field of view can be adjusted, by centering the visible arc on the camera sensor.
 
-      After the horizontal direction is centered, vertical centering is performed. This, however can't be centered the same way as the horizontal direction, since for that we would have to misalign the already aligned horizontal position. To determine the center, we move the field of view from the topmost position to the bottom. During this process the number of  turns of the adjustment screw is counted (this can be done accurately by using a hex key). After reaching the far end of the field of view, the mirror movement is reversed, and the screw is turned halfway to reach the middle.
+      After the horizontal direction is centered, vertical centering is performed. This, however can not be centered the same way as the horizontal direction, since for that we would have to misalign the already aligned horizontal position. To determine the center, we move the field of view from the topmost position to the bottom. During this process the number of  turns of the adjustment screw is counted (this can be done accurately by using a hex key). After reaching the far end of the field of view, the mirror movement is reversed, and the screw is turned halfway to reach the middle.
 
 
 
@@ -341,13 +341,13 @@ In this chapter, we present a novel light-sheet microscope developed to address 
 
 \section{Control unit}
 
-  The microscope's control and automation is performed by an in-house designed modular microscope control system developed in LabVIEW \cite{balazs_development_2013}. The core of the system is a National Instruments cRIO-9068 embedded system that features and ARM Cortex A9 processor, and a Xilinx Zynq 7020 FPGA.
+  The microscope's control and automation is performed by an in-house designed modular microscope control system developed in LabVIEW \cite{balazs_development_2013}. The core of the system is a National Instruments cRIO-9068 embedded system that features an ARM Cortex A9 processor, and a Xilinx Zynq 7020 FPGA.
   Having both chips in the same device is a great advantage, since the main processor can be used to run most of the microscope control software, while the FPGA can be used to generate the necessary output signals in real time and with high precision.
   
-  The embedded system is complemented by a high performance workstation that is used to display the user interface of the microscope, and to record the images of the high-speed scientific complementary metal–oxide–semiconductor (sCMOS) camera. 
+  The embedded system is complemented by a high performance workstation that is used to display the user interface of the microscope, and to record the images of the high-speed sCMOS camera. 
 
   \subsection{Hardware}
-    Various components need to be synchronized with high precision to operate the microscope: a laser combiner to illuminate the sample; a galvo scanner to generate the light-sheet; stages to move the samples; filter wheel to select the imaging wavelengths; and a camera to detect the fluorescence signal.    
+    Various components need to be synchronized with high precision to operate the microscope: a laser combiner to illuminate the sample; a galvanometric scanner to generate the light-sheet; stages to move the samples; filter wheel to select the imaging wavelengths; and a camera to detect the fluorescence signal.    
     % For more details on the exact models, see Appendix \ref{sec:BOM}.
     For high speed image acquisition, all of these devices have to be precisely synchronized in the millisecond range, and some even in the microsecond range.
     Although they require different signals to control them, we can split them into three main categories:
@@ -355,7 +355,7 @@ In this chapter, we present a novel light-sheet microscope developed to address 
     \begin{center}
       \begin{tabular}{lll}
         \textbf{digital input} & \textbf{analog input}   & \textbf{serial communication} \\ \hline
-        camera exposure    & galvo position & filter wheel         \\
+        camera exposure    & galvanometric position & filter wheel         \\
         laser on/off (\texttimes 3) & laser intensity (\texttimes 3) & stages (\texttimes 2)
       \end{tabular}
     \end{center}
@@ -374,8 +374,8 @@ In this chapter, we present a novel light-sheet microscope developed to address 
 
     \begin{figure}
       \centering
-      \includegraphics[width = 0.6\textwidth]{fpgaTraces}
-      \bcaption[Digital and analog control signals]{Example traces for recording a single plane with \SI{50}{ms} exposure time and \SI{12}{ms} delay. During the exposure of the camera the galvo has 3 sections: acceleration (acc.), linear, and deceleration (dec.). The laser line is synchronized with the galvo linear section to ensure even illumination. }
+      \includegraphics[width = 0.6\textwidth]{fpgaTraces_scanner}
+      \bcaption[Digital and analog control signals]{Example traces for recording a single plane with \SI{50}{ms} exposure time and \SI{12}{ms} delay. During the exposure of the camera the scanner has 3 sections: acceleration (acc.), linear, and deceleration (dec.). The laser line is synchronized with the scanner linear section to ensure even illumination. }
       \label{fig:traces}
     \end{figure}
 
@@ -384,7 +384,7 @@ In this chapter, we present a novel light-sheet microscope developed to address 
     \subsubsection{FPGA software}
       The on-board FPGA is responsible for generating the digital and analog output signals based on the microscope settings (\autoref{fig:traces}). To avoid having to calculate all the traces for a whole stack, the main software only calculates a few key parameters of the traces that are necessary to completely describe them. The FPGA then calculates the signals in real time, and outputs them with microsecond precision.
 
-      To describe the traces, we define them as a concatenation of \textit{sections}. Each section has 3 or 5 parameters, depending on if their type is digital or analog. Both types have three common properties: \texttt{value}, \texttt{length}, and \texttt{type}. The analog sections additionally contain a \texttt{dValue} and a \texttt{ddValue} element describing the velocity and the acceleration of the signal. This allows us to generate piecewise functions made of second order polynomials.
+      To describe the traces, we define them as a concatenation of \textit{sections}. Each section has 3 or 5 parameters, depending on whether their type is digital or analog. Both types have three common properties: \texttt{value}, \texttt{length}, and \texttt{type}. The analog sections additionally contain a \texttt{dValue} and a \texttt{ddValue} element describing the velocity and the acceleration of the signal. This allows us to generate piecewise functions made of second order polynomials.
 
       The \texttt{type} element contains information on which value should be updated for the current section. Setting the lowest bit high will update the \texttt{value}, setting the second bit high will update the \texttt{dValue}, and setting the third bit high will update the \texttt{ddValue}. This feature allows to define smooth transitions between the sections, and also to define more complex signals, as long as they are periodic in the second derivative.
 
@@ -421,7 +421,7 @@ In this chapter, we present a novel light-sheet microscope developed to address 
   % Resolution for Lattice light-sheet \cite{chen_lattice_2014}: \SI{230}{nm} in x and \SI{370}{nm} in z
   % \cite{chhetri_whole-animal_2015}
 
-  Following the desin phase, all custom parts were manufactured by the EMBL mechanical workshop, and microscope was assembled on a MellesGriot optical table (\autoref{fig:frontView} and \autoref{fig:3D}). The microscope was equipped with an Andor Zyla 4.2 sCMOS camera, that offers a large field of view of 2048\texttimes 2048 pixels with a pixel pitch of \SI{6.5}{\micro m}. It offers a high dynamic range of 1:30,000, and high frame rate at 100 frames per second (fps), while readout noise is minimal (0.9 e$^-$).
+  Following the design phase, all custom parts were manufactured by the EMBL mechanical workshop, and the microscope was assembled on a MellesGriot optical table (\autoref{fig:frontView} and \autoref{fig:3D}). The microscope was equipped with an Andor Zyla 4.2 sCMOS camera, that offers a large field of view of 2048\texttimes 2048 pixels with a pixel pitch of \SI{6.5}{\micro m}. It offers a high dynamic range of 1:30,000, and high frame rate at 100 frames per second (fps), with a minimal readout noise of 0.9 e$^-$.
   
   To evaluate the performance of the microscope, we conducted various measurements, concerning the stability and the resolution of the system. The methods and results of these measurements will be presented in this section.
 
@@ -440,7 +440,7 @@ In this chapter, we present a novel light-sheet microscope developed to address 
 
     To assess the reproducibility in the movement of the detection branch switching unit, a long term stability test was conducted. To exclude all other factors (such as sample drift), we imaged the opening of two closed irises that were mounted on the detection optical rail. Image formation was done by two achromatic lenses ($f=\SI{75}{mm}$) positioned directly after mirrors M5 and M5'.
     
-    The apertures were imaged from both views every 10 seconds, for \SI{4}{h}, for a total of 1440 images per view, and 2880 switches. The center of the aperture was segmented on all images using Matlab, and tracked to assess any drift occurring during the \SI{4}{h} time lapse (\autoref{fig:stability}). To visualize the uncertainty of the aperture's position, we performed principal component analysis (PCA) on the positions and visualized the results by plotting the 95\% confidence ellipse on the images. Although the right view had a significant spread with a standard deviation of \SI{4.37}{px} and \SI{2.26}px along the long and short axes respectively, the left view was extremely stable, and the standard deviation was only \SI{0.07}{px} and \SI{0.04}{px} for the long and short axes respectively. This result implies that there is no conceptual limitation in reaching sub-pixel reproducibility with the view switching unit, although some optimization is still needed for the right view to reach the same stability as the left view. 
+    The apertures were imaged from both views every 10 seconds, for \SI{4}{h}, for a total of 1440 images per view, and 2880 switches. The center of the aperture was segmented on all images using Matlab, and tracked to assess any drift occurring during the \SI{4}{h} time lapse (\autoref{fig:stability}). To visualize the uncertainty of the aperture's position, we performed principal component analysis (PCA) on the positions and visualized the results by plotting the 95\% confidence ellipse on the images. Although the right view had a significant spread with a standard deviation of \SI{4.37}{px} and \SI{2.26}px along the long and short axes respectively, the left view was extremely stable, and the standard deviation was only \SI{0.07}{px} and \SI{0.04}{px} for the long and short axes respectively. This result implies that there is no conceptual limitation in reaching sub-pixel reproducibility with the view switching unit, although some optimization is still needed for the right view to reach the same stability as the left view.
 
     
 
@@ -448,14 +448,14 @@ In this chapter, we present a novel light-sheet microscope developed to address 
 
     \begin{figure}[bthp]
       \centering
-      \includegraphics[width=\textwidth]{beamPlots.pdf}
+      \includegraphics[width=\textwidth]{beamPlots_view.pdf}
       \bcaption[Illumination beam profile]{Average of 500 stationary beam images for both left (top left) and right objectives (bottom left). Beam intensity profile along the waist of each beam is plotted in the center column. The right column shows the beam width profile of each beam ($1/e^2$).}
       \label{fig:beamProfiles}
     \end{figure}
 
     Since a Gaussian beam is used for illumination, its intensity profile is dependent of the axial position (\autoref{eq:gaussian}). Although the total intensity at any cross section of the beam is constant, because of the divergent properties, the peak intensity varies. To assess any non-uniformities in the illumination pattern, we measured the illumination beam intensity for each view.
 
-    To visualize the beam, the chamber was filled with a fluorescent solution (0.1 \% methylene blue in distilled water). In order to increase the signal to noise ratio of these images, a long exposure time of \SI{200}{ms} was used, and 500 images of each beam was averaged. Dark images were acquired by repeating the image acquisition with the laser turned off. The average of the dark images were subtracted from the averaged beam images, resulting in the beam intensity profile (\autoref{fig:beamProfiles}).
+    To visualize the beam, the chamber was filled with a fluorescent solution (0.1 \% methylene blue in distilled water). In order to increase the signal to noise ratio of these images, a long exposure time of \SI{200}{ms} was used, and 500 images of each beam were averaged. Dark images were acquired by repeating the image acquisition with the laser turned off. The average of the dark images were subtracted from the averaged beam images, resulting in the beam intensity profile (\autoref{fig:beamProfiles}).
 
     To determine the beam waist position, we measured the beam thickness (FWHM) for each column of the averaged images, and located the position of the minimal width. The beam width at the waist position for the left view was   \SI{3.70}{\micro m}, and for the right view it was \SI{3.58}{\micro m} (\autoref{fig:beamProfiles}). We also measured the usable length of the beams (\autoref{sec:dimensions}). The distance between the points where the beam has expanded by a factor of $\sqrt2$ relative to the waist is \SI{95.42}{\micro m} for the left view, and \SI{90.35}{\micro m} for the right view. This corresponds well to the original requirement of a minimal field of view of \SI{100}{\micro m}. Depending on the sample and the required level of optical sectioning, the practical field of view can be larger than this, as the camera sensor allows for a field of view of \SI{266}{\micro m}.  
 
@@ -476,7 +476,7 @@ In this chapter, we present a novel light-sheet microscope developed to address 
       \label{fig:measuredPSF}
     \end{figure}
 
-    It is apparent from the simulations that even though the FEP refractive index is almost identical to the refractive index of water, a slight spherical aberration is still present even for the ideal case (\autoref{fig:measuredPSF}, left). The resolution measured as the FWHM of the intensity profile through the lateral and axial cross sections is \SI{271}{nm} and \SI{866}{nm} respectively. FWHM was measured in Fiji by fitting a Gaussian curve, and multiplying the standard deviation of the resulting fit by $2 \sqrt{2 \ln 2}$.
+    It is apparent from the simulations that even though the FEP refractive index is almost identical to the refractive index of water, a slight spherical aberration is still present even for the ideal case (\autoref{fig:measuredPSF}, left). The resolution measured as the FWHM of the intensity profile through the lateral and axial cross sections is \SI{271}{nm} and \SI{866}{nm} respectively. The FWHM was measured in Fiji by fitting a Gaussian curve, and multiplying the standard deviation of the resulting fit by $2 \sqrt{2 \ln 2}$.
 
     % \subsubsection{Methods}
     To experimentally determine the resolution of the microscope and characterize its optical performance, we measured the point spread function using fluorescently labeled beads suspended in 0.8\% GelRite (\autoref{sec:methods2}). The gel was loaded in glass capillaries  and allowed to cool. After the gel solidified, a $\sim$\SI{1}{mm} piece was cut off and placed in the microscope sample holder. The beads were imaged from both views using the \SI{561}{nm} laser line with the 561 long-pass filter (Semrock, BLP02-561R-25).
@@ -518,7 +518,7 @@ In this chapter, we present a novel light-sheet microscope developed to address 
 
     To demonstrate the multi-view capabilities and improved image quality of the microscope, we performed dual-view imaging of a fixed mouse zygote and combined the images using the Multiview Reconstruction \cite{preibisch_efficient_2014} plugin of Fiji (\autoref{fig:zygoteMontage}). The microtubules were stained with Alexa Fluor 488 coupled secondary antibodies, and the zygote was imaged from both views with \SI{0.5}{\micro m} inter-plane distance.
 
-    Anisotropy in the resolution becomes apparent in the single-view recordings, when the stacks are resliced from a different direction than the imaging plane. Even though the native view of each objective (\autoref{fig:zygoteMontage}a,d) shows good contrast, and easy to recognize features, when rotated and sliced corresponding to the view of the other objective, the contrast is almost completely gone, and resolution is decreased (\autoref{fig:zygoteMontage}b,e). The fused stack, after the multi-view deconvolution contains the high resolution information from both views, and thus both directions show good quality and high contrast (\autoref{fig:zygoteMontage}c,f).
+    Anisotropy in the resolution becomes apparent in the single-view recordings, when the stacks are resliced from a different direction than the imaging plane. Even though the native view of each objective (\autoref{fig:zygoteMontage}a,d) shows good contrast, and easy to recognize features, when rotated and sliced corresponding to the view of the other objective, the contrast is almost completely gone, and the resolution is decreased (\autoref{fig:zygoteMontage}b,e). The fused stack, after the multi-view deconvolution contains the high resolution information from both views, and thus both directions show good quality and high contrast (\autoref{fig:zygoteMontage}c,f).
 
 
 
@@ -564,7 +564,7 @@ In this chapter, we present a novel light-sheet microscope developed to address 
 
   To be able to surpass the proof-of-concept state, the microscope still needs some improvements. The detection view switching unit needs to be improved to minimize field of view drift of both views. Data processing for long term experiments would be extremely challenging otherwise. Another necessity for long term experiments is the implementation of an environmental chamber to provide the appropriate conditions for live embryo imaging.
 
-  The use of high NA objectives also keep the door open for future upgrades, such as adding structured illumination \cite{keller_fast_2010, chang_csilsfm_2017}, or coupling in a high power pulsed laser for photomanipulation capabilities \cite{rauzi_probing_2017}. Another natural extension to the system would be an addition of a third objective, that would allow for truly isotropic imaging and two-sided sample illumination.
+  The use of high NA objectives also keep the door open for future upgrades, such as the addition of structured illumination \cite{keller_fast_2010, chang_csilsfm_2017}, or coupling in a high power pulsed laser for photomanipulation capabilities \cite{rauzi_probing_2017}. Another natural extension to the system would be the addition of a third objective, that would allow for truly isotropic imaging and two-sided sample illumination.
 
 
   Single-view solutions for isotropic imaging only allow a very limited field of view. For diffraction-limited optical sectioning a Gaussian beam is diverging too fast \cite{dean_diagonally_2016}, while the use of other, non-diffractive beams rely on self-interference \cite{chen_lattice_2014}, which breaks down after a few tens of micrometers inside the sample. Our dual-view high NA solution allows for isotropic resolution even for large field of views, such as for entire mouse zygotes or embryos (\SI{120}{\micro m}\texttimes\SI{120}{\micro m}\texttimes\SI{120}{\micro m})

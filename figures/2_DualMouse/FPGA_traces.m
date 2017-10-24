@@ -77,7 +77,7 @@ traces = [
         repmat(galvo, 1,3)];
     
 ylims = [-TTL*0.2, TTL*1.2; -TTL*0.2, TTL*1.2; -0.7, 0.7];
-titles = {'camera', 'laser', 'galvo'};
+titles = {'camera', 'laser', 'scanner'};
 ytickss = { [0, TTL],
             [0, TTL],
             [-Vamp, 0, Vamp]};
