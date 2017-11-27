@@ -107,8 +107,7 @@
 \def\supervisor#1{\gdef\@supervisor{#1}}
 \def\lab#1{\gdef\@lab{#1}}
 % Defining the crest
-\def\ppke#1{\gdef\@ppke{#1}}
-\def\embl#1{\gdef\@embl{#1}}
+\def\ppkelogo#1{\gdef\@ppkelogo{#1}}
 
 
 \renewcommand{\maketitle}{
@@ -125,7 +124,7 @@
     {{\LARGE \@author} \par}
 
 	\vspace*{15mm}
-    \@ppke \par
+    \@ppkelogo \par
 	\vspace*{15mm}
     \@university \par
 	\vspace*{1ex}
