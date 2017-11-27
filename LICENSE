@@ -4,7 +4,10 @@ This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
 International License. To view a copy of this license, visit
 http://creativecommons.org/licenses/by-sa/4.0/.
 
-Parts of the LaTeX source code (*.tex files) and style files (*.cls files) that are not appearing in the compiled pdfs (dissertation_BB.pdf, thesis_booklet_BB.pdf, thesis_booklet_HU.pdf) are licensed under the MIT License.
+Source code in Matlab (*.m) and R (*.r) format, and parts of the LaTeX source code
+(*.tex files) and style files (*.cls files) that are not appearing in the compiled
+pdfs (dissertation_BB.pdf, thesis_booklet_BB.pdf, thesis_booklet_HU.pdf) are
+licensed under the MIT License.
 
 The MIT License (MIT)
 
