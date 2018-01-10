@@ -26,7 +26,7 @@
 \usepackage{pdflscape}
 \usepackage[pagewise]{lineno}
 \usepackage{multicol}
-% \linenumbers
+    \linenumbers
 
 \usepackage[ plainpages = false, pdfpagelabels,
                  %pdftex,
