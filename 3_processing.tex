@@ -48,7 +48,7 @@
       \end{equation}
       If we consider a data stream $S$, where each symbol records the outcome of independent, identical random experiments $X$, then the average information in each symbol will be $H(X)$. As a consequence, as stated by Shannon's source coding theorem \cite{shannon_mathematical_1948}, the shortest representation of $S$ will require at least $N\cdot H(X)$ bits, where $N$ is the number of symbols in the stream. This defines the theoretical lower bound that any na\"ive compression algorithm, also called entropy coding, can achieve without loosing any information.
   
-      The requirement, however, is that the symbols are independent of each other, which is usually not true for most of the data types we (humans) are interested in. In order to achieve ideal compression, the data need to be modeled, or transformed, to represent it as a sequence of independent variables. This pattern of modeling and coding \cite{rissanen_universal_1981} is the core of all modern compression algorithms. 
+      The requirement, however, is that the symbols are independent of each other, which is usually not true for most of the data types we (humans) are interested in. In order to achieve ideal compression, the input needs to be modeled, or transformed, to represent it as a sequence of independent variables. This pattern of modeling and coding \cite{rissanen_universal_1981} is the core of all modern compression algorithms. 
       The following sections will briefly introduce these concepts by two examples: Huffman coding, and pixel prediction.
       
       % in the context of image compression
@@ -62,7 +62,7 @@
 
       \subsubsection{Prefix-free codes}
 
-      Fixed-length codes have the convenience that there is no need to indicate the boundaries between them, as they are all the same length (\textit{e.g.} \SI{8}{bits} for ASCII codes). For variable length codes, as the name implies this is not possible, which necessitated the development of various strategies to demarcate these codewords. 
+      Fixed-length codes have the convenience that there is no need to indicate the boundaries between them, as they are all the same length (\textit{e.g.}, \SI{8}{bits} for ASCII codes). For variable length codes, as the name implies this is not possible, which necessitated the development of various strategies to demarcate these codewords. 
 
       One way to indicate the end of a codeword is to use a specific delimiting sequence which is not part of any of the codewords. While this is an obvious solution, it is also wasteful, as these sequences will not contain any information regrading the original source. Prefix-free codes were developed to be able to omit these sequences, while still allowing unique decodability, making them very popular. This is achieved by making sure that once a codeword was assigned, no other codeword would start with that sequence. In other words, no codeword is a prefix of another codeword, hence the name of the technique. During decoding the bits are read until a valid codeword is matched. Since it is guaranteed that no other codeword will start with the same sequence, the decoder can record the symbol corresponding for that codeword, and continue reading the compressed stream.
       % A practical implementation to this process is based on representing the codewords in a binary tree where each edge corresponds to one bit and is labeled 1 or 0. As the decoder is reading the bits, it traverses down the tree until it reaches a leaf. The symbol represented by that leaf will be the decoded symbol and the process can start over from the beginning.
@@ -224,7 +224,7 @@
         \label{fig:context}
       \end{figure}
 
-      For image compression, as the data is inherently multi-dimensional, the prediction rules can also be multi-dimensional, which can better capture the structure of the data, and achieve better decorrelation. For a typical encoding scenario, where the pixels are encoded one by one, the prediction can be based on the already encoded values (gray in \autoref{fig:context}). This causality constraint is necessary in order to be able to decode the image.
+      For image compression, as the datasets are inherently multi-dimensional, the prediction rules can also be multi-dimensional, which can better capture the structure of the data, and achieve better decorrelation. For a typical encoding scenario, where the pixels are encoded one by one, the prediction can be based on the already encoded values (gray in \autoref{fig:context}). This causality constraint is necessary in order to be able to decode the image.
 
       Usually the nearest neighbors are used for the prediction, but this is not a necessity; CALIC, for example, uses the second neighbors \cite{wu_context-based_1997}, and the third dimension can also be utilized if the data structure allows this, for example when encoding hyperspectral recordings \cite{aranki_hardware_2009}.
 
