@@ -13,7 +13,7 @@
 \graphicspath{{./figures/1_spim/}}
 
 
-Live imaging is indispensable to understand the processes during embryonic development. In an ideal setting, the ultimate microscope would be able to record a continuos, three dimensional (3D), multicolor dataset of any biological process of interest with the highest possible resolution. Due to several limitations in physics and biology this is not possible. Therefore, a compromise is necessary. The diffractive nature of light, the lifetime of fluorescent probes and the photosensitivity of biological specimens all require microscopy to be able to adapt to answer the question at hand. In order to acquire useful data one has to choose a tradeoff between spatial and temporal resolution and signal contrast, while making sure the biology is not affected by the imaging process itself (\autoref{fig:tradeoffs}) \cite{laissue_assessing_2017}.
+Live imaging is indispensable to understand the processes during embryonic development. In an ideal setting, the ultimate microscope would be able to record a continuos, three dimensional (3D), multicolor dataset of any biological process of interest with the highest possible resolution. Due to several limitations in physics and biology this is not possible. Therefore, a compromise is necessary. The diffractive nature of light, the lifetime of fluorescent probes and the photosensitivity of biological specimens all require microscopy to be adapted so that the question ad hand may be answered. In order to acquire useful data one has to choose a tradeoff between spatial and temporal resolution and signal contrast, while making sure the biology is not affected by the imaging process itself (\autoref{fig:tradeoffs}) \cite{laissue_assessing_2017}.
 
 \begin{figure}[bht]
   \centering
@@ -31,7 +31,7 @@ Fluorescence microscopy \cite{lichtman_fluorescence_2005,diaspro_optical_2011}, 
 % which has numerous advantages, but also some drawbacks.
 Since biological tissues are usually not fluorescent, except for some autofluorescence mostly at shorter wavelengths, fluorescent dyes or proteins have to be introduced to the system in order to be able to collect the necessary information. The advantage of this is that the signal of the labeled structures will be of very high ratio compared to the background.
 
-A fluorescent molecule is capable of absorbing photons in a given wavelength range (excitation spectrum) and temporarily store its energy by having an electron in a higher energy state, \textit{i.e.}, in an excited state. This excited state, however, is not stable, and the electron quickly returns to the ground state while emitting a photon with equal energy to the energy difference between the excited and ground states. The energy of the absorbed and emitted photons are not the same, as energy loss occurs due to internal relaxation events, and the emitted photon has lower energy than the absorbed photon. This phenomenon is called the Stokes shift, or red shift, and can be exploited in microscopy to drastically increase the signal-to-noise ratio by filtering out the illumination light (\autoref{fig:spectrum}).
+A fluorescent molecule is capable of absorbing photons in a given wavelength range (excitation spectrum) and temporarily store its energy by having an electron in a higher energy state, \textit{i.e.}, in an excited state. This excited state, however, is not stable, and the electron quickly returns to the ground state while emitting a photon. The energy of the absorbed and emitted photons are not the same, as energy loss occurs due to internal relaxation events, and the emitted photon has lower energy than the absorbed photon. This phenomenon is called the Stokes shift, or red shift, and can be exploited in microscopy to drastically increase the signal-to-noise ratio by filtering out the illumination light (\autoref{fig:spectrum}).
 
   \begin{figure}
     \centering
@@ -63,17 +63,17 @@ A fluorescent molecule is capable of absorbing photons in a given wavelength ran
     \begin{figure}[tb]
       \centering
       \includegraphics[page=4,width=0.7\textwidth]{spim_cyl}
-      \bcaption[Wide-field fluorescence microscope]{The light source is focused on the back focal plane of the objective to provide an even illumination to the sample. Emitted photons are collected by the objective, and are separated from the illumination light by a dichroic mirror. Inset: Light collection of an objective lens. $\alpha$: light collection half-angle; $f$: focal length; $r$: radius of lens.}
+      \bcaption[Wide-field fluorescence microscope]{The light source is focused on the back focal plane of the objective to provide an even illumination to the sample. Emitted photons are collected by the objective, and are separated from the illumination light by a dichroic mirror. Inset: Light collection of an objective lens. $\alpha$: light collection half-angle; $f$: focal length; $r$: radius of aperture.}
       \label{fig:wide-field}
     \end{figure}
 
 
-    The combination of the objective and tube lens together will determine the magnification of the system, it will be the ratio of the focal lengths of these lenses:
+    The combination of the objective and tube lens together will determine the optical magnification of the system, which will be the ratio of the focal lengths of these lenses:
     \begin{equation}
       M = \frac{f_{TL}}{f_{OBJ}}.
       \label{eq:magnification}
     \end{equation}
-    The final field of view (FOV) of the microscope will depend on the magnification, and also on the size of the imaging sensor ($D$), and the objective field number ($FN$):
+    The final field of view (FOV) of the microscope will depend on the magnification, and also on the size of the imaging sensor ($D$), and the objective field number ($FN$, specified by the manufacturer, the diameter of the view field in the image plane):
     \begin{equation}
       FOV = \frac{\min(D, FN)}{M}.
       \label{eq:FOV}
@@ -81,13 +81,13 @@ A fluorescent molecule is capable of absorbing photons in a given wavelength ran
 
     Apart from the magnification, the most important property of the objective is the half-angle of the light acceptance cone, $\alpha$ (\autoref{fig:wide-field}, inset). This not only determines the amount of collected light, but also the achievable resolution of the system (see \autoref{sec:resolution}). This angle depends on the size of the lens relative to its focal length. In other words it depends on the aperture of the lens, which is why the expression \textit{numerical aperture} (NA) is more commonly used to express this property of the objective:
     \begin{equation}
-      \text{NA} = n\cdot \sin \alpha.
+      \NA = n\cdot \sin \alpha.
       \label{eq:NA}
     \end{equation}
 
     For small $\alpha$ angles, the following approximation holds true: $\sin \alpha \approx \tan \alpha \approx \alpha$. Thus, the numerical aperture can also be expressed as a ratio of the radius of the lens and the focal length:
     \begin{equation}
-      NA \approx n \frac{r}{f},\quad \text{when }\alpha \ll 1.
+      \NA \approx n \frac{r}{f},\quad \text{when }\alpha \ll 1.
     \end{equation}
     % This expression also shows the relationship of the numerical aperture and the f-number commonly used in photography to characterize a lens' aperture:
     % \begin{equation}
@@ -105,11 +105,11 @@ A fluorescent molecule is capable of absorbing photons in a given wavelength ran
 
   \subsection{Resolution of a wide-field microscope}
     \label{sec:resolution}
-    The resolution of an optical systems is defined by the size of the smallest distinguishable feature on the image. Practically this means the minimum distance between two point-like objects so that the two objects can still be resolved. This mainly depends on two factors: the NA of the objective, and the pixel size of the imaging sensor.
+    The resolution of an optical system depends on the size of the smallest distinguishable feature on the image. Practically this means the minimum distance between two point-like objects so that the two objects can still be resolved. This mainly depends on two factors: the NA of the objective, and the pixel size of the imaging sensor.
 
-    Even if the imaging sensor would have infinitely fine resolution, it is not possible to reach arbitrarily high resolutions due to the wave nature of light and diffraction effects that occur at the aperture of the objective. This means that depending on the wavelength of the light, any point source will have a finite size on the image, it will be spread out, limiting the resolution. The shape of this image is called the \textit{point spread function}, or PSF (\autoref{fig:psf-wf}), as this function describes the behavior of the optical system when imaging a point like source. This property of lenses was already discovered by Abbe in 1873 \cite{abbe_beitrage_1873}, when he constructed his famous formula for resolution:
+    Even if the imaging sensor would have infinitely fine resolution, it is not possible to reach arbitrarily high resolutions due to the wave nature of light and diffraction effects that occur at the aperture of the objective. This means that depending on the wavelength of the light, any point source will have a finite size on the image, it will be spread out, limiting the resolution. The shape of this image is called the \textit{point spread function}, or PSF (\autoref{fig:psf-wf}), as this function describes the behavior of the optical system when imaging a point-like source. This property of lenses was already discovered by Abbe in 1873 \cite{abbe_beitrage_1873}, when he constructed his famous formula:
     \begin{equation}
-      \delta = \frac{\lambda}{2 \cdot NA}.
+      \delta = \frac{\lambda}{2 \cdot \NA}.
       \label{eq:abbe}
     \end{equation}
     where $\delta$ is the smallest distance between two distinguishable features.
@@ -128,19 +128,21 @@ A fluorescent molecule is capable of absorbing photons in a given wavelength ran
     \end{figure}
 
 
-    Abbe's formula can be derived from the scalar theory of diffraction using a paraxial approximation (Fraunhofer diffraction, \cite{born_principles_2013}). It describes the intensity of the electric field in the focus of a lens \cite{sheppard_imaging_1987}:
-
-    \begin{equation}
-      H(u,v) = C_0 \left| \int_0^1 J_0 (vr)e^{-i\frac{1}{2}\cdot ur^2} rdr \right|^2,
-      \label{eq:psf}
-    \end{equation}
-    where $C_0$ is a normalization constant, and $J_0$ is the zero order Bessel function of the first kind. Furthermore, instead of the commonly used Cartesian coordinates $x$, $y$ and $z$, the following optical coordinates are defined:
+    Abbe's formula can be derived from the scalar theory of diffraction using a paraxial approximation (Fraunhofer diffraction, \cite{born_principles_2013}).     
+    It is useful to define the following optical coordinates instead of the commonly used Cartesian coordinates $x$, $y$ and $z$:
     \begin{equation}
       v = \frac{2\pi n  r}{\lambda_0} \sin \alpha, \quad
       u=\frac{8\pi n  z}{\lambda_0} \sin^2 \frac{\alpha}{2}
       \label{eq:substitutions}
     \end{equation}
-    where $r = \sqrt{x^2 + y^2}$ is the distance from the optical axis, and $\alpha$ is the light collection angle as shown on \autoref{fig:wide-field}. 
+    where $r = \sqrt{x^2 + y^2}$ is the distance from the optical axis, and $\alpha$ is the light collection angle as shown on \autoref{fig:wide-field}. In this system the intensity of the electric field in the focus of a lens is \cite{sheppard_imaging_1987}:
+    \begin{equation}
+      H(u,v) = C_0 \left| \int_0^1 J_0 (vr)e^{-i\frac{1}{2}\cdot ur^2} rdr \right|^2,
+      \label{eq:psf}
+    \end{equation}
+    where $C_0$ is a normalization constant, and $J_0$ is the zero order Bessel function of the first kind.
+    
+    
 
     To determine the lateral resolution of the system, let's substitute $u=0$ as the axial optical coordinate, and evaluate \autoref{eq:psf} which will give the intensity distribution in the focal plane:
     \begin{equation}
@@ -193,7 +195,7 @@ A fluorescent molecule is capable of absorbing photons in a given wavelength ran
 
 
 \section{Point scanning methods}
-  In most cases, a wide-field microscope is used to image a layer of cells, of a sectioned sample, thus axial resolution is not a concern. Imaging live specimens, however is not so straightforward, as these samples are usually much thicker than a typical section. For these samples 3-dimensional (3D) imaging is highly beneficial, which necessitates some kind of optical sectioning technique to be able to discriminate the features at different depths.
+  In most cases, a wide-field microscope is used to image a layer of cultured cells, or a sectioned sample, thus axial resolution is not a concern. Imaging live specimens, however is not so straightforward, as these samples are usually much thicker than a typical section. For these samples 3-dimensional (3D) imaging is highly beneficial, which necessitates some kind of optical sectioning technique to be able to discriminate the features at different depths.
 
 
   Due to the design of the wide-field microscope, any photons emitted from outside the focal plane will also be detected by the sensor, however as these are not originating from the focus, only a blur will be visible. This blur potentially degrades image quality and signal-to-noise ratio to such an extent that makes imaging thick samples very difficult if not impossible in a wide-field microscope. 
