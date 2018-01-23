@@ -27,8 +27,9 @@ Live imaging is indispensable to understand the processes during embryonic devel
 
 \section{Wide-field fluorescence microscopy}
 
-Fluorescence microscopy \cite{lichtman_fluorescence_2005,diaspro_optical_2011}, as a subset of light microscopy, is one of the few methods that allow subcellular imaging of live specimens with specific labeling of structures of interest.
-The first use of the term fluorescence is credited to  George Gabriel Stokes \cite{stokes_change_1852}, and it refers to the phenomenon of light emission following the absorption of light or other electromagnetic radiation. As the name of the technique suggests, this method collects fluorescent light from the specimens.
+Fluorescence microscopy \cite{lichtman_fluorescence_2005,diaspro_optical_2011}, as a subset of light microscopy, is one of the few methods that allow subcellular imaging of live specimens with specific labeling.
+%of structures of interest.
+The first use of the term fluorescence is credited to  George Gabriel Stokes \cite{stokes_change_1852}, and it refers to the phenomenon of light emission following the absorption of light or other electromagnetic radiation. As the name fluorescence microscopy suggests, this method collects fluorescent light from the specimens.
 % which has numerous advantages, but also some drawbacks.
 Since biological tissues are usually not fluorescent, except for some autofluorescence mostly at shorter wavelengths, fluorescent dyes or proteins have to be introduced to the system in order to be able to collect the necessary information. The advantage of this is that the signal of the labeled structures will be of very high ratio compared to the background.
 
@@ -74,7 +75,7 @@ A fluorescent molecule is capable of absorbing photons in a given wavelength ran
       M = \frac{f_{TL}}{f_{OBJ}}.
       \label{eq:magnification}
     \end{equation}
-    The final field of view (FOV) of the microscope will depend on the magnification, and also on the size of the imaging sensor ($D$), and the objective field number ($FN$, specified by the manufacturer, the diameter of the view field in the image plane):
+    The final field of view (FOV) of the microscope will depend on the magnification, the size of the imaging sensor ($D$), and the objective field number ($FN$, specified by the manufacturer, the diameter of the view field in the image plane):
     \begin{equation}
       FOV = \frac{\min(D, FN)}{M}.
       \label{eq:FOV}
@@ -85,7 +86,7 @@ A fluorescent molecule is capable of absorbing photons in a given wavelength ran
       \NA = n\cdot \sin \alpha.
       \label{eq:NA}
     \end{equation}
-    where $n$ is the refractive index of the medium, and describes the light propagation speed in the medium relative to the speed of light in vacuum. For air vacuum and air, $n=1$, for water $n_\mathrm{H_2O}=1.33$ and for commonly used optical glass $n_\mathrm{BK7} = 1.52$.
+    where $n$ is the refractive index of the medium, and describes the light propagation speed in the medium relative to the speed of light in vacuum. For vacuum and air $n=1$, for water $n_\mathrm{H_2O}=1.33$, and for the commonly used optical glass BK7 $n_\mathrm{BK7} = 1.52$.
 
     For small $\alpha$ angles, the following approximation holds true: $\sin \alpha \approx \tan \alpha \approx \alpha$. Thus, the numerical aperture can also be expressed as a ratio of the radius of the lens and the focal length:
     \begin{equation}
@@ -120,7 +121,7 @@ A fluorescent molecule is capable of absorbing photons in a given wavelength ran
     \begin{equation}
       \text{OTF} = \mathcal{F}(\text{PSF}).
     \end{equation}
-    As this function operates in the frequency space, it describes how the different frequencies are affected by the system. The resolution can also be defined as the support of the OTF, since this describes the highest frequency that is still transmitted by the optical system. Any pattern with higher frequency will be lost, thus lies beyond the resolution limit. For circularly symmetric PSFs, the OTF will have real values. However, if this is not the case, the Fourier transform also introduces complex components.
+    As this function operates in the frequency space, it describes how the different spatial frequencies are affected by the system. The resolution can also be defined as the maximum of the support of the OTF, since this describes the highest frequency that is still transmitted by the optical system. Any pattern with higher frequency will be lost, thus lies beyond the resolution limit. For circularly symmetric PSFs, the OTF will have real values. However, if this is not the case, the Fourier transform also introduces complex components.
 
     \begin{figure}
       \centering
@@ -142,7 +143,7 @@ A fluorescent molecule is capable of absorbing photons in a given wavelength ran
       H(u,v) = C_0 \left| \int_0^1 J_0 (vr)e^{-i\frac{1}{2}\cdot ur^2} rdr \right|^2,
       \label{eq:psf}
     \end{equation}
-    where $C_0$ is a normalization constant, and $J_0$ is the zeroth order Bessel function of the first kind.
+    where $C_0$ is a normalization constant, and $J_0$ is the zeroth-order Bessel function of the first kind.
     
     
 
@@ -161,14 +162,14 @@ A fluorescent molecule is capable of absorbing photons in a given wavelength ran
 
     
 
-    where $J_1$ is the first order Bessel function of the first kind.
+    where $J_1$ is the first-order Bessel function of the first kind.
     % potentially first-order Bessel function
-    This equation describes the famous Airy pattern (\autoref{fig:airy}) which will be the shape of the PSF in the focal plane. The width of this pattern is the resolution, and although there are multiple definitions for this, the most commonly accepted is the Rayleigh criterion \cite{f.r.s_xxxi._1879, born_principles_2013} which defines the resolution as the distance between the central peak and the first local minimum. As this lies at $v=3.38$, the resolution can be expressed by substituting this value into \autoref{eq:substitutions} and solving it for $r$:
+    This equation describes the famous Airy pattern (\autoref{fig:airy}) which will be the shape of the PSF in the focal plane. The width of this pattern will define the smallest resolvable distance, and although there are multiple definitions for this, the most commonly accepted is the Rayleigh criterion \cite{f.r.s_xxxi._1879, born_principles_2013}. It defines the resolution as the distance between the central peak and the first local minimum. As this lies at $v=3.38$, the resolution can be expressed by substituting this value into \autoref{eq:substitutions} and solving it for $r$:
     \begin{equation}
       \delta_{xy} = r(v=0.338) = \frac{3.83}{2\pi} \frac{\lambda_0}{n\cdot \sin \alpha} \approx 0.61 \frac{\lambda_0}{NA},
       \label{eq:lateralRes}
     \end{equation}
-    which is equivalent to Abbe's original formula (\autoref{eq:abbe}). The only difference is the scaling factor which is due to the slightly different interpretations of width of the Airy disk as mentioned earlier.
+    which is equivalent to Abbe's original formula (\autoref{eq:abbe}). The only difference is the scaling factor which is due to the slightly different interpretations of the width of the Airy disk as mentioned earlier.
 
     Similarly, to calculate the intensity distribution along the axial direction, let's substitute $v=0$ to \autoref{eq:psf}:
     \begin{equation}
@@ -218,7 +219,7 @@ A fluorescent molecule is capable of absorbing photons in a given wavelength ran
     \label{fig:resolution}
   \end{figure}
 
-  Evaluating Equations \ref{eq:lateralRes} and \ref{eq:axialRes} for a range of possible numerical apertures reveals the significant differences in lateral and axial resolution for any objective (\autoref{fig:resolution}). Especially for low NAs, this can be significant, a factor of $\sim$20 difference. For higher (>0.8) NAs the axial resolution increases faster than the lateral, however they will only be equal when $\alpha=\SI{180}{\degree}$. This means that isotropic resolution with a single lens is only possible if the lens is collecting all light emitting from the sample, which seems hardly possible, and would be highly impractical. For commonly used high NA objectives the lateral to axial ratio will still be around 3--6. 
+  Evaluating Equations \ref{eq:lateralRes} and \ref{eq:axialRes} for a range of possible numerical apertures reveals the significant differences in lateral and axial resolution for any objective (\autoref{fig:resolution}). Especially for low NAs, this can be significant, a factor of $\sim$20 difference. For higher (>0.8) NAs the axial resolution increases faster than the lateral, however they will only be equal when $\alpha=\SI{180}{\degree}$. This means that isotropic resolution with a single lens is only possible if the lens is collecting all light emitting from the sample, which seems hardly possible, and would be highly impractical. For commonly used high NA objectives the lateral to axial ratio will be around 3--6. 
 
   Instead of using a single lens to achieve isotropic resolution, it is more practical to image the sample from multiple directions to complement the missing information from different views. When rotating the sample by \SI{90}{\degree} for example, the lateral direction of the second view will correspond to the axial direction of the first view. If rotation is not possible, using multiple objectives can also achieve similar results, such as in the case of Multi-Imaging Axis Microscopy (MIAM) \cite{swoger_multiple_2003,swoger_multi-view_2007}. This microscope consisted of 4 identical objectives arranged in a tetrahedral fashion to collect as much light as possible from multiple directions, and provide isotropic 3D resolution, albeit at the expense of extremely difficult sample handling, since the sample was surrounded by objectives from all directions. 
 
@@ -261,7 +262,7 @@ A fluorescent molecule is capable of absorbing photons in a given wavelength ran
     \label{fig:confocals}
     \end{figure}
 
-    To maximize the signal from the focal point, the illumination light is also focused here by coupling an expanded laser beam through the back aperture of the objective. This not only increases illumination efficiency (since other, not detected points are not illuminated), but has the added benefit of increasing the resolution as well. This is due to the combined effect of illumination and detection PSFs as described in \autoref{eq:systemPSF} (\autoref{fig:psf-confocal}). For Gaussian-like PSFs, the final resolution (along a single direction) can be calculated in the following way:
+    As only a small focal volume is detected at a time, the illumination light is also focused here by coupling an expanded laser beam through the back aperture of the objective. This not only increases illumination efficiency (since other, not detected points are not illuminated), but has the added benefit of increasing the resolution as well. This is due to the combined effect of illumination and detection PSFs as described in \autoref{eq:systemPSF} (\autoref{fig:psf-confocal}). For Gaussian-like PSFs, the final resolution (along a single direction) can be calculated in the following way:
     \begin{equation}
       \frac{1}{\delta _{sys}^2} = \frac{1}{\delta _{ill}^2} + \frac{1}{\delta _{det}^2},
       \label{eq:systemRes}
@@ -272,7 +273,7 @@ A fluorescent molecule is capable of absorbing photons in a given wavelength ran
     \end{equation}
     This means that the distinguishable features in a confocal microscope are $\sim$0.7 times smaller than in a wide-field microscope using the same objective.
 
-    Because of the different detection method in a confocal microscope, direct image formation on an area sensor is not possible, since at any given time, only a single point is interrogated in the sample. Instead, it is necessary to move the illumination and detection point in synchrony (or in a simpler, albeit slower solution, to move the sample) to scan the entire field of view. The image can be later computationally reconstructed by a computer program that records the fluorescence intensity of every point of the field of view, and displays these values as a raster image.
+    Because of the different detection method in a confocal microscope, direct image formation on an area sensor is not possible, since at any given time only a single point is interrogated in the sample. Instead, it is necessary to move the illumination and detection point in synchrony (or in a simpler, albeit slower solution, to move the sample) to scan the entire field of view. The image can be later computationally reconstructed by a computer program that records the fluorescence intensity of every point in the field of view, and displays these values as a raster image.
 
 
     \begin{figure}
@@ -285,12 +286,12 @@ A fluorescent molecule is capable of absorbing photons in a given wavelength ran
 
   \subsection{Confocal-theta microscopy}
 
-    Although confocal microscopy already has 3D capabilities, its axial resolution is still limited compared to the lateral, since it uses only one objective. An alternative realization of the confocal microscope, the confocal theta microscope \cite{stelzer_fundamental_1994} introduces a second objective to the system, that is used to illuminate the sample (\autoref{fig:conf-theta}). Since this decouples the illumination and detection, using a dichroic mirror is no longer necessary. The second objective is rotated by $\theta$ around the focus, this is where the name of this setup originates from.
+    Although confocal microscopy already has 3D capabilities, its axial resolution is still limited compared to the lateral, since it uses only one objective. An alternative realization of the confocal microscope, the confocal theta microscope \cite{stelzer_fundamental_1994} introduces a second objective to the system that is used to illuminate the sample (\autoref{fig:conf-theta}). Since this decouples the illumination and detection, using a dichroic mirror is no longer necessary. The second objective is rotated by $\theta$ around the focus, this is where the name of this setup originates from.
 
-    As in the case of standard confocal microscopy, the system PSF is improved by the illumination pattern. Here, however, the axial direction of the detection coincides with the lateral direction of the illumination, which results in a dramatic improvement of axial resolution compared to standard confocal microscopy. Lateral resolution will also be increased, but by a smaller extent, resulting in an almost isotropic PSF, and equal axial and lateral resolutions. % (\autoref{fig:psf-theta}).
+    As in the case of standard confocal microscopy, the system PSF is improved by the illumination pattern. Here, however, the axial direction of the detection coincides with the lateral direction of the illumination, which results in a dramatic improvement of axial resolution compared to standard confocal microscopy. Lateral resolution will also be increased, but by a smaller extent, resulting in an almost isotropic PSF and equal axial and lateral resolutions. % (\autoref{fig:psf-theta}).
     Although this is a big improvement to confocal microscopy in terms of resolution, this technique did not reach a widespread adoption as it complicates sample handling, while still suffering from two drawbacks of confocal microscopy that limit its live imaging capabilities.
 
-    Imaging live specimens for an extended period of time with confocal microscopy although possible \cite{aldaz_live_2010, maitre_asymmetric_2016}, is not ideal. For each voxel imaged, a large portion of the specimen has to be illuminated, which results in a very high dose of radiation on the sample. This can be as much as 30--100 times larger, than the dose used for the actual imaging \cite{reynaud_light_2008}. Illumination with high power of laser for an extended time frame can result in bleaching the fluorophores, which in turn will lower the signal at later times. Furthermore, any absorbed photon has the possibility to disrupt the chemical bonds inside the specimen, which can lead to phototoxic effects. Moreover, the usage of the pinhole although increases resolution, also decreases the detectable signal intensity, thus has a negative impact on image contrast \cite{stelzer_contrast_1998}.
+    Imaging live specimens for an extended period of time with confocal microscopy, although possible \cite{aldaz_live_2010, maitre_asymmetric_2016}, is not ideal. For each voxel imaged, a large portion of the specimen has to be illuminated, which results in a very high dose of radiation on the sample. This can be as much as 30--100 times larger than the dose used for the actual imaging \cite{reynaud_light_2008}. Illumination with high laser power for an extended time frame can result in bleaching of the fluorophores, which in turn will lower the signal at later times. Furthermore, any absorbed photon has the possibility to disrupt the chemical bonds inside the specimen, which can lead to phototoxic effects. Moreover, the usage of the pinhole, although increases resolution, also decreases the detectable signal intensity, thus it has a negative impact on image contrast \cite{stelzer_contrast_1998}.
 
   % \subsection{Mammalian imaging with confocal microscopy}
     
@@ -319,10 +320,10 @@ A fluorescent molecule is capable of absorbing photons in a given wavelength ran
 
   
 
-  The main principle behind single-plane illumination microscopy, that is illuminating the sample from the side by a thin light-sheet, dates back to the early 20\textsuperscript{th} century, when Siedentopf and Zsigmondy first described the ultramicroscope \cite{siedentopf_uber_1902}. This microscope used sunlight as an illumination source, that was guided through a precision slit to generate a thin light-sheet. This allowed Zsigmondy to visualize gold nanoparticles floating in and out of the light-sheet by detecting the scattered light from the particles.
-  Since these particles are much smaller than the wavelength of the light, the device was called an ultramicroscope. His studies with colloids, and the development of the ultramicroscope led Zsigmondy to win the Nobel Prize in 1925.
+  The main principle behind single-plane illumination microscopy, that is illuminating the sample from the side by a thin light-sheet, dates back to the early 20\textsuperscript{th} century, when Siedentopf and Zsigmondy first described the ultramicroscope \cite{siedentopf_uber_1902}. This microscope used sunlight as an illumination source that was guided through a precision slit to generate a thin light-sheet. This allowed Zsigmondy to visualize gold nanoparticles floating in and out of the light-sheet by detecting the scattered light from the particles.
+  Since these particles were much smaller than the wavelength of the light, the device was called an ultramicroscope. His studies with colloids and the development of the ultramicroscope led Zsigmondy to win the Nobel Prize in 1925.
 
-  After Zsigmondy, this method was forgotten until rediscovered in the 1990s, when Voie \etal constructed their Orthogonal-plane Fluorescent Optical Sectioning (OPFOS) microscope \cite{voie_orthogonal-plane_1993}. They used it to image a fixed, optically cleared and fluorescently labelled guinea pig cochlea. In order to acquire a 3D dataset, the sample was illuminated from the side with a light-sheet generated by a cylindrical lens, then rotated around the center axis to obtain multiple views. Although they only reached a lateral resolution around \SI{10}{\micro m} and axial resolution of \SI{26}{\micro m}, this method allowed them to generate a 3D reconstruction of the guinea pig cochlea \cite{voie_three-dimensional_1995}.
+  After Zsigmondy this method was forgotten until rediscovered in the 1990s, when Voie \etal constructed their Orthogonal-plane Fluorescent Optical Sectioning (OPFOS) microscope \cite{voie_orthogonal-plane_1993}. They used it to image a fixed, optically cleared and fluorescently labelled guinea pig cochlea. In order to acquire a 3D dataset, the sample was illuminated from the side with a light-sheet generated by a cylindrical lens, then rotated around the center axis to obtain multiple views. Although they only reached a lateral resolution of around \SI{10}{\micro m} and axial resolution of \SI{26}{\micro m}, this method allowed them to generate a 3D reconstruction of the guinea pig cochlea \cite{voie_three-dimensional_1995}.
 
   Later, in 2002, Fuchs et al. developed Thin Light-Sheet Microscopy (TLSM) \cite{fuchs_thin_2002} and used this technique to investigate the microbial life in seawater samples without disturbing their natural environment (by, \textit{e.g.}, placing them on a coverslip). Their light-sheet was similar to the one utilized in OPFOS, being \SI{23}{\micro m} thin, and providing a $\SI{1}{mm} \times \SI{1}{mm}$ field of view.
 
@@ -338,7 +339,7 @@ A fluorescent molecule is capable of absorbing photons in a given wavelength ran
   
   Since then, light-sheet-based imaging has gained more and more popularity, as it can be adapted and applied to a wide variety of problems. Although sample mounting can be challenging because of the objective arrangement, this can also be an advantage, since new microscopes can be designed with the sample in mind \cite{huisken_selective_2009, de_medeiros_light-sheet_2016} (\autoref{fig:spim_zoo}). This made it possible to adapt the technique for numerous other specimens, such as zebrafish larvae \cite{keller_reconstruction_2008}, \textit{C. elegans} embryos \cite{wu_inverted_2011}, mouse brain \cite{dodt_ultramicroscopy:_2007}, and even mouse embryos \cite{ichikawa_live_2013, udan_quantitative_2014, strnad_inverted_2016}.
 
-  As many of these specimens require very different conditions and mounting techniques, these microscopes have been adapted to best accommodate them. An upright objective arrangement for example (\autoref{fig:spim_zoo}b) allows imaging samples on a coverslip, while its inverted version is well suited for mouse embryos, where a foil is separating them from the immersion medium (\autoref{fig:spim_zoo}c). A modified version of the upright arrangement allows for multi-view imaging using both objectives for illumination and detection in a sequential manner (\autoref{fig:spim_zoo}d) \cite{kumar_dual-view_2014}.
+  As many of these specimens require very different conditions and mounting techniques, these microscopes have been adapted to best accommodate them. An upright objective arrangement (\autoref{fig:spim_zoo}b), for example, allows imaging samples on a coverslip, while its inverted version is well suited for mouse embryos, where a foil is separating the samples from the immersion medium (\autoref{fig:spim_zoo}c). A modified version of the upright arrangement allows for multi-view imaging using both objectives for illumination and detection in a sequential manner (\autoref{fig:spim_zoo}d) \cite{kumar_dual-view_2014}.
 
   To achieve a more even illumination in larger samples, two objectives can be used from opposing directions to generate two light-sheets (\autoref{fig:spim_zoo}e) \cite{huisken_even_2007}. This arrangement can further be complemented by a second detection objective, to achieve parallelized multi-view imaging (\autoref{fig:spim_zoo}f) \cite{krzic_multiview_2012,tomer_quantitative_2012, schmid_high-speed_2013}. For ultimate speed, 4 identical objectives can be used to achieve almost instantaneous views from 4 different directions by using all objectives for illumination and detection (\autoref{fig:spim_zoo}g) \cite{chhetri_whole-animal_2015}. 
 
@@ -368,54 +369,32 @@ A fluorescent molecule is capable of absorbing photons in a given wavelength ran
   % \subsection{Detection}
     Since illumination and detection for light-sheet microscopy are decoupled, two independent optical paths are implemented.
     
-    The detection unit of a SPIM is basically equivalent to a detection unit of a wide-field microscope without the dichroic mirror (\autoref{fig:light-sheet}). The most important components are the objective together with the tube lens, filter wheel, and a sensor, typically a charge coupled device (CCD) or scientific complementary metal–oxide–semiconductor (sCMOS) camera.
+    The detection unit of a SPIM is largely equivalent to a detection unit of a wide-field microscope without the dichroic mirror (\autoref{fig:light-sheet}). The most important components are the objective together with the tube lens, filter wheel, and a sensor, typically a charge coupled device (CCD) or scientific complementary metal–oxide–semiconductor (sCMOS) camera.
     
     The resolution of a light-sheet microscope mainly depends on the detection objective.
     % One of the most important aspects that determines the resolution of the microscope is the detection objective.
     Since imaging biological specimens usually requires a water-based solution, the objectives also need to be directly submerged in the medium to minimize spherical aberrations. As the refraction index of water ($n=1.33$) is greater than the refraction index of air, these objectives tend to have a higher NA, resulting in higher resolution. As the illumination is decoupled in this system, the light-sheet thickness also has an influence on the axial resolution. Finally, the resolution also depends on the pixel size of the sensor which determines the spatial sampling rate of the image.
 
-    Although image quality and resolution greatly depend on the detection optics, the real strength of light-sheet microscopy is the inherent optical sectioning which is due to the specially aligned illumination pattern, that confines light to the vicinity of the detection focal plane.
+    Although image quality and resolution greatly depend on the detection optics, the real strength of light-sheet microscopy is the inherent optical sectioning which is due to the specially aligned illumination pattern that confines light to the vicinity of the detection focal plane.
 
-    There are two most commonly used options to generate a light-sheet: either by using a cylindrical lens, to illuminate the whole field of view with a static light-sheet, as in the original SPIM concept \cite{huisken_optical_2004}; or by quickly scanning a thin laser beam through the focal plane, thus resulting in a virtual light-sheet. This method is called Digitally Scanned Light-sheet Microscopy (DSLM) \cite{keller_reconstruction_2008}.
+    There are two most commonly used options to generate a light-sheet: either by using a cylindrical lens to illuminate the whole field of view with a static light-sheet, as in the original SPIM concept \cite{huisken_optical_2004}; or by quickly scanning a thin laser beam through the focal plane, thus resulting in a virtual light-sheet. This method is called Digitally Scanned Light-sheet Microscopy (DSLM) \cite{keller_reconstruction_2008}.
 
 
   % \subsection{Illumination}
 
   \subsection{Static light-sheet illumination}
-    For a static light-sheet, the normally circular Gaussian laser beam needs to be shaped in an astigmatic manner, \textit{i.e.}, either expanded or squeezed along one direction, to shape it into a sheet instead of a beam. This effect can be achieved by using a cylindrical lens, which as the name suggests has a curvature in one direction, but is flat in the other, thus focusing a circular beam to a sheet (\autoref{fig:light-sheet}).
+    For a static light-sheet, the normally circular Gaussian laser beam needs to be shaped in an astigmatic manner, \textit{i.e.}, either expanded or squeezed along one direction, to shape it into a sheet instead of a beam. This effect can be achieved by using a cylindrical lens, which, as the name suggests, has a curvature in one direction, but is flat in the other, thus focusing a circular beam to a sheet (\autoref{fig:light-sheet}).
     
-    However, to achieve light-sheets that are sufficiently thin for optical sectioning, one would need to use cylindrical lens with a very short focal length, and these are hardly accessible in well corrected formats. For this reason, it is more common to use a longer focal length cylindrical lens in conjunction with a microscope objective, which is well corrected for chromatic and spherical aberrations \cite{greger_basic_2007}. This way, the light-sheet length, thickness and width can be adjusted for the specific imaging tasks.
+    However, to achieve light-sheets that are sufficiently thin for optical sectioning, one would need to use a cylindrical lens with a very short focal length, and these are hardly accessible in well corrected formats. For this reason, it is more common to use a longer focal length cylindrical lens in conjunction with a microscope objective, which is well corrected for chromatic and spherical aberrations \cite{greger_basic_2007}. This way, the light-sheet length, thickness and width can be adjusted for the specific imaging tasks.
 
 
     \subsubsection{Light-sheet dimensions}
     \label{sec:dimensions}
-    \begin{figure}
-      \centering
-      \begin{subfigure}[b]{0.29\textwidth}
-          \centering
-          \includegraphics[width=\textwidth]{width}
-          \caption{}
-          \label{fig:width}
-      \end{subfigure}
-      \begin{subfigure}[b]{0.29\textwidth}
-          \centering
-          \includegraphics[width=\textwidth]{height}
-          \caption{}
-          \label{fig:height}
-      \end{subfigure}
-      \begin{subfigure}[b]{0.39\textwidth}
-          \centering
-          \includegraphics[width=\textwidth]{FOV}
-          \caption{}
-          \label{fig:fov}
-      \end{subfigure}
-      \bcaption[Light-sheet dimensions]{(a) The width and thickness of the field of view depends on the Rayleigh length of the beam ($z_{R,y}$) and the beam waist ($W_0$). (b) The height of the field of view is determined by the Gaussian profile of the astigmatic beam. (c) shows a light sheet, with the field of view indicated. Since the light-sheet intensity is uneven, the field of view has to be confined to a smaller region. }
-      \label{fig:ls_dim}
-    \end{figure}
+    
 
     The shape of the illumination light determines the optical sectioning capability and the field of view of the microscope, so it is important to be able to quantify these measures. The most commonly used illumination source is a laser beam coupled to a single mode fiber, thus its properties can be described by Gaussian beam optics.
 
-    For paraxial waves, \textit{i.e.}, waves with nearly parallel wave front normals, a general wave equation can be approximated with the paraxial Helmholtz equation \cite{saleh_fundamentals_2007}
+    For paraxial waves, \textit{i.e.}, waves with nearly parallel wavefront normals, the general wave equation can be approximated with the paraxial Helmholtz equation \cite{saleh_fundamentals_2007}
     \begin{equation}
       \nabla_T^2 U + i 2k \frac{\partial U}{\partial z} = 0
       \label{eq:helmholtz}
@@ -427,7 +406,7 @@ A fluorescent molecule is capable of absorbing photons in a given wavelength ran
       U(r,z) = A_0 \cdot \frac{W_0}{W(z)} \cdot e^{-\frac{r^2}{W^2(z)}}\cdot e^{-i\cdot \phi(r,z)}
     \label{eq:gaussian}
     \end{equation}
-    where $A_0$ is the amplitude of the wave, $W_0$ is the radius of the beam waist (the thinnest location on the beam), $r=\sqrt{x^2+y^2}$ is the distance from the center of the beam, $W(z)$ is the radius of the beam  at distance $z$ from the waist, and $\phi(r,z)$ is the combined phase part of the wave-function (\autoref{fig:width}). Furthermore:
+    where $A_0$ is the amplitude of the wave, $W_0$ is the radius of the beam waist (the thinnest location on the beam), $r=\sqrt{x^2+y^2}$ is the distance from the center of the beam, $W(z)$ is the radius of the beam  at distance $z$ from the waist, and $\phi(r,z)$ is the combined phase part of the wave-function. Furthermore:
 
     \begin{equation}
       W(z) = W_0\sqrt{1+\left( \frac{z}{z_\mathrm{R}} \right)^2}
@@ -464,12 +443,35 @@ A fluorescent molecule is capable of absorbing photons in a given wavelength ran
     %   I(x,y,z) = U(x,y,z)\cdot U^*(x,y,z) = |A_0|^2 \cdot \frac{W_{x,0}}{W_x(z)} \cdot \frac{W_{y,0}}{W_y(z)} \cdot e^{-\frac{2x^2}{W_x^2(z)}} \cdot e^{-\frac{2y^2}{W_y^2(z)}}
     % \end{equation}
     
-    
-    Based on these equations, the light-sheet dimensions and usable field of view can be specified (\autoref{fig:fov}). The light-sheet thickness will depend on the beam waist, $W_{0,y}$ (if we assume the cylindrical lens is focusing along $y$), and the length of the light-sheet can be defined as twice the Rayleigh range, $2 \cdot z_{\mathrm{R},y}$. As these are coupled (see \autoref{eq:rayleighXY}), having a thin light-sheet for better sectioning also means that its length will be relatively short. Fortunately, because of the quadratic relation, to increase the field of view by a factor of two, the light-sheet thickness only needs to increase by a factor of $\sqrt{2}$.
+    \begin{figure}
+      \centering
+      \begin{subfigure}[b]{0.39\textwidth}
+          \centering
+          \includegraphics[width=\textwidth]{FOV}
+          \caption{}
+          \label{fig:fov}
+      \end{subfigure}
+      \begin{subfigure}[b]{0.29\textwidth}
+          \centering
+          \includegraphics[width=\textwidth]{width}
+          \caption{}
+          \label{fig:width}
+      \end{subfigure}
+      \begin{subfigure}[b]{0.29\textwidth}
+          \centering
+          \includegraphics[width=\textwidth]{height}
+          \caption{}
+          \label{fig:height}
+      \end{subfigure}
+      \bcaption[Light-sheet dimensions]{(a) The light-sheet, with the field of view indicated. Since the light-sheet intensity is uneven, the field of view has to be confined to a smaller region. (b) The width and thickness of the field of view depends on the Rayleigh length of the beam ($z_{R,y}$) and the beam waist ($W_0$). (c) The height of the field of view is determined by the Gaussian profile of the astigmatic beam. }
+      \label{fig:ls_dim}
+    \end{figure}
+
+    Based on these equations, the light-sheet dimensions and usable field of view can be specified (\autoref{fig:fov}). The light-sheet thickness will depend on the beam waist, $W_{0,y}$ (if we assume the cylindrical lens is focusing along $y$), and the length of the light-sheet can be defined as twice the Rayleigh range, $2 \cdot z_{\mathrm{R},y}$ (\autoref{fig:width}). As these are coupled (see \autoref{eq:rayleighXY}), having a thin light-sheet for better sectioning also means that its length will be relatively short. Fortunately, because of the quadratic relation, to increase the field of view by a factor of two, the light-sheet thickness only needs to increase by a factor of $\sqrt{2}$.
 
     % Since the illumination is uneven, the usable height of the field of view is smaller than the actual illuminated region (\autoref{fig:fov}). The width of the field of view $w_{fov}$ is determined by the Rayleigh length, since this is in a direct relation with the beam divergence. To stay in the optimal region, the light-sheet should only be used in the range of 1 Rayleigh length on both sides of the beam waist (\autoref{fig:width}). In this range, the ratio between the thickest (at $z=z_0$) and the thinnest (at $z=0$) part of the beam $W(z)$ will be $\sqrt{2}\approx 1.4142$ which is still acceptable.
 
-    Light-sheet height is determined by the intensity profile of the beam along the vertical axis (\autoref{fig:height}). Since this is a Gaussian function (see \autoref{eq:gaussian}), only a small part in the middle can be used for imaging, because towards the sides the intensity dramatically drops. To allow a maximum 20\% drop-off in intensity at the edges, the light-sheet height becomes $h_{fov}=2\cdot 0.472\cdot W_{x,0} = 0.944 \cdot W_{x,0}$.
+    Light-sheet height is determined by the intensity profile of the beam along the vertical axis (\autoref{fig:height}). Since this is a Gaussian function (see \autoref{eq:gaussian}), only a small part in the middle can be used for imaging, because towards the sides the intensity dramatically drops. When allowing a maximum 20\% drop-off in intensity at the edges, the light-sheet height becomes $h_{fov}=2\cdot 0.472\cdot W_{x,0} = 0.944 \cdot W_{x,0}$.
     
 
   \subsection{Digitally scanned light-sheet illumination}
@@ -482,11 +484,11 @@ A fluorescent molecule is capable of absorbing photons in a given wavelength ran
         \label{fig:dslm}
     \end{figure}
 
-    Although generating a static light-sheet is relatively straightforward, with the simple addition of a cylindrical lens to the light path, it has some drawbacks. As already mentioned in the previous section, the light intensity distribution along the field of view is not constant, as the light-sheet is shaped from a Gaussian beam. Furthermore, along the lateral direction of the light-sheet the illumination NA is extremely low, resulting in effectively collimated light. Because of this, shadowing artifacts can deteriorate the image quality \cite{huisken_even_2007}.
+    Although generating a static light-sheet is relatively straightforward with the simple addition of a cylindrical lens to the light path, it has some drawbacks. As already mentioned in the previous section, the light intensity distribution along the field of view is not constant, as the light-sheet is shaped from a Gaussian beam. Furthermore, along the lateral direction of the light-sheet the illumination NA is extremely low, resulting in effectively collimated light. Because of this, shadowing artifacts can deteriorate the image quality \cite{huisken_even_2007}.
 
     A more flexible way of creating a light-sheet is by scanning a focused beam in the focal plane to generate a virtual light-sheet (digital scanned light-sheet microscopy, DSLM \cite{keller_reconstruction_2008}). Although this method might require higher peak intensities, it solves both drawbacks of the cylindrical lens illumination. By scanning the beam, the light-sheet height can be freely chosen, and a homogenous illumination will be provided. Focusing the beam in all directions evenly introduces more angles in the lateral direction as well, which shortens the length of the shadows.
     
-    The basic optical layout of a DSLM is shown on \autoref{fig:dslm}. A galvanometer controlled mirror is used to alter the beam path that can quickly turn around its axis which will result in an angular sweep of the laser beam. To change the angular movement to translation, a scan lens is used to generate an intermediate scanning plane. This plane is then imaged to the specimen by the tube lens and the illumination objective, resulting in a scanned focused beam at the detection focal plane. The detection unit is identical to the wide-field detection scheme, similarly to the static light-sheet illumination. By scanning the beam at a high frequency, a virtual light-sheet is generated, and the fluorescence signal is captured by a single exposure on the camera, resulting in an evenly illuminated field of view.
+    The basic optical layout of a DSLM is shown on \autoref{fig:dslm}. A galvanometer controlled mirror that can quickly turn around its axis is used to alter the beam path, which will result in an angular sweep of the laser beam. To change the angular movement to translation, a scan lens is used to generate an intermediate scanning plane. This plane is then imaged to the specimen by the tube lens and the illumination objective, resulting in a scanned focused beam at the detection focal plane. The detection unit is identical to the wide-field detection scheme, similarly to the static light-sheet illumination. By scanning the beam at a high frequency, a virtual light-sheet is generated, and the fluorescence signal is captured by a single exposure on the camera, resulting in an evenly illuminated field of view.
 
   
 
@@ -503,27 +505,27 @@ A fluorescent molecule is capable of absorbing photons in a given wavelength ran
 % ##     ## ##     ## ##     ##       ## ##       
 % ##     ## ##     ## ##     ## ##    ## ##       
 % ##     ##  #######   #######   ######  ######## 
-\section{Light-sheet microscopy for imaging mmalian development}
+\section{Light-sheet microscopy for imaging mammalian development}
 
-  Because of its optical sectioning capabilities, combined with the high specificity of fluorescent labels, confocal microscopy had an immense influence on biological research, and has been the go-to technique for decades for many discoveries \cite{shotton_confocal_1989,graf_live_2005,jonkman_any_2015}.
+  Because of its optical sectioning capabilities combined with the high specificity of fluorescent labels, confocal microscopy had an immense influence on biological research, and has been the go-to technique for decades for many discoveries \cite{shotton_confocal_1989,graf_live_2005,jonkman_any_2015}.
   % Even though it has some drawbacks, important discoveries have been made using this technique, as live imaging is not always necessary.
   % Especially using cell cultures, or fixed specimens, confocal microscopy has been used to investigate X chromosome inactivation \cite{costanzi_histone_1998}, the role of amyloid $\upbeta$-peptide in Alzheimer's disease \cite{bard_peripherally_2000}, the role of Oct4 \cite{nichols_formation_1998} and Sox2 \cite{avilion_multipotent_2003} in the self-renewal of pluripotent stem cells, just to highlight a few.
-  Live imaging capabilities of confocal microscopy are, however, limited. This is mostly due to the illumination scheme: to collect information from a single point, almost the whole embryo has to be illuminated. This unwanted illumination can easily lead to bleaching of the fluorophores, and also to phototoxic effects that can prevent further embryonic development. The point scanning nature of image acquisition also implies an inherent constraint to the maximum imaging speed, as it can be only increased at the expense of reducing signal intensity (\autoref{fig:tradeoffs}).
+  Live imaging capabilities of confocal microscopy are, however, limited. This is mostly due to the illumination scheme: to collect information from a single point, almost the whole embryo has to be illuminated. This unwanted illumination can easily lead to bleaching of the fluorophores, or to phototoxic effects that can prevent further embryonic development. The point scanning nature of image acquisition also implies an inherent constraint to the maximum imaging speed, as it can be only increased at the expense of reducing signal intensity (\autoref{fig:tradeoffs}).
 
-  One improvement to address both of these drawbacks is the use of a spinning disk with a specific pattern (also called Nipkow disk) of holes to generate multiple confocal spots at the same time \cite{graf_live_2005}. If these spots are far enough from each other, confocal rejection of out-of-focus light can still occur. As the disk is spinning, the hole pattern will sweep the entire field of view, eventually covering all points \cite{kino_intermediate_1990}. The image is recorded by an area detector, such as a CCD or EM-CCD, which speeds up image acquisition \cite{nakano_spinning-disk_2002}.
+  One improvement to address both of these drawbacks is the use of a spinning disk with a specific pattern of holes (also called Nipkow disk) to generate multiple confocal spots at the same time \cite{graf_live_2005}. If these spots are far enough from each other, confocal rejection of out-of-focus light can still occur. As the disk is spinning, the hole pattern will sweep the entire field of view, eventually covering all points \cite{kino_intermediate_1990}. The image is recorded by an area detector, such as a CCD or EM-CCD, which speeds up image acquisition \cite{nakano_spinning-disk_2002}.
 
   Although out-of-focus illumination is still an issue, spinning disk confocal microscopy was successfully used to investigate the mechanisms of symmetry breaking in early mouse embryonic development \cite{korotkevich_apical_2017}, and the mechanisms leading to the first cell fate specification that will differentiate extraembryonic tissue from the embryo proper \cite{maitre_pulsatile_2015,dietrich_venus_2015,maitre_asymmetric_2016}. Even though these studies were carried out with live embryos, only a few hours of time-lapse imaging is possible before the accumulation of phototoxic effects arrests development \cite{nowotschin_chapter_2010}. Compared to this, just the pre-implantation phase of mouse embryonic development spans 3 days, and the full development is 18 days \cite{wolpert_principles_2011}.
 
 
   \subsection{Imaging mammalian pre-implantation development}
   \label{ch:mouse-intro}
-    Pre-implantation is the first phase of mouse embryonic development, that starts right after fertilization. The embryo in this phase is still in the oviduct, travelling towards the uterus, where it will implant into the uterine wall. The developmental stage between fertilization and the implantation is called the pre-implantation stage. Here the embryo divides, and already the first cell fate specifications start when forming the trophoectoderm (TE) and the inner cell mass (ICM) at the blastocyst stage. ICM cells will form the embryo proper, while TE cell will contribute to the formation of the extraembryonic tissues.
+    Pre-implantation is the first phase of mouse embryonic development that starts right after fertilization. The embryo in this phase is still in the oviduct, travelling towards the uterus, where it will implant into the uterine wall. The developmental stage between fertilization and implantation is called the pre-implantation stage. Here the embryo divides, and already the first cell fate specifications start when forming the trophoectoderm (TE) and the inner cell mass (ICM) at the blastocyst stage. ICM cells will form the embryo proper, while TE cell will contribute to the formation of the extraembryonic tissues.
     
     During this process the embryo is still self-sufficient, which makes it possible to image this stage in an \textit{ex vivo} embryo culture by providing the proper conditions \cite{doherty_culture_2000}. Long term imaging, however, is extremely challenging due to the very high light sensitivity of the specimens. Imaging these embryos in a confocal microscope will lead to incomplete development, even if the imaging frequency is minimized to every \SI{15}{mins} \cite{strnad_inverted_2016}.
 
-    Imaging for just a few hours is already enough to investigate important processes, such as cell fate patterning \cite{dietrich_stochastic_2007}. Other approaches aim to lower the phototoxicity by either using 2-photon illumination which operates at longer wavelengths \cite{denk_two-photon_1990,squirrell_long-term_1999,mcdole_lineage_2011}, or by lowering imaging frequency as a compromise \cite{yamagata_long-term_2009}. These approaches, however either require highly specialized equipment, such as an ultra-short pulsed laser, or is compromising on the time resolution.
+    Imaging for just a few hours is already enough to investigate important processes, such as cell fate patterning \cite{dietrich_stochastic_2007}. Other approaches aim to lower the phototoxicity by either using 2-photon illumination which operates at longer wavelengths \cite{denk_two-photon_1990,squirrell_long-term_1999,mcdole_lineage_2011}, or by lowering imaging frequency as a compromise \cite{yamagata_long-term_2009}. These approaches, however, either require highly specialized equipment, such as an ultra-short pulsed laser, or are compromising on the time resolution.
 
-    Light-sheet microscopy, on the other hand, drastically lowers phototoxic effect by using a much more efficient illumination scheme (see \autoref{sec:light-sheet}), and thus makes a better use of the photon budget. Using this technique, it is possible to image the full pre-implantation development at high spatial and temporal resolution without any negative impact on the developmental process. Such a microscope was developed by Strnad \textit{et al.} at EMBL \cite{strnad_inverted_2016}, who used it to understand when exactly the first cell fate specification is decided in the embryonic cells.
+    Light-sheet microscopy, on the other hand, drastically lowers the phototoxic effects by using a much more efficient illumination scheme (see \autoref{sec:light-sheet}), and thus makes a better use of the photon budget. Using this technique, it is possible to image the full pre-implantation development at high spatial and temporal resolution without any negative impact on the developmental process. Such a microscope was developed by Strnad \textit{et al.} at EMBL \cite{strnad_inverted_2016}, who used it to understand when exactly the first cell fate specification is decided in the embryonic cells.
 
     \begin{figure}[tb]
       \centering
@@ -535,7 +537,7 @@ A fluorescent molecule is capable of absorbing photons in a given wavelength ran
     
     As a mouse embryo culture is not compatible with the standard agarose-based sample mounting techniques, a completely new approach was taken, which resulted in a microscope designed around the sample. The sample holder forming a V-shape was built with a bottom window, and it is lined with a thin FEP (fluorinated ethylene propylene) foil that supports the embryos (\autoref{fig:preMouse}A, i). This arrangement allows the utilization of the standard microdrop embryo culture, while providing proper viewing access for the objectives. As the embryos are relatively small (\SI{100}{\micro m}) and transparent, a single illumination and single detection objective arrangement is enough for high quality imaging. A low resolution (NA=0.3) objective is used to generate the scanned light-sheet, and a high resolution (NA=1.1) objective is detecting the fluorescence at 50\texttimes magnification (\autoref{fig:preMouse}A, ii). As the foil is curved, it allows unrestricted access to the embryo, while separating the imaging medium from the immersion liquid (\autoref{fig:preMouse}A, iii). Furthermore, its refractive index is matching the refractive index of water, so optical aberrations are minimized.
 
-    Using this setup, Strnad \textit{et al.} were able to pinpoint the exact timing of the first cell fate decision that leads either to ICM or TE cells. More than 100 embryos expressing nuclear (H2B-mCherry) and membrane (mG) markers were imaged for the entire 3 days of pre-implantation development (\autoref{fig:preMouse}B). The image quality was sufficient to segment all nuclei in the embryos (\autoref{fig:preMouse}C), and track them from 1 to 64 cell stage, building the complete lineage tree. Based on the lineage trees, and the final cell fate assignments, it was determined that at the 16 cell stage the final specification is already decided, while earlier than this it is still random.
+    Using this setup, Strnad \textit{et al.} were able to pinpoint the exact timing of the first cell fate decision that leads either to ICM or TE cells. More than 100 embryos expressing nuclear (H2B-mCherry) and membrane (mG) markers were imaged for the entire 3 days of pre-implantation development (\autoref{fig:preMouse}B). The image quality was sufficient to segment all nuclei in the embryos (\autoref{fig:preMouse}C), and track them from 1 to 64 cell stage, building the complete lineage tree. Based on the lineage trees and the final cell fate assignments, it was determined that at the 16 cell stage the final specification is already decided, while earlier than this it is still random.
     
 
   \subsection{Imaging mammalian post-implantation development}
@@ -549,11 +551,11 @@ A fluorescent molecule is capable of absorbing photons in a given wavelength ran
 
     After the initial 3 days of pre-implantation, the embryo undergoes the implantation process, during which it is inaccessible to microscopical investigations. Although a new method was recently developed that allows the \textit{in vitro} culturing of the embryos embedded in a 3D gel \cite{panavaite_3d-geec:_2017}, this has not reached wider adoption yet. Hence, developmental processes during implantation have only been investigated in fixed embryos.
     
-    Following the implantation process, at the post-implantation phase, \textit{ex vivo} embryo culturing becomes possible again \cite{hsu_vitro_1979, huang_effect_2001}, and these embryos can be kept alive for several days in an artificial environment. During this process especially interesting stages are the late blastocyst ($\sim$E4.5), gastrulation ($\sim$E6.5), and somite formation ($\sim$E8.5). Before live imaging techniques became available, these stages were mostly investigated using \textit{in situ} visualization techniques to shed light on several developmental processes \cite{nowotschin_cellular_2010}. Many pathways playing important roles have been identified this way, however live imaging is still necessary to validate these results, and ensure continuity in the same specimen \cite{garcia_live_2011}.
+    Following the implantation process, at the post-implantation phase, \textit{ex vivo} embryo culturing becomes possible again \cite{hsu_vitro_1979, huang_effect_2001}, and these embryos can be kept alive for several days in an artificial environment. During this process especially interesting stages are the late blastocyst ($\sim$E4.5), gastrulation ($\sim$E6.5), and somite formation ($\sim$E8.5). Before live imaging techniques became available, these stages were mostly investigated using \textit{in situ} visualization techniques to shed light on several developmental processes \cite{nowotschin_cellular_2010}. Many pathways playing important roles have been identified this way, however, live imaging is still necessary to validate these results and ensure continuity in the same specimen \cite{garcia_live_2011}.
 
     Light-sheet microscopy is a good choice for imaging these stages, just like in the case of pre-implantation embryos. These embryos, however, present new challenges for sample handling and culturing. Owing to their extreme sensitivity, dissection can be difficult, especially for earlier stages (E4.5). Furthermore, since the embryo is also growing during development, gel embedding is not an option, as this might constrain proper development. Thus, special handling and mounting techniques had to be developed in order to allow live 3D imaging of these specimens.
 
-    Ichikawa \textit{et al.} \cite{ichikawa_live_2013} designed a custom mounting apparatus manufactured from acrylic in the shape of a rod that fits in a standard \SI{1}{mL} syringe with its tip truncated (\autoref{fig:postMouse}A, i). In the rod several holes were drilled with different sizes that can accommodate different sized embryos, which are held by an extraembryonic tissue, the Reichert's membrane (\autoref{fig:postMouse}A, ii). Mounting this way doesn't disturb the embryo itself, and it can freely develop in the culturing medium, while it is also stationary for the purpose of imaging. Using this technique, Ichikawa \textit{et al.} were able to image through several stages of development, including interkinetic nuclear migration at stages E5.5--6.5 (\autoref{fig:postMouse}A, iii).
+    Ichikawa \textit{et al.} \cite{ichikawa_live_2013} designed a custom mounting apparatus manufactured from acrylic in the shape of a rod that fits in a standard \SI{1}{mL} tip-truncated syringe (\autoref{fig:postMouse}A, i). Several holes were drilled in the rod with different sizes, which can accommodate different sized embryos. The embryos are held by an extraembryonic tissue, the Reichert's membrane (\autoref{fig:postMouse}A, ii). Mounting this way doesn't disturb the embryo itself, and it can freely develop in the culturing medium, while it is also stationary for the purpose of imaging. Using this technique, Ichikawa \textit{et al.} were able to image through several stages of development, including interkinetic nuclear migration at stages E5.5--6.5 (\autoref{fig:postMouse}A, iii).
 
     A second method of sample mounting for light-sheet imaging was developed by Udan~\etal who were able to record a full \SI{24}{h} time-lapse of living embryos focusing on the gastrulation and yolk sac formation processes (\autoref{fig:postMouse}G--I). Their mounting technique comprised of producing a hollow agarose container shaped like a cylinder that could support the embryo from below without constraining its growth (\autoref{fig:postMouse}B--F).
 
@@ -568,14 +570,14 @@ A fluorescent molecule is capable of absorbing photons in a given wavelength ran
       \label{fig:adultMouse}
     \end{figure}
 
-    Imaging adult mice is especially interesting for answering neurobiological questions. Since development is over at this stage, the use of an environmental chamber is no longer necessary. The biggest challenge for imaging these samples is their size, as they are centimeters in size instead of less than a millimeter as in the embryonic stage. Furthermore, the tissues of adult mice are much more opaque which severely limits imaging depth. Light-sheet microscopy can already deal with large specimens, however to achieve (sub)cellular resolution for an entire brain for example, multiple recordings have to be stitched together after acquisition \cite{bria_terastitcher_2012}.
+    Imaging adult mice is especially interesting for answering neurobiological questions. Since development is over at this stage, the use of an environmental chamber is no longer necessary. The biggest challenge for imaging these samples is their size, as they are centimeters in size instead of less than a millimeter as in the embryonic stage. Furthermore, the tissues of adult mice are much more opaque, which severely limits imaging depth. Light-sheet microscopy can already deal with large specimens, however, to achieve (sub)cellular resolution for an entire brain, for example, multiple recordings have to be stitched together after acquisition \cite{bria_terastitcher_2012}.
 
     Light scattering and absorption depend on the tissue composition and imaging depth. Especially the brain with a high concentration of lipids in the myelinated fibers pose a real challenge for imaging. Live imaging is usually performed with 2-photon microscopy which can penetrate the tissue up to \SI{800}{\micro m} deep \cite{katona_fast_2012}. Using fixed samples, however, the scattering problem can be eliminated by the use of tissue clearing methods.
 
     Tissue clearing is a process that removes and/or substitutes scattering and absorbing molecules by a chemical process while keeping the tissue structure intact and preserving fluorescence. The most dominant contributors to these effects are the proteins and lipids. Proteins in the cells locally change the refractive index of the tissue which leads to scattering, while lipids predominantly absorb the light. Clearing methods tackle these problems by chemically removing and substituting lipids by certain types of gel, and immersing the whole sample in a medium with higher refractive index to match the optical properties of proteins. Numerous methods have been developed for tissue clearing, such as ScaleA2 \cite{hama_scale:_2011}, 3DISCO \cite{erturk_three-dimensional_2012,erturk_three-dimensional_2012-1}, SeeDB \cite{ke_seedb:_2013}, CLARITY \cite{chung_clarity_2013}, CUBIC \cite{susaki_whole-brain_2014} and iDISCO \cite{renier_idisco:_2014}.
 
-    The first combination of optical clearing and light-sheet microscopy for whole brain imaging was performed by Dodt \etal using a custom ultramicroscope consisting of two opposing illumination arms and a single detection with an objective from above (\autoref{fig:adultMouse}A). The light-sheets were positioned horizontally, and the cleared samples could be placed in a transparent imaging chamber filled with the clearing medium (\autoref{fig:adultMouse}B). Imaging was performed from both top and bottom after rotating the sample \SI{180}{\degree}. By changing the detection lens, it is possible to adapt the system to different samples: low magnification is capable of imaging the whole brain (\autoref{fig:adultMouse}C), while for smaller, dissected parts, such as the hippocampus, higher magnification with higher resolution is more appropriate (\autoref{fig:adultMouse}D). With this configuration individual cell-cell contacts can be recognized (\autoref{fig:adultMouse}E), and even dendritic spines can be visualized (\autoref{fig:adultMouse}F).
+    The first combination of optical clearing and light-sheet microscopy for whole brain imaging was performed by Dodt \etal using a custom ultramicroscope consisting of two opposing illumination arms and a single detection arm with an objective from above (\autoref{fig:adultMouse}A). The light-sheets were positioned horizontally, and the cleared samples could be placed in a transparent imaging chamber filled with the clearing medium (\autoref{fig:adultMouse}B). Imaging was performed from both top and bottom after rotating the sample \SI{180}{\degree}. By changing the detection lens, it is possible to adapt the system to different samples: low magnification is capable of imaging the whole brain (\autoref{fig:adultMouse}C), while for smaller, dissected parts, such as the hippocampus, higher magnification with higher resolution is more appropriate (\autoref{fig:adultMouse}D). With this configuration individual cell-cell contacts can be recognized (\autoref{fig:adultMouse}E), and even dendritic spines can be visualized (\autoref{fig:adultMouse}F).
 
-    Although light-sheet microscopy is highly suitable for imaging cleared specimens, even entire mice \cite{tainaka_whole-body_2014}, brain imaging in live animals is more challenging due to the standard two-objective setup of a conventional SPIM microscope. Two light-sheet-based methods, however offer a solution for this, axial plane optical microscopy (APOM) \cite{li_axial_2014} and swept confocally-aligned planar excitation (SCAPE) \cite{bouchard_swept_2015} both use only a single objective to generate a light-sheet and detect the fluorescence as well. This is done by rotating the detection plane at an intermediate image (APOM), or by rotating both the light-sheet and detection plane simultaneously (SCAPE).
+    Although light-sheet microscopy is highly suitable for imaging cleared specimens, even entire mice \cite{tainaka_whole-body_2014}, brain imaging in live animals is more challenging due to the two-objective setup of a conventional SPIM microscope. Two light-sheet-based methods, however offer a solution for this, axial plane optical microscopy (APOM) \cite{li_axial_2014} and swept confocally-aligned planar excitation (SCAPE) \cite{bouchard_swept_2015} both use only a single objective to generate a light-sheet and detect the fluorescence as well. This is done by rotating the detection plane at an intermediate image (APOM), or by rotating both the light-sheet and detection plane simultaneously (SCAPE).
 
 
