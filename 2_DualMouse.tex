@@ -165,7 +165,8 @@ In this chapter, we present a novel light-sheet microscope developed to address 
 
 \section{Optical layout}
   
-  Based on the requirements and other considerations shown in the previous section, the microscope was designed in three main parts: 1) the core unit, 2) illumination and 3) detection branches. The aim when integrating these units together was to allow for high level of flexibility with robust operation, while also keeping efficiency in mind. After finalizing the concept, the optical layout of the microscope was designed in SolidWorks.
+  Based on the requirements and other considerations shown in the previous sections, the microscope was designed in three main parts: 1) the core unit (green), 2) illumination branches (blue) and 3) detection branches (yellow, \autoref{fig:fullSchematics}). The aim when integrating these units together was to allow for high level of flexibility with robust operation, while also keeping efficiency in mind. After finalizing the concept, the mechanical layout of the microscope was designed in SolidWorks.
+
 
   % \begin{figure}[bth]
   %   \centering
@@ -173,6 +174,21 @@ In this chapter, we present a novel light-sheet microscope developed to address 
   %   \bcaption[Simplified schematics for illumination]{}
   %   \label{fig:schematicsLinear}
   % \end{figure}
+  \begin{figure}
+    \centering
+    \begin{subfigure}{\textwidth}
+      \centering
+      \includegraphics[page=1,width=0.9\textwidth]{fullSchematics}
+    \end{subfigure}
+    \begin{subfigure}{\textwidth}
+      \centering
+      \includegraphics[page=1,width=1\textwidth]{schematicsLinear}
+    \end{subfigure}
+    
+    \bcaption[Dual Mouse-SPIM optical layout]{The microscope consists of two main parts, the illumination branches (blue) and detection branches (yellow). For both illumination and detection there are two identical paths implemented. Illumination direction can be changed by applying a different offset to the galvanometric mirror, which in turn will direct the beam to the opposite face of the prism mirror. L1 and L2 will then image the scanner on M1. Using L3 as a scan lens, and L4 as a tube lens, the scanned beam is coupled into the objective path by a quad band dichroic mirror.
+    CAM -- camera, DM -- dichroic mirror, FW -- filter wheel, L -- lens, M -- mirror, O -- objective, PM -- prism mirror, S -- sample}
+    \label{fig:fullSchematics}
+  \end{figure}
 
 
   \subsection{Core unit}
@@ -233,21 +249,7 @@ In this chapter, we present a novel light-sheet microscope developed to address 
     Further following the illumination path, two achromatic lenses L3 and L4 ($f_3 = f_4 = \SI{200}{mm}$) form a 1:1 relay, imaging the scanning axis to the back focal plane (BFP) of the objective.
     % To couple in the laser with the imaging path, a quad-band dichroic mirror (DM, Semrock, Di03-R405/488/561/635-t3-25x36) is used, matching the wavelengths of the laser combiner.
 
-    \begin{figure}
-      \centering
-      \begin{subfigure}{\textwidth}
-        \centering
-        \includegraphics[page=1,width=0.9\textwidth]{fullSchematics}
-      \end{subfigure}
-      \begin{subfigure}{\textwidth}
-        \centering
-        \includegraphics[page=1,width=1\textwidth]{schematicsLinear}
-      \end{subfigure}
-      
-      \bcaption[Dual Mouse SPIM optical layout]{The microscope consists of two main parts, the illumination branches (blue) and detection branches (yellow). For both illumination and detection there are two identical paths implemented. Illumination direction can be changed by applying a different offset to the galvanometric mirror, which in turn will direct the beam to the opposite face of the prism mirror. L1 and L2 will then image the scanner on M1. Using L3 as a scan lens, and L4 as a tube lens, the scanned beam is coupled into the objective path by a quad band dichroic mirror.
-      CAM -- camera, DM -- dichroic mirror, FW -- filter wheel, L -- lens, M -- mirror, O -- objective, PM -- prism mirror, S -- sample}
-      \label{fig:fullSchematics}
-    \end{figure}
+   
 
   \subsection{Detection}
     As the emitted light exits the objective and the mirror block, it is spectrally separated from the illumination laser light by a quad band dichroic mirror (DM, Semrock, Di03-R405/488/561/635-t3-25x36) matching the wavelengths of the laser combiner. The light is then focused by a \SI{400}{mm} achromatic lens (L5, Edmund Optics, \#49-281) onto the camera sensor (Andor Zyla 4.2 sCMOS). Just before the camera, a motorized filter wheel (FW, LEP 96A361) is placed to discriminate any unwanted wavelengths from the emission light. Although this is not in the infinity space, due to the very small angles after the \SI{400}{mm} tube lens, the maximum axial focal shift is $\sim \SI{50}{nm}$ only, which is negligible compared to the axial resolution of $\sim \SI{1.1}{\micro m}$.
@@ -395,6 +397,9 @@ In this chapter, we present a novel light-sheet microscope developed to address 
     %#   ##   ##             ## ##     ## ##          ##          ## 
     %#    ##  ##       ##    ## ##     ## ##          ##    ##    ## 
     %#     ## ########  ######   #######  ########    ##     ######  
+
+%\section{Validating the system}
+
 \section{Results}
   \begin{figure}
     \begin{subfigure}[t]{0.5\textwidth}
@@ -425,7 +430,7 @@ In this chapter, we present a novel light-sheet microscope developed to address 
   To evaluate the performance of the microscope, we conducted various measurements, concerning the stability and the resolution of the system. The methods and results of these measurements will be presented in this section.
 
 
-  \subsection{Stability of view switcher unit}
+  \subsection{Stability of the view switcher unit}
     \label{sec:mirrorStability}
 
     \begin{figure}
@@ -555,15 +560,31 @@ In this chapter, we present a novel light-sheet microscope developed to address 
   %   Salivary glands from third instar larvae expressing fluorescent nuclear (H2A-mCherry) and centriole (ASL-YFP) markers were kindly provided by Ulla-Maj Fiuza. The salivary glands were imaged in PBS, together with a small piece of gel with fluorescent beads.
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 \section{Discussion}
 
   In this chapter we have presented a novel light-sheet microscope designed for subcellular imaging of mouse embryos. The microscope has two identical, high NA (1.1) objectives, positioned in a \SI{120}{\degree} angle, and operates with a \SI{30}{\degree} tilted light-sheet. Due to the symmetrical design both objectives can be used for detection and illumination as well, providing multi-view capabilities without sample rotation.
 
   We have characterized the optical properties of the microscope by measuring the light-sheet dimensions (average length: \SI{93}{\micro m}, average thickness: \SI{3.6}{\micro m}), and by measuring the point spread function. When combining the two views, the resolution is much closer to an ideal isotropic shape, being \SI{496}{nm} along the long axis and \SI{314}{nm} along the short axis as opposed to \SI{1323}{nm} and \SI{411}{nm} measured for a single view. This 2.67 fold increase in axial resolution can potentially make the difference in being able to track all chromosomes in a developing mouse embryo.
 
-  To be able to surpass the proof-of-concept state, the microscope still needs some improvements. The detection view switching unit needs to be improved to minimize field of view drift of both views. Data processing for long-term experiments would be extremely challenging otherwise. Another necessity for long-term experiments is the implementation of an environmental chamber to provide the appropriate conditions for live embryo imaging.
+  The obtained resolution is comparable to the state of the art lattice light-sheet microscopy (LLSM) \cite{chen_lattice_2014} (\SI{230}{nm} lateral and \SI{370}{nm} axial), however, the optical alignment and the operation of our microscope is considerably simpler, as there is no need for the use of a spatial light modulator. As LLSM relies on the self-interference of the illumination beam to obtain the thin sectioning pattern, the practical imaging volume is only $50 \times 50 \times \SI{50}{\micro m ^3}$. In contrast, the Dual Mouse-SPIM is capable of imaging a volume of $260 \times 100 \times \SI{100}{\micro m ^3}$ due to the more robust Gaussian-beam illumination and the two-sided detection. Imaging very fast dynamics from two directions, however, might be challenging, as the detection direction is switched with a mechanical part, which limits the maximum volumetric imaging speed.
 
-  The use of high-NA objectives also keeps the door open for future upgrades, such as the addition of structured illumination \cite{keller_fast_2010, chang_csilsfm_2017}, or coupling in a high-power pulsed laser for photomanipulation capabilities \cite{rauzi_probing_2017}. Another natural extension to the system would be the addition of a third objective that would allow for truly isotropic imaging and two-sided sample illumination.
+  To be able to surpass the proof-of-concept state, the microscope still needs some improvements. The detection view switching unit needs to be improved to minimize field of view drift of both views. One possible issue with the current solution is the insufficient damping of the moving mirror unit, which can cause unwanted vibrations when the switching force is high. This can also be a possible explanation of why only one direction was unstable, as the movement speed was not equal in both directions. Since the pneumatic cylinder has a single actuator rod, the force on the piston is different depending on the movement direction: on the side where the rod is attached to the piston the surface area is smaller, thus the actuating force is lower with the same air pressure. This could be remedied by applying a more efficient damping system, and by making sure that the forces are the same in both directions. For small specimens, if a reduced field of view is sufficient, the entire moving assembly can be replaced by a fixed prism mirror, which reflects the two objective images on either half of the camera sensor. This has the added benefit of faster imaging, since the switching time between the two imaging branches is only limited by the galvanometric scanner. Another solution could be the addition of a second camera, which would make the view switching completely unnecessary without sacrificing the field of view.
+  
+  Another necessity for long-term experiments is the implementation of an environmental chamber to provide the appropriate conditions for live mammalian embryo imaging. This involves the integration of a heating element and a gas mixer unit to the mechanical design, complemented by an enclosure that seals off the environment of the imaging chamber. The mechanical design is already underway and the electronic control will be integrated with the modular control software.
+
+  The use of high-NA objectives also keeps the door open for future upgrades, such as the addition of structured illumination \cite{keller_fast_2010, chang_csilsfm_2017}, or coupling in a high-power pulsed laser for photomanipulation capabilities \cite{rauzi_probing_2017}. Another natural extension to the system would be the addition of a third objective that would allow for truly isotropic imaging and two-sided sample illumination. Using three objectives would introduce some challenges in sample mounting, as the open-top sample holder design could not be used in the same way. A more practical way would be the use of an FEP tube, where the embryos could develop in the appropriate medium while they are sealed from the outside by gel plugs on either side. Of course such a system will need to be thoroughly tested of live imaging compatibility.
 
 
   Single-view solutions for isotropic imaging only allow a very limited field of view. For diffraction-limited optical sectioning a Gaussian beam is diverging too fast \cite{dean_diagonally_2016}, while the use of other, non-diffractive beams rely on self-interference \cite{chen_lattice_2014}, which breaks down after a few tens of micrometers inside the sample. Our dual-view high NA solution allows for near isotropic resolution even for large fields of view, such as for entire mouse zygotes or embryos (\SI{120}{\micro m}\texttimes\SI{120}{\micro m}\texttimes\SI{120}{\micro m}).
