@@ -226,15 +226,9 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
 
   Since the processing is actually bottlenecked by the data transfer rate between the main memory and GPU memory, we implemented multiple commonly used image preprocessing operations for our pipeline to maximize the utility of the GPU. These functions include background subtraction, background masking and image compression. We will discuss these features in the following sections of the chapter. 
 
+
   \subsection{Background subtraction and masking}
-  As an additional step of the preprocessing pipeline, background subtraction and background masking was implemented. Background subtraction can improve image quality as it removes any system-specific patterns, while background masking is beneficial for the consecutive compression step.
-
-  To perform the background subtraction, dark images are recorded without the laser turned on. Typically 500--2000 images are taken which are averaged, to capture the pixel non-uniformities of the camera sensors. As this is camera specific, the step is repeated for all cameras. If necessary, the recordings can be repeated under different conditions, such as different exposure times, or different sensor modes (such as global shutter and rolling shutter). The averaged background images are saved in a custom file format in an HDF5 container \cite{the_hdf_group_hierarchical_1997} together with the camera serial number. The microscope software can read these files and applies the background subtraction to the appropriate cameras during imaging.
-
-  Background masking is a useful step to increase the efficiency of image compression. For light-sheet microscopy, where typically an entire embryo is imaged, the boundary of the specimen, and thus the area of interest, is well defined. Anything outside the embryo is just noise which does not contribute to any useful information. For image compression, however, these regions are extremely difficult to compress, as due to the random nature of noise, almost no reduction is achievable (see \ref{sec:entropy}). To circumvent this issue, the background pixels outside the specimen can be set to 0, which will greatly increase the compression ratio without compromising any data of interest \cite{amat_efficient_2015}.
-
-  The masking is performed in the following way. As the sample has much higher signal compared to the background, a thresholding operation is sufficient. In order to have a smooth mask, the images are first blurred by a Gaussian kernel, and the thresholding is done on the blurred image. This will define a binary mask with smooth boundaries, which is applied to the original image (\autoref{fig:masking}). The threshold can be calculated automatically by the Triangle method \cite{zack_automatic_1977}, or can also be user specified.
-
+  
   \begin{figure}
     \centering
     \begin{subfigure}{0.49\textwidth}
@@ -250,11 +244,22 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
     \bcaption[Applying mask to remove background]{(a) Original image of a \textit{Drosophila} embryo. (b) Background selected by thresholding the blurred image.}
     \label{fig:masking}
   \end{figure}
+  
+  As an additional step of the preprocessing pipeline, background subtraction and background masking was implemented. Background subtraction can improve image quality as it removes any system-specific patterns, while background masking is beneficial for the consecutive compression step.
+
+  To perform the background subtraction, dark images are recorded without the laser turned on. Typically 500--2000 images are taken which are averaged, to capture the pixel non-uniformities of the camera sensors. As this is camera specific, the step is repeated for all cameras. If necessary, the recordings can be repeated under different conditions, such as different exposure times, or different sensor modes (such as global shutter and rolling shutter). The averaged background images are saved in a custom file format in an HDF5 container \cite{the_hdf_group_hierarchical_1997} together with the camera serial number. The microscope software can read these files and applies the background subtraction to the appropriate cameras during imaging.
+
+  Background masking is a useful step to increase the efficiency of image compression. For light-sheet microscopy, where typically an entire embryo is imaged, the boundary of the specimen, and thus the area of interest, is well defined. Anything outside the embryo is just noise which does not contribute to any useful information. For image compression, however, these regions are extremely difficult to compress, as due to the random nature of noise, almost no reduction is achievable (see \ref{sec:entropy}). To circumvent this issue, the background pixels outside the specimen can be set to 0, which will greatly increase the compression ratio without compromising any data of interest \cite{amat_efficient_2015}.
+
+  The masking is performed in the following way. As the sample has much higher signal compared to the background, a thresholding operation is sufficient. In order to have a smooth mask, the images are first blurred by a Gaussian kernel, and the thresholding is done on the blurred image. This will define a binary mask with smooth boundaries, which is applied to the original image (\autoref{fig:masking}). The threshold can be calculated automatically by the Triangle method \cite{zack_automatic_1977}, or can also be user specified.
+
+  
 
   
 
 
-\subsection{Results} 
+\subsection{Methods and results}
+
 
 \begin{figure}
   \centering
@@ -263,7 +268,12 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
   \label{fig:2Dvs3Dbeads}
 \end{figure}
 
-  The image preprocessing pipeline was tested on our MuVi-SPIM microscope \cite{krzic_multiview_2012}. For the background subtraction we recorded 1500 dark images with each camera and averaged them, in order to obtain the camera specific background images. Prior to image acquisition these were uploaded to the GPU memory, and were readily available for the pipeline. The implemented CUDA pipeline with background subtraction, 2D fusion and masking reached a throughput of 135.8 frames per second (fps), while a single-threaded CPU implementation could only process 7.4 images per second on average.
+  The image preprocessing pipeline was tested on our MuVi-SPIM microscope \cite{krzic_multiview_2012}.   
+  Processing speed of the CPU and GPU implementation of the processing pipeline was measured with the profiling tool of LabVIEW, and are an average of 10 runs. The benchmarking computer had 2 Intel Xeon E5620 processors with 8 processing cores running at \SI{2.4}{GHz}, \SI{24}{GB} RAM and an Nvidia GeForce GTX 750 graphics card. Test images were 2048\texttimes 2048 pixels at \SI{16}{bit} depth. 
+  
+  For the background subtraction we recorded 1500 dark images with each camera and averaged them, in order to obtain the camera specific background images. Prior to image acquisition these were uploaded to the GPU memory, and were readily available for the pipeline. The implemented CUDA pipeline with background subtraction, 2D fusion and masking reached a throughput of 135.8 frames per second (fps), while a single-threaded CPU implementation could only process 7.4 images per second on average.
+
+  
 
   Following careful alignment of the microscope to meet the previously discussed requirements (Eqs. \ref{eq:req1} -- \ref{eq:req3}), we imaged fluorescent beads in a gel suspension to obtain the affine transformation parameters. The measured 3D transformation parameters were the following:
 
@@ -288,7 +298,7 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
 
   To validate our hypotheses, we fused bead stacks that were acquired for the calibration using both the 3D and the 2D transformations. The 2D, planewise fused beads do not exhibit any pathological morphologies compared to the 3D fused beads (\autoref{fig:2Dvs3Dbeads}). When measuring the size of the bead images (FWHM) along the lateral and axial directions, the difference is less than 0.5\% compared to the 3D fused dataset. This is well below any resolvable features.
 
-  \begin{figure}[b]
+  \begin{figure}
     \centering
     \includegraphics[width=1\textwidth]{fusion/drosophila_D2}
     \bcaption[GPU fused images of a \textit{Drosophila melanogaster} embryo]{Two stacks were taken in quick succession first without fusion, then with fusion enabled. Fused images are shown in the middle of each subfigure, while the individual camera images are in the bottom insets. The top-left inset depicts the z-position of the shown images. (a) Image from closer to the left camera. (b) Image from the center of the embryo. (c) Image from closer to the right camera.}
@@ -306,10 +316,9 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
 
   Stacks obtained with the live fusion enabled show a consistently high image quality throughout the entire stack, independent of the depth (\autoref{fig:drosophilaContrast}). This allows us to keep only the already fused data, thus effectively reducing the storage requirement by half, and facilitating further data processing steps.
 
-  \subsection{Methods}
+  %\subsection{Methods}
 
-  \subsubsection{Speed measurements}
-  Processing speed of the CPU and GPU implementation of the processing pipeline was measured with the profiling tool of LabVIEW, and are an average of 10 runs. The benchmarking computer had 2 Intel Xeon E5620 processors with 8 processing cores running at \SI{2.4}{GHz}, \SI{24}{GB} RAM and an Nvidia GeForce GTX 750 graphics card. Test images were 2048\texttimes 2048 pixels at \SI{16}{bit} depth. 
+ 
 
   
 
@@ -600,5 +609,10 @@ Code used for analyzing data, \b3d source code and compiled binaries, including 
 
 
 
-\section{Conclusions}
-Our algorithm is implemented in C++, and allows for easy integration through an API with various programming languages. The library was tested on Linux (Ubuntu 16.04) and Windows (10). Additionally, we implemented a filter plugin for HDF5 which enables a seamless integration in all software packages that are supporting the native HDF5 library, such as Matlab, Python, Imaris, or Ilastik. Due to \b3d’s efficient compression ratio and its high decompression speed, loading data is often accelerated: For a state-of-the-art hard drive with \SI{200}{MB/s} bandwidth, loading a \SI{2}{GB} uncompressed 3D stack of images takes about 10 seconds. With an average compression ratio of 20 fold in the WNL mode, the loading time is reduced to 0.5 seconds followed by 2 seconds of decompression, which yields a factor of four speed-up. It is also worth to note, that the achieved WNL compression reduces the camera data rate to below \SI{40}{MB/s}, well below the \SI{1}{Gb/s} Ethernet standard. This enables to use current network infrastructure to move data to long term storage and even makes the use of cloud services possible. Altogether, \b3d, our efficient GPU-based image compression library allows for exceptionally fast compression speed and greatly increases compression ratio with its WNL scheme, offering a versatile tool that can be easily tailored to any high-speed microscopy environment.
+\section{Discussion}
+
+
+
+Our algorithm is implemented in C++, and allows for easy integration through an API with various programming languages. The library was tested on Linux (Ubuntu 16.04) and Windows (10). Additionally, we implemented a filter plugin for HDF5 which enables a seamless integration in all software packages that are supporting the native HDF5 library, such as Matlab, Python, Imaris, or Ilastik. Due to \b3d’s efficient compression ratio and its high decompression speed, loading data is often accelerated: For a state-of-the-art hard drive with \SI{200}{MB/s} bandwidth, loading a \SI{2}{GB} uncompressed 3D stack of images takes about 10 seconds. With an average compression ratio of 20 fold in the WNL mode, the loading time is reduced to 0.5 seconds followed by 2 seconds of decompression, which yields a factor of four speed-up.
+
+It is also worth to note, that the achieved WNL compression reduces the camera data rate to below \SI{40}{MB/s}, well below the \SI{1}{Gb/s} Ethernet standard. This enables to use current network infrastructure to move data to long term storage and even makes the use of cloud services possible. Altogether, \b3d, our efficient GPU-based image compression library allows for exceptionally fast compression speed and greatly increases compression ratio with its WNL scheme, offering a versatile tool that can be easily tailored to any high-speed microscopy environment.
