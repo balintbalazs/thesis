@@ -611,7 +611,7 @@ Code used for analyzing data, \b3d source code and compiled binaries, including 
 
 \section{Discussion}
 
-
+In this chapter we presented a real-time image preprocessing and compression pipeline for multiview light-sheet microscopy. This pipeline is capable of fusing 
 
 Our algorithm is implemented in C++, and allows for easy integration through an API with various programming languages. The library was tested on Linux (Ubuntu 16.04) and Windows (10). Additionally, we implemented a filter plugin for HDF5 which enables a seamless integration in all software packages that are supporting the native HDF5 library, such as Matlab, Python, Imaris, or Ilastik. Due to \b3d’s efficient compression ratio and its high decompression speed, loading data is often accelerated: For a state-of-the-art hard drive with \SI{200}{MB/s} bandwidth, loading a \SI{2}{GB} uncompressed 3D stack of images takes about 10 seconds. With an average compression ratio of 20 fold in the WNL mode, the loading time is reduced to 0.5 seconds followed by 2 seconds of decompression, which yields a factor of four speed-up.
 

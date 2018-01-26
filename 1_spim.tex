@@ -13,7 +13,9 @@
 \graphicspath{{./figures/1_spim/}}
 
 
-Live imaging is indispensable to understand the processes during embryonic development. In an ideal setting, the ultimate microscope would be able to record a continuos, three dimensional (3D), multicolor dataset of any biological process of interest with the highest possible resolution. Due to several limitations in physics and biology this is not possible. Therefore, a compromise is necessary. The diffractive nature of light, the lifetime of fluorescent probes and the photosensitivity of biological specimens all require microscopy to be adapted so that the question at hand may be answered. In order to acquire useful data one has to choose a tradeoff between spatial and temporal resolution and signal contrast, while making sure the biology is not affected by the imaging process itself (\autoref{fig:tradeoffs}) \cite{laissue_assessing_2017}.
+Live imaging is indispensable to understand the processes at the interface of cell and developmental biology. In an ideal setting, the ultimate microscope would be able to record a continuos, three dimensional (3D), multicolor dataset of any biological process of interest with the highest possible resolution. Due to several limitations in physics and biology this is not possible. Therefore, a compromise is necessary. The diffractive nature of light, the lifetime of fluorescent probes and the photosensitivity of biological specimens all require microscopy to be adapted so that the question at hand may be answered.
+
+In order to acquire useful data, one has to choose a tradeoff between spatial and temporal resolution and signal contrast, while making sure the biology is not affected by the imaging process itself \cite{laissue_assessing_2017}. This challenge can be illustrated by a pyramid where each corner represents one of these criteria (\autoref{fig:tradeoffs}), while a point inside the pyramid corresponds to the imaging conditions. As soon as we try to optimize one condition, \textit{i.e.}, we move the point closer to one of the corners, it will move further from all the others due to the limited photon budget. In order to make a fundamental difference and move the corners of the pyramid closer together, an change in microscope design is necessary.
 
 \begin{figure}[bht]
   \centering
@@ -284,14 +286,16 @@ A fluorescent molecule is capable of absorbing photons in a given wavelength ran
     \end{figure}
 
 
-  \subsection{Confocal-theta microscopy}
+  \subsection{Variants of confocal microscopy}
 
     Although confocal microscopy already has 3D capabilities, its axial resolution is still limited compared to the lateral, since it uses only one objective. An alternative realization of the confocal microscope, the confocal theta microscope \cite{stelzer_fundamental_1994} introduces a second objective to the system that is used to illuminate the sample (\autoref{fig:conf-theta}). Since this decouples the illumination and detection, using a dichroic mirror is no longer necessary. The second objective is rotated by $\theta$ around the focus, this is where the name of this setup originates from.
 
     As in the case of standard confocal microscopy, the system PSF is improved by the illumination pattern. Here, however, the axial direction of the detection coincides with the lateral direction of the illumination, which results in a dramatic improvement of axial resolution compared to standard confocal microscopy. Lateral resolution will also be increased, but by a smaller extent, resulting in an almost isotropic PSF and equal axial and lateral resolutions. % (\autoref{fig:psf-theta}).
-    Although this is a big improvement to confocal microscopy in terms of resolution, this technique did not reach a widespread adoption as it complicates sample handling, while still suffering from two drawbacks of confocal microscopy that limit its live imaging capabilities.
+    Although this is a big improvement to confocal microscopy in terms of resolution, this technique did not reach a widespread adoption as it complicates sample handling, while still suffering from two drawbacks of confocal microscopy that limit its live imaging capabilities, namely phototoxicity and imaging speed.
 
-    Imaging live specimens for an extended period of time with confocal microscopy, although possible \cite{aldaz_live_2010, maitre_asymmetric_2016}, is not ideal. For each voxel imaged, a large portion of the specimen has to be illuminated, which results in a very high dose of radiation on the sample. This can be as much as 30--100 times larger than the dose used for the actual imaging \cite{reynaud_light_2008}. Illumination with high laser power for an extended time frame can result in bleaching of the fluorophores, which in turn will lower the signal at later times. Furthermore, any absorbed photon has the possibility to disrupt the chemical bonds inside the specimen, which can lead to phototoxic effects. Moreover, the usage of the pinhole, although increases resolution, also decreases the detectable signal intensity, thus it has a negative impact on image contrast \cite{stelzer_contrast_1998}.
+    
+
+    One improvement to address these drawbacks is the use of a spinning disk with a specific pattern of holes (also called Nipkow disk) to generate multiple confocal spots at the same time \cite{graf_live_2005}. If these spots are far enough from each other, confocal rejection of out-of-focus light can still occur. As the disk is spinning, the hole pattern will sweep the entire field of view, eventually covering all points \cite{kino_intermediate_1990}. The image is recorded by an area detector, such as a CCD or EM-CCD, which speeds up image acquisition \cite{nakano_spinning-disk_2002}.
 
   % \subsection{Mammalian imaging with confocal microscopy}
     
@@ -505,16 +509,24 @@ A fluorescent molecule is capable of absorbing photons in a given wavelength ran
 % ##     ## ##     ## ##     ##       ## ##       
 % ##     ## ##     ## ##     ## ##    ## ##       
 % ##     ##  #######   #######   ######  ######## 
-\section{Light-sheet microscopy for imaging mammalian development}
+\section{Light-sheet imaging of mammalian development}
 
-  Because of its optical sectioning capabilities combined with the high specificity of fluorescent labels, confocal microscopy had an immense influence on biological research, and has been the go-to technique for decades for many discoveries \cite{shotton_confocal_1989,graf_live_2005,jonkman_any_2015}.
+  Live imaging of mammalian embryos is an especially challenging task due to the intrauterine nature of their development. As the embryos are not accessible in their natural environment, it is necessary to replicate the conditions as closely as possible by providing an appropriate medium, temperature, and atmospheric composition. Moreover, these embryos are extremely sensitive to light, which poses a further challenge for microscopy \cite{nowotschin_chapter_2010}.  lllumination with high laser power for an extended time frame can result in bleaching of the fluorophores, which in turn will lower the signal at later times. Furthermore, any absorbed photon has the possibility to modify the chemical bonds inside the specimen, which can lead to phototoxic effects, disrupting the proper development of the embryo.
+
+  Because of its optical sectioning capabilities combined with the high specificity of fluorescent labels, confocal microscopy has had an immense influence on biological research, and has been the go-to technique for decades for many discoveries \cite{shotton_confocal_1989,graf_live_2005,jonkman_any_2015}.
   % Even though it has some drawbacks, important discoveries have been made using this technique, as live imaging is not always necessary.
   % Especially using cell cultures, or fixed specimens, confocal microscopy has been used to investigate X chromosome inactivation \cite{costanzi_histone_1998}, the role of amyloid $\upbeta$-peptide in Alzheimer's disease \cite{bard_peripherally_2000}, the role of Oct4 \cite{nichols_formation_1998} and Sox2 \cite{avilion_multipotent_2003} in the self-renewal of pluripotent stem cells, just to highlight a few.
-  Live imaging capabilities of confocal microscopy are, however, limited. This is mostly due to the illumination scheme: to collect information from a single point, almost the whole embryo has to be illuminated. This unwanted illumination can easily lead to bleaching of the fluorophores, or to phototoxic effects that can prevent further embryonic development. The point scanning nature of image acquisition also implies an inherent constraint to the maximum imaging speed, as it can be only increased at the expense of reducing signal intensity (\autoref{fig:tradeoffs}).
+  %Live imaging capabilities of confocal microscopy are, however, limited.
+  Imaging live specimens for an extended period of time with confocal microscopy, although possible \cite{aldaz_live_2010, maitre_asymmetric_2016}, is not ideal. Due to the use of a single objective, for each voxel imaged, a large portion of the specimen has to be illuminated below and above the focal plane as well. This results in a high dose of radiation on the sample that can be as much as 30--100 times larger than the dose used for the actual imaging \cite{reynaud_light_2008}, depending on the number of planes recorded.  
+  Moreover, the usage of the pinhole, although rejects out-of-focus light, also decreases the detectable signal intensity, thus it can have a negative impact on image contrast \cite{stelzer_contrast_1998}.
 
-  One improvement to address both of these drawbacks is the use of a spinning disk with a specific pattern of holes (also called Nipkow disk) to generate multiple confocal spots at the same time \cite{graf_live_2005}. If these spots are far enough from each other, confocal rejection of out-of-focus light can still occur. As the disk is spinning, the hole pattern will sweep the entire field of view, eventually covering all points \cite{kino_intermediate_1990}. The image is recorded by an area detector, such as a CCD or EM-CCD, which speeds up image acquisition \cite{nakano_spinning-disk_2002}.
+  In contrast to confocal microscopy, light-sheet microscopy uses a much more efficient illumination scheme, as only the vicinity of the focal plane is illuminated. To achieve 3D imaging, the sample is translated relative to the light-sheet, while snapshots are taken from each plane. The total irradiation in this case will be proportional to the thickness of the light-sheet, and will not depend on the number of planes recorded. 
 
-  Although out-of-focus illumination is still an issue, spinning disk confocal microscopy was successfully used to investigate the mechanisms of symmetry breaking in early mouse embryonic development \cite{korotkevich_apical_2017}, and the mechanisms leading to the first cell fate specification that will differentiate extraembryonic tissue from the embryo proper \cite{maitre_pulsatile_2015,dietrich_venus_2015,maitre_asymmetric_2016}. Even though these studies were carried out with live embryos, only a few hours of time-lapse imaging is possible before the accumulation of phototoxic effects arrests development \cite{nowotschin_chapter_2010}. Compared to this, just the pre-implantation phase of mouse embryonic development spans 3 days, and the full development is 18 days \cite{wolpert_principles_2011}.
+  Another benefit of light-sheet microscopy lies in the parallel readout of the fluorescence due to the wide-field detection scheme. Since the whole focal plane is captured at the same time, this can be considerably faster compared to the point-scanning method of confocal microscopy.
+  
+  In the next sections we will review the possible strategies for imaging mouse specimens with light-sheet microscopy in different stages of development: pre-implantation and post-implantation embryos, and also adult mice.
+
+
 
 
   \subsection{Imaging mammalian pre-implantation development}
@@ -540,6 +552,9 @@ A fluorescent molecule is capable of absorbing photons in a given wavelength ran
     Using this setup, Strnad \textit{et al.} were able to pinpoint the exact timing of the first cell fate decision that leads either to ICM or TE cells. More than 100 embryos expressing nuclear (H2B-mCherry) and membrane (mG) markers were imaged for the entire 3 days of pre-implantation development (\autoref{fig:preMouse}B). The image quality was sufficient to segment all nuclei in the embryos (\autoref{fig:preMouse}C), and track them from 1 to 64 cell stage, building the complete lineage tree. Based on the lineage trees and the final cell fate assignments, it was determined that at the 16 cell stage the final specification is already decided, while earlier than this it is still random.
     
 
+
+
+
   \subsection{Imaging mammalian post-implantation development}
   
     \begin{figure}[tb]
@@ -560,6 +575,8 @@ A fluorescent molecule is capable of absorbing photons in a given wavelength ran
     A second method of sample mounting for light-sheet imaging was developed by Udan~\etal who were able to record a full \SI{24}{h} time-lapse of living embryos focusing on the gastrulation and yolk sac formation processes (\autoref{fig:postMouse}G--I). Their mounting technique comprised of producing a hollow agarose container shaped like a cylinder that could support the embryo from below without constraining its growth (\autoref{fig:postMouse}B--F).
 
     Another consideration to keep in mind, is the growing size of the embryo. As it gets bigger, illumination is less efficient, and scattering can dominate at larger depths. As mentioned in earlier (\autoref{sec:multiview}) this can be alleviated by multi-view imaging: illuminating and detecting from multiple directions. Electronic confocal slit detection can further improve the signal-to-noise ratio by rejecting unwanted scattered light, which allows deeper imaging in large specimens, even up to E7.5 (\autoref{fig:postMouse}I) \cite{de_medeiros_confocal_2015}.
+
+
 
   \subsection{Imaging adult mice}
     
