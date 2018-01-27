@@ -400,7 +400,7 @@ In this chapter, we present a novel light-sheet microscope developed to address 
 
 %\section{Validating the system}
 
-\section{Results}
+\section{Validating and characterizing the microscope}
   \begin{figure}
     \begin{subfigure}[t]{0.5\textwidth}
       \centering
@@ -429,8 +429,26 @@ In this chapter, we present a novel light-sheet microscope developed to address 
   
   To evaluate the performance of the microscope, we conducted various measurements, concerning the stability and the resolution of the system. The methods and results of these measurements will be presented in this section.
 
+  \subsection{Methods}
 
-  \subsection{Stability of the view switcher unit}
+  \label{sec:methods2}
+
+  \subsubsection{Preparation of fluorescent bead samples}
+    \label{sec:beads}
+    For registration and resolution measurements we used TetraSpeck \SI{0.5}{\micro m} diameter fluorescently labeled beads (ThermoFisher, T7281). The stock bead solution was thoroughly vortexed and sonicated for \SI{5}{min} before diluting it 1:100 in distilled water. The diluted bead solution was stored at \SI{4}{\degree C} until use. GelRite (Sigma-Aldrich, G1910) gel was prepared in distilled water at 0.8\% concentration with 0.1\% $\mathrm{MgSO_4\cdot 7 H_2O}$ and kept at \SI{70}{\degree C} until use. \SI{50}{\micro l} of the diluted bead solution was added with a heated pipette tip to \SI{450}{\micro l} of gel solution at \SI{70}{\degree} to prevent  polymerization. The gel was thoroughly vortexed, and loaded to glass micropipettes (Brand \SI{100}{\micro l}). The gel was allowed to cool to room temperature and stored in a petri dish under $\mathrm{dH_2O}$ at \SI{4}{\degree C} until use. For imaging a small piece of gel was extruded from the capillary, cut off, and placed in the sample holder. After positioning the gel to the bottom of the sample holder, the holder was filled with \SI{200}{\micro l} $\mathrm{dH_2O}$.
+
+  \subsubsection{Preparing the sample holder}
+    The sample holder was lined with \SI{12.5}{\micro m} (PSF measurements) or \SI{50}{\micro m} (mouse zygote and \textit{Drosophila} embryo imaging) thin FEP foil (Lohmann, RD-FEP050A-610). The FEP foils were cut to size, washed with 70\% ethanol followed by a second wash with $\mathrm{dH_2O}$. After washing, both surfaces of the foils were chemically activated by a \SI{20}{s} plasma treatment (PlasmaPrep2, Gala Instrumente). The foils were then stored in a petri dish until further use, separated by lens cleaning tissues (Whatman, 2105-841). Before imaging, the sample holder was cleaned with dish soap, rinsed with tap water, rinsed with 70\% ethanol, and rinsed with $\mathrm{dH_2O}$. The prepared foils were glued to the inside of the cleaned sample holder with medical grade silicon glue (twinsil speed, picodent). During the \SI{5}{min} curing process the foil was pressed against the sample holder by a custom made press fitting the shape of the sample holder. Final dilution of the stock bead solution in the gel is 1:1000.
+
+  \subsubsection{Drosophila embryo imaging}
+    \textit{Drosophila melanogaster} embryos (fly stock AH1) expressing fluorescent nuclear (H2A-mCherry) and centriole (ASL-YFP) markers were collected on apple juice agar plates and dechorionated in 50\% bleach solution for \SI{1}{min}. After rinsing the bleach with deionized water, the embryos were placed in the sample holder under PBS solution. A small piece of gel containing fluorescent beads were also placed next to the samples to aid in multi-view registration.
+
+  \subsubsection{Mouse zygote imaging}
+    Fixed mouse zygotes labeled with Alexa Fluor 488 (microtubules) and Alexa Fluor 647 (kinetochores) coupled secondary antibodies were kindly provided by Judith Reichmann. Zygotes were transferred to the sample holder, and imaged in PBS. To allow for multi-view reconstruction, a small piece of gel containing fluorescent beads was placed next to the zygote in the sample holder. After imaging the zygote from both views, the beads were also recorded using the same stack definitions. After data acquisition, the multi-view datasets were registered and deconvolved in Fiji \cite{schindelin_fiji:_2012} using the Multiview Reconstruction Plugin \cite{preibisch_software_2010,preibisch_efficient_2014}. The deconvolution was based on a simulated PSF generated in Fiji with the PSF Generator plugin \cite{kirshner_3d_2011} using the Born-Wolf PSF model \cite{born_principles_2013}. $\mathrm{NA_{ex}}=0.1$, $\mathrm{NA_{em}}=1.1$, n=1.33, $\lambda_{ex} = \SI{488}{nm}$, $\lambda_{em} = \SI{510}{nm}$.
+
+\subsection{Results}
+
+  \subsubsection{Stability of the view switcher unit}
     \label{sec:mirrorStability}
 
     \begin{figure}
@@ -448,7 +466,7 @@ In this chapter, we present a novel light-sheet microscope developed to address 
 
     
 
-  \subsection{Characterizing the illumination profile}
+  \subsubsection{Characterizing the illumination profile}
 
     \begin{figure}[bthp]
       \centering
@@ -469,7 +487,7 @@ In this chapter, we present a novel light-sheet microscope developed to address 
   
 
 
-  \subsection{Resolution and point spread function measurement}
+  \subsubsection{Resolution and point spread function measurement}
 
     In order to establish an ideal, reference PSF, we simulated the theoretical PSF of the microscope with the Gibson-Lanni model \cite{gibson_experimental_1992}, using the MicroscPSF Matlab implementation \cite{li_fast_2017}. The advantage of this model is that it accounts for any differences between the experimental conditions and the design parameters of the objective, and thus it can simulate any possible aberrations that may arise. The adjustable parameters are the thicknesses ($t$) and refractive indices ($n$) of the immersion medium ($i$), coverslip ($g$), and sample ($s$). To simulate the reference PSF, we accounted for the slight mismatch in refractive index between the FEP foil ($n_g = 1.344$) and water ($n_i = 1.33$). The working distance of the objective is \SI{2}{mm}, while the thickness of the foil is \SI{12.5}{\micro m}. 
 
@@ -497,7 +515,7 @@ In this chapter, we present a novel light-sheet microscope developed to address 
     To estimate the achievable multi-view resolution of the system, we combined the two measured PSFs. First, the PSFs were rotated by $\pm \SI{60}{\degree}$ to correspond to the objective orientations. The PSF images were then normalized by scaling the maximum to 1, and the two rotated and normalized PSFs were multiplied (\autoref{fig:fusedPSF}). Resolution of the combined PSF is much improved in all directions: along its shortest axis the FWHM is \SI{314}{nm}, and along the longest axis the FWHM is \SI{496}{nm} (\autoref{fig:fusedPSF}). Both are better than the corresponding resolutions for a single view, especially along the long axis, where the FWHM is 2.67 times smaller. This is almost perfectly matching the theoretically expected increase in the axial direction (compare with \autoref{sec:120concept}).
 
 
-  \subsection{Resolution inside a \textit{Drosphila melanogaster} embryo}
+  \subsubsection{Resolution inside a \textit{Drosphila melanogaster} embryo}
 
     Apart from measuring the point spread function and resolution in an ideal bead sample, we also wanted to know the resolution inside a biological sample, as the tissues usually introduce some aberrations to the light path. Although these aberrations highly depend on the sample, as a worst case scenario, we measured the point spread function inside a \textit{Drosophila melanogater} embryo. As this specimen is highly opaque and scattering, it gives a good estimate for the upper bound of the resolution.
 
@@ -512,7 +530,7 @@ In this chapter, we present a novel light-sheet microscope developed to address 
       \label{fig:drosoEmbryo}
     \end{figure}
     
-  \subsection{Multi-view imaging of a mouse zygote}
+  \subsubsection{Multi-view imaging of a mouse zygote}
     \begin{figure}[ptb]
       \centering
       \includegraphics[width=1\textwidth]{zygoteMontage}
@@ -539,20 +557,7 @@ In this chapter, we present a novel light-sheet microscope developed to address 
     %#     ## ########    ##    ##     ## 
 
 \section{Methods}
-    \label{sec:methods2}
-
-  \subsection{Preparation of fluorescent bead samples}
-    \label{sec:beads}
-    For registration and resolution measurements we used TetraSpeck \SI{0.5}{\micro m} diameter fluorescently labeled beads (ThermoFisher, T7281). The stock bead solution was thoroughly vortexed and sonicated for \SI{5}{min} before diluting it 1:100 in distilled water. The diluted bead solution was stored at \SI{4}{\degree C} until use. GelRite (Sigma-Aldrich, G1910) gel was prepared in distilled water at 0.8\% concentration with 0.1\% $\mathrm{MgSO_4\cdot 7 H_2O}$ and kept at \SI{70}{\degree C} until use. \SI{50}{\micro l} of the diluted bead solution was added with a heated pipette tip to \SI{450}{\micro l} of gel solution at \SI{70}{\degree} to prevent  polymerization. The gel was thoroughly vortexed, and loaded to glass micropipettes (Brand \SI{100}{\micro l}). The gel was allowed to cool to room temperature and stored in a petri dish under $\mathrm{dH_2O}$ at \SI{4}{\degree C} until use. For imaging a small piece of gel was extruded from the capillary, cut off, and placed in the sample holder. After positioning the gel to the bottom of the sample holder, the holder was filled with \SI{200}{\micro l} $\mathrm{dH_2O}$.
-
-  \subsection{Preparing the sample holder}
-    The sample holder was lined with \SI{12.5}{\micro m} (PSF measurements) or \SI{50}{\micro m} (mouse zygote and \textit{Drosophila} embryo imaging) thin FEP foil (Lohmann, RD-FEP050A-610). The FEP foils were cut to size, washed with 70\% ethanol followed by a second wash with $\mathrm{dH_2O}$. After washing, both surfaces of the foils were chemically activated by a \SI{20}{s} plasma treatment (PlasmaPrep2, Gala Instrumente). The foils were then stored in a petri dish until further use, separated by lens cleaning tissues (Whatman, 2105-841). Before imaging, the sample holder was cleaned with dish soap, rinsed with tap water, rinsed with 70\% ethanol, and rinsed with $\mathrm{dH_2O}$. The prepared foils were glued to the inside of the cleaned sample holder with medical grade silicon glue (twinsil speed, picodent). During the \SI{5}{min} curing process the foil was pressed against the sample holder by a custom made press fitting the shape of the sample holder. Final dilution of the stock bead solution in the gel is 1:1000.
-
-  \subsection{Drosophila embryo imaging}
-    \textit{Drosophila melanogaster} embryos (fly stock AH1) expressing fluorescent nuclear (H2A-mCherry) and centriole (ASL-YFP) markers were collected on apple juice agar plates and dechorionated in 50\% bleach solution for \SI{1}{min}. After rinsing the bleach with deionized water, the embryos were placed in the sample holder under PBS solution. A small piece of gel containing fluorescent beads were also placed next to the samples to aid in multi-view registration.
-
-  \subsection{Mouse zygote imaging}
-    Fixed mouse zygotes labeled with Alexa Fluor 488 (microtubules) and Alexa Fluor 647 (kinetochores) coupled secondary antibodies were kindly provided by Judith Reichmann. Zygotes were transferred to the sample holder, and imaged in PBS. To allow for multi-view reconstruction, a small piece of gel containing fluorescent beads was placed next to the zygote in the sample holder. After imaging the zygote from both views, the beads were also recorded using the same stack definitions. After data acquisition, the multi-view datasets were registered and deconvolved in Fiji \cite{schindelin_fiji:_2012} using the Multiview Reconstruction Plugin \cite{preibisch_software_2010,preibisch_efficient_2014}. The deconvolution was based on a simulated PSF generated in Fiji with the PSF Generator plugin \cite{kirshner_3d_2011} using the Born-Wolf PSF model \cite{born_principles_2013}. $\mathrm{NA_{ex}}=0.1$, $\mathrm{NA_{em}}=1.1$, n=1.33, $\lambda_{ex} = \SI{488}{nm}$, $\lambda_{em} = \SI{510}{nm}$.
+    
 
   
 
