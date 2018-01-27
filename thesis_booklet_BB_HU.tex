@@ -57,7 +57,7 @@ Az élő mintákról történő képalkotás elengedhetetlen az embrionális fej
 A light-sheet fluorescens mikroszkópia (LSFM), más néven egy-sík megvilágítású mikroszkópia (single plane illumination microscopy, SPIM) \cite{huisken_optical_2004} egy viszonylag új tagja azon technikák arzenáljának, melyek a fénymikroszkópián alapulnak. Nagy előnye, hogy különösen alkalmas élő minták hosszantartó vizsgálatára nagy térbeni és időbeni felbontással \cite{keller_quantitative_2008, huisken_selective_2009, weber_light_2011,tomer_shedding_2011}; továbbá könnyen adaptálható a vizsgálandó mintához, lehetővé téve számos különféle kísérletet, akár teljes szerveken \cite{dodt_ultramicroscopy:_2007}, akár egyes sejtek belső folyamatait vizsgálva \cite{chen_lattice_2014}.
 
 Ugyan a light-sheet mikroskópia valódi optikai szeletelést tesz lehetővé, az axiális felbontása is rosszabb, mint a laterális, hasonlóan más mikroszkópiákhoz.
-Izotróp 3D-s felbontás elérhető egyazon mintáról több irányból készült felvételek összeolvasztásával \cite{preibisch_efficient_2014}. Ezt leggyakrabban úgy lehet megvalósítani, hogy a mintát egy víz alapú zselébe ágyazzuk, mely szabad hozzáférést ad minden irányból, és megfelelően stabilan tartja a mintát, mely így pontosan pozícionálható. Bizonyos érzékeny mintáknál azonban ez a módszer nem használható, például egér embriók esetében, melyek számára egy specifikusan kialakított környezet szükséges a megfelelő fejlődéshez \cite{doherty_culture_2000}. Ilyen mintáknál a forgatás hiánya miatt más megoldásra van szükség a többnézetes képalkotás megvalósításához.
+Izotróp 3D-s felbontás elérhető egyazon mintáról több irányból készült felvételek összeolvasztásával \cite{preibisch_efficient_2014}. Ezt leggyakrabban úgy lehet megvalósítani, hogy a mintát egy víz alapú zselébe ágyazzuk, mely szabad hozzáférést ad minden irányból, és megfelelően stabilan tartja a mintát, mely így pontosan pozícionálható. Bizonyos érzékeny mintáknál azonban ez a módszer nem használható, például egérembriók esetében, melyek számára egy specifikusan kialakított környezet szükséges a megfelelő fejlődéshez \cite{doherty_culture_2000}. Ilyen mintáknál a forgatás hiánya miatt más megoldásra van szükség a többnézetes képalkotás megvalósításához.
 
 
 
@@ -121,7 +121,7 @@ Jelen munka az előzőekben vázolt kihívásokra nyújt lehetséges megoldások
   
     Kapcsolódó publikációk: \cite{de_medeiros_light-sheet_2016},\cite{strnad_inverted_2016}, \cite{hoyer_breaking_2016}
 
-    A Dual Mouse-SPIM egy újszerű megközelítést képvisel a light-sheet mikroszkópiában. A 120 fokban elhelyezett magas numerikus apertúrájú objektívek nemcsak a felbontás javítását eredményezi a hagyományos 90 fokos elrendezéssel szemben, hanem a nagyobb detektálási szögnek köszönhetően a fény begyűjtése kétszer hatékonyabban történik. Ez legfőképpen fényérzékeny minták, mint például egér embriók esetén lehet előnyös, mivel a fototoxikus hatások lecsökkenthetők, míg a kontraszt megmarad. Mindét objektív használható megvilágításra és detektálásra is, ami lehetővé teszi a forgatás nélküli többnézetes felvételt.
+    A Dual Mouse-SPIM egy újszerű megközelítést képvisel a light-sheet mikroszkópiában. A 120 fokban elhelyezett magas numerikus apertúrájú objektívek nemcsak a felbontás javítását eredményezi a hagyományos 90 fokos elrendezéssel szemben, hanem a nagyobb detektálási szögnek köszönhetően a fény begyűjtése kétszer hatékonyabban történik. Ez legfőképpen fényérzékeny minták, mint például egérembriók esetén lehet előnyös, mivel a fototoxikus hatások lecsökkenthetők, míg a kontraszt megmarad. Mindét objektív használható megvilágításra és detektálásra is, ami lehetővé teszi a forgatás nélküli többnézetes felvételt.
 
     A mikroszkóp részeként megterveztem egy egyedi nyalábosztó egységet, ami lehetővé teszi csupán egyetlen galvo-szkenner használatát a light-sheet generáláshoz mindkét objektív esetén. Továbbá egy olyan testreszabott detektálás-összeolvasztó egységet is megterveztem, ami lehetővé teszi egyetlen kamera használatát mindkét nézetből.
 
@@ -151,8 +151,8 @@ Jelen munka az előzőekben vázolt kihívásokra nyújt lehetséges megoldások
       \label{fig:pipeline}
     \end{figure}
     
-
-  \paragraph{Tézis III.} \textit{Kifejlesztettem egy képtömörítési algoritmust, ami lehetővé teszi a fénymikroszkópokkal nyert képek zaj-függő veszteséges tömörítését és akár százszoros tömörítési arányt is elérhet, megőrizve a későbbi adatfeldolgozó lépések eredményeit. A gyors CUDA implementáció lehetővé teszi a nagysebességű kamerák képeinek valós idejű tömörítését.}
+  \paragraph{Téziscsoport III.} \textit{Valós idejű képtömörítés.}
+  \subparagraph{Tézis III/1.} \textit{Kifejlesztettem egy képtömörítési algoritmust, ami lehetővé teszi a fénymikroszkópokkal nyert képek zaj-függő veszteséges tömörítését és akár százszoros tömörítési arányt is elérhet, megőrizve a későbbi adatfeldolgozó lépések eredményeit. A gyors CUDA implementáció lehetővé teszi a nagysebességű kamerák képeinek valós idejű tömörítését.}
 
     Kapcsolódó publikációk: \cite{balazs_real-time_2017}, \cite{balazs_gpu-based_2016}, \cite{balazs_gpu-based_2016-1}, \cite{balazs_gpu-based_2017}
     
@@ -163,7 +163,7 @@ Jelen munka az előzőekben vázolt kihívásokra nyújt lehetséges megoldások
   
 
 
-  \paragraph{Tézis IV.} \textit{Megmutattam, hogy a zajszinten belüli tömörítés nem befolyásolja szignifikánsan a leggyakrabban használt képfeldolgozási feladatok eredményeit és a tömörítési arány 3,32-szeres átlagos javulását eredményezi a veszteségmentes tömörítéshez képest.}
+  \subparagraph{Tézis III/2.} \textit{Megmutattam, hogy a zajszinten belüli tömörítés nem befolyásolja szignifikánsan a leggyakrabban használt képfeldolgozási feladatok eredményeit és a tömörítési arány 3,32-szeres átlagos javulását eredményezi a veszteségmentes tömörítéshez képest.}
   
     Kapcsolódó publikációk: \cite{balazs_real-time_2017}, \cite{balazs_gpu-based_2016}, \cite{balazs_gpu-based_2016-1}, \cite{balazs_gpu-based_2017}
     
@@ -186,7 +186,7 @@ Jelen munka az előzőekben vázolt kihívásokra nyújt lehetséges megoldások
 
 
 \section{Lehetséges alkalmazások}
-Mind a Dual Mouse-SPIM mikroszkópnak, mind a GPU-alapú képfeldolgozásnak közvetlen alkalmazási lehetőségei vannak az embrionális fejlődés vizsgalatában. Több potenciális együttműködő fejezte ki érdeklődését a Dual Mouse-SPIM használata iránt az egér embrionális fejlődésének vizsgálatáhban. A Hiiragi
+Mind a Dual Mouse-SPIM mikroszkópnak, mind a GPU-alapú képfeldolgozásnak közvetlen alkalmazási lehetőségei vannak az embrionális fejlődés vizsgalatában. Több potenciális együttműködő fejezte ki érdeklődését a Dual Mouse-SPIM használata iránt az egér embrionális fejlődésének vizsgálatában. A Hiiragi
 csoport, akik a pre- es posztimplantációs fázis szimmetriatörő eseményeire összpontosítanak, szeretnék kipróbálni ezt az elrendezést a nagyobb minták több irányból történő képalkotására, ami a jelenleg használt mikroszkópjukkal nem működik és lehetőseget adhat eddig ismeretlen mechanizmusok feltárasára. Az Ellenberg csoport a kromoszóma szegregáció mechanizmusait vizsgálja az embrionális fejlődés első néhány osztódási fázisában. A nagyobb axiális felbontás lehetőséget ad minden egyes kromoszóma követésére az osztódási folyamat során, ami eddig nem volt lehetséges az axiális felbontás hiányosságai miatt.
 
 A GPU-alapú képfeldolgozási pipeline-t, főképp a szemközti nézetek 2D fúzióját már most is használjuk laborunk nagyteljesítményű mikroszkopján, a MuVi-SPIM- en. A két szemközti objektív nézeteinek összeolvasztása a képalkotás közben nemcsak jelentős tárhely megtakarítást eredményez, de az adatelemzést is szignifikánsan felgyorsítja.

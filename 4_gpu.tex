@@ -96,9 +96,9 @@ By combining scanned light-sheet \cite{keller_reconstruction_2008} with confocal
 To perform image fusion of multiple views, first image registration is necessary: the coordinate systems of the views have to be properly overlapped. Ideally a single mirroring transformation would be enough to superpose the two camera images, however, in practice the microscope can never be aligned with such precision. Other types of transformations are also necessary: translation to account for offsets in the field of view; scaling in case of slightly different magnifications; and also shearing if the detection plane is not perfectly perpendicular to the sample movement direction \cite{krzic_multiple-view_2009}. To combine all of these effects, a full, 3D affine transformation is necessary to properly align the two camera images (\autoref{fig:acquisition} a). This transformation can be represented by a matrix multiplication with 12 different parameters:
 \[  
 \begin{pmatrix}
-x,\\
-y,\\
-z,\\
+x'\\
+y'\\
+z'\\
 1
 \end{pmatrix}
 =
@@ -406,7 +406,7 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
     
     \begin{figure}[tpb]
       \centering
-      \includegraphics[page=1,width=0.6\textwidth]{tiles}
+      \includegraphics[page=1,width=0.75\textwidth]{tiles}
       \bcaption[\b3d algorithm schematics]{
       
       % (\textbf{b}) Lossless JPEG predictors for X, based on the context showed in (\textbf{a}). The first three predictors are one-dimensional, while the rest are two-dimensional. Using a two dimensional predictor while increases complexity slightly, also increases the achievable compression ratio. We found that for fluorescence microscopy images predictor 7 performs best, hence its inclusion in the \b3d algorithm.
@@ -436,7 +436,7 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
   
     \begin{figure}[bhtp]
       \centering
-      \includegraphics[page=1,width=0.6\textwidth]{swapping}
+      \includegraphics[page=1,width=0.75\textwidth]{swapping}
       \bcaption[Options for noise-dependent lossy compression]{Comparing Mode 1 (prediction then quantization) and Mode 2 (quantization then prediction) of noise-dependent lossy compression in terms of compression ratio, peak signal-to-noise ratio (PSNR) and spatial correlations introduced to random noise. (\textbf{a}) Compression ratio as a function of the quantization step for Mode 1 and Mode 2. (\textbf{b}) PSNR as a function of the quantization step for Mode 1 and Mode 2. (\textbf{c, d}) Random noise was compressed at various quantization steps both for Mode 1 and Mode 2. Autocorrelation was calculated for the compressed images to see whether the compression introduces any spatial correlation between the pixels. For q=1$\upsigma$ both modes are free of correlation (\textbf{c}, top: compressed images, bottom: autocorrelation), however, for q=4$\upsigma$ Mode 1 exhibits a correlation pattern (\textbf{d}, top left: compressed image, bottom left: autocorrelation) that is not present in Mode 2 (\textbf{d}, top right compressed image, bottom right: autocorrelation). For more discussion, see \autoref{sec:wnl}.}
       \label{fig:swapping}
     \end{figure}

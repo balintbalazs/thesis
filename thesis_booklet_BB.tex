@@ -137,7 +137,7 @@ This work tackles the previously outlined challenges in light-sheet microscopy: 
 
     I have developed a GPU-based image preprocessing pipeline, which integrates directly to our universal microscope control software in LabVIEW. The pipeline currently supports background subtraction and background masking, furthermore it is capable of fusing opposing views of the same plane faster than real-time. I have shown that it is possible to reduce the registration of opposing camera views from a 3D alignment to a 2D alignment without any negative effects in image quality and resolution. This massively reduces the necessary computing resources, and allows the use of CUDA textures for faster than real-time image fusion. Processing speed of this implementation is \SI{138}{fps}, a 18.3\texttimes\ increase compared to a single threaded CPU implementation.
 
-
+\clearpage
     \begin{figure}
       \centering
       \includegraphics[width=\textwidth]{4_gpu/pipeline}
@@ -146,7 +146,8 @@ This work tackles the previously outlined challenges in light-sheet microscopy: 
     \end{figure}
     
 
-  \paragraph{Thesis III.} \textit{I have  developed a new image compression algorithm that enables noise dependent lossy compression of light microscopy images, and can reach a compression ratio of 100 fold while preserving the results of downstream data analysis steps. A fast CUDA implementation allows for real-time image compression of high-speed microscopy images.}
+  \paragraph{Thesis Group III.} \textit{Real-time image compression.}
+  \subparagraph{Thesis III/1.} \textit{I have  developed a new image compression algorithm that enables noise dependent lossy compression of light microscopy images, and can reach a compression ratio of 100 fold while preserving the results of downstream data analysis steps. A fast CUDA implementation allows for real-time image compression of high-speed microscopy images.}
 
     Corresponding publications: \cite{balazs_real-time_2017}, \cite{balazs_gpu-based_2016}, \cite{balazs_gpu-based_2016-1}, \cite{balazs_gpu-based_2017}
     
@@ -156,7 +157,7 @@ This work tackles the previously outlined challenges in light-sheet microscopy: 
     I developed a GPU-based parallel image compression algorithm called \b3d, capable of over \SI{1}{GB/s} throughput, allowing live image compression. To further reduce the data size, I developed a noise dependent lossy compression that only modifies the data in a deterministic manner. The allowed differences for each pixel can be specified as a proportion of the inherent image noise, accounting for photon shot noise and camera readout noise. Due to the use of pixel prediction, the subjective image quality is higher than for other methods that simply quantize the square root of the images.
 
 
-  \paragraph{Thesis IV.} \textit{I have shown that within noise level compression does not significantly affect the results of most commonly used image processing tasks, and it allows a 3.32\texttimes\ average increase in compression ratio compared to lossless mode.}
+  \subparagraph{Thesis III/2.} \textit{I have shown that within noise level compression does not significantly affect the results of most commonly used image processing tasks, and it allows a 3.32\texttimes\ average increase in compression ratio compared to lossless mode.}
   
     Corresponding publications: \cite{balazs_real-time_2017}, \cite{balazs_gpu-based_2016}, \cite{balazs_gpu-based_2016-1}, \cite{balazs_gpu-based_2017}
     
