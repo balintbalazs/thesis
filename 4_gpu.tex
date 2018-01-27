@@ -469,6 +469,38 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
 
   \subsection{Evaluation of the compression algorithm}
     \label{sec:evalB3D}
+
+    \subsubsection{Methods}
+  \label{sec:methodsB3D}
+\paragraph{Compression benchmarking}
+For all presented benchmarks, TIFF and JPEG2000 performance was measured through MATLAB's imwrite and imread functions, while KLB and \b3d performance was measured in C++. All benchmarks were run on a computer featuring 32 processing cores (2×Intel Xeon E5-2620 v4), \SI{128}{GB} RAM and an NVIDIA GeForce GTX 970 graphics processing unit. Read and write measurements were performed in RAM to minimize I/O overhead, and are an average of 5 runs. SMLM datasets were provided by Joran Deschamps (EMBL, Heidelberg), and were originally published in \cite{deschamps_3d_2014} and \cite{deschamps_efficient_2016}. Screening datasets were provided by Jean-Karim Hériché (EMBL, Heidelberg), and were originally published in \cite{simpson_genome-wide_2012}
+
+\paragraph{Light-sheet imaging}
+\textit{Drosophila} embryos were imaged in the MuVi-SPIM setup \cite{krzic_multiview_2012} using the electronic confocal slit detection (eCSD) \cite{de_medeiros_confocal_2015}. Embryos were collected on an agar juice plate, and dechorionated in 50\% bleach solution for \SI{1}{min}. The embryos were then mounted in a shortened glass capillary (Brand \SI{100}{\micro l}) filled with 0.8\% GelRite (Sigma-Aldrich), and pushed out of the capillary to be supported only by the gel.
+
+\paragraph{3D nucleus segmentation}
+3D nucleus segmentation of \textit{Drosophila} embryos was performed using Ilastik \cite{sommer_ilastik:_2011}. The original dataset was compressed at different quantization levels, then upscaled in z to obtain isotropic resolution. To identify the nuclei, we used the pixel classification workflow, and trained it on the uncompressed dataset. This training was then used to segment the compressed datasets as well. Segmentation overlap was calculated in Matlab using the Sørensen–Dice index \cite{sorensen_method_1948,dice_measures_1945}:
+\begin{equation}
+  QS = 2 \left| A \cap B \right| / \left( |A| + |B| \right)
+\end{equation}
+where the sets $A$ and $B$ represent the pixels included in two different segmentations.
+
+\paragraph{3D membrane segmentation}
+Raw MuVi-SPIM recordings of \textit{Phallusia mammillata} embryos expressing PH-citrine membrane marker were kindly provided by Ulla-Maj Fiuza (EMBL, Heidelberg). Each recording consisted of 4 views at 90 degree rotations. The views were fused using an image based registration algorithm followed by a sigmoidal blending of the 4 views.
+% The fusion software was developed by Leo Guignard (Janelia Research Campus, Ashburn, Virginia).
+The fused stack was then segmented using the MARS algorithm \cite{fernandez_imaging_2010} with an hmin parameter of 10. The raw data (all 4 views) was compressed at different levels, and segmented using the same pipeline. Segmentation results were then processed in Matlab to calculate the overlap score for the membranes using the Sørensen–Dice index.
+
+\paragraph{Single-molecule localization imaging}
+In order to visualize microtubules, U2OS cells were treated as in \cite{deschamps_3d_2014} and imaged in a dSTORM buffer \cite{heilemann_subdiffraction-resolution_2008}. In brief, the cells were permeabilized and fixed with glutaraldehyde, washed, then incubated with primary tubulin antibodies and finally stained with Alexa Fluor 647 coupled secondary antibodies. The images were recorded on a home-built microscope previously described \cite{deschamps_3d_2014}, in its 2D single-channel mode.
+
+\paragraph{Single-molecule localization data analysis}
+Analysis of single-molecule localization data was performed on a custom-written MATLAB software as in \cite{deschamps_efficient_2016}. Pixel values were converted to photon counts according to measured offset and calibrated gain of the camera (EMCCD iXon, Andor). The background was estimated with a wavelet filter \cite{izeddin_wavelet_2012}, background-subtracted images were thresholded and local maxima were detected on the same images. 7-pixel ROIs around the detected local maxima were extracted from the raw images and fitted with a GPU based MLE fitter \cite{smith_fast_2010}. Drift correction was performed based on cross-correlation. Finally, images were
+reconstructed by filtering out localizations with a high uncertainty (>\SI{30}{nm}) and large PSF (>\SI{150}{nm}) and Gaussian rendering.
+
+\paragraph{Simulation of single-molecule localization data}
+Single molecule localization datasets were simulated in Matlab by generating a grid of pixelated Gaussian spots with standard deviation of 1 pixel. With a pixel size of a 100 nm, this corresponds to a FWHM of 235.48 nm. The center of each spot was slightly offset from the pixel grid at 0.1 pixel increments in both x and y directions. To this ground truth image a constant value was added to simulate illumination background, and finally Poisson noise was applied to the image. This process was repeated 10,000 times to obtain enough images for adequate accuracy.
+
+\subsubsection{Results}
   We compared our algorithm’s performance with some of the most commonly used image formats in the scientific field: TIFF (LZW) and JPEG2000. Furthermore, we also included the state of the art KLB compression \cite{amat_efficient_2015}, which was especially designed for fast compression of large light-sheet datasets. We measured compression speed, decompression speed and resulting file size for all algorithms (\autoref{fig:bubbles}a). Only \b3d is capable of handling the sustained high data rate of modern sCMOS cameras typically used in light-sheet microscopy, while still maintaining compression ratios comparable to more complex, but much slower algorithms (\autoref{tab:performance} in Appendix \ref{app:tables}).
 
   % "TODO" We define the mode where the quantization step is equal to the noise (q=1σ) as within-noise-level (WNL) compression.
@@ -562,6 +594,9 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
   
   Writing compressed HDF5 files is possible if the user has direct control over the file writing routine, as an additional command is required to set up compression. This functionality has been tested in the following environments: C++, Python 2.7.10 and 3.5.3, LabVIEW 2015.
 
+  \subsubsection{Code availability}
+Code used for analyzing data, \b3d source code and compiled binaries, including a filter plugin for HDF5, are available for download at \url{https://git.embl.de/balazs/B3D}.
+
 
   %#     ## ######## ######## ##     ## 
   %##   ### ##          ##    ##     ## 
@@ -571,38 +606,9 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
   %#     ## ##          ##    ##     ## 
   %#     ## ########    ##    ##     ## 
 
-\subsection{Methods}
-  \label{sec:methodsB3D}
-\subsubsection{Compression benchmarking}
-For all presented benchmarks, TIFF and JPEG2000 performance was measured through MATLAB's imwrite and imread functions, while KLB and \b3d performance was measured in C++. All benchmarks were run on a computer featuring 32 processing cores (2×Intel Xeon E5-2620 v4), \SI{128}{GB} RAM and an NVIDIA GeForce GTX 970 graphics processing unit. Read and write measurements were performed in RAM to minimize I/O overhead, and are an average of 5 runs. SMLM datasets were provided by Joran Deschamps (EMBL, Heidelberg), and were originally published in \cite{deschamps_3d_2014} and \cite{deschamps_efficient_2016}. Screening datasets were provided by Jean-Karim Hériché (EMBL, Heidelberg), and were originally published in \cite{simpson_genome-wide_2012}
 
-\subsubsection{Light-sheet imaging}
-\textit{Drosophila} embryos were imaged in the MuVi-SPIM setup \cite{krzic_multiview_2012} using the electronic confocal slit detection (eCSD) \cite{de_medeiros_confocal_2015}. Embryos were collected on an agar juice plate, and dechorionated in 50\% bleach solution for \SI{1}{min}. The embryos were then mounted in a shortened glass capillary (Brand \SI{100}{\micro l}) filled with 0.8\% GelRite (Sigma-Aldrich), and pushed out of the capillary to be supported only by the gel.
 
-\subsubsection{3D nucleus segmentation}
-3D nucleus segmentation of \textit{Drosophila} embryos was performed using Ilastik \cite{sommer_ilastik:_2011}. The original dataset was compressed at different quantization levels, then upscaled in z to obtain isotropic resolution. To identify the nuclei, we used the pixel classification workflow, and trained it on the uncompressed dataset. This training was then used to segment the compressed datasets as well. Segmentation overlap was calculated in Matlab using the Sørensen–Dice index \cite{sorensen_method_1948,dice_measures_1945}:
-\begin{equation}
-  QS = 2 \left| A \cap B \right| / \left( |A| + |B| \right)
-\end{equation}
-where the sets $A$ and $B$ represent the pixels included in two different segmentations.
 
-\subsubsection{3D membrane segmentation}
-Raw MuVi-SPIM recordings of \textit{Phallusia mammillata} embryos expressing PH-citrine membrane marker were kindly provided by Ulla-Maj Fiuza (EMBL, Heidelberg). Each recording consisted of 4 views at 90 degree rotations. The views were fused using an image based registration algorithm followed by a sigmoidal blending of the 4 views.
-% The fusion software was developed by Leo Guignard (Janelia Research Campus, Ashburn, Virginia).
-The fused stack was then segmented using the MARS algorithm \cite{fernandez_imaging_2010} with an hmin parameter of 10. The raw data (all 4 views) was compressed at different levels, and segmented using the same pipeline. Segmentation results were then processed in Matlab to calculate the overlap score for the membranes using the Sørensen–Dice index.
-
-\subsubsection{Single-molecule localization imaging}
-In order to visualize microtubules, U2OS cells were treated as in \cite{deschamps_3d_2014} and imaged in a dSTORM buffer \cite{heilemann_subdiffraction-resolution_2008}. In brief, the cells were permeabilized and fixed with glutaraldehyde, washed, then incubated with primary tubulin antibodies and finally stained with Alexa Fluor 647 coupled secondary antibodies. The images were recorded on a home-built microscope previously described \cite{deschamps_3d_2014}, in its 2D single-channel mode.
-
-\subsubsection{Single-molecule localization data analysis}
-Analysis of single-molecule localization data was performed on a custom-written MATLAB software as in \cite{deschamps_efficient_2016}. Pixel values were converted to photon counts according to measured offset and calibrated gain of the camera (EMCCD iXon, Andor). The background was estimated with a wavelet filter \cite{izeddin_wavelet_2012}, background-subtracted images were thresholded and local maxima were detected on the same images. 7-pixel ROIs around the detected local maxima were extracted from the raw images and fitted with a GPU based MLE fitter \cite{smith_fast_2010}. Drift correction was performed based on cross-correlation. Finally, images were
-reconstructed by filtering out localizations with a high uncertainty (>\SI{30}{nm}) and large PSF (>\SI{150}{nm}) and Gaussian rendering.
-
-\subsubsection{Simulation of single-molecule localization data}
-Single molecule localization datasets were simulated in Matlab by generating a grid of pixelated Gaussian spots with standard deviation of 1 pixel. With a pixel size of a 100 nm, this corresponds to a FWHM of 235.48 nm. The center of each spot was slightly offset from the pixel grid at 0.1 pixel increments in both x and y directions. To this ground truth image a constant value was added to simulate illumination background, and finally Poisson noise was applied to the image. This process was repeated 10,000 times to obtain enough images for adequate accuracy.
-
-\subsubsection{Code availability}
-Code used for analyzing data, \b3d source code and compiled binaries, including a filter plugin for HDF5, are available for download at \url{https://git.embl.de/balazs/B3D}.
 
 
 
