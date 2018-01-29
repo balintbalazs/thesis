@@ -142,16 +142,16 @@ A fluorescent molecule is capable of absorbing photons in a given wavelength ran
     \end{equation}
     where $r = \sqrt{x^2 + y^2}$ is the distance from the optical axis, and $\alpha$ is the light collection angle as shown on \autoref{fig:wide-field}. In this system the intensity of the electric field in the focus of a lens is \cite{sheppard_imaging_1987}:
     \begin{equation}
-      H(u,v) = C_0 \left| \int_0^1 J_0 (vr)e^{-i\frac{1}{2}\cdot ur^2} rdr \right|^2,
-      \label{eq:psf}
+      H(u,v) = C_0 \left| \int_0^1 J_0 (v\rho)e^{-i\frac{1}{2}\cdot u\rho^2} \rho d \rho \right|^2,
+      \label{eq:psf-born-wolf}
     \end{equation}
-    where $C_0$ is a normalization constant, and $J_0$ is the zeroth-order Bessel function of the first kind.
+    where $C_0$ is a normalization constant,  $\rho = r / \max(r)$ is the normalized distance from the optical axis, and $J_0$ is the zeroth-order Bessel function of the first kind. This is also called the Born-Wolf PSF model, named after the original authors \cite{born_principles_2013}.
     
     
 
-    To determine the lateral resolution of the system, let's substitute $u=0$ as the axial optical coordinate, and evaluate \autoref{eq:psf} which will give the intensity distribution in the focal plane:
+    To determine the lateral resolution of the system, let's substitute $u=0$ as the axial optical coordinate, and evaluate \autoref{eq:psf-born-wolf} which will give the intensity distribution in the focal plane:
     \begin{equation}
-      H(0,v) = C_0 \left| \int_0^1 J_0(vr)rdr \right|^2 = \left(2\frac{J_1(v)}{v} \right) ^2,
+      H(0,v) = C_0 \left| \int_0^1 J_0(v\rho)\rho d \rho \right|^2 = \left(2\frac{J_1(v)}{v} \right) ^2,
       \label{eq:airy}
     \end{equation}
     \begin{figure}
@@ -173,7 +173,7 @@ A fluorescent molecule is capable of absorbing photons in a given wavelength ran
     \end{equation}
     which is equivalent to Abbe's original formula (\autoref{eq:abbe}). The only difference is the scaling factor which is due to the slightly different interpretations of the width of the Airy disk as mentioned earlier.
 
-    Similarly, to calculate the intensity distribution along the axial direction, let's substitute $v=0$ to \autoref{eq:psf}:
+    Similarly, to calculate the intensity distribution along the axial direction, let's substitute $v=0$ to \autoref{eq:psf-born-wolf}:
     \begin{equation}
       H(u,0)=C_0\left( \frac{\sin \frac{u}{4}}{\frac{u}{4}}\right) ^2 . 
     \end{equation} 
@@ -196,6 +196,39 @@ A fluorescent molecule is capable of absorbing photons in a given wavelength ran
       \label{eq:systemPSF}
     \end{equation}
     where $H_{ill}$ is the point spread function of the illumination, and $H_{det}$ is the point spread function of the detection.
+
+
+  \subsection{Simulating the point spread function}
+  \label{sec:simu}
+    To estimate the performance of a microscope, it is useful to simulate its point spread function. Usually this entails the numerical evaluation of the diffraction integral near the focal point. The most commonly used model for the PSF is the Born-Wolf model, which we already introduced in \autoref{eq:psf-born-wolf}. The only parameters for this model are the wavelength of the light ($\lambda$), the numerical aperture ($\NA$), and the refractive index of the immersion medium ($n$). This model, however only accounts for an ideal image forming system without any aberrations.
+    
+    For some experiments it is necessary to use the objectives in a slightly different environment than the original design conditions. Changes in the medium refractive index or coverslip thickness can lead to spherical aberrations, which are not accounted for in the Born-Wolf PSF model. The Gibson-Lanni model \cite{gibson_experimental_1992} gives a more general approach and it accounts for any differences between the experimental conditions and the design parameters of the objective, thus, it can simulate any possible aberrations that may arise. The additional adjustable parameters are the thicknesses ($t$) and refractive indices ($n$) of the immersion medium ($i$), coverslip ($g$), and sample ($s$) (\autoref{fig:gibson-lanni}).
+
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.75\textwidth]{gibson-lanni}
+      \bcaption[Optical path length differences in the Gibson-Lanni PSF model]{The optical path length difference is given by $OPD=[ABCD]-[PQRS]$, where $[ABCD]$ is the optical length of the experimental path (red), and $[PQRS]$ is the optical length of the design path (blue). Adapted from \cite{li_fast_2017}.}
+      \label{fig:gibson-lanni}
+    \end{figure}
+    
+    Based of the parameters of the system, $\mathbf{p}=(\na, \mathrm{n}, \mathrm{t})$, where $\mathrm{n} = (n_i, n_i^*, n_g, n_g^*, n_s)$ represents the refractive indices, and $\mathrm{t} = (t_i, t_i^*, t_g, t_g^*, t_s)$ represents the medium thicknesses, the optical path difference can be calculated as:
+    \begin{equation}
+      \begin{split}
+        OPD(\rho, z; z_p, \mathbf{p}) = (z+t_i^*) \sqrt{n_i^2-(\na \rho)^2} + z_p \sqrt{n_s^2 - (\na \rho)^2} - \\
+        - t_i^* \sqrt{(n_i^*)^2 - (\na \rho)^2} + t_g \sqrt{n_g^2 - (\na \rho)^2} - t_g^* \sqrt{(n_g^*)^2 - (\na \rho)^2},
+      \end{split}      
+      \label{eq:OPD}
+    \end{equation}
+    where $\rho = r / \max(r)$ is the normalized distance from the optical axis. Then, the intensity near the focus can be expressed as:
+    \begin{equation}
+      H(u,v) = C \left| \int_0^1 J_0 (v \rho )e^{iW(\rho, z; z_p, \mathbf{p})} \rho d \rho \right|^2,
+      \label{eq:psf-gibson-lanni}
+    \end{equation}
+    where the phase term $W(\rho, z; z_p, \mathbf{p}) = \frac{2\pi}{\lambda} ODP(\rho, z; z_p, \mathbf{p})$ and $C$ is a constant complex amplitude.
+
+    Multiple software packages offer numerical evaluations of \autoref{eq:psf-born-wolf} and \autoref{eq:psf-gibson-lanni}. The ones extensively used in this thesis are the PSF Generator plugin \cite{kirshner_3d_2011} for Fiji \cite{schindelin_fiji:_2012}, and MicroscPSF \cite{li_fast_2017}, which is implemented in Matlab. The PSF Generator supports the both PSF models, while MicroscPSF supports the Gibson-Lanni model. The latter implementation has the advantage that it is much faster due to the Bessel series approximation of the integral term, however, it only calculates the axial cross-section of the PSF. In contrast, PSF generator evaluates the integral for any specified 3D volume around the focal point.
+    
+
 
 
 
