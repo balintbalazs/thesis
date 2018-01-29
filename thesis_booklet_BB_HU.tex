@@ -123,10 +123,11 @@ Jelen munka az előzőekben vázolt kihívásokra nyújt lehetséges megoldások
 
     A Dual Mouse-SPIM egy újszerű megközelítést képvisel a light-sheet mikroszkópiában. A 120 fokban elhelyezett magas numerikus apertúrájú objektívek nemcsak a felbontás javítását eredményezi a hagyományos 90 fokos elrendezéssel szemben, hanem a nagyobb detektálási szögnek köszönhetően a fény begyűjtése kétszer hatékonyabban történik. Ez legfőképpen fényérzékeny minták, mint például egérembriók esetén lehet előnyös, mivel a fototoxikus hatások lecsökkenthetők, míg a kontraszt megmarad. Mindét objektív használható megvilágításra és detektálásra is, ami lehetővé teszi a forgatás nélküli többnézetes felvételt.
 
-    A mikroszkóp részeként megterveztem egy egyedi nyalábosztó egységet, ami lehetővé teszi csupán egyetlen galvo-szkenner használatát a light-sheet generáláshoz mindkét objektív esetén. Továbbá egy olyan testreszabott detektálás-összeolvasztó egységet is megterveztem, ami lehetővé teszi egyetlen kamera használatát mindkét nézetből.
+    Megterveztem az optikai utat, az elrendezést és az egyedi mechanikai komponenseket, továbbá megépítetttem a mikroszkópot.
+    A mikroszkóp részeként megterveztem egy egyedi nyalábosztó egységet, ami lehetővé teszi csupán egyetlen galvanometrikus szkenner használatát a light-sheet generáláshoz mindkét objektív esetén. Továbbá egy olyan testreszabott detektálás-összeolvasztó egységet is megterveztem, ami lehetővé teszi egyetlen kamera használatát mindkét nézetből.
 
     Karakterizáltam a mikroszkóp optikai tulajdonságait, meghatározva a megvilágítási profilt és a pontátviteli függvényt (PSF).
-    A \SI{95}{\micro m}-es látómező egy \SI{3,6}{\micro m} vastagságú light-sheettel van egyenletesen megvilágítva. A mintaként használt gömböcskék két irányból történő képalkotása \SI{314}{nm} laterális és \SI{496}{nm} axiális felbontást eredményezett. Ez egy 2,67-szeres javulás egyetlen lencse axiális felbontásához képest. Ezen kívül demonstráltam a  mikroszkóp képességét Drosophila embriókról és az egér zigótákról készült felvételekkel. 
+    A \SI{95}{\micro m}-es látómező egy \SI{3,6}{\micro m} vastagságú light-sheettel van egyenletesen megvilágítva. A mintaként használt gömböcskék két irányból történő képalkotása \SI{314}{nm} laterális és \SI{496}{nm} axiális felbontást eredményezett. Ez egy 2,67-szeres javulás egyetlen detektáló objektívlencse axiális felbontásához képest. Ezen kívül demonstráltam a  mikroszkóp képességét \textit{Drosophila melanogaster} embriókról és az egér zigótákról készült felvételekkel. 
     
 
     \begin{figure}
@@ -186,8 +187,7 @@ Jelen munka az előzőekben vázolt kihívásokra nyújt lehetséges megoldások
 
 
 \section{Lehetséges alkalmazások}
-Mind a Dual Mouse-SPIM mikroszkópnak, mind a GPU-alapú képfeldolgozásnak közvetlen alkalmazási lehetőségei vannak az embrionális fejlődés vizsgalatában. Több potenciális együttműködő fejezte ki érdeklődését a Dual Mouse-SPIM használata iránt az egér embrionális fejlődésének vizsgálatában. A Hiiragi
-csoport, akik a pre- es posztimplantációs fázis szimmetriatörő eseményeire összpontosítanak, szeretnék kipróbálni ezt az elrendezést a nagyobb minták több irányból történő képalkotására, ami a jelenleg használt mikroszkópjukkal nem működik és lehetőseget adhat eddig ismeretlen mechanizmusok feltárasára. Az Ellenberg csoport a kromoszóma szegregáció mechanizmusait vizsgálja az embrionális fejlődés első néhány osztódási fázisában. A nagyobb axiális felbontás lehetőséget ad minden egyes kromoszóma követésére az osztódási folyamat során, ami eddig nem volt lehetséges az axiális felbontás hiányosságai miatt.
+Mind a Dual Mouse-SPIM mikroszkópnak, mind a GPU-alapú képfeldolgozásnak közvetlen alkalmazási lehetőségei vannak az embrionális fejlődés vizsgálatában. Több potenciális együttműködő fejezte ki érdeklődését a Dual Mouse-SPIM használata iránt az egér embrionális fejlődésének vizsgálatában. A pre- es posztimplantációs fázis szimmetriatörő eseményeire összpontosíó kutatásokban ez az elrendezés lehetőséget ad nagyobb minták több irányból történő képalkotására, ami a jelenleg használt mikroszkópokkal nem valósítható meg, így lehetőseget adva eddig ismeretlen mechanizmusok feltárasára. Egy másik lehetséges alkalmazás a kromoszóma szegregáció mechanizmusainak vizsgálata az embrionális fejlődés első néhány osztódási fázisában. A nagyobb axiális felbontás lehetőséget ad minden egyes kromoszóma követésére az osztódási folyamat során, ami eddig nem volt lehetséges az axiális felbontás hiányosságai miatt.
 
 A GPU-alapú képfeldolgozási pipeline-t, főképp a szemközti nézetek 2D fúzióját már most is használjuk laborunk nagyteljesítményű mikroszkopján, a MuVi-SPIM- en. A két szemközti objektív nézeteinek összeolvasztása a képalkotás közben nemcsak jelentős tárhely megtakarítást eredményez, de az adatelemzést is szignifikánsan felgyorsítja.
 
@@ -214,7 +214,7 @@ adatbeolvasás is gyorsabb lesz, amiből a böngészési és 3D adatmegjelenít�
 \markboth{\MakeUppercase{References}}{}
 
 \newrefcontext
-\printbibliography[notcategory=journal,notcategory=conference,notcategory=others, resetnumbers=true, title={Refernciák}, heading=secbib]
+\printbibliography[notcategory=journal,notcategory=conference,notcategory=others, resetnumbers=true, title={Referenciák}, heading=secbib]
 \markboth{\MakeUppercase{References}}{}
 
 
