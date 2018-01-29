@@ -85,7 +85,7 @@ A fluorescent molecule is capable of absorbing photons in a given wavelength ran
 
     Apart from the magnification, the most important property of the objective is the half-angle of the light acceptance cone, $\alpha$ (\autoref{fig:wide-field}, inset). This not only determines the amount of collected light, but also the achievable resolution of the system (see \autoref{sec:resolution}). This angle depends on the size of the lens relative to its focal length. In other words it depends on the aperture of the lens, which is why the expression \textit{numerical aperture} (NA) is more commonly used to express this property of the objective:
     \begin{equation}
-      \NA = n\cdot \sin \alpha.
+      \NA = n\cdot \sin \alpha,
       \label{eq:NA}
     \end{equation}
     where $n$ is the refractive index of the medium, and describes the light propagation speed in the medium relative to the speed of light in vacuum. For vacuum and air $n=1$, for water $n_\mathrm{H_2O}=1.33$, and for the commonly used optical glass BK7 $n_\mathrm{BK7} = 1.52$.
@@ -157,7 +157,7 @@ A fluorescent molecule is capable of absorbing photons in a given wavelength ran
     \begin{figure}
       \centering
       \includegraphics[width=0.7\textwidth]{airy}
-      \bcaption[Airy pattern]{Airy pattern calculated in Matlab based on \autoref{eq:airy}}
+      \bcaption[Airy pattern]{Airy pattern calculated in Matlab based on \autoref{eq:airy}.}
       \label{fig:airy}
     \end{figure}
 
@@ -173,7 +173,7 @@ A fluorescent molecule is capable of absorbing photons in a given wavelength ran
     \end{equation}
     which is equivalent to Abbe's original formula (\autoref{eq:abbe}). The only difference is the scaling factor which is due to the slightly different interpretations of the width of the Airy disk as mentioned earlier.
 
-    Similarly, to calculate the intensity distribution along the axial direction, let's substitute $v=0$ to \autoref{eq:psf-born-wolf}:
+    Similarly, to calculate the intensity distribution along the axial direction, let's substitute $v=0$ into \autoref{eq:psf-born-wolf}:
     \begin{equation}
       H(u,0)=C_0\left( \frac{\sin \frac{u}{4}}{\frac{u}{4}}\right) ^2 . 
     \end{equation} 
@@ -433,14 +433,14 @@ A fluorescent molecule is capable of absorbing photons in a given wavelength ran
 
     For paraxial waves, \textit{i.e.}, waves with nearly parallel wavefront normals, the general wave equation can be approximated with the paraxial Helmholtz equation \cite{saleh_fundamentals_2007}
     \begin{equation}
-      \nabla_T^2 U + i 2k \frac{\partial U}{\partial z} = 0
+      \nabla_T^2 U + i 2k \frac{\partial U}{\partial z} = 0,
       \label{eq:helmholtz}
     \end{equation}
     where $\nabla_T^2 = \frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2}$, $U(\vec{r})$ is the wave function, $k=\frac{2\pi}{\lambda}$ is the wavenumber and $z$ is in the direction of the light propagation.
     
     A simple solution to this differential equation is the Gaussian beam:
     \begin{equation}
-      U(r,z) = A_0 \cdot \frac{W_0}{W(z)} \cdot e^{-\frac{r^2}{W^2(z)}}\cdot e^{-i\cdot \phi(r,z)}
+      U(r,z) = A_0 \cdot \frac{W_0}{W(z)} \cdot e^{-\frac{r^2}{W^2(z)}}\cdot e^{-i\cdot \phi(r,z)},
     \label{eq:gaussian}
     \end{equation}
     where $A_0$ is the amplitude of the wave, $W_0$ is the radius of the beam waist (the thinnest location on the beam), $r=\sqrt{x^2+y^2}$ is the distance from the center of the beam, $W(z)$ is the radius of the beam  at distance $z$ from the waist, and $\phi(r,z)$ is the combined phase part of the wave-function. Furthermore:
@@ -463,7 +463,7 @@ A fluorescent molecule is capable of absorbing photons in a given wavelength ran
 
     Apart from the circular Gaussian beam, the elliptical Gaussian beam is also an eigenfunction of Helmholtz equation (\autoref{eq:helmholtz}) which describes the beam shape after a cylindrical lens:
     \begin{equation}
-      U(x,y,z) = A_0 \cdot \sqrt{\frac{W_{0,x}}{W_x(z-z_{0,x})}} \sqrt{\frac{W_{0,y}}{W_y(z-z_{0,y})}} \cdot e^{-\frac{x^2}{W_x^2(z-z_{0,x})}} \cdot e^{-\frac{y^2}{W_y^2(z-z_{0,y})}} \cdot e^{-i\cdot \phi(x,y,z)}
+      U(x,y,z) = A_0 \cdot \sqrt{\frac{W_{0,x}}{W_x(z-z_{0,x})}} \sqrt{\frac{W_{0,y}}{W_y(z-z_{0,y})}} \cdot e^{-\frac{x^2}{W_x^2(z-z_{0,x})}} \cdot e^{-\frac{y^2}{W_y^2(z-z_{0,y})}} \cdot e^{-i\cdot \phi(x,y,z)}.
     \end{equation}
     This beam still has a Gaussian profile along the $x$ and $y$ axes, but the radii ($W_{0,x}$ and $W_{0,y}$), and the beam waist positions ($z_{0,x}$ and $z_{0,y}$) are uncoupled, which results in an elliptical and astigmatic beam. The beam width can now be described by two independent equations for the two orthogonal directions:
     \begin{align}
@@ -471,7 +471,7 @@ A fluorescent molecule is capable of absorbing photons in a given wavelength ran
     \end{align}
     Since the beam waist is different along the two axes, the Rayleigh range is also different:
     \begin{align}
-      z_{\mathrm{R},x} = \frac{\pi W_{x,0}^2}{\lambda}, \quad
+      z_{\mathrm{R},x} = \frac{\pi W_{x,0}^2}{\lambda}, \quad \mathrm{and} \quad
       z_{\mathrm{R},y} = \frac{\pi W_{y,0}^2}{\lambda}.
       \label{eq:rayleighXY}
     \end{align}
