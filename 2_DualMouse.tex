@@ -40,7 +40,7 @@ As we have seen in \autoref{ch:intro}, live imaging of mouse embryonic developme
 
 As all microscopes, the Mouse-SPIM also had to make a compromise: although its design allows for long-term live imaging, it only has a single detection view, as rotation is not possible with the sample mounting trays. Due to this configuration, its resolution is inherently anisotropic, having an axial-to-lateral resolution ratio of around 3. Although this is sufficient for many applications, such as cell tracking, for detecting subcellular features it might be limiting. One such example is chromosome tracking, which could shed light on chromosome missegregation mechanisms in the early embryonic development, which is the cause of many congenital diseases also affecting humans.
 
-In this chapter, we present a novel light-sheet microscope developed to address the above challenges by using high NA objectives for subcellular isotropic resolution and low-light imaging, while offering multi-view detection without the need to rotate the samples. The microscope is designed to be live imaging compatible, offering new perspectives in the research of mouse embryonic development. This chapter will describe the design concepts for the microscope, the optical layout, alignment strategies, the results of various performance measurements, and its multi-view imaging capabilities. 
+In this chapter, we present a novel light-sheet microscope developed to address the above challenges by using two high NA objectives for subcellular isotropic resolution and low-light imaging, while offering multi-view detection without the need to rotate the samples. The microscope is designed to be live imaging compatible, offering new perspectives in the research of mouse embryonic development. This chapter will describe the design concepts for the microscope, the optical layout, alignment strategies, the results of various performance measurements, and its multi-view imaging capabilities. 
 
   %#######  ########  ######  ####  ######   ##    ## 
   %#     ## ##       ##    ##  ##  ##    ##  ###   ## 
@@ -63,7 +63,7 @@ In this chapter, we present a novel light-sheet microscope developed to address 
       \centering
       \includegraphics[page=2,width=0.8\textwidth]{objectiveCloseup}
     \end{subfigure}
-    \bcaption[Dual view concept with high NA objectives]{To achieve multi-view detection while maximizing resolution and light collection efficiency, two high NA objectives are placed in \SI{120}{\degree} arrangement. The sample (orange) is held from below by a thin FEP foil. To be able to overlap the light-sheet with the focal plane, the light-sheet is tilted by \SI{30}{\degree}. The objectives are used in an alternating sequence for illumination and detection.}
+    \bcaption[Dual view concept with high NA objectives]{To achieve multi-view detection while maximizing resolution and light collection efficiency, two high NA objectives are placed in a \SI{120}{\degree} arrangement. The sample (orange) is held from below by a thin FEP foil. To be able to overlap the light-sheet with the focal plane, the light-sheet is tilted by \SI{30}{\degree}. The objectives are used in an alternating sequence for illumination and detection.}
     \label{fig:objectiveCloseup}
   \end{figure}
 
@@ -112,7 +112,7 @@ In this chapter, we present a novel light-sheet microscope developed to address 
     \end{equation}
     and the back aperture diameter is $d = \SI{17.6}{mm}$.
     
-    To generate the tilted light-sheet as shown on \autoref{fig:objectiveCloseup}, the illumination beam will need to be displaced by
+    To generate the tilted light-sheet as shown on \autoref{fig:objectiveCloseup}, the illumination beam will need to be displaced in the back focal plane by
     \begin{equation}
       \delta = f_o \cdot \tan \SI{30}{\degree} = \SI{4.62}{mm}
     \end{equation}
@@ -185,7 +185,7 @@ In this chapter, we present a novel light-sheet microscope developed to address 
       \includegraphics[page=1,width=1\textwidth]{schematicsLinear}
     \end{subfigure}
     
-    \bcaption[Dual Mouse-SPIM optical layout]{The microscope consists of two main parts, the illumination branches (blue) and detection branches (yellow). For both illumination and detection there are two identical paths implemented. Illumination direction can be changed by applying a different offset to the galvanometric mirror, which in turn will direct the beam to the opposite face of the prism mirror. L1 and L2 will then image the scanner on M1. Using L3 as a scan lens, and L4 as a tube lens, the scanned beam is coupled into the objective path by a quad band dichroic mirror.
+    \bcaption[Dual Mouse-SPIM optical layout]{The microscope consists of two main parts, the illumination branches (blue) and detection branches (yellow). For both illumination and detection there are two identical paths implemented. The illumination direction can be changed by applying a different offset to the galvanometric mirror, which in turn will direct the beam to the opposite face of the prism mirror. L1 and L2 will then image the scanner on M1. Using L3 as a scan lens, and L4 as a tube lens, the scanned beam is coupled into the objective path by a quad band dichroic mirror.
     CAM -- camera, DM -- dichroic mirror, FW -- filter wheel, L -- lens, M -- mirror, O -- objective, PM -- prism mirror, S -- sample}
     \label{fig:fullSchematics}
   \end{figure}
@@ -205,7 +205,7 @@ In this chapter, we present a novel light-sheet microscope developed to address 
     \subsubsection{Chamber}
     The chamber serves two purposes: it holds the immersion liquid necessary for imaging, and it keeps the objectives in the \SI{120}{\degree} position. The objectives are held by their necks as opposed to the standard mounting method, which is from the back, by the threads. The advantage of this is that any axial movements due to thermal expansion are greatly reduced, thus the focal plane position is more stable even when changing the imaging conditions.
 
-    The chamber is machined from a high-performance plastic, polyether ether ketone (PEEK). This material has many beneficial properties: it is food safe, chemically extremely inert, and resistant to most solvents used in a biology laboratory. Due to these properties, PEEK is live imaging compatible, even for sensitive samples, as it can also be autoclaved. Compared to other plastics its mechanical properties are also superior. It has high tensile and compressive strength, comparable to those of aluminium, low thermal expansion and low thermal conductivity. This can be beneficial when implementing temperature control, as thermal loss is reduced.
+    The chamber is machined from a high-performance plastic, polyether ether ketone (PEEK). This material has many beneficial properties: it is food safe, chemically highly inert, and resistant to most solvents used in a biology laboratory. Due to these properties, PEEK is live imaging compatible, even for sensitive samples, as it can also be autoclaved. Compared to other plastics its mechanical properties are also superior. It has high tensile and compressive strength, comparable to those of aluminium, low thermal expansion and low thermal conductivity. This can be beneficial when implementing temperature control, as thermal loss is reduced.
 
     The objectives are kept in place by two custom-designed rings (\autoref{fig:Core} 1, 2). The first ring has a cross sectional shape of a wedge, and sits tightly against both the objective and the wall of the chamber. The second ring can freely slide on the objective, and has threads matching the chamber. When turned in, the threaded ring pushes the wedge ring further in, which in turn presses against the objective and the chamber wall uniformly, thus preventing the objective from moving, and sealing the chamber at the same time. As the wedge ring is made from a soft plastic (delrin), it will press evenly against the objective preventing any damage. Given the conical shape of the ring, it will also automatically center the objective, ensuring correct positioning.
 
@@ -264,7 +264,7 @@ In this chapter, we present a novel light-sheet microscope developed to address 
       \begin{figure}[tb]
         \centering
         \includegraphics[width=0.8\textwidth]{SW/dualMirrorFigure}
-        \bcaption[Detection branch switching unit]{To be able to image both views on the same camera, a moveable mirror unit is introduced. Depending on the imaging direction, the mirror block is either moved backward (\textbf{a}) or forward (\textbf{b}) to reflect the light up to the camera. Since the movement is parallel to the mirrors' surface, the image position on the sensor is not dependent on the exact position of the mirrors.}
+        \bcaption[Detection branch switching unit]{To be able to image both views on the same camera, a moveable mirror unit is introduced. Depending on the imaging direction, the mirror block is either moved backward (\textbf{a}) or forward (\textbf{b}) to reflect the light up to the camera. Since the movement is parallel to the mirrors' surfaces, the image position on the sensor is not dependent on the exact position of the mirrors.}
         \label{fig:dualMirror}
       \end{figure}
         
@@ -290,7 +290,7 @@ In this chapter, we present a novel light-sheet microscope developed to address 
 
     After the beam is aligned on the first rail, lens L1 and the splitter unit PM are placed in the measured positions to image the galvanometric mirror on mirror M1 using lenses L1 and L2. Correct positioning of the splitter unit along the rail is crucial, since this will affect the lateral position and tilt of the beam exiting the unit. To some extent this can also be compensated by adjusting the two mirrors before the galvanometric mirror, but should be avoided if possible as this will also displace the beam from the center of the galvanometric mirror.
 
-    After the initial alignment of the illumination arms, when the laser is already coupled in the objective, the fine adjustments are performed based on the image of the beam through the other objective. The beam is visualized by filling the chamber with a 0.1\% methylene blue solution. As this solution is fluorescent and can be excited in a very large range, it is well suited to visualize the beam during adjustment.
+    After the initial alignment of the illumination arms, when the laser is already coupled into the objective, the fine adjustments are performed based on the image of the beam through the other objective. The beam is visualized by filling the chamber with a 0.1\% methylene blue solution. As this solution is fluorescent and can be excited in a very large range, it is well suited to visualize the beam during adjustment.
 
     \paragraph{Adjusting beam position}
       Beam position can be adjusted by either translating the beam in a conjugated image plane (I'), or by rotating the beam in a conjugated back focal plane (BFP'). The setup was designed in a way that BFP' coincides with mirror M1. This mirror is mounted in a gimbal mirror mount, allowing to rotate the mirror exactly around its center, which avoids unwanted translational movements, and results in pure rotation of the beam. Lens L3 is positioned exactly 1 focal length away from the mirror, thus acting as a scan lens, and transforming the rotational movements to translation. This translation is further imaged and demagnified by the tube lens L4 and the objective O onto the sample.
@@ -310,7 +310,7 @@ In this chapter, we present a novel light-sheet microscope developed to address 
 
 
   \subsection{Alignment of the detection branches}
-    Since the detection path is equivalent to a wide-field detection scheme, its alignment is much simpler than that of the illumination branches. The only difference is the detection branch merging unit (see \autoref{sec:dualMirror}.) which features two moving mirrors. This, however, doesn't affect the alignment procedure, since the movement direction is parallel to both mirrors' surfaces, meaning that the exact position of the mirrors will not affect the image quality, as long as the mirrors are not clipping the image itself. A stability test was performed to confirm the consistent switching performance of the mirror unit before the final alignment took place (see \autoref{sec:mirrorStability}).
+    Since the detection path is equivalent to a wide-field detection scheme, its alignment is much simpler than that of the illumination branches. The only difference is the detection branch merging unit (see \autoref{sec:dualMirror}.) which features two moving mirrors. This, however, does not affect the alignment procedure, since the movement direction is parallel to both mirrors' surfaces, meaning that the exact position of the mirrors will not affect the image quality, as long as the mirrors are not clipping the image itself. A stability test was performed to confirm the consistent switching performance of the mirror unit before the final alignment took place (see \autoref{sec:mirrorStability}).
 
     % TODO: complete paragraph
     % The final alignment procedure 
@@ -321,7 +321,7 @@ In this chapter, we present a novel light-sheet microscope developed to address 
       Our tube lens is a compound, achromatic lens with a center thickness of \SI{12.5}{mm}, and edge thickness of \SI{11.3}{mm}. Its effective focal length is \SI{400}{mm} which will produce a 50x magnified image. The back focal length is \SI{394.33}{mm} which we measured from the camera chip, and the lens was positioned at this theoretically optimal position.
 
     \paragraph{Adjusting the correction collar}
-      The Nikon 25x objectives used for this setup have a built in correction ring that can be used to correct spherical aberrations resulting from refractive index differences when imaging samples behind a coverslip. This can be also effectively used to correct for any spherical aberrations occurring from imaging through the FEP foil. Although these aberrations are expected to be extremely low, due to the relatively thin, \SI{50}{\micro m} foil thickness, and the close matching of refractive index ($n_{\mathrm{FEP}} = 1.344$, $n_{\mathrm{H_2O}}=1.333$), for optimal, aberration free image quality it can't be neglected.
+      The Nikon 25x objectives used for this setup have a built in correction ring that can be used to correct spherical aberrations resulting from refractive index differences when imaging samples behind a coverslip. This can be also effectively used to correct for any spherical aberrations occurring from imaging through the FEP foil. Although these aberrations are expected to be extremely low, due to the relatively thin, \SI{50}{\micro m} foil thickness, and the close matching of refractive index ($n_{\mathrm{FEP}} = 1.344$, $n_{\mathrm{H_2O}}=1.333$), for optimal, aberration free image quality it can not be neglected.
 
       The correction collars are adjusted by inspecting a gel-suspended fluorescent bead specimen with the microscope, where the beads can act as a reporter of the point spread function of the microscope. The alignment can be performed ``live" by inspecting the bead image quality for aberrations. By gradually changing the correction collar, the ring artifacts are minimized on out-of-focus beads, and the peak intensity is maximized for in-focus beads. By moving the correction ring, the focal plane is also slightly shifted, which has to be compensated by shifting the light-sheet correspondingly to coincide with the correct imaging plane.
 
@@ -471,11 +471,11 @@ In this chapter, we present a novel light-sheet microscope developed to address 
     \begin{figure}[bthp]
       \centering
       \includegraphics[width=\textwidth]{beamPlots_view.pdf}
-      \bcaption[Illumination beam profile]{Average of 500 stationary beam images for both left (top left) and right objectives (bottom left). Beam intensity profile along the waist of each beam is plotted in the center column. The right column shows the beam width profile of each beam ($1/e^2$).}
+      \bcaption[Illumination beam profile]{Average of 500 stationary beam images for both left (top left) and right objectives (bottom left). Beam intensity profile along the waist of each beam is plotted in the center column. The right column shows the beam width profile of each beam ($1/e^2$). Scale bar, \SI{50}{\micro m}.}
       \label{fig:beamProfiles}
     \end{figure}
 
-    Since a Gaussian beam is used for illumination, its intensity profile depends on the axial position (\autoref{eq:gaussian}). Although the total intensity at any cross section of the beam is constant, because of the divergent properties, the peak intensity varies. To assess any non-uniformities in the illumination pattern, we measured the illumination beam intensity for each view.
+    Since a Gaussian beam is used for illumination, its intensity profile depends on the axial position (\autoref{eq:gaussian}). Although the total intensity at any cross section of the beam is constant, the peak intensity varies due to the diverging beam. To assess any non-uniformities in the illumination pattern, we measured the illumination beam intensity for each view.
 
     To visualize the beam, the chamber was filled with a fluorescent solution (0.1 \% methylene blue in distilled water). In order to increase the signal-to-noise ratio of these images, a long exposure time of \SI{200}{ms} was used, and 500 images of each beam were averaged. Background images were acquired by repeating the image acquisition with the laser turned off. The average of the background images were subtracted from the averaged beam images, resulting in the beam intensity profile (\autoref{fig:beamProfiles}).
 
@@ -519,7 +519,7 @@ In this chapter, we present a novel light-sheet microscope developed to address 
 
     Apart from measuring the point spread function and resolution in an ideal bead sample, we also wanted to know the resolution inside a biological sample, as the tissues usually introduce some aberrations to the light path. Although these aberrations highly depend on the sample, as a worst case scenario, we measured the point spread function inside a \textit{Drosophila melanogater} embryo. As this specimen is highly opaque and scattering, it gives a good estimate for the upper bound of the resolution.
 
-    Instead of the fluorescent beads, we imaged a \textit{Drosophila} embryo expressing H2A-mCherry marking the nuclei, and ASL-YFP marking the centrosomes (\autoref{fig:drosoEmbryo}a, and \autoref{sec:methods2}). As the centrosomal protein ASL is diffraction limited in size \cite{gonczy_towards_2012}, its image gives a good estimate for the point spread function inside the specimen.
+    Instead of the fluorescent beads, we imaged a \textit{Drosophila} embryo expressing H2A-mCherry marking the nuclei, and ASL-YFP marking the centrioles (\autoref{fig:drosoEmbryo}a, and \autoref{sec:methods2}). As the centriolar protein ASL is diffraction limited in size \cite{gonczy_towards_2012}, its image gives a good estimate for the point spread function inside the specimen.
 
     Similarly to the bead recordings, 15 centriole images were averaged with the 3D PSF tool of the MOSAIC plugin in Fiji (\autoref{fig:drosoEmbryo}c). On the averaged image we measured the resolution by fitting a Gaussian function on the lateral and axial intensity profiles (\autoref{fig:drosoEmbryo}d,e), and calculating the FWHM of the fitted Gaussian. The size of the averaged centrioles was \SI{654}{nm} in the lateral, and \SI{2739}{nm} in the axial direction.
 
@@ -578,7 +578,7 @@ In this chapter, we present a novel light-sheet microscope developed to address 
 
 \section{Discussion}
 
-  In this chapter we have presented a novel light-sheet microscope designed for subcellular imaging of mouse embryos. The microscope has two identical objectives, positioned in a \SI{120}{\degree} angle, and operates with a \SI{30}{\degree} tilted light-sheet. Due to the symmetrical design both objectives can be used for detection and illumination as well, providing multi-view capabilities without sample rotation. The \SI{120}{\degree} objective configuration allows the use of high numerical aperture objectives (1.1 instead of 0.8), which drastically increases the light collection efficiency compared to the conventional \SI{90}{\degree} configuration. Due to this improvement the microscope requires less tradeoff in imaging speed, resolution, contrast, and phototoxicity, as the corners of the pyramid (\autoref{fig:tradeoffs}) are now moved closer together.
+  In this chapter we have presented a novel light-sheet microscope designed for subcellular imaging of mouse embryos. The microscope has two identical objectives, positioned in a \SI{120}{\degree} angle, and operates with two \SI{30}{\degree} tilted light-sheets. Due to the symmetrical design both objectives can be used for detection and illumination as well, providing multi-view capabilities without sample rotation. The \SI{120}{\degree} objective configuration allows the use of high numerical aperture objectives (1.1 instead of 0.8), which drastically increases the light collection efficiency compared to the conventional \SI{90}{\degree} configuration. Due to this improvement the microscope requires less tradeoff in imaging speed, resolution, contrast, and phototoxicity, as the corners of the pyramid (\autoref{fig:tradeoffs}) are now moved closer together.
 
   We have characterized the optical properties of the microscope by measuring the light-sheet dimensions (average length: \SI{93}{\micro m}, average thickness: \SI{3.6}{\micro m}), and by measuring the point spread function. When combining the two views, the resolution is much closer to an ideal isotropic shape, being \SI{496}{nm} along the long axis and \SI{314}{nm} along the short axis as opposed to \SI{1323}{nm} and \SI{411}{nm} measured for a single view. This 2.67 fold increase in axial resolution can potentially make the difference in being able to track all chromosomes in a developing mouse embryo.
 

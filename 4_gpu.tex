@@ -79,12 +79,12 @@ MuVi-SPIM  provides an elegant solution for multiview imaging. A standard SPIM s
 
 Data acquisition is done in two steps: the sample is illuminated by light-sheet 1, and fluorescence is collected by both detection objectives at the same time. After this, light-sheet 2 is activated and both cameras record the fluorescence again (\autoref{fig:muvi-spim}d). This process will result in 4 datasets, all with partial information due to scattering effects. The 4 views are later fused to a single, high quality dataset (\autoref{fig:muvi-spim}e). This fusion process is necessary before any further analysis steps can be performed. However, due to the sheer size of the data, it takes a considerable amount of time after the acquisition.
 
-By combining scanned light-sheet \cite{keller_reconstruction_2008} with confocal slit detection on the camera chip \cite{baumgart_scanned_2012}, it is possible to exclude out-of-focus, scattered illumination light. This way it is  possible to illuminate simultaneously with both light-sheets, which leaves us with only two views, the views of the two opposing cameras \cite{de_medeiros_confocal_2015}.
+By combining scanned light-sheet illumination \cite{keller_reconstruction_2008} with confocal slit detection on the camera chip \cite{baumgart_scanned_2012}, it is possible to exclude out-of-focus, scattered illumination light. This way it is  possible to illuminate simultaneously with both light-sheets, which leaves us with only two views, the views of the two opposing cameras \cite{de_medeiros_confocal_2015}.
 
 \begin{figure}
   \centering
   \includegraphics[width=1\columnwidth]{fusion/muvi-spim}
-  \bcaption[Operating principle of MuVi-SPIM]{(a) The microscope consists of two illumination and two detection arms for simultaneous multiview illumination and detection. (b) The 4 arms meet in the imaging chamber that is filled with water, and contains the sample. (c) The sample is held by a glass capillary, in  a GelRite cylinder. Optical sectioning is achieved by a virtual light-sheet. (d) The light-sheets can be generated from two sides (light-sheet 1 and 2), and detection is also double sided (Camera 1 and 2). Adapted from \cite{krzic_multiview_2012}.}
+  \bcaption[Operating principle of MuVi-SPIM]{(a) The microscope consists of two illumination and two detection arms for simultaneous multiview illumination and detection. (b) The 4 arms meet in the imaging chamber that is filled with the imaging medium and contains the sample. (c) The sample is held by a glass capillary, in  a GelRite cylinder. Optical sectioning is achieved by a virtual light-sheet. (d) The light-sheets can be generated from two sides (light-sheet 1 and 2), and detection is also double sided (camera 1 and 2). Adapted from \cite{krzic_multiview_2012}.}
   \label{fig:muvi-spim}
 \end{figure}
 
@@ -129,7 +129,7 @@ These parameters are traditionally acquired by a bead based registration algorit
 
 For the two opposing views of MuVi-SPIM, these parameters are only dependent on the optical setup itself, and not on the sample or on the experiment. Because of this, it is sufficient to determine the transformation parameters only after modifying the microscope (\textit{e.g.}, after realignment).
 
-In our currently used fusion pipeline, after the parameters are acquired, the 3D stacks are fused by transforming one of the views to the coordinate system of the other (using the affine transformation parameters from the bead based registration), and fusing the two stack by applying a sigmoidal weighted average (\ref{fig:acquisition}a). The weights are determined in a way to exclude the parts of the stacks that have worse image quality and complement these from the other view's high quality regions. When using the electronic confocal slit detection (eCSD) weighting is not necessary, as the scattered light is already rejected in these recordings, and a simple sum of the two stacks gives the best result regardless of the sample \cite{de_medeiros_confocal_2015}.
+In our currently used fusion pipeline, after the parameters are determined, the 3D stacks are fused by transforming one of the views to the coordinate system of the other (using the affine transformation parameters from the bead based registration), and fusing the two stack by applying a sigmoidal weighted average (\ref{fig:acquisition}a). The weights are determined in a way to exclude the parts of the stacks that have worse image quality and complement these from the other view's high quality regions. When using the electronic confocal slit detection (eCSD) weighting is not necessary, as the majority of the scattered light is already rejected in these recordings, and a simple sum of the two stacks gives the best result regardless of the sample \cite{de_medeiros_confocal_2015}.
 
 The fusion process itself can be very resource intensive and can take a considerable amount of time. This is simply due to the size of the 3D stacks: a single dataset is usually between 2 and \SI{4}{GB} in size. Thus, the necessary memory requirement to fuse 2 of these stacks is $3\cdot \SI{4}{GB} = \SI{12}{GB}$, as the result will also take up the same space. Just reading and writing this amount of information to the hard disk takes a substantial amount of time. When using an SSD drive for example, with a \SI{500}{MB/s} read and write speed, just the read/write operations will take around $\frac{\SI{12}{GB}}{\SI{500}{MB/s}} = \SI{24}{s}$.
 
@@ -137,7 +137,7 @@ The fusion process itself can be very resource intensive and can take a consider
 \begin{figure}
   \centering
   \includegraphics[width=1\columnwidth]{fusion/acquisition}
-  \bcaption[multiview fusion methods for light-sheet microscopy]{a) Full 3D stacks are acquired from the opposing views (yellow and blue), which are then registered in 3D space using previously acquired affine transformation parameters. Registered stacks are then weighted averaged to create the final fused stack (green). b) Images from opposing views are directly fused plane by plane. Registration takes place in 2D space thus reducing computational effort and memory requirements. The registered planes are then weighted averaged to create the final fused image.}
+  \bcaption[multiview fusion methods for light-sheet microscopy]{a) Full 3D stacks are acquired from the opposing views (yellow and blue), which are then registered in 3D space using previously determined affine transformation parameters. Registered stacks are then weighted averaged to create the final fused stack (green). b) Images from opposing views are directly fused plane by plane. Registration takes place in 2D space thus reducing computational effort and memory requirements. The registered planes are then weighted averaged to create the final fused image.}
   \label{fig:acquisition}
 \end{figure}
 
@@ -168,7 +168,7 @@ e x + f y + h\\
 1
 \end{pmatrix}
 \]
-The advantage of a simplified transformation is not only the reduced computational complexity, but also the massively reduced memory requirement, as in this case it is sufficient to store 3 planes in memory instead of 3 entire stacks (\autoref{fig:acquisition} b). Performing the 2D direct fusion on the GPU immediately after acquisition has two benefits: first, only the fused images are stored on the hard drive, which directly results in 50\% savings in storage space. Second, since the fusion is faster than the camera acquisition speed, the fused image can be displayed for the users instead of the 2 raw images. This would greatly improve user experience and speed up the initial set-up phase of each experiment.
+The advantage of a simplified transformation is not only the reduced computational complexity, but also the massively reduced memory requirement, as in this case it is sufficient to store 3 planes in memory instead of 3 entire stacks (\autoref{fig:acquisition} b). Performing the 2D direct fusion on the GPU immediately after acquisition has two benefits: first, only the fused images are stored on the hard drive, which directly results in 50\% savings in storage space. Second, since the fusion is faster than the camera acquisition speed, the fused image can be displayed for the users instead of the 2 raw images. This greatly improves user experience and speeds up the initial set-up phase of each experiment.
 
 In order to allow for the direct 2D fusion, the microscope needs to be very well aligned to minimize any adverse effects arising from discarding some of the transformation parameters. The requirements for this are the following:
 \begin{align}
@@ -176,7 +176,7 @@ In order to allow for the direct 2D fusion, the microscope needs to be very well
 \left| g z \right|  &< \sigma_{xy} & \forall z \label{eq:req2}\\
 \left| i x + j y + (k-1)  z + l \right| &< \sigma_z & \forall x, y, z  \label{eq:req3}
 \end{align}
-where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resolution of the microscope, which are \SI{277}{nm} and \SI{1099}{nm} respectively. 
+where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resolution of the microscope, which are \SI{277}{nm} and \SI{1099}{nm} respectively (for $\na=1.1$). 
 
  If these conditions are fulfilled (\textit{i.e.}, the microscope is properly aligned), direct plane by plane fusion will not result in any loss of information compared to the full 3D image fusion.
 
@@ -222,7 +222,7 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
 
   Our custom microscope control software (\autoref{sec:software}) is developed in LabVIEW, and we implemented the pipeline as a combination of a CUDA and a LabVIEW library. The CUDA library implements all the necessary low level functions and exposes these in a dynamically linked library (dll). The LabVIEW library, \texttt{LVCUDA.lvlib} implements two high level classes: \texttt{cuArray} and \texttt{Texture} (\autoref{fig:LVCUDA}). These classes interface with the CUDA dll, and allow to easily build a flexible CUDA-based image processing pipeline in LabVIEW.
 
-  As the pipeline operates on 2D images, both classes support 1D or 2D arrays in a pitched configuration. \texttt{CuArray}, as the parent class, stores the pointer to the array, as well as the pitch, width and height. LabVIEW natively doesn't support pointer operations, therefore the pointer is simply cast to a \SI{64}{bit} unsigned integer internally. As this is a private member of the class there is no danger of accidental modification. Being a descendent of \texttt{cuArray} class, the \texttt{Texture} class adds a further member to store the reference to the CUDA texture object. This class is used to implement the affine transformation, as it supports floating point indexing and automatic linear interpolation.
+  As the pipeline operates on 2D images, both classes support 1D or 2D arrays in a pitched configuration. \texttt{CuArray}, as the parent class, stores the pointer to the array, as well as the pitch, width and height. LabVIEW natively does not support pointer operations, therefore the pointer is simply cast to a \SI{64}{bit} unsigned integer internally. As this is a private member of the class there is no danger of accidental modification. Being a descendent of \texttt{cuArray} class, the \texttt{Texture} class adds a further member to store the reference to the CUDA texture object. This class is used to implement the affine transformation, as it supports floating point indexing and automatic linear interpolation.
 
   Since the processing is actually bottlenecked by the data transfer rate between the main memory and GPU memory, we implemented multiple commonly used image preprocessing operations for our pipeline to maximize the utility of the GPU. These functions include background subtraction, background masking and image compression. We will discuss these features in the following sections of the chapter. 
 
@@ -241,7 +241,7 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
       \includegraphics[width=\textwidth]{fusion/drosophila_masked}
       \caption{}
     \end{subfigure}
-    \bcaption[Applying mask to remove background]{(a) Original image of a \textit{Drosophila} embryo. (b) Background selected by thresholding the blurred image.}
+    \bcaption[Applying mask to remove background]{(a) Original image of a \textit{Drosophila} embryo. (b) Background (blue) selected by thresholding the blurred image.}
     \label{fig:masking}
   \end{figure}
   
@@ -264,12 +264,12 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
 \begin{figure}
   \centering
   \includegraphics[width=0.6\textwidth]{fusion/beads/2Dvs3Dbeads}
-  \bcaption[Comparison of 3D and 2D fusion of beads]{Front and side views of a representative bead after 3D full affine fusion (a, b) and after 2D planewise fusion (c,d). FHWM was measured along the indicated lines, through the center of the bead image. Scale bar: \SI{1}{\micro m}.}
+  \bcaption[Comparison of 3D and 2D fusion of beads]{Front and side views of a representative bead after 3D full affine fusion (a, b) and after 2D planewise fusion (c, d). FHWM was measured along the indicated lines, through the center of the bead image. Scale bar: \SI{1}{\micro m}.}
   \label{fig:2Dvs3Dbeads}
 \end{figure}
 
   The image preprocessing pipeline was tested on our MuVi-SPIM microscope \cite{krzic_multiview_2012}.   
-  Processing speed of the CPU and GPU implementation of the processing pipeline was measured with the profiling tool of LabVIEW, and are an average of 10 runs. The benchmarking computer had 2 Intel Xeon E5620 processors with 8 processing cores running at \SI{2.4}{GHz}, \SI{24}{GB} RAM and an Nvidia GeForce GTX 750 graphics card. Test images were 2048\texttimes 2048 pixels at \SI{16}{bit} depth. 
+  Processing speed of the CPU and GPU implementation of the processing pipeline was measured with the profiling tool of LabVIEW, and are an average of 10 runs. The benchmarking computer had 2 Intel Xeon E5620 processors with 8 processing cores running at \SI{2.4}{GHz}, \SI{24}{GB} RAM and an Nvidia GeForce GTX 750 graphics card. Test images were 2048\texttimes 2048 pixels in size at \SI{16}{bit} depth. 
   
   For the background subtraction we recorded 1500 dark images with each camera and averaged them, in order to obtain the camera specific background images. Prior to image acquisition these were uploaded to the GPU memory, and were readily available for the pipeline. The implemented CUDA pipeline with background subtraction, 2D fusion and masking reached a throughput of 135.8 frames per second (fps), while a single-threaded CPU implementation could only process 7.4 images per second on average.
 
@@ -301,7 +301,7 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
   \begin{figure}
     \centering
     \includegraphics[width=1\textwidth]{fusion/drosophila_D2}
-    \bcaption[GPU fused images of a \textit{Drosophila melanogaster} embryo]{Two stacks were taken in quick succession first without fusion, then with fusion enabled. Fused images are shown in the middle of each subfigure, while the individual camera images are in the bottom insets. The top-left inset depicts the z-position of the shown images. (a) Image from closer to the left camera. (b) Image from the center of the embryo. (c) Image from closer to the right camera.}
+    \bcaption[GPU fused images of a \textit{Drosophila melanogaster} embryo]{Two stacks were taken in quick succession first without fusion, then with live fusion enabled. Fused images are shown in the middle of each subfigure, while the individual camera images are in the bottom insets. The top-left inset depicts the z-position of the shown images. (a) Image from closer to the left camera. (b) Image from the center of the embryo. (c) Image from closer to the right camera.}
     \label{fig:drosophila_D2}
   \end{figure}
 
@@ -346,9 +346,10 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
 
   The second part of our GPU-based image preprocessing pipeline is a new image compression algorithm that allows for extremely fast image compression to efficiently reduce data sizes already during acquisition.
   % A straightforward solution to these problems would be to compress the images during acquisition.
-  Although this would not reduce the requirements for image processing power and time, it still has a big impact on the necessary background infrastructure. By reducing the data size, not only the cost for storage can be reduced, but also the time it takes to transfer the data during the various steps of data processing is shortened. A fast compression method would also greatly improve 3D data browsing possibilities, as more data could be piped to the rendering software.
+  %Although this would not reduce the requirements for image processing power and time, it still has a big impact on the necessary background infrastructure.
+  By reducing the data size, not only the cost for storage can be reduced, but also the time it takes to transfer the data during the various steps of data processing is shortened. A fast compression method can also greatly improve 3D data browsing possibilities, as more data can be piped to the rendering software.
 
-  Despite the advantages, real-time compression for high-speed microscopy has not been available, and this is mostly due to the lack of appropriate compression methods suitable for scientific imaging that also offers the high throughput demanded by these applications. While typically used lossless compression methods, such as JPEG2000 \cite{adams_jpeg-2000_2001} offer good compression ratios, they are very slow in processing speed, at least compared to the data rate of a modern microscope ($\sim \SI{1}{GB/s}$, \autoref{fig:sizes}). High-speed compression methods that can deal with this data rate have been developed for ultra-high-definition 4K and 8K digital cameras, such as the high efficiency video codec (HEVC) \cite{international_telecommunications_union_h.265_2016}. These methods, however, have been optimized for lossy image compression which is generally not acceptable for scientific data \cite{cromey_digital_2013}, and rarely support compression of high bit rate originals, which is typically the case for modern sCMOS sensors. Although the HEVC recommendation does specify bit rates up to 16 bits, and lossless compression, the open source version, x265 only supports bit rates up to \SI{12}{bit} \cite{noauthor_x265_nodate}.
+  Despite its advantages, real-time compression for high-speed microscopy has not been available. This is mostly due to the lack of appropriate compression methods suitable for scientific imaging that also offers the high throughput demanded by these applications. While typically used lossless compression methods, such as JPEG2000 \cite{adams_jpeg-2000_2001} offer good compression ratios, they are very slow in processing speed, at least compared to the data rate of a modern microscope ($\sim \SI{1}{GB/s}$, \autoref{fig:sizes}). High-speed compression methods that can deal with such data rates have been developed for ultra-high-definition 4K and 8K digital cameras, such as the high efficiency video codec (HEVC) \cite{international_telecommunications_union_h.265_2016}. These methods, however, have been optimized for lossy image compression which is generally not acceptable for scientific data \cite{cromey_digital_2013}, and rarely support compression of high bit rate originals, which is typically the case for modern sCMOS sensors. Although the HEVC recommendation does specify bit rates up to \SI{16}{bits}, and lossless compression, the open source version, x265 only supports bit rates up to \SI{12}{bits} \cite{noauthor_x265_nodate}.
 
   To address these issues, we developed \b3d, a GPU based image compression library capable of high-speed compression of microscopy images during the image acquisition process. By utilizing the massively parallel processing architecture of a GPU, we were not only able to reach a compression and decompression speed of \SI{1}{GB/s}, but our algorithm also keeps the load off the CPU, making it available for other computing tasks related to operating the microscope itself.
 
@@ -387,7 +388,7 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
     
     \subsubsection{Lossless compression}
     % To ensure high performance while still keeping the central processing unit (CPU) of the computer available for imaging tasks, we developed our compression algorithm in the CUDA framework \cite{nickolls_scalable_2008} that utilizes the massively parallel architecture of the graphics processing unit (GPU). 
-    The algorithm design initially had three main requirements to ensure suitability for a high-speed microscopy environment: 1) low complexity for fast execution, 2) no data dependencies to enable parallel execution, and 3) full reversibility to ensure lossless compression. Since existing image compression standards such as JPEG2000 \cite{adams_jpeg-2000_2001} or JPEG-LS \cite{weinberger_loco-i_2000} were designed to maximize compression ratio even at the expense of compression speed, these were not suitable for our needs. Furthermore, most steps inherently require sequential execution, thus preventing efficient parallelization. Promising efforts have been made to enable parallel compression by simplifying JPEG-LS and removing the limiting steps from the algorithm (such as Golomb parameter adaptation or context modeling) \cite{wang_fast_2012,starosolski_simple_2007}. Although some of these methods could reach a significant speedup with minimal expense in compression ratio, their performance was still not enough for real-time compression of high-speed microscopy data.
+    The algorithm design initially had three main requirements to ensure suitability for a high-speed microscopy environment: 1) low complexity for fast execution, 2) no data dependencies to enable parallel execution, and 3) full reversibility to ensure lossless compression. Since existing image compression standards such as JPEG2000 \cite{adams_jpeg-2000_2001} or JPEG-LS \cite{weinberger_loco-i_2000} were designed to maximize compression ratio even at the expense of compression speed, these were not suitable for our needs. Furthermore, most steps inherently require sequential execution, thus preventing efficient parallelization. Promising efforts have been made to enable parallel compression by simplifying JPEG-LS and removing the limiting steps from the algorithm (such as Golomb parameter adaptation or context modeling) \cite{wang_fast_2012,starosolski_simple_2007}. Although some of these methods could reach a significant speedup with minimal expense in compression ratio, their performance remains insufficient for real-time compression of high-speed microscopy data.
 
     As in the case of other image compression methods, our algorithm has two main components: decorrelation and entropy coding (\autoref{fig:algorithm}a). In this work we focused on implementing a parallel encoder and decoder for the decorrelation part that would also be compatible with the noise-dependent lossy compression, as efficient CUDA-based entropy coders are already available \cite{treib_interactive_2012}. To decorrelate the data, similarly to JPEG-LS and lossless-JPEG \cite{pennebaker_jpeg:_1992}, a prediction is performed for each pixel by calculating the average of the top and left neighbors (\autoref{fig:algorithm}b). The prediction is subtracted from the real pixel value, resulting in the prediction error term:
     \begin{equation}
@@ -395,12 +396,12 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
     \end{equation}
     Since the neighboring pixels have a high chance of correlation, these error terms will typically be very small compared to the raw intensity values. This step is similar to predictor 7 of lossless JPEG (see \ref{sec:predictors}).
 
-    The pixel prediction method is especially well suited for parallel compression, as it can be performed independently for all pixels. For decompression, the top and left neighbor of a pixel need so be first reconstructed, thus parallelization needs some adjustments. An obvious choice is to perform the reverse prediction in tiles, where the number of threads will equal the number of tiles. Parallel execution can be further scaled up if the decoding is done in diagonals, starting from the top left corner (\autoref{fig:algorithm}c). With this method the average number of parallel threads will be
+    The pixel prediction method is especially well suited for parallel compression, as it can be performed independently for all pixels. For decompression, the top and left neighbors of a pixel need to be reconstructed first, thus parallelization needs some adjustments. An obvious choice is to perform the reverse prediction in tiles, where the number of threads will equal the number of tiles. Parallel execution can be further scaled up if the decoding is done in diagonals, starting from the top left corner (\autoref{fig:algorithm}c). With this method the average number of parallel threads will be
     \begin{equation}
-      N_{th} = N_t * a_t / 2,
+      N_\mathrm{th} = N_\mathrm{t} * a_\mathrm{t} / 2,
       \label{eq:numThreads}
     \end{equation}
-    where $N_{th}$ is the number of threads, $N_t$ is the number of tiles, $a_t$ is the tile width and height for a square tile. Although the threads can be maximized by making smaller tiles, the compression ratio will be negatively affected. This is because the corner pixel can't be predicted, and for the edges only one neighbor can be used instead of 2. We find square tiles between 16 and 64 pixels are a good choice between decompression speed and compression ratio.
+    where $N_\mathrm{th}$ is the number of threads, $N_\mathrm{t}$ is the number of tiles, $a_\mathrm{t}$ is the tile width and height for a square tile. Although the threads can be maximized by making smaller tiles, the compression ratio will be negatively affected. This is because the corner pixel can not be predicted, and for the edges only one neighbor can be used instead of 2. We find square tiles between 16 and 64 pixels are a good choice between decompression speed and compression ratio.
     
     The prediction error terms are subsequently run-length encoded and entropy coded by a fast, CUDA-enabled Huffman coder \cite{treib_interactive_2012,treib_turbulence_2012} to effectively reduce data size. The library is making extensive use of parallel prefix sum, which can be used for the effective parallel execution for both run-length encoding and Huffman coding. For decompression, the Huffman coding and run-length encoding are first reversed, then each pixel value is reconstructed from the neighboring values and the prediction errors. Although this implementation sacrifices a little in compression ratio compared to size-optimized methods, it can surpass a compression speed of \SI{1}{GB/s} (see \autoref{sec:evalB3D}), which is sufficient even for the dual camera confocal MuVi-SPIM setup \cite{de_medeiros_confocal_2015}.
     
@@ -421,11 +422,11 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
 
     \subsubsection{Within-noise-level compression}
     \label{sec:wnl}
-    Noise-dependent lossy compression relies on the fact that microscopy images naturally contain photon shot noise. To increase compression ratio, this algorithm allows some differences in the pixel values, as long as they are within a predefined proportion of the inherent noise. A special case for this mode is when all compression errors are smaller than the standard deviation of the noise ($\sigma$), which we call within-noise-level (WNL) compression.
+    Noise-dependent lossy compression relies on the fact that microscopy images naturally contain photon shot noise. To increase the compression ratio, this algorithm allows some differences in the pixel values, as long as they are within a predefined proportion of the inherent noise. A special case for this mode is when all compression errors are smaller than the standard deviation of the noise ($\sigma$), which we call \textit{within-noise-level} (WNL) compression.
 
     Our algorithm is inspired by both the near-lossless mode of JPEG-LS \cite{weinberger_loco-i_2000}, where the maximum compression error can be set to a predefined value, and the square root compression scheme \cite{gowen_square_2003, bernstein_noise_2010}, that quantizes its input relative to its square. We combine the two methods to achieve noise-dependent lossy compression while still retaining good image quality and avoiding banding artifacts.
 
-    Before the prediction errors are sent to the entropy coder, a quantization can take place that reduces the number of symbols that need to be encoded in order to increase compression ratio. By changing the quantization step, the maximum absolute reconstruction error can be defined, such as when using JPEG-LS. For noise dependent compression, however, the quantization step should be proportional to the image noise, which can be achieved by the following variance stabilizing transformation introduced by Bernstein \etal \cite{bernstein_noise_2010}:
+    Before the prediction errors are sent to the entropy coder, a quantization can take place that reduces the number of symbols that need to be encoded in order to increase the compression ratio. By changing the quantization step, the maximum absolute reconstruction error can be defined, such as when using JPEG-LS. For noise dependent compression, however, the quantization step should be proportional to the image noise, which can be achieved by the following variance stabilizing transformation introduced by Bernstein \etal \cite{bernstein_noise_2010}:
     \begin{equation}
       T = 2 \sqrt{e + \sigma^2_{RN}},
       \label{eq:wnl}
@@ -463,7 +464,7 @@ where $\sigma_{xy}$ is the lateral resolution, and $\sigma_z$ is the axial resol
     \begin{figure}
       \centering
       \includegraphics[width=0.5\textwidth]{extraNoise}
-      \bcaption[Theoretical and measured increase in image noise for WNL compression]{Validating \autoref{eq:extraNoise}, we plot the relative increase in image noise as a function of the mean. Blue line: plot of \autoref{eq:extraNoise} Red line: plot of measured data. To obtain the measurement, we compressed a stack of 512 images consisting of Poisson noise, each with a different mean. After WNL compression the dataset was read in Matlab, and the standard deviation was calculated for each frame. The ratio $\sigma_{in}/\sigma_{out}$ is plotted as a function of the mean.}
+      \bcaption[Theoretical and measured increase in image noise for WNL compression]{Validating \autoref{eq:extraNoise}, we plot the relative increase in image noise as a function of the mean. Blue line: plot of \autoref{eq:extraNoise} Red line: plot of measured data. To obtain the measurement, we compressed a stack of 512 images consisting of Poisson noise, each with a different mean. After WNL compression the dataset was read in Matlab, and the standard deviation was calculated for each frame. The ratio $\sigma_\mathrm{out}/\sigma_\mathrm{in}$ is plotted as a function of the mean.}
       \label{fig:extraNoise}
     \end{figure}
 
@@ -479,7 +480,7 @@ For all presented benchmarks, TIFF and JPEG2000 performance was measured through
 \textit{Drosophila} embryos were imaged in the MuVi-SPIM setup \cite{krzic_multiview_2012} using the electronic confocal slit detection (eCSD) \cite{de_medeiros_confocal_2015}. Embryos were collected on an agar juice plate, and dechorionated in 50\% bleach solution for \SI{1}{min}. The embryos were then mounted in a shortened glass capillary (Brand \SI{100}{\micro l}) filled with 0.8\% GelRite (Sigma-Aldrich), and pushed out of the capillary to be supported only by the gel.
 
 \paragraph{3D nucleus segmentation}
-3D nucleus segmentation of \textit{Drosophila} embryos was performed using Ilastik \cite{sommer_ilastik:_2011}. The original dataset was compressed at different quantization levels, then upscaled in z to obtain isotropic resolution. To identify the nuclei, we used the pixel classification workflow, and trained it on the uncompressed dataset. This training was then used to segment the compressed datasets as well. Segmentation overlap was calculated in Matlab using the Sørensen–Dice index \cite{sorensen_method_1948,dice_measures_1945}:
+3D nucleus segmentation of \textit{Drosophila melanogaster} embryos was performed using Ilastik 1.2.0 \cite{sommer_ilastik:_2011}. The original dataset was compressed at different quantization levels, then upscaled in z to obtain isotropic resolution. To identify the nuclei, we used the pixel classification workflow, and trained it on the uncompressed dataset. This training was then used to segment the compressed datasets as well. Segmentation overlap was calculated in Matlab using the Sørensen–Dice index \cite{sorensen_method_1948,dice_measures_1945}:
 \begin{equation}
   QS = 2 \left| A \cap B \right| / \left( |A| + |B| \right)
 \end{equation}
@@ -488,7 +489,7 @@ where the sets $A$ and $B$ represent the pixels included in two different segmen
 \paragraph{3D membrane segmentation}
 Raw MuVi-SPIM recordings of \textit{Phallusia mammillata} embryos expressing PH-citrine membrane marker were kindly provided by Ulla-Maj Fiuza (EMBL, Heidelberg). Each recording consisted of 4 views at 90 degree rotations. The views were fused using an image based registration algorithm followed by a sigmoidal blending of the 4 views.
 % The fusion software was developed by Leo Guignard (Janelia Research Campus, Ashburn, Virginia).
-The fused stack was then segmented using the MARS algorithm \cite{fernandez_imaging_2010} with an hmin parameter of 10. The raw data (all 4 views) was compressed at different levels, and segmented using the same pipeline. Segmentation results were then processed in Matlab to calculate the overlap score for the membranes using the Sørensen–Dice index.
+The fused stack was then segmented using the MARS algorithm \cite{fernandez_imaging_2010} with an $h_\mathrm{min}$ parameter of 10. The raw data (all 4 views) was compressed at different levels, and segmented using the same pipeline. Segmentation results were then processed in Matlab to calculate the overlap score for the membranes using the Sørensen–Dice index.
 
 \paragraph{Single-molecule localization imaging}
 In order to visualize microtubules, U2OS cells were treated as in \cite{deschamps_3d_2014} and imaged in a dSTORM buffer \cite{heilemann_subdiffraction-resolution_2008}. In brief, the cells were permeabilized and fixed with glutaraldehyde, washed, then incubated with primary tubulin antibodies and finally stained with Alexa Fluor 647 coupled secondary antibodies. The images were recorded on a home-built microscope previously described \cite{deschamps_3d_2014}, in its 2D single-channel mode.
@@ -518,7 +519,7 @@ Single molecule localization datasets were simulated in Matlab by generating a g
         \includegraphics[page=1,height=0.9\textwidth]{Fig1c_compressionBars}
         \caption{}
       \end{subfigure}      
-      \bcaption[Compression performance]{(\textbf{a}) Performance comparison of our \b3d compression algorithm (red circle) vs. KLB (orange), uncompressed TIFF (light yellow), LZW compressed TIFF (light blue) and JPEG2000 (blue) regarding write speed (horizontal axis), read speed (vertical axis) and file size (circle size). (see also Table \ref{tab:performance}). (\textbf{b}) WNL compression performance compared with lossless performance for 9 different dataset representing 3 imaging modalities (SPIM, SMLM, screening). Compression ratio = original size / compressed size. For description of datasets see Table \ref{tab:datasets} in Appendix B.}
+      \bcaption[Compression performance]{(\textbf{a}) Performance comparison of our \b3d compression algorithm (red circle) vs. KLB (orange), uncompressed TIFF (light yellow), LZW compressed TIFF (light blue) and JPEG2000 (blue) regarding write speed (horizontal axis), read speed (vertical axis) and file size (circle size). (see also Table \ref{tab:performance}). (\textbf{b}) WNL compression performance compared with lossless performance for 9 different datasets representing 3 imaging modalities (SPIM, SMLM, screening). Compression ratio = original size / compressed size. For description of datasets see Table \ref{tab:datasets} in Appendix B.}
       \label{fig:bubbles}
     \end{figure}
 
@@ -534,7 +535,7 @@ Single molecule localization datasets were simulated in Matlab by generating a g
     \begin{figure}[tpb]
       \centering
       \includegraphics[page=1,width=0.7\textwidth]{wnlSamples}
-      \bcaption[Image quality of a WNL compressed dataset]{WNL compression of a \textit{Drosophila} recording taken in the MuVi-SPIM setup. Compression ratio: 19.83. (a–c) Uncompressed image of the whole field of view (a), and zoomed in smaller regions (b, c). (d–f) WNL compressed image of the whole field of view (d), and zoomed in smaller regions (e, f). Scale bars: \SI{25}{\micro m} (a, e); \SI{2.5}{\micro m} (b, c, e, f).}
+      \bcaption[Image quality of a WNL compressed dataset]{WNL compression of a \textit{Drosophila melanogaster} recording taken in the MuVi-SPIM setup. Compression ratio: 19.83. (a–c) Uncompressed image of the whole field of view (a), and zoomed in smaller regions (b, c). (d–f) WNL compressed image of the whole field of view (d), and zoomed in smaller regions (e, f). Scale bars: \SI{25}{\micro m} (a, e); \SI{2.5}{\micro m} (b, c, e, f).}
       \label{fig:wnlSamples}
     \end{figure}
 
@@ -547,7 +548,7 @@ Single molecule localization datasets were simulated in Matlab by generating a g
 
     To see how the noise-dependent compression affects common imaging pipelines, we tested the effect of different levels of compression on 3D nucleus and membrane segmentation in light-sheet microscopy, and on single-molecule localization accuracy in superresolution microscopy.
     First, we imaged a \textit{Drosophila melanogaster} embryo expressing an H2Av-mCherry nuclear marker in the MuVi-SPIM and segmented the nuclei with Ilastik \cite{sommer_ilastik:_2011} (\autoref{fig:wnlDroso}a and \autoref{sec:methodsB3D}). Then we performed noise dependent compression at various quality levels and calculated the segmentation overlap compared to the uncompressed stack (\autoref{sec:methodsB3D}). At WNL compression ($q=1 \sigma$) the segmentation overlap is almost perfect (\autoref{fig:wnlDroso}b) with an overlap score of 0.996. Even when increasing the quantization step to $4\sigma$ (\autoref{fig:wnlDroso}c) the overlap score stays at 0.98 and only drops below 0.97 when the compression ratio is already above 120 (quantization step of $5\sigma$, \autoref{fig:wnlDroso}d).
-    We got similar results for a membrane segmentation pipeline that is used with \textit{Phallusia mammillata} embryos (\autoref{fig:wnlPhallusia}and \autoref{sec:methodsB3D}).
+    We got similar results for a membrane segmentation pipeline that is used with \textit{Phallusia mammillata} embryos (\autoref{fig:wnlPhallusia} and \autoref{sec:methodsB3D}).
 
     \begin{figure}[tpb]
       \centering
@@ -568,14 +569,14 @@ Single molecule localization datasets were simulated in Matlab by generating a g
     \begin{figure}[tpb]
       \centering
       \includegraphics[page=2,width=1\textwidth]{LLvsB3D}
-      \bcaption[Influence of noise-dependent lossy compression on single-molecule localization]{Microtubules, immunolabeled with Alexa Fluor 647 were imaged by SMLM (\textbf{a}). The raw dataset was compressed at increasingly higher compression levels, and localized using the same settings as the uncompressed data. To visualize localization mismatch, the results of the uncompressed (green) and compressed (magenta) datasets are overlaid in a single image (\textbf{b}, \textbf{c}; overlap in white). Two representative compression levels were chosen at q=1$\upsigma$ (\textbf{b}) and q=4$\upsigma$ (\textbf{c}). To assess the effects of compression on localization precision, a simulated dataset with known emitter positions was compressed at various levels. For all compression levels the relative localization error (normalized to the Cramér–Rao lower bound) was calculated and is plotted in (\textbf{d}) along with the achieved compression factors.}
+      \bcaption[Influence of noise-dependent lossy compression on single-molecule localization]{Microtubules, immunolabeled with Alexa Fluor 647 were imaged by SMLM (\textbf{a}). The raw dataset was compressed at increasingly higher compression levels, and localized using the same settings as the uncompressed data. To visualize the localization mismatch, the results of the uncompressed (green) and compressed (magenta) datasets are overlaid in a single image (\textbf{b}, \textbf{c}; overlap in white). Two representative compression levels were chosen at q=1$\upsigma$ (\textbf{b}) and q=4$\upsigma$ (\textbf{c}). To assess the effects of compression on localization precision, a simulated dataset with known emitter positions was compressed at various levels. For all compression levels the relative localization error (normalized to the Cramér–Rao lower bound) was calculated and is plotted in (\textbf{d}) along with the achieved compression factors.}
       \label{fig:wnlSMLM}
     \end{figure}
 
     \begin{figure}[tpb]
       \centering
       \includegraphics[page=1,width=0.5\textwidth]{SFig6_locprecVsNphotons}
-      \bcaption[Change in localization error only depends on selected quantization step]{We simulated multiple datasets (\autoref{sec:methodsB3D}) with different average photon numbers per localization. Background was kept at a constant average of 20 photons/pixel. Datasets were compressed at multiple compression levels (see legend), and localization error relative to the Cramér-Rao lower bound was calculated. The relative localization error only depends on the compression level, and not on the signal to background illumination ratio.}
+      \bcaption[Change in localization error only depends on selected quantization step]{We simulated multiple datasets (\autoref{sec:methodsB3D}) with different average photon numbers per localization. The background was kept at a constant average of 20 photons/pixel. Datasets were compressed at multiple compression levels (see legend), and localization error relative to the Cramér-Rao lower bound was calculated. The relative localization error only depends on the compression level, and not on the signal to background illumination ratio.}
       \label{fig:SFig6_locprecVsNphotons}
     \end{figure}
 
@@ -623,7 +624,7 @@ When using the full 3D fusion pipeline the data not only takes up twice as much 
 
 A further benefit of the direct fusion is that it can also run during setting up the experiments, in the ``live" view, and the fused view replaces the two camera views. This helps the users to better assess image quality, and expedites setting up the experiments.
 
-For experiments where more than two views are necessary and the sample is also rotated, the direct fusion can't completely replace the previous 3D fusion method, as it can not account for any transformation outside the common focal plane. However, even for these experiments the raw data is reduced by a factor of two, and the 3D fusion task is also simplified, since the number of distinct views are halved.
+For experiments where more than two views are necessary and the sample is also rotated, the direct fusion can not completely replace the previous 3D fusion method, as it can not account for any transformation outside the common focal plane. However, even for these experiments the raw data is reduced by a factor of two, and the 3D fusion task is also simplified, since the number of distinct views are halved.
 
 
 
