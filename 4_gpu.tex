@@ -599,24 +599,19 @@ Single molecule localization datasets were simulated in Matlab by generating a g
 Code used for analyzing data, \b3d source code and compiled binaries, including a filter plugin for HDF5, are available for download at \url{https://git.embl.de/balazs/B3D}.
 
 
-  %#     ## ######## ######## ##     ## 
-  %##   ### ##          ##    ##     ## 
-  %### #### ##          ##    ##     ## 
-  %# ### ## ######      ##    ######### 
-  %#     ## ##          ##    ##     ## 
-  %#     ## ##          ##    ##     ## 
-  %#     ## ########    ##    ##     ## 
 
 
 
-
-
-
-
-
-
+% ########  ####  ######   ######  ##     ## 
+% ##     ##  ##  ##    ## ##    ## ##     ## 
+% ##     ##  ##  ##       ##       ##     ## 
+% ##     ##  ##   ######  ##       ##     ## 
+% ##     ##  ##        ## ##       ##     ## 
+% ##     ##  ##  ##    ## ##    ## ##     ## 
+% ########  ####  ######   ######   #######  
 
 \section{Discussion}
+\label{sec:discu-gpu}
 
 In this chapter we presented a real-time image preprocessing and compression pipeline for multiview light-sheet microscopy. This pipeline is capable of fusing opposing views recorded in the MuVi-SPIM faster than the acquisition rate, as well as compressing the acquired data during imaging. Both of these are important steps in the data preprocessing, especially given the very high data production rate of the microscope. As a single experiment can reach tens of terabytes, any kind of processing that can be performed during acquisition can immensely facilitate further analysis.
 
@@ -624,7 +619,7 @@ When using the full 3D fusion pipeline the data not only takes up twice as much 
 
 A further benefit of the direct fusion is that it can also run during setting up the experiments, in the ``live" view, and the fused view replaces the two camera views. This helps the users to better assess image quality, and expedites setting up the experiments.
 
-For experiments where more than two views are necessary and the sample is also rotated, the direct fusion can not completely replace the previous 3D fusion method, as it can not account for any transformation outside the common focal plane. However, even for these experiments the raw data is reduced by a factor of two, and the 3D fusion task is also simplified, since the number of distinct views are halved.
+For experiments where more than two opposing views are necessary and the sample is also rotated, the direct fusion can not completely replace the previous 3D fusion method, as it can not account for any transformation outside the common focal plane. However, even for these experiments the raw data is reduced by a factor of two, and the 3D fusion task is also simplified, since the number of distinct views are halved. This not only makes the fusion process faster, but also makes it more robust as the individual stack will have larger overlapping regions owing to the more uniform image quality throughout the stacks.
 
 
 
